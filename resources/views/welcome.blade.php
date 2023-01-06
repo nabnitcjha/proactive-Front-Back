@@ -34,22 +34,7 @@
 
 <body class="animsition">
 <div class="page-wrapper"></div>
-<!-- <script src="https://js.pusher.com/7.2/pusher.min.js"></script> -->
-<!-- <script>
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
 
-    var pusher = new Pusher('603ab329e0ad7dddb8cf', {
-      cluster: 'ap2'
-    });
-
-    var channel = pusher.subscribe('chat');
-    channel.bind('server.created', function(data) {
-        console.log("HELLLO");
-      alert(JSON.stringify(data));
-    });
-  </script> -->
-    <!-- Vendor JS Files -->
     <script src="{{ asset('dashboard_css/assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('dashboard_css/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('dashboard_css/assets/vendor/chart.js/chart.min.js') }}"></script>
