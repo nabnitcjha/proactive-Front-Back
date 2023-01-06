@@ -11,8 +11,13 @@ class Message extends Model
     protected $fillable = ['message'];
 
     //Add the below function
-    public function user()
+    public function friend()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'friend_id', 'id');
+    }
+
+    public function me()
+    {
+        return $this->belongsTo(User::class,'my_id', 'id');
     }
 }
