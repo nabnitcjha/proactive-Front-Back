@@ -1,67 +1,88 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+require("./bootstrap");
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import axios from "axios";
+import connectAPI from "./connectAPI";
+import momentMethod from "./momentMethod";
+import moment from "moment";
+import Multiselect from "vue-multiselect";
+import "vue-multiselect/dist/vue-multiselect.min.css";
+import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
-const { default: Echo } = require('laravel-echo');
+import DatePicker from "vue2-datepicker";
+import "vue2-datepicker/index.css";
 
-require('./bootstrap');
+// import Vuetify from 'vuetify'
 
-window.Vue = require('vue').default;
+import vuetify from "./plugins/vuetify";
+import "vuetify/dist/vuetify.min.css";
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+// common component
+import DeleteModal from "./components/common/DeleteModal.vue";
+import ClassSchedule from "./components/form/ClassSchedule.vue";
+import SlotCalendar from "./components/calendar/Calendar.vue";
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+// Install VeeValidate components globally
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('chat-messages', require('./components/ChatMessages.vue').default);
-Vue.component('chat-form', require('./components/ChatForm.vue').default);
+Vue.component("multiselect", Multiselect);
+Vue.component("date-picker", DatePicker);
+Vue.component("delete-modal", DeleteModal);
+Vue.component("class-schedule", ClassSchedule);
+Vue.component("slot-calendar", SlotCalendar);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap-vue/dist/bootstrap-vue.css";
+import Fragment from "vue-fragment";
+import { Plugin } from "vue-fragment";
+import { createPinia, PiniaVuePlugin } from "pinia";
+import piniaPersist from "pinia-plugin-persist";
 
-const app = new Vue({
-    el: '#app',
-    data: {
-        messages: []
-    },
+// Choose Locale
+moment.locale("en");
 
+Vue.use(PiniaVuePlugin);
+const pinia = createPinia();
+pinia.use(piniaPersist);
+
+Vue.use({ moment });
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
+Vue.use(Fragment.Plugin);
+Vue.use(Plugin);
+Vue.use(axios);
+Vue.mixin(connectAPI);
+Vue.mixin(momentMethod);
+// Vue.use(Vuetify)
+
+
+
+
+
+new Vue({
+    vuetify,
+    components: { Fragment },
+    router,
+    pinia,
+    data() {
+        return {
+         mode:'add'
+        };
+      },
+      mounted(){
+        this.mode='sonu';
+      },
     created() {
-        this.fetchMessages();
+        window.Echo.channel('chat')
+        .listen('MessageSent', (e) => {
+            console.log("E",e);
+        });
 
-        window.Echo.private('chat')
-            .listen('MessageSent', (e) => {
-                this.messages.push({
-                    message: e.message.message,
-                    user: e.user
-                });
-            });
     },
-
     methods: {
-        fetchMessages() {
-            axios.get('/messages').then(response => {
-                this.messages = response.data;
-            });
+        changeRoute(route) {
+            this.$router.push(route);
         },
-
-        addMessage(message) {
-            this.messages.push(message);
-
-            axios.post('/messages', message).then(response => {
-                console.log(response.data);
-            });
-        }
-    }
-});
+    },
+    render: (h) => h(App),
+}).$mount(".page-wrapper");
