@@ -55,9 +55,8 @@ Vue.mixin(connectAPI);
 Vue.mixin(momentMethod);
 // Vue.use(Vuetify)
 
-
-
-
+import { chatInfoStore } from "./stores/chatInfo";
+import { mapActions } from "pinia";
 
 new Vue({
     vuetify,
@@ -66,20 +65,20 @@ new Vue({
     pinia,
     data() {
         return {
-         mode:'add'
+            mode: "add",
         };
-      },
-      mounted(){
-        this.mode='sonu';
-      },
+    },
+    mounted() {
+        this.mode = "sonu";
+    },
     created() {
-        window.Echo.channel('chat')
-        .listen('MessageSent', (e) => {
-            console.log("E",e);
+        window.Echo.channel("chat").listen("MessageSent", (e) => {
+            this.setLoginInfo(e)
         });
-
     },
     methods: {
+        ...mapActions(chatInfoStore, ["setMessageInfo"]),
+
         changeRoute(route) {
             this.$router.push(route);
         },
