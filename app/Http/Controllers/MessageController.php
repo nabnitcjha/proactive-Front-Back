@@ -17,26 +17,14 @@ class MessageController extends BaseController
         $this->messageResource = new MessageResource(array());
     }
 
-    public function fetchMessages($friend_id,$my_id)
+    public function fetchMessages($friend_id, $my_id)
     {
-        $messageInfo = Message::
-        with(['friend' => function ($query) {
-            $query->select('id',DB::raw("CONCAT(first_name, ' ', last_name) as full_name"));
-        }])->
-        with(['me' => function ($query) {
-            $query->select('id',DB::raw("CONCAT(first_name, ' ', last_name) as full_name"));
-        }])
-        ->where([
-            ['my_id',$my_id],
-            ['friend_id',$friend_id]
-        ])->get(['id','message','my_id','friend_id']);
+        $messageInfo =  $this->privateMessage($friend_id, $my_id);
 
-        // return $messageInfo;
-
-       return    $this->successResponse(
-        $this->messageResource->collection($messageInfo),
-        'fetch all record successfully'
-    );
+        return    $this->successResponse(
+            $this->messageResource->collection($messageInfo),
+            'fetch all record successfully'
+        );
     }
 
     public function sendMessage(Request $request)
@@ -45,18 +33,26 @@ class MessageController extends BaseController
         parent::createModelObject("App\Models\Message");
         parent::store($request->message_info);
 
-        $messageInfo = Message::
-        with(['friend' => function ($query) {
-            $query->select(DB::raw("CONCAT(first_name, ' ', last_name) as full_name"));
-        }])->
-        with(['me' => function ($query) {
-            $query->select(DB::raw("CONCAT(first_name, ' ', last_name) as full_name"));
-        }])
-        ->where([
-            ['my_id',$request->message_info['my_id']],
-            ['friend_id',$request->message_info['friend_id']]
-        ])->get();
+        $messageInfo = [
+            'my_id' => $request->message_info['my_id'],
+            'friend_id' => $request->message_info['friend_id']
+        ];
 
         broadcast(new MessageSent($messageInfo));
+    }
+
+    public function privateMessage($friend_id, $my_id)
+    {
+        $messageInfo = Message::with(['friend' => function ($query) {
+            $query->select('id', DB::raw("CONCAT(first_name, ' ', last_name) as full_name"));
+        }])->with(['me' => function ($query) {
+            $query->select('id', DB::raw("CONCAT(first_name, ' ', last_name) as full_name"));
+        }])
+            ->where([
+                ['my_id', $my_id],
+                ['friend_id', $friend_id]
+            ])->get(['id', 'message', 'my_id', 'friend_id']);
+
+        return $messageInfo;
     }
 }
