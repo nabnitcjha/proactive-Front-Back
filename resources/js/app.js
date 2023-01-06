@@ -63,14 +63,7 @@ new Vue({
     components: { Fragment },
     router,
     pinia,
-    data() {
-        return {
-            mode: "add",
-        };
-    },
-    mounted() {
-        this.mode = "sonu";
-    },
+
     created() {
         window.Echo.channel("chat").listen("MessageSent", (e) => {
             this.setLoginInfo(e)
