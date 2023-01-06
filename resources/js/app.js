@@ -66,7 +66,7 @@ new Vue({
 
     created() {
         window.Echo.channel("chat").listen("MessageSent", (e) => {
-            this.setLoginInfo(e)
+            this.setMessageInfo(e)
         });
     },
     methods: {

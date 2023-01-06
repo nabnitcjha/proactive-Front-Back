@@ -21,6 +21,8 @@
     </div>
 </template>
 <script>
+import { chatInfoStore } from "../../stores/chatInfo";
+import { mapActions } from "pinia";
 import axios from "axios";
 export default {
     props: ["user"],
@@ -31,16 +33,29 @@ export default {
         };
     },
     methods: {
+        ...mapActions(chatInfoStore, ["setMessageInfo"]),
+
         fetchMessages() {
-            axios.get("http://127.0.0.1:8000/messages").then((response) => {
-                this.newMessage = "";
+            let friend_id = 1;
+            let my_id = 1;
+            urlText =
+                "http://127.0.0.1:8000/api/messages" +
+                "/" +
+                friend_id +
+                "/" +
+                my_id;
+            axios.get("http://127.0.0.1:8000/api/messages").then((response) => {
+                this.setMessageInfo(response.data.data)
             });
         },
-       async addMessage() {
-            let formData = {};
-            formData["message"] = this.newMessage;
+        async addMessage() {
+            let friend_id = 1;
+            let my_id = 1;
+            let formData = new FormData();
+            formData.append("message_info[message]", this.newMessage);
             let urlText = "messages";
-            formData["id"] = 1;
+            formData.append("message_info[friend_id]", friend_id);
+            formData.append("message_info[my_id]", my_id);
             let postResponse = await this.post(urlText, formData);
             this.newMessage = "";
         },

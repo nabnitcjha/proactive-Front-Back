@@ -27,8 +27,8 @@ class MessageController extends BaseController
         parent::store($request->message_info);
 
         $messageInfo = Message::with(['friend','me'])->where([
-            ['my_id',$request->message_info->my_id],
-            ['friend_id',$request->message_info->friend_id]
+            ['my_id',$request->message_info['my_id']],
+            ['friend_id',$request->message_info['friend_id']]
         ])->get();
 
         broadcast(new MessageSent($messageInfo));

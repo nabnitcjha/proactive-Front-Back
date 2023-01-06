@@ -21,7 +21,6 @@ Route::group([
     Route::post('logout', 'AuthController@logout');
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
-
 });
 
 // student routes
@@ -40,7 +39,6 @@ Route::group([
     Route::get('student/{id}/groupDiscussion', 'StudentController@groupDiscussion');
     Route::get('student/{id}/Classes', 'StudentController@Classes');
     Route::put('student/{id}/changePassword', 'StudentController@changePassword');
-
 });
 
 // teacher routes
@@ -53,7 +51,6 @@ Route::group([
 
     Route::post('addTeacher', 'TeacherController@saveData');
     Route::get('getTeachers/{allowPagination}', 'TeacherController@index');
-
 });
 
 // subject routes
@@ -66,7 +63,6 @@ Route::group([
 
     Route::post('addSubject', 'SubjectController@saveData');
     Route::get('getSubjects/{allowPagination}', 'SubjectController@index');
-
 });
 
 // class-schedule routes
@@ -91,8 +87,6 @@ Route::group([
     'namespace' => 'App\Http\Controllers'
 
 ], function ($router) {
-    Route::get('chat', [App\Http\Controllers\ChatsController::class, 'index']);
-    Route::get('messages', [App\Http\Controllers\ChatsController::class, 'fetchMessages']);
-    Route::post('messages', [App\Http\Controllers\ChatsController::class, 'sendMessage']);
+    Route::get('messages/{friend_id}/{my_id}', [App\Http\Controllers\MessageController::class, 'fetchMessages']);
+    Route::post('messages', [App\Http\Controllers\MessageController::class, 'sendMessage']);
 });
-
