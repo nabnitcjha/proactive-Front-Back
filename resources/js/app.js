@@ -66,7 +66,7 @@ new Vue({
 
     created() {
         window.Echo.channel("chat").listen("MessageSent", (e) => {
-            this.setMessageInfo(e)
+            this.fetchMessages(e.messageInfo.friend_id,e.messageInfo.my_id);
         });
     },
     methods: {
@@ -74,6 +74,17 @@ new Vue({
 
         changeRoute(route) {
             this.$router.push(route);
+        },
+        fetchMessages(friend_id,my_id) {
+            urlText =
+                "http://127.0.0.1:8000/api/messages" +
+                "/" +
+                friend_id +
+                "/" +
+                my_id;
+            axios.get("http://127.0.0.1:8000/api/messages").then((response) => {
+                this.setMessageInfo(response.data.data)
+            });
         },
     },
     render: (h) => h(App),

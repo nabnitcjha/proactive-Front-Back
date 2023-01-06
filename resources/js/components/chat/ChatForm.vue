@@ -21,33 +21,17 @@
     </div>
 </template>
 <script>
-import { chatInfoStore } from "../../stores/chatInfo";
-import { mapActions } from "pinia";
-import axios from "axios";
 export default {
     props: ["user"],
     data() {
         return {
             newMessage: "",
-            message: [],
         };
     },
+    mounted(){
+        this.$root.fetchMessages(1,1);
+    },
     methods: {
-        ...mapActions(chatInfoStore, ["setMessageInfo"]),
-
-        fetchMessages() {
-            let friend_id = 1;
-            let my_id = 1;
-            urlText =
-                "http://127.0.0.1:8000/api/messages" +
-                "/" +
-                friend_id +
-                "/" +
-                my_id;
-            axios.get("http://127.0.0.1:8000/api/messages").then((response) => {
-                this.setMessageInfo(response.data.data)
-            });
-        },
         async addMessage() {
             let friend_id = 1;
             let my_id = 1;
