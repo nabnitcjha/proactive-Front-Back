@@ -23,7 +23,7 @@
 </li><!-- End Student Nav -->
 
 <li class="nav-item">
-  <a class="nav-link collapsed hand"  @click.stop="$root.changeRoute('/add-teacher')">
+  <a class="nav-link collapsed hand"  @click.stop="$root.changeRoute('/teacher')">
     <i class="bi bi-person"></i>
     <span>Teacher</span>
   </a>

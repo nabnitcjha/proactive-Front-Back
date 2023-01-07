@@ -31,14 +31,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         State: _Assets_formIcons_index__WEBPACK_IMPORTED_MODULE_0__.State
       },
       teacher: {
-        First_name: '',
-        Last_name: '',
-        Phone: '',
-        Email: '',
-        Dob: '',
-        Country: ''
+        First_name: "",
+        Last_name: "",
+        Phone: "",
+        Email: "",
+        Dob: "",
+        Country: ""
       }
     };
+  },
+  props: {
+    mode: String
   },
   methods: {
     callBack: function callBack() {
@@ -57,14 +60,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               formData = new FormData();
               formData.append("user_info[first_name]", _this.teacher.First_name);
               formData.append("user_info[last_name]", _this.teacher.Last_name);
-              formData.append("user_info[role]", 'teacher');
+              formData.append("user_info[role]", "teacher");
               formData.append("user_info[email]", _this.teacher.Email);
               formData.append("teacher_info[phone]", _this.teacher.Phone);
               formData.append("teacher_info[dob]", _this.teacher.Dob);
-              formData.append("teacher_info[full_name]", _this.teacher.First_name + ' ' + _this.teacher.Last_name);
+              formData.append("teacher_info[full_name]", _this.teacher.First_name + " " + _this.teacher.Last_name);
               formData.append("teacher_info[country]", _this.teacher.Country);
               postResponse = {};
-              urlText = 'addTeacher';
+              urlText = "addTeacher";
               _context.next = 13;
               return _this.post(urlText, formData);
             case 13:
@@ -127,13 +130,49 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-12"
-  }, [_c("div", {
+  }, [_vm.mode == "fetch-teachers" ? _c("div", {
     staticClass: "card"
   }, [_c("div", {
     staticClass: "card-body"
+  }, [_c("div", {
+    staticClass: "add-item"
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("teacher Info")]), _vm._v(" "), _c("hr", {
+  }, [_vm._v("Teacher List")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-add",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.$root.changeRoute("/add-teacher");
+      }
+    }
+  }, [_c("i", {
+    staticClass: "bi bi-plus"
+  }), _vm._v(" ADD TEACHER\n                    ")])]), _vm._v(" "), _c("hr", {
+    staticClass: "hr-color"
+  }), _vm._v(" "), _vm._m(0)])]) : _c("div", {
+    staticClass: "card"
+  }, [_c("div", {
+    staticClass: "card-body"
+  }, [_c("div", {
+    staticClass: "add-item"
+  }, [_c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v("teacher Info")]), _vm._v(" "), _c("button", {
+    staticClass: "btn btn-back",
+    attrs: {
+      type: "button"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.$router.go(-1);
+      }
+    }
+  }, [_vm._v("\n                       BACK\n                    ")])]), _vm._v(" "), _c("hr", {
     staticClass: "hr-color"
   }), _vm._v(" "), _c("form", {
     staticClass: "row g-3 needs-validation",
@@ -151,7 +190,7 @@ var render = function render() {
     attrs: {
       src: _vm.icons.First_name
     }
-  }), _vm._v(" First name")]), _vm._v(" "), _c("input", {
+  }), _vm._v(" First\n                            name")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -175,7 +214,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "invalid-feedback"
-  }, [_vm._v("\n              Please choose a fist name.\n            ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Please choose a fist name.\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("label", {
     staticClass: "form-label",
@@ -186,7 +225,7 @@ var render = function render() {
     attrs: {
       src: _vm.icons.Last_name
     }
-  }), _vm._v(" Last name")]), _vm._v(" "), _c("input", {
+  }), _vm._v(" Last\n                            name")]), _vm._v(" "), _c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -210,7 +249,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "invalid-feedback"
-  }, [_vm._v("\n              Please choose a last name.\n            ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Please choose a last name.\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("label", {
     staticClass: "form-label",
@@ -245,7 +284,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "invalid-feedback"
-  }, [_vm._v("\n              Please choose a phone.\n            ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Please choose a phone.\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("label", {
     staticClass: "form-label",
@@ -280,7 +319,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "invalid-feedback"
-  }, [_vm._v("\n              Please choose a email.\n            ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Please choose a email.\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("label", {
     staticClass: "form-label",
@@ -315,7 +354,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "invalid-feedback"
-  }, [_vm._v("\n              Please choose a date of birth.\n            ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Please choose a date of birth.\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "col-md-4"
   }, [_c("label", {
     staticClass: "form-label",
@@ -350,7 +389,7 @@ var render = function render() {
     }
   }), _vm._v(" "), _c("div", {
     staticClass: "invalid-feedback"
-  }, [_vm._v("\n              Please choose a country.\n            ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Please choose a country.\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "col-12"
   }, [_c("button", {
     staticClass: "btn btn-success",
@@ -360,9 +399,39 @@ var render = function render() {
         return _vm.addTeacher.apply(null, arguments);
       }
     }
-  }, [_vm._v("Save")])])])])])])]);
+  }, [_vm._v("\n                            Save\n                        ")])])])])])])]);
 };
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("table", {
+    staticClass: "table table-hover"
+  }, [_c("thead", [_c("tr", [_c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("#")]), _vm._v(" "), _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("First")]), _vm._v(" "), _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("Last")]), _vm._v(" "), _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("Handle")])])]), _vm._v(" "), _c("tbody", [_c("tr", [_c("th", {
+    attrs: {
+      scope: "row"
+    }
+  }, [_vm._v("1")]), _vm._v(" "), _c("td", [_vm._v("Mark")]), _vm._v(" "), _c("td", [_vm._v("Otto")]), _vm._v(" "), _c("td", [_vm._v("@mdo")])]), _vm._v(" "), _c("tr", [_c("th", {
+    attrs: {
+      scope: "row"
+    }
+  }, [_vm._v("2")]), _vm._v(" "), _c("td", [_vm._v("Jacob")]), _vm._v(" "), _c("td", [_vm._v("Thornton")]), _vm._v(" "), _c("td", [_vm._v("@fat")])])])]);
+}];
 render._withStripped = true;
 
 
@@ -622,7 +691,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\nbody {\r\n  padding: 1rem;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\nbody {\r\n    padding: 1rem;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
