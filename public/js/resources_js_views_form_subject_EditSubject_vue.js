@@ -172,7 +172,7 @@ var render = function render() {
         return _vm.$router.go(-1);
       }
     }
-  }, [_vm._v("\n                       BACK\n                    ")])]), _vm._v(" "), _c("hr", {
+  }, [_vm._v("\n                        BACK\n                    ")])]), _vm._v(" "), _c("hr", {
     staticClass: "hr-color"
   }), _vm._v(" "), _c("form", {
     staticClass: "row g-3 needs-validation",

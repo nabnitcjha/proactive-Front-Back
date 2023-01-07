@@ -30,7 +30,7 @@
 </li><!-- End Teacher Nav -->
 
 <li class="nav-item">
-  <a class="nav-link collapsed hand"  @click.stop="$root.changeRoute('/add/class-schedule')">
+  <a class="nav-link collapsed hand"  @click.stop="$root.changeRoute('/class-schedule')">
     <i class="bi bi-person"></i>
     <span>Class Schedule</span>
   </a>
@@ -60,7 +60,7 @@
       </a>
     </li>
     <li>
-      <a @click.stop="$root.changeRoute('/add-subject')" class="hand">
+      <a @click.stop="$root.changeRoute('/subject')" class="hand">
         <i class="bi bi-circle"></i><span>Subject</span>
       </a>
     </li>

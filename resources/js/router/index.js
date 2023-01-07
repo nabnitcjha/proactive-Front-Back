@@ -70,6 +70,11 @@ const routes = [
   },
   // subject
   {
+    path: '/subject',
+    name: 'subject',
+    component: () => import('../views/form/subject/Subject.vue')
+  },
+  {
     path: '/add-subject',
     name: 'addSubject',
     component: () => import('../views/form/subject/AddSubject.vue')
@@ -78,6 +83,12 @@ const routes = [
     path: '/edit-subject',
     name: 'editSubject',
     component: () => import('../views/form/subject/EditSubject.vue')
+  },
+   // class schedule
+   {
+    path: '/class-schedule',
+    name: 'classSchedule',
+    component: () => import('../views/form/classSchedule/ClassSchedule.vue')
   },
   // class schedule
   {

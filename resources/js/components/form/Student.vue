@@ -5,8 +5,12 @@
                 <div class="card-body">
                     <div class="add-item">
                         <h5 class="card-title">Student List</h5>
-                        <button type="button" class="btn btn-add"   @click.stop="$root.changeRoute('/add-student')">
-                          <i class="bi bi-plus"></i> ADD STUDENT
+                        <button
+                            type="button"
+                            class="btn btn-add"
+                            @click.stop="$root.changeRoute('/add-student')"
+                        >
+                            <i class="bi bi-plus"></i> ADD STUDENT
                         </button>
                     </div>
                     <hr class="hr-color" />
@@ -39,10 +43,14 @@
 
             <div class="card" v-else>
                 <div class="card-body">
-                  <div class="add-item">
-                    <h5 class="card-title">Student Info</h5>
-                        <button type="button" class="btn btn-back"   @click.stop="$router.go(-1)">
-                           BACK
+                    <div class="add-item">
+                        <h5 class="card-title">Student Info</h5>
+                        <button
+                            type="button"
+                            class="btn btn-back"
+                            @click.stop="$router.go(-1)"
+                        >
+                            BACK
                         </button>
                     </div>
                     <hr class="hr-color" />

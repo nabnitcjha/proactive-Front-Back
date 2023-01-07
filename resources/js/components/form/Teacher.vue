@@ -43,10 +43,14 @@
 
             <div class="card" v-else>
                 <div class="card-body">
-                  <div class="add-item">
-                    <h5 class="card-title">teacher Info</h5>
-                        <button type="button" class="btn btn-back"   @click.stop="$router.go(-1)">
-                           BACK
+                    <div class="add-item">
+                        <h5 class="card-title">teacher Info</h5>
+                        <button
+                            type="button"
+                            class="btn btn-back"
+                            @click.stop="$router.go(-1)"
+                        >
+                            BACK
                         </button>
                     </div>
                     <hr class="hr-color" />
