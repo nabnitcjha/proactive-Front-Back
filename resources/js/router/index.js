@@ -28,6 +28,11 @@ const routes = [
   },
   // student
   {
+    path: '/student',
+    name: 'student',
+    component: () => import('../views/form/student/Student.vue')
+  },
+  {
     path: '/add-student',
     name: 'addStudent',
     component: () => import('../views/form/student/AddStudent.vue')

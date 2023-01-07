@@ -9,7 +9,7 @@
 </li><!-- End Dashboard Nav -->
 
 <li class="nav-item">
-  <a class="nav-link collapsed hand"  @click.stop="$root.changeRoute('/add-student')">
+  <a class="nav-link collapsed hand"  @click.stop="$root.changeRoute('/student')">
     <i class="bi bi-person"></i>
     <span>Student</span>
   </a>

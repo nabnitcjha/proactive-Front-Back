@@ -15,41 +15,44 @@
   display: flex;
   align-self: end;
 }
-.hand,.add-guardian-icon,
+
+.hand,
+.add-guardian-icon,
 .remove-guardian-icon {
   cursor: pointer;
 }
-.parent-info{
+
+.parent-info {
   display: flex;
   flex-wrap: wrap;
 }
 
 .mx-datepicker {
-  width: inherit!important;
+  width: inherit !important;
 }
 
 
-.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
   background-color: #8bc34a !important;
 }
+
 span.custom-checkbox {
   padding: 2rem !important;
 }
-.custom-checkbox
-  .custom-control-input:checked:focus
-  ~ .custom-control-label::before {
+
+.custom-checkbox .custom-control-input:checked:focus~.custom-control-label::before {
   box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem #fff;
 }
 
-.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
   border-color: #fff;
   background-color: #fff;
 }
 
 .modal-tall .modal-dialog {
-  margin-right: 0!important;
+  margin-right: 0 !important;
 }
- 
+
 .modal.fade.modal-tall .modal-dialog {
   transform: translate(125%, 0px);
 }
@@ -58,7 +61,7 @@ span.custom-checkbox {
   transform: none;
 }
 
-.zoom-link{
+.zoom-link {
   display: flex;
   align-items: center;
   padding: 0px 10px;
@@ -66,30 +69,51 @@ span.custom-checkbox {
   border-radius: 5px;
 }
 
-.remove-border{
-  border:unset!important;
-  padding-left: 0px!important;
-}
-.remove-border:focus{
-  border: unset!important;
-  border-color: unset!important;
-  outline: none!important;
-  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 0%)!important;
-}
-.study-resource .input-file , .assignment .input-file{
-  width: 85%!important;
-}
-.study-resource , .assignment{
-  display: flex!important;
-  flex-direction: column!important;
-}
-.cstm-btn{
-  color: #fff!important;
-    height: 27px!important;
-    line-height: 13px!important;
-    margin-left: 5px!important;
+.remove-border {
+  border: unset !important;
+  padding-left: 0px !important;
 }
 
-.logo{
-  text-decoration:none!important;
+.remove-border:focus {
+  border: unset !important;
+  border-color: unset !important;
+  outline: none !important;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 0%) !important;
+}
+
+.study-resource .input-file,
+.assignment .input-file {
+  width: 85% !important;
+}
+
+.study-resource,
+.assignment {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.cstm-btn {
+  color: #fff !important;
+  height: 27px !important;
+  line-height: 13px !important;
+  margin-left: 5px !important;
+}
+
+.logo {
+  text-decoration: none !important;
+}
+
+.add-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-add ,.btn-back{
+  background-color: aliceblue !important;
+  height: 3rem !important;
+  display: flex;
+  align-items: center;
+}
+.btn-add .bi-plus{
+  font-size: 24px!important;
 }
