@@ -21,5 +21,8 @@
     computed: {
     ...mapState(chatInfoStore, ['getMessageInfo']),
   },
+  mounted(){
+    
+  }
   };
   </script>
