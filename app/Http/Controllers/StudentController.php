@@ -13,23 +13,22 @@ use Illuminate\Support\Facades\DB;
 
 class StudentController extends BaseController
 {
-    private $studentResource;
+    private $studentAdvanceResource;
     private $profileOverviewResource;
     public $Model;
     
     public function __construct()
     {
-        $this->studentResource = new StudentAdvanceResource(array());
+        $this->studentAdvanceResource = new StudentAdvanceResource(array());
         $this->profileOverviewResource = new profileOverview(array());
         $this->Model = new Student();
     }
 
     public function getData($allowPagination)
     {
-        $with=['teacher','guardian','subject','user'];
-        $subjects = parent::index($allowPagination);
+        $students = parent::index($allowPagination);
 
-        return $this->studentResource->collection($subjects);
+        return $this->studentAdvanceResource->collection($students);
     }
 
     public function saveData(Request $request)

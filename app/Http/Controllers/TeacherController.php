@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TeacherAdvanceResource;
 use App\Http\Resources\TeacherResource;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -9,11 +10,11 @@ use Illuminate\Http\Request;
 class TeacherController extends BaseController
 {
     public $Model;
-    private $teacherResource;
+    private $teacherAdvanceResource;
     
     public function __construct()
     {
-        $this->teacherResource = new TeacherResource(array());
+        $this->teacherAdvanceResource = new TeacherAdvanceResource(array());
         $this->Model = new Teacher();
     }
 
@@ -21,7 +22,7 @@ class TeacherController extends BaseController
     {
         $subjects = parent::index($allowPagination);
 
-        return $this->teacherResource->collection($subjects);
+        return $this->teacherAdvanceResource->collection($subjects);
     }
 
     public function saveData(Request $request)
