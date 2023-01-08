@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\student\profileOverview;
+use App\Http\Resources\StudentAdvanceResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use App\Models\Subject;
@@ -18,17 +19,15 @@ class StudentController extends BaseController
     
     public function __construct()
     {
-        $this->studentResource = new StudentResource(array());
+        $this->studentResource = new StudentAdvanceResource(array());
         $this->profileOverviewResource = new profileOverview(array());
         $this->Model = new Student();
     }
 
     public function getData($allowPagination)
     {
-        $with=['teacher','guardian','subject'];
+        $with=['teacher','guardian','subject','user'];
         $subjects = parent::index($allowPagination);
-
-        return $subjects;
 
         return $this->studentResource->collection($subjects);
     }
