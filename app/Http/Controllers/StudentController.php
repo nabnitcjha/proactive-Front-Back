@@ -23,9 +23,11 @@ class StudentController extends BaseController
         $this->Model = new Student();
     }
 
-    public function index($allowPagination)
+    public function getData($allowPagination)
     {
-        return parent::index($allowPagination);
+        $subjects = parent::index($allowPagination);
+
+        return $this->studentResource->collection($subjects);
     }
 
     public function saveData(Request $request)

@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Support\Facades\DB;
+
 class BaseController extends Controller
 {
     //
@@ -21,13 +24,12 @@ class BaseController extends Controller
 
     public function index($allowPagination)
     {
-        $data = '';
         if (str_contains($allowPagination, 'true')) {
-            $data = $this->Model::paginate(5);
+            $data = $this->Model::paginate();
         } else {
             $data = $this->Model::get();
         }
-        return $this->successResponse($data, 'fetch record successfully');
+        return $data;
     }
 
     public function store($request)
@@ -53,7 +55,7 @@ class BaseController extends Controller
             return $this->getError("Can not find {$id}");
         }
 
-        $this->successResponse($Obj, 'fetch record successfully');
+        return $Obj;
     }
 
     public function update($request, $id)
@@ -72,7 +74,7 @@ class BaseController extends Controller
             return $this->getError("Faild update {$id}");
         }
 
-        $this->successResponse($Model, 'update successfully');
+        return $Model;
     }
 
     public function destroy($id)

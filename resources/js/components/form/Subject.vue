@@ -107,6 +107,7 @@ export default {
             subject: {
                 name: "",
             },
+            subjects: [],
         };
     },
     props: {
@@ -127,8 +128,13 @@ export default {
             let urlText = "addSubject";
 
             postResponse = await this.post(urlText, formData);
-            this.subject = {name:""};
-            this.$router.push({ name: 'subject' })
+            this.subject = { name: "" };
+            this.$router.push({ name: "subject" });
+        },
+        async getSubjects() {
+            let urlText = "getSubjects";
+
+            postResponse = await this.get(urlText,0,true);
         },
     },
 };

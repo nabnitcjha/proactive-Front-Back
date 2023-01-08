@@ -26,9 +26,11 @@ class ClassScheduleController extends BaseController
         $this->imageOrFile = new uploadImageOrFileController();
     }
 
-    public function index($allowPagination)
+    public function getData($allowPagination)
     {
-        return parent::index($allowPagination);
+        $subjects = parent::index($allowPagination);
+
+        return $this->classScheduleResource->collection($subjects);
     }
 
     public function saveResourceFile(Request $request)

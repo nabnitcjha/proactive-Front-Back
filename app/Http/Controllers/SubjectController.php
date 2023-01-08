@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\SubjectResource;
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SubjectController extends BaseController
 {
@@ -17,9 +18,11 @@ class SubjectController extends BaseController
         $this->Model = new Subject();
     }
 
-    public function index($allowPagination)
+    public function getData($allowPagination)
     {
-        return parent::index($allowPagination);
+        $subjects = parent::index($allowPagination);
+
+        return $this->subjectResource->collection($subjects);
     }
 
     public function saveData(Request $request)

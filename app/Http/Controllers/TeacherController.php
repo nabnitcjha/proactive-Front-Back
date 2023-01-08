@@ -17,9 +17,11 @@ class TeacherController extends BaseController
         $this->Model = new Teacher();
     }
 
-    public function index($allowPagination)
+    public function getData($allowPagination)
     {
-        return parent::index($allowPagination);
+        $subjects = parent::index($allowPagination);
+
+        return $this->teacherResource->collection($subjects);
     }
 
     public function saveData(Request $request)

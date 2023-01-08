@@ -25,7 +25,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       },
       subject: {
         name: ""
-      }
+      },
+      subjects: []
     };
   },
   props: {
@@ -57,13 +58,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 name: ""
               };
               _this.$router.push({
-                name: 'subject'
+                name: "subject"
               });
             case 9:
             case "end":
               return _context.stop();
           }
         }, _callee);
+      }))();
+    },
+    getSubjects: function getSubjects() {
+      var _this2 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var urlText;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              urlText = "getSubjects";
+              _context2.next = 3;
+              return _this2.get(urlText, 0, true);
+            case 3:
+              postResponse = _context2.sent;
+            case 4:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2);
       }))();
     }
   }

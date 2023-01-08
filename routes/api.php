@@ -32,7 +32,7 @@ Route::group([
 ], function ($router) {
 
     Route::post('addStudent', 'StudentController@saveData');
-    Route::get('getStudents/{allowPagination}', 'StudentController@index');
+    Route::get('getStudents/{allowPagination}', 'StudentController@getData');
     // student-detail page route
     Route::get('student/{id}/profileOverview', 'StudentController@profileOverview');
     Route::get('student/{id}/teachers', 'StudentController@teachers');
@@ -50,7 +50,7 @@ Route::group([
 ], function ($router) {
 
     Route::post('addTeacher', 'TeacherController@saveData');
-    Route::get('getTeachers/{allowPagination}', 'TeacherController@index');
+    Route::get('getTeachers/{allowPagination}', 'TeacherController@getData');
 });
 
 // subject routes
@@ -62,7 +62,7 @@ Route::group([
 ], function ($router) {
 
     Route::post('addSubject', 'SubjectController@saveData');
-    Route::get('getSubjects/{allowPagination}', 'SubjectController@index');
+    Route::get('getSubjects/{allowPagination}', 'SubjectController@getData');
 });
 
 // class-schedule routes
@@ -74,13 +74,12 @@ Route::group([
 ], function ($router) {
 
     Route::post('addTimetable', 'ClassScheduleController@saveData');
-    Route::get('getTimetables/{allowPagination}', 'ClassScheduleController@index');
+    Route::get('getTimetables/{allowPagination}', 'ClassScheduleController@getData');
     Route::post('timetable/{id}/drag', 'ClassScheduleController@dragUpdate');
     Route::post('timetable/{id}/resourceFile', 'ClassScheduleController@saveResourceFile');
 });
 
 // chat routes
-// class-schedule routes
 Route::group([
 
     'middleware' => 'api',
