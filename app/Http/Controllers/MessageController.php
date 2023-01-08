@@ -11,10 +11,12 @@ use Illuminate\Support\Facades\DB;
 class MessageController extends BaseController
 {
     private $messageResource;
+    public $Model;
 
     public function __construct()
     {
         $this->messageResource = new MessageResource(array());
+        $this->Model = new Message();
     }
 
     public function fetchMessages($friend_id, $my_id)
@@ -30,15 +32,9 @@ class MessageController extends BaseController
     public function sendMessage(Request $request)
     {
         // Insert into message table
-        parent::createModelObject("App\Models\Message");
         parent::store($request->message_info);
 
-        $messageInfo = [
-            'my_id' => $request->message_info['my_id'],
-            'friend_id' => $request->message_info['friend_id']
-        ];
-
-        broadcast(new MessageSent($messageInfo));
+        broadcast(new MessageSent($request->message_info));
     }
 
     public function privateMessage($friend_id, $my_id)

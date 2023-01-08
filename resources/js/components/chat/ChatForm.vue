@@ -26,21 +26,23 @@ export default {
     data() {
         return {
             newMessage: "",
+            urlText:""
         };
     },
     mounted(){
         this.$root.fetchMessages(1,1);
     },
     methods: {
-        async addMessage() {
+         addMessage() {
             let friend_id = 1;
             let my_id = 1;
+            this.urlText = "messages";
+
             let formData = new FormData();
             formData.append("message_info[message]", this.newMessage);
-            let urlText = "messages";
             formData.append("message_info[friend_id]", friend_id);
             formData.append("message_info[my_id]", my_id);
-            let postResponse = await this.post(urlText, formData);
+            let postResponse =  this.post(this.urlText, formData);
             this.newMessage = "";
         },
     },
