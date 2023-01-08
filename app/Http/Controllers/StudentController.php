@@ -25,7 +25,10 @@ class StudentController extends BaseController
 
     public function getData($allowPagination)
     {
-        $subjects = parent::index($allowPagination);
+        $with=['teacher','guardian','subject'];
+        $subjects = parent::index($allowPagination,$with);
+
+        return $subjects;
 
         return $this->studentResource->collection($subjects);
     }
