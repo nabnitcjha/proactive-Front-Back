@@ -22,12 +22,12 @@ class BaseController extends Controller
         $this->Model = new $model;
     }
 
-    public function index($allowPagination,$with=[])
+    public function index($allowPagination)
     {
         if (str_contains($allowPagination, 'true')) {
-            $data = $this->Model::with($with)->paginate();
+            $data = $this->Model::paginate();
         } else {
-            $data = $this->Model::with($with)->get();
+            $data = $this->Model::get();
         }
         return $data;
     }

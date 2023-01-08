@@ -26,7 +26,7 @@ class StudentController extends BaseController
     public function getData($allowPagination)
     {
         $with=['teacher','guardian','subject'];
-        $subjects = parent::index($allowPagination,$with);
+        $subjects = parent::index($allowPagination);
 
         return $subjects;
 
