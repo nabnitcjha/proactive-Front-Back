@@ -258,7 +258,15 @@ export default {
             let urlText = "addTeacher";
 
             postResponse = await this.post(urlText, formData);
-            this.teacher = {};
+            this.teacher = {
+                First_name: "",
+                Last_name: "",
+                Phone: "",
+                Email: "",
+                Dob: "",
+                Country: "",
+            };
+            this.$router.push({ name: 'teacher' })
         },
     },
 };

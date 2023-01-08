@@ -127,7 +127,8 @@ export default {
             let urlText = "addSubject";
 
             postResponse = await this.post(urlText, formData);
-            this.subject = {};
+            this.subject = {name:""};
+            this.$router.push({ name: 'subject' })
         },
     },
 };

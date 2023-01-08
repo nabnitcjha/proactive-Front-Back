@@ -448,6 +448,7 @@ export default {
             postResponse = await this.post(urlText, formData);
 
             this.slotTimes = [];
+            this.$router.push({ name: 'classSchedule' })
         },
         initialCall() {
             this.getStudents();

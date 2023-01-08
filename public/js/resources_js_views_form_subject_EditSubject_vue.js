@@ -72,8 +72,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _this.post(urlText, formData);
             case 13:
               postResponse = _context.sent;
-              _this.teacher = {};
-            case 15:
+              _this.teacher = {
+                First_name: "",
+                Last_name: "",
+                Phone: "",
+                Email: "",
+                Dob: "",
+                Country: ""
+              };
+              _this.$router.push({
+                name: 'teacher'
+              });
+            case 16:
             case "end":
               return _context.stop();
           }
