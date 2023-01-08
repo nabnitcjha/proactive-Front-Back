@@ -426,7 +426,16 @@ export default {
 
             postResponse = await this.post(urlText, formData);
             this.student = {};
-            this.dynamicParentList = [];
+            this.dynamicParentList = [
+                 {
+                    First_name: "",
+                    Last_name: "",
+                    Phone: "",
+                    Email: "",
+                    parent_id: 1,
+                },
+            ];
+            this.$router.push({ name: 'student' })
         },
         changeField(event, type, parent) {
             let dynamicParentList = [...this.dynamicParentList];

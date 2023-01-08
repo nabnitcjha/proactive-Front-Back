@@ -102,8 +102,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 15:
               postResponse = _context.sent;
               _this.student = {};
-              _this.dynamicParentList = [];
-            case 18:
+              _this.dynamicParentList = [{
+                First_name: "",
+                Last_name: "",
+                Phone: "",
+                Email: "",
+                parent_id: 1
+              }];
+              _this.$router.push({
+                name: 'student'
+              });
+            case 19:
             case "end":
               return _context.stop();
           }
