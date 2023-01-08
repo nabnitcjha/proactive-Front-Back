@@ -120,7 +120,7 @@
                             ></multiselect>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4 flex-column">
                             <label for="start_date" class="form-label"
                                 >Start Date</label
                             >
@@ -134,7 +134,7 @@
                             ></date-picker>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4 flex-column">
                             <label for="start_time" class="form-label"
                                 >Start Time</label
                             >
@@ -148,7 +148,7 @@
                             ></date-picker>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-4 flex-column">
                             <label for="end_time" class="form-label"
                                 >End Time</label
                             >
@@ -448,7 +448,7 @@ export default {
             postResponse = await this.post(urlText, formData);
 
             this.slotTimes = [];
-            this.$router.push({ name: 'classSchedule' })
+            this.$router.push({ name: "classSchedule" });
         },
         initialCall() {
             this.getStudents();

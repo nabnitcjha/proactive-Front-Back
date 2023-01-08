@@ -87,7 +87,7 @@ span.custom-checkbox {
 }
 
 .study-resource,
-.assignment {
+.assignment ,.flex-column{
   display: flex !important;
   flex-direction: column !important;
 }
@@ -116,4 +116,8 @@ span.custom-checkbox {
 }
 .btn-add .bi-plus{
   font-size: 24px!important;
+}
+
+.flex-column .mx-datepicker {
+  width: 100%!important;
 }
