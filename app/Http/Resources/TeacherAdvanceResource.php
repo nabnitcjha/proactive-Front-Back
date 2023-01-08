@@ -14,6 +14,13 @@ class TeacherAdvanceResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            "id" => $this->id,
+            "name" => $this->full_name,
+            "phone" => $this->phone,
+            "email" => $this->user->email,
+            'student' => StudentResource::collection($this->student),
+            'subject' => SubjectResource::collection($this->subject),
+        ];
     }
 }
