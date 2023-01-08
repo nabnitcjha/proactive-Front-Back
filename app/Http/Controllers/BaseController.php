@@ -11,7 +11,6 @@ class BaseController extends Controller
 
     public function getModel()
     {
-        // $this->Query = $this->Model::select("*");
         return $this->Model;
     }
 
@@ -22,8 +21,6 @@ class BaseController extends Controller
 
     public function index($allowPagination)
     {
-        // home?category=Cars&make=Tesla
-        // request('category')
         $data = '';
         if (str_contains($allowPagination, 'true')) {
             $data = $this->Model::paginate(5);
@@ -31,14 +28,10 @@ class BaseController extends Controller
             $data = $this->Model::get();
         }
         return $this->successResponse($data, 'fetch record successfully');
-        // return  $this->showAll($data);
     }
 
     public function store($request)
     {
-        // $params["deleted_at"] = date('Y-m-d H:i:s');
-        // $request->request->add(['params' => $params]); 
-
         $params = $request;
 
         $Model = $this->getModel();

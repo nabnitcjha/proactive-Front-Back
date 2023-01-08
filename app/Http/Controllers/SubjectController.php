@@ -24,6 +24,7 @@ class SubjectController extends BaseController
 
     public function saveData(Request $request)
     {
+        // Insert into subject table
         $subject = parent::store($request->subject_info);
         $this->successResponse($subject, 'save successfully');
     }

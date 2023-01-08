@@ -120,8 +120,6 @@ class ClassScheduleController extends BaseController
 
     public function dragUpdate(Request $request, $id)
     {
-        // dd($id);
-        // return 'sonu kumar jha';
         $drag_info = array();
         $drag_info['start_date'] = $request['start_date'];
         $drag_info['end_date'] = $request['end_date'];

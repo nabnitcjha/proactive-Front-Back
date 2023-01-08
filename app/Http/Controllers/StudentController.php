@@ -74,11 +74,6 @@ class StudentController extends BaseController
         return parent::show($id);
     }
 
-    // public function update(Request $request, $id)
-    // {
-    //     return parent::update($request, $id);
-    // }
-
     public function destroy($id)
     {
         return parent::destroy($id);
@@ -118,13 +113,13 @@ class StudentController extends BaseController
                 $query->select('id', 'user_id', 'full_name', 'phone');
             }])
             ->where('id', $id)->get();
-            
+
         $student = [
             'full_name' => $timetables[0]->full_name,
             'email' => $timetables[0]->user->email,
             'phone' => $timetables[0]->phone,
         ];
-       
+
         foreach ($timetables->pluck('classSchedule')[0] as $key => $value) {
             $curVal = $value->topic;
             if ($curVal != $preVal) {
