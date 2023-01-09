@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ClassScheduleAdvanceResource;
 use App\Http\Resources\student\profileOverview;
 use App\Http\Resources\StudentAdvanceResource;
 use App\Http\Resources\StudentResource;
+use App\Models\ClassSchedule;
 use App\Models\Student;
+use App\Models\StudentSession;
 use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -88,6 +91,14 @@ class StudentController extends BaseController
 
         return  $this->profileOverviewResource->make($profile_overview);
 
+    }
+
+    public function sortedClass($id)
+    {
+        $class_unique_ids = StudentSession::where('student_id',$id)->groupBy('class_unique_id')->pluck('class_unique_id');
+        $sorted_class  = ClassSchedule::whereIn('class_unique_id',$class_unique_ids)->get();
+
+        return  ClassScheduleAdvanceResource::collection($sorted_class);
     }
 
     public function teachers($id)

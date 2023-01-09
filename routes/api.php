@@ -35,6 +35,7 @@ Route::group([
     Route::get('getStudents/{allowPagination}', 'StudentController@getData');
     // student-detail page route
     Route::get('student/{id}/profileOverview', 'StudentController@profileOverview');
+    Route::get('student/{id}/sortedClass', 'StudentController@sortedClass');
     Route::get('student/{id}/teachers', 'StudentController@teachers');
     Route::get('student/{id}/groupDiscussion', 'StudentController@groupDiscussion');
     Route::get('student/{id}/Classes', 'StudentController@Classes');

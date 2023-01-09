@@ -17,6 +17,7 @@ class CreateStudentSessionsTable extends Migration
             $table->id();
             $table->integer('class_schedule_id')->unsigned();
             $table->integer('student_id')->unsigned();
+            $table->string('class_unique_id')->nullable();
             $table->timestamps();
 
             $table->foreign('class_schedule_id')->references('id')->on('class_schedule')->onDelete('cascade');

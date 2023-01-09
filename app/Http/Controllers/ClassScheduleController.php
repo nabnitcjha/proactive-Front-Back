@@ -86,6 +86,7 @@ class ClassScheduleController extends BaseController
                 parent::createModelObject("App\Models\StudentSession");
                 $student_info["student_id"] = $student['id'];
                 $student_info["class_schedule_id"] = $class_schedule->id;
+                $student_info["class_unique_id"] = $class_schedule->class_unique_id;
                 parent::store($student_info);
 
                 // insert into student_subject table
