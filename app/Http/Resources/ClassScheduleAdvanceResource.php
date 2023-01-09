@@ -22,8 +22,8 @@ class ClassScheduleAdvanceResource extends JsonResource
             "zoom_link" => $this->zoom_link,
             'subject' => SubjectResource::make($this->subject),
             'teacher' => TeacherResource::make($this->teacher),
-            "start_date" => $this->start_date->format("M d, Y H:i A"),
-            "end_date" => $this->end_date->format("M d, Y H:i A")
+            "start_date" => $this->start_date,
+            "end_date" => $this->end_date
         ];
     }
 }

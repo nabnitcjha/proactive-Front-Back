@@ -16,7 +16,9 @@ class GuardianResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "name" => $this->full_name
+            "name" => $this->full_name,
+            "email" => $this->user->email,
+            "phone" => $this->phone
         ];
     }
 }

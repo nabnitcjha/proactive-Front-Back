@@ -23,4 +23,16 @@ class profileOverview extends JsonResource
             "class_schedule_info" => $this['class_schedule'],
         ];
     }
+
+    // return [
+    //     "student_info" => [
+    //         'full_name'=>$this->full_name,
+    //         'email'=>$this->user->email,
+    //         'phone'=>$this->phone,
+    //     ],
+    //     "subject_info" => SubjectResource::collection($this->subject),
+    //     "teacher_info" => TeacherAdvanceResource::collection($this->teacher),
+    //     "parent_info" => GuardianResource::collection($this->guardian),
+    //     "class_schedule_info" => ClassScheduleAdvanceResource::collection($this->class_schedule),
+    // ];
 }
