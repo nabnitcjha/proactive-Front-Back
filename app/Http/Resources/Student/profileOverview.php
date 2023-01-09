@@ -2,6 +2,10 @@
 
 namespace App\Http\Resources\student;
 
+use App\Http\Resources\ClassScheduleAdvanceResource;
+use App\Http\Resources\GuardianResource;
+use App\Http\Resources\SubjectResource;
+use App\Http\Resources\TeacherAdvanceResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class profileOverview extends JsonResource
@@ -14,25 +18,16 @@ class profileOverview extends JsonResource
      */
     public function toArray($request)
     {
-        // dd($this['subject']);
         return [
-            "student_info" => $this['student'],
-            "subject_info" => $this['subject'],
-            "teacher_info" => $this['teacher'],
-            "parent_info" => $this['guardian'],
-            "class_schedule_info" => $this['class_schedule'],
+            "student_info" => [
+                'full_name'=>$this->full_name,
+                'email'=>$this->user->email,
+                'phone'=>$this->phone,
+            ],
+            "subject_info" => SubjectResource::collection($this->subject),
+            "teacher_info" => TeacherAdvanceResource::collection($this->teacher),
+            "parent_info" => GuardianResource::collection($this->guardian),
+            // "class_schedule_info" => ClassScheduleAdvanceResource::collection($this->classSchedule),
         ];
     }
-
-    // return [
-    //     "student_info" => [
-    //         'full_name'=>$this->full_name,
-    //         'email'=>$this->user->email,
-    //         'phone'=>$this->phone,
-    //     ],
-    //     "subject_info" => SubjectResource::collection($this->subject),
-    //     "teacher_info" => TeacherAdvanceResource::collection($this->teacher),
-    //     "parent_info" => GuardianResource::collection($this->guardian),
-    //     "class_schedule_info" => ClassScheduleAdvanceResource::collection($this->class_schedule),
-    // ];
 }
