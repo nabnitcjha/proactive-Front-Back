@@ -31,6 +31,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      students: [],
       icons: {
         First_name: _Assets_formIcons_index__WEBPACK_IMPORTED_MODULE_0__.First_name,
         Last_name: _Assets_formIcons_index__WEBPACK_IMPORTED_MODULE_0__.Last_name,
@@ -60,6 +61,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   props: {
     mode: String
+  },
+  mounted: function mounted() {
+    this.getStudents();
   },
   methods: {
     callBack: function callBack() {
@@ -110,7 +114,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 parent_id: 1
               }];
               _this.$router.push({
-                name: 'student'
+                name: "student"
               });
             case 19:
             case "end":
@@ -145,6 +149,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.dynamicParentList = this.dynamicParentList.filter(function (parentItem) {
         return parentItem.parent_id !== parent_id;
       });
+    },
+    getStudents: function getStudents() {
+      var _this2 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var urlText, getResponse;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              urlText = "getStudents";
+              _context2.next = 3;
+              return _this2.get(urlText, 0, true);
+            case 3:
+              getResponse = _context2.sent;
+              _this2.students = getResponse.data.data;
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2);
+      }))();
     }
   }
 });
@@ -219,7 +243,21 @@ var render = function render() {
     staticClass: "bi bi-plus"
   }), _vm._v(" ADD STUDENT\n                    ")])]), _vm._v(" "), _c("hr", {
     staticClass: "hr-color"
-  }), _vm._v(" "), _vm._m(0)])]) : _c("div", {
+  }), _vm._v(" "), _c("table", {
+    staticClass: "table table-hover"
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.students, function (std, key, index) {
+    return _c("tr", [_c("th", {
+      attrs: {
+        scope: "row"
+      }
+    }, [_vm._v(_vm._s(index))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(std.full_name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(std.email))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(std.phone))]), _vm._v(" "), _c("td", [_c("b-list-group", _vm._l(std.subject, function (sb) {
+      return _c("b-list-group-item", [_vm._v(_vm._s(sb.name))]);
+    }), 1)], 1), _vm._v(" "), _c("td", [_c("b-list-group", _vm._l(std.teacher, function (tec) {
+      return _c("b-list-group-item", [_vm._v(_vm._s(tec.full_name))]);
+    }), 1)], 1), _vm._v(" "), _c("td", [_c("b-list-group", _vm._l(std.guardian, function (gu) {
+      return _c("b-list-group-item", [_vm._v(_vm._s(gu.full_name))]);
+    }), 1)], 1)]);
+  }), 0)])])]) : _c("div", {
     staticClass: "card"
   }, [_c("div", {
     staticClass: "card-body"
@@ -657,9 +695,7 @@ var render = function render() {
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("table", {
-    staticClass: "table table-hover"
-  }, [_c("thead", [_c("tr", [_c("th", {
+  return _c("thead", [_c("tr", [_c("th", {
     attrs: {
       scope: "col"
     }
@@ -667,23 +703,27 @@ var staticRenderFns = [function () {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("First")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Name")]), _vm._v(" "), _c("th", {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("Last")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Email")]), _vm._v(" "), _c("th", {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("Handle")])])]), _vm._v(" "), _c("tbody", [_c("tr", [_c("th", {
+  }, [_vm._v("Phone")]), _vm._v(" "), _c("th", {
     attrs: {
-      scope: "row"
+      scope: "col"
     }
-  }, [_vm._v("1")]), _vm._v(" "), _c("td", [_vm._v("Mark")]), _vm._v(" "), _c("td", [_vm._v("Otto")]), _vm._v(" "), _c("td", [_vm._v("@mdo")])]), _vm._v(" "), _c("tr", [_c("th", {
+  }, [_vm._v("Subject")]), _vm._v(" "), _c("th", {
     attrs: {
-      scope: "row"
+      scope: "col"
     }
-  }, [_vm._v("2")]), _vm._v(" "), _c("td", [_vm._v("Jacob")]), _vm._v(" "), _c("td", [_vm._v("Thornton")]), _vm._v(" "), _c("td", [_vm._v("@fat")])])])]);
+  }, [_vm._v("Teacher")]), _vm._v(" "), _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("Parent")])])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;

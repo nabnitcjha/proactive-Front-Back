@@ -18,23 +18,35 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Subject</th>
+                                <th scope="col">Teacher</th>
+                                <th scope="col">Parent</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
+                            <tr v-for="(std, key, index) in students">
+                                <th scope="row">{{ index }}</th>
+                                <td>{{ std.full_name }}</td>
+                                <td>{{ std.email }}</td>
+                                <td>{{ std.phone }}</td>
+                                <td>
+                                    <b-list-group>
+                                        <b-list-group-item  v-for="sb in std.subject">{{ sb.name }}</b-list-group-item>
+                                    </b-list-group>
+                                </td>
+                                <td>
+                                    <b-list-group>
+                                        <b-list-group-item  v-for="tec in std.teacher">{{ tec.full_name }}</b-list-group-item>
+                                    </b-list-group>
+                                </td>
+                                <td>
+                                    <b-list-group>
+                                        <b-list-group-item  v-for="gu in std.guardian">{{ gu.full_name }}</b-list-group-item>
+                                    </b-list-group>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -354,6 +366,7 @@ import {
 export default {
     data() {
         return {
+            students: [],
             icons: {
                 First_name: First_name,
                 Last_name: Last_name,
@@ -385,6 +398,9 @@ export default {
     },
     props: {
         mode: String,
+    },
+    mounted() {
+        this.getStudents();
     },
     methods: {
         callBack() {
@@ -427,7 +443,7 @@ export default {
             postResponse = await this.post(urlText, formData);
             this.student = {};
             this.dynamicParentList = [
-                 {
+                {
                     First_name: "",
                     Last_name: "",
                     Phone: "",
@@ -435,7 +451,7 @@ export default {
                     parent_id: 1,
                 },
             ];
-            this.$router.push({ name: 'student' })
+            this.$router.push({ name: "student" });
         },
         changeField(event, type, parent) {
             let dynamicParentList = [...this.dynamicParentList];
@@ -465,6 +481,11 @@ export default {
             this.dynamicParentList = this.dynamicParentList.filter(
                 (parentItem) => parentItem.parent_id !== parent_id
             );
+        },
+        async getStudents() {
+            let urlText = "getStudents";
+            let getResponse = await this.get(urlText, 0, true);
+            this.students = getResponse.data.data;
         },
     },
 };
