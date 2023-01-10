@@ -96,7 +96,12 @@ class StudentController extends BaseController
     public function sortedClass($id)
     {
         $class_unique_ids = StudentSession::where('student_id',$id)->groupBy('class_unique_id')->pluck('class_unique_id');
-        $sorted_class  = ClassSchedule::whereIn('class_unique_id',$class_unique_ids)->get();
+        $sub = ClassSchedule::orderBy('id', 'DESC');
+        $sorted_class = DB::table(DB::raw("({$sub->toSql()}) as sub"))
+            ->whereIn('class_unique_id', $class_unique_ids)
+            ->groupBy('class_unique_id')
+            ->get();
+        // return $sorted_class;
 
         return  ClassScheduleAdvanceResource::collection($sorted_class);
     }
