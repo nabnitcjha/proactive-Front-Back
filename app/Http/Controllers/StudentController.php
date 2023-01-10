@@ -102,8 +102,14 @@ class StudentController extends BaseController
             ->whereIn('class_unique_id', $class_unique_ids)
             ->groupBy('class_unique_id')
             ->get();
+        foreach ($sorted_class as $key => $value) {
+            $teacher = Teacher::where('id',$value->teacher_id)->first();
+            $subject = Subject::where('id',$value->subject_id)->first();
+            $value->teacher=$teacher;
+            $value->subject=$subject;
+        }
 
-        return  ClassScheduleResource::collection($sorted_class);
+        return  ClassScheduleAdvanceResource::collection($sorted_class);
     }
 
     public function teachers($id)
