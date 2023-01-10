@@ -14,7 +14,7 @@
                         </button>
                     </div>
                     <hr class="hr-color" />
-                    <table class="table table-hover">
+                    <table class="table table-hover user-list">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -27,24 +27,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(std, key, index) in students">
-                                <th scope="row">{{ index }}</th>
-                                <td>{{ std.full_name }}</td>
-                                <td>{{ std.email }}</td>
+                            <tr v-for="(std,index) in students" :key="index">
+                                <th scope="row">{{ index + 1 }}</th>
+                                <td >{{ std.full_name }}</td>
+                                <td >{{ std.email }}</td>
                                 <td>{{ std.phone }}</td>
                                 <td>
                                     <b-list-group>
-                                        <b-list-group-item  v-for="sb in std.subject">{{ sb.name }}</b-list-group-item>
+                                        <b-list-group-item  v-for="sb in std.subject" :key="sb.id">{{ sb.name }}</b-list-group-item>
                                     </b-list-group>
                                 </td>
                                 <td>
                                     <b-list-group>
-                                        <b-list-group-item  v-for="tec in std.teacher">{{ tec.full_name }}</b-list-group-item>
+                                        <b-list-group-item  v-for="tec in std.teacher" :key="tec.id">{{ tec.full_name }}</b-list-group-item>
                                     </b-list-group>
                                 </td>
                                 <td>
                                     <b-list-group>
-                                        <b-list-group-item  v-for="gu in std.guardian">{{ gu.full_name }}</b-list-group-item>
+                                        <b-list-group-item  v-for="gu in std.guardian" :key="gu.id">{{ gu.full_name }}</b-list-group-item>
                                     </b-list-group>
                                 </td>
                             </tr>

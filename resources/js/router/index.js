@@ -43,7 +43,7 @@ const routes = [
     component: () => import('../views/form/student/EditStudent.vue')
   },
   {
-    path: '/student-detail',
+    path: '/student/:id/detail',
     name: 'studentDetail',
     component: () => import('../views/detail/StudentDetail.vue')
   },

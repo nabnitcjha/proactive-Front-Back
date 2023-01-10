@@ -244,18 +244,26 @@ var render = function render() {
   }), _vm._v(" ADD STUDENT\n                    ")])]), _vm._v(" "), _c("hr", {
     staticClass: "hr-color"
   }), _vm._v(" "), _c("table", {
-    staticClass: "table table-hover"
-  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.students, function (std, key, index) {
-    return _c("tr", [_c("th", {
+    staticClass: "table table-hover user-list"
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.students, function (std, index) {
+    return _c("tr", {
+      key: index
+    }, [_c("th", {
       attrs: {
         scope: "row"
       }
-    }, [_vm._v(_vm._s(index))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(std.full_name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(std.email))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(std.phone))]), _vm._v(" "), _c("td", [_c("b-list-group", _vm._l(std.subject, function (sb) {
-      return _c("b-list-group-item", [_vm._v(_vm._s(sb.name))]);
+    }, [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(std.full_name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(std.email))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(std.phone))]), _vm._v(" "), _c("td", [_c("b-list-group", _vm._l(std.subject, function (sb) {
+      return _c("b-list-group-item", {
+        key: sb.id
+      }, [_vm._v(_vm._s(sb.name))]);
     }), 1)], 1), _vm._v(" "), _c("td", [_c("b-list-group", _vm._l(std.teacher, function (tec) {
-      return _c("b-list-group-item", [_vm._v(_vm._s(tec.full_name))]);
+      return _c("b-list-group-item", {
+        key: tec.id
+      }, [_vm._v(_vm._s(tec.full_name))]);
     }), 1)], 1), _vm._v(" "), _c("td", [_c("b-list-group", _vm._l(std.guardian, function (gu) {
-      return _c("b-list-group-item", [_vm._v(_vm._s(gu.full_name))]);
+      return _c("b-list-group-item", {
+        key: gu.id
+      }, [_vm._v(_vm._s(gu.full_name))]);
     }), 1)], 1)]);
   }), 0)])])]) : _c("div", {
     staticClass: "card"

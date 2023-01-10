@@ -25,6 +25,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   mounted: function mounted() {
+    debugger;
     this.profileOverview();
   },
   methods: {

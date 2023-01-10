@@ -606,6 +606,7 @@ export default {
     };
   },
   mounted() {
+    debugger;
     this.profileOverview();
   },
   methods: {

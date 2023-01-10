@@ -121,3 +121,7 @@ span.custom-checkbox {
 .flex-column .mx-datepicker {
   width: 100%!important;
 }
+
+.user-list td{
+  cursor: pointer;
+}
