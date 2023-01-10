@@ -16,7 +16,10 @@ class ClassScheduleResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "topic" => $this->topic
+            "topic" => $this->topic,
+            "duration" => $this->duration,
+            "description" => $this->description,
+            "zoom_link" => $this->zoom_link
         ];
     }
 }
