@@ -29,20 +29,20 @@
                         <tbody>
                             <tr v-for="(std,index) in students" :key="index">
                                 <th scope="row">{{ index + 1 }}</th>
-                                <td >{{ std.full_name }}</td>
-                                <td >{{ std.email }}</td>
-                                <td>{{ std.phone }}</td>
-                                <td>
+                                <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')">{{ std.full_name }}</td>
+                                <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')">{{ std.email }}</td>
+                                <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')">{{ std.phone }}</td>
+                                <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')">
                                     <b-list-group>
                                         <b-list-group-item  v-for="sb in std.subject" :key="sb.id">{{ sb.name }}</b-list-group-item>
                                     </b-list-group>
                                 </td>
-                                <td>
+                                <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')">
                                     <b-list-group>
                                         <b-list-group-item  v-for="tec in std.teacher" :key="tec.id">{{ tec.full_name }}</b-list-group-item>
                                     </b-list-group>
                                 </td>
-                                <td>
+                                <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')">
                                     <b-list-group>
                                         <b-list-group-item  v-for="gu in std.guardian" :key="gu.id">{{ gu.full_name }}</b-list-group-item>
                                     </b-list-group>

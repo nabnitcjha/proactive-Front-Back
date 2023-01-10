@@ -252,15 +252,57 @@ var render = function render() {
       attrs: {
         scope: "row"
       }
-    }, [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(std.full_name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(std.email))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(std.phone))]), _vm._v(" "), _c("td", [_c("b-list-group", _vm._l(std.subject, function (sb) {
+    }, [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", {
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.$root.changeRoute("/student/" + std.id + "/detail");
+        }
+      }
+    }, [_vm._v(_vm._s(std.full_name))]), _vm._v(" "), _c("td", {
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.$root.changeRoute("/student/" + std.id + "/detail");
+        }
+      }
+    }, [_vm._v(_vm._s(std.email))]), _vm._v(" "), _c("td", {
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.$root.changeRoute("/student/" + std.id + "/detail");
+        }
+      }
+    }, [_vm._v(_vm._s(std.phone))]), _vm._v(" "), _c("td", {
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.$root.changeRoute("/student/" + std.id + "/detail");
+        }
+      }
+    }, [_c("b-list-group", _vm._l(std.subject, function (sb) {
       return _c("b-list-group-item", {
         key: sb.id
       }, [_vm._v(_vm._s(sb.name))]);
-    }), 1)], 1), _vm._v(" "), _c("td", [_c("b-list-group", _vm._l(std.teacher, function (tec) {
+    }), 1)], 1), _vm._v(" "), _c("td", {
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.$root.changeRoute("/student/" + std.id + "/detail");
+        }
+      }
+    }, [_c("b-list-group", _vm._l(std.teacher, function (tec) {
       return _c("b-list-group-item", {
         key: tec.id
       }, [_vm._v(_vm._s(tec.full_name))]);
-    }), 1)], 1), _vm._v(" "), _c("td", [_c("b-list-group", _vm._l(std.guardian, function (gu) {
+    }), 1)], 1), _vm._v(" "), _c("td", {
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.$root.changeRoute("/student/" + std.id + "/detail");
+        }
+      }
+    }, [_c("b-list-group", _vm._l(std.guardian, function (gu) {
       return _c("b-list-group-item", {
         key: gu.id
       }, [_vm._v(_vm._s(gu.full_name))]);

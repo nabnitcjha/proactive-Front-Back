@@ -602,11 +602,12 @@ export default {
       show: false,
       showTeacherCalendar: false,
       showAllCalendar: false,
-      profile_overview: {},
+      profile_overview: [],
+      sorted_class:[]
     };
   },
   mounted() {
-    debugger;
+    
     this.profileOverview();
   },
   methods: {
@@ -629,12 +630,24 @@ export default {
       }
     },
     async profileOverview() {
-      let id = 1;
-      let formData = {};
+      
+      let id = this.$route.params.id;
       let urlText = "student/" + id + "/profileOverview";
 
-      let getResponse = await this.get(urlText, formData);
-      this.profile_overview = getResponse.data.data;
+      let getResponse = await this.get(urlText,0,false);
+      this.sortedClass();
+      
+      this.profile_overview = {...getResponse.data.data,"sorted_class":this.sorted_class};
+      
+    },
+    async sortedClass() {
+      
+      let id = this.$route.params.id;
+      let urlText = "student/" + id + "/sortedClass";
+
+      let getResponse = await this.get(urlText,0,false);
+      
+      this.sorted_class = getResponse.data.data;
     },
     async teacherProfile() {
       this.showTeacherCalendar = true;
