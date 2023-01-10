@@ -21,7 +21,7 @@ class ClassScheduleController extends BaseController
 
     public function __construct()
     {
-        $this->classScheduleResource = new ClassScheduleResource(array());
+       $this->classScheduleResource = new ClassScheduleResource(array());
         $this->Model = new ClassSchedule();
         $this->imageOrFile = new uploadImageOrFileController();
     }

@@ -16,7 +16,7 @@ class ClassScheduleResource extends JsonResource
     {
         return [
             "id" => $this->id,
-            "topic" => $this->topic,
+            "topic" => $this->topic
         ];
     }
 }
