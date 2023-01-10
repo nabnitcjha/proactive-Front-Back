@@ -634,7 +634,7 @@ export default {
       let id = this.$route.params.id;
       let urlText = "student/" + id + "/profileOverview";
 
-      let getResponse = await this.get(urlText,0,false);
+      let getResponse = await this.get(urlText,id,false);
       this.sortedClass();
       
       this.profile_overview = {...getResponse.data.data,"sorted_class":this.sorted_class};
@@ -645,7 +645,7 @@ export default {
       let id = this.$route.params.id;
       let urlText = "student/" + id + "/sortedClass";
 
-      let getResponse = await this.get(urlText,0,false);
+      let getResponse = await this.get(urlText,id,false);
       
       this.sorted_class = getResponse.data.data;
     },
@@ -656,14 +656,14 @@ export default {
       let formData = {};
       let urlText = "student/" + id + "/teachers";
 
-      let getResponse = await this.get(urlText, formData);
+      let getResponse = await this.get(urlText,id, formData);
     },
     async groupDiscussion() {
       let id = 1;
       let formData = {};
       let urlText = "student/" + id + "/groupDiscussion";
 
-      let getResponse = await this.get(urlText, formData);
+      let getResponse = await this.get(urlText,id, formData);
     },
     async allClasses() {
       this.showTeacherCalendar = false;
@@ -672,7 +672,7 @@ export default {
       let formData = {};
       let urlText = "student/" + id + "/Classes";
 
-      let getResponse = await this.get(urlText, formData);
+      let getResponse = await this.get(urlText,id, formData);
     },
     async changePassword() {
       let id = 1;

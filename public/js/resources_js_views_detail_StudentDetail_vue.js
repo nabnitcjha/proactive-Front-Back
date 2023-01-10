@@ -62,7 +62,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               id = _this.$route.params.id;
               urlText = "student/" + id + "/profileOverview";
               _context.next = 4;
-              return _this.get(urlText, 0, false);
+              return _this.get(urlText, id, false);
             case 4:
               getResponse = _context.sent;
               _this.sortedClass();
@@ -86,7 +86,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               id = _this2.$route.params.id;
               urlText = "student/" + id + "/sortedClass";
               _context2.next = 4;
-              return _this2.get(urlText, 0, false);
+              return _this2.get(urlText, id, false);
             case 4:
               getResponse = _context2.sent;
               _this2.sorted_class = getResponse.data.data;
@@ -110,7 +110,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               formData = {};
               urlText = "student/" + id + "/teachers";
               _context3.next = 7;
-              return _this3.get(urlText, formData);
+              return _this3.get(urlText, id, formData);
             case 7:
               getResponse = _context3.sent;
             case 8:
@@ -131,7 +131,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               formData = {};
               urlText = "student/" + id + "/groupDiscussion";
               _context4.next = 5;
-              return _this4.get(urlText, formData);
+              return _this4.get(urlText, id, formData);
             case 5:
               getResponse = _context4.sent;
             case 6:
@@ -154,7 +154,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               formData = {};
               urlText = "student/" + id + "/Classes";
               _context5.next = 7;
-              return _this5.get(urlText, formData);
+              return _this5.get(urlText, id, formData);
             case 7:
               getResponse = _context5.sent;
             case 8:
