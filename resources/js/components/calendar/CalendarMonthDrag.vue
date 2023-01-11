@@ -197,14 +197,14 @@
                 <div class="form-group col-sm-12 col-lg-12 d-flex">
                   <div class="zoom-link">
                     <input
-                      v-model="zoomLink"
+                      v-model="zoom_link"
                       type="text"
                       class="form-control remove-border"
-                      id="zoomlink"
+                      id="zoom_link"
                       placeholder="add link"
-                      @input="saveZoomLink"
+                      @input="savezoom_link"
                     />
-                    <i class="bi bi-clipboard" @click.stop="copyZoomLink"></i>
+                    <i class="bi bi-clipboard" @click.stop="copyzoom_link"></i>
                   </div>
                   <button
                     class="btn btn-warning btn-session pointer-hand col-3 mt-2 mx-auto go-to-link cstm-btn"
@@ -279,7 +279,9 @@ export default {
     currentTeacherId: "",
     resourceFileName: "",
   }),
-
+  props:{
+    slot_info:Array
+  },
   methods: {
     async saveResourceFile() {
       let formData = new FormData();
@@ -295,9 +297,9 @@ export default {
         document.querySelector("input[type=file]").files[0];
       this.resourceFileName = this.assessment_file.name;
     },
-    copyZoomLink() {
+    copyzoom_link() {
       /* Get the text field */
-      var copyText = document.getElementById("zoomlink");
+      var copyText = document.getElementById("zoom_link");
 
       /* Select the text field */
       copyText.select();
@@ -472,28 +474,11 @@ export default {
     },
     async getEvents({ start, end }) {
       this.$emit("set-focus", this.value);
-
-      let formData = {};
       const events = [];
-      this.userType = this.getLoginInfo.user.role[0];
-
-      if (this.userType == "teacher") {
-        formData["mode"] = "teacher";
-        formData["teacher_id"] = this.getLoginInfo.user.teacher.id;
-      } else if (this.userType == "student") {
-        formData["mode"] = "student";
-        formData["student_id"] = this.getLoginInfo.user.student.id;
-      } else if (this.userType == "parent") {
-        formData["mode"] = "parent";
-        formData["parent_id"] = this.getLoginInfo.user.parent.id;
-      } else {
-        formData["mode"] = "admin";
-      }
-
-      let postResponse = {};
-      let urlText = "getTimetables";
-      postResponse = await this.get(urlText);
-      this.slots = postResponse.data.data;
+      
+      
+      this.slots =await this.slot_info;
+      
       this.slots.map((data) => {
         events.push({
           id: data.id,
@@ -502,11 +487,10 @@ export default {
           start: new Date(data.start_date),
           end: new Date(data.end_date),
           time: data.duration,
-          event_message: data.event_message,
-          teacher_id: data.teacher_id,
-          class_unique_id: data.class_unique_id,
-          zoomLink: data.zoomLink,
-          subject_id: data.subject_id,
+          description: data.description,
+          zoom_link: data.zoom_link,
+          teacher: data.teacher,
+          subject: data.subject,
         });
       });
 

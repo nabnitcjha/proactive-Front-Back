@@ -19,7 +19,9 @@ class ClassScheduleResource extends JsonResource
             "topic" => $this->topic,
             "duration" => $this->duration,
             "description" => $this->description,
-            "zoom_link" => $this->zoom_link
+            "zoom_link" => $this->zoom_link,
+            "start_date" => $this->start_date,
+            "end_date" => $this->end_date
         ];
     }
 }

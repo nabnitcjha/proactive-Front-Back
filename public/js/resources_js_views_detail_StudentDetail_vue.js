@@ -512,7 +512,11 @@ var render = function render() {
       staticClass: "col-lg-3 col-md-4 label"
     }, [_vm._v("\n                                                                    Classes\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
-    }, [_c("slot-calendar")], 1)])])])])]);
+    }, [_c("slot-calendar", {
+      attrs: {
+        slot_info: thr_info.class_according_teacher
+      }
+    })], 1)])])])])]);
   }), 0)])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {

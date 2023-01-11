@@ -57,6 +57,7 @@
           </v-sheet>
           <calendar-month-drag-component
             v-if="type == 'month'"
+            :slot_info="slot_info"
             @change-type="currentType"
             @open-edit="openEdit"
             @send-email="sendEmail"
@@ -67,7 +68,7 @@
             @set-focus="setFocus"
             @calendar-today-title="calendarTodayTitle"
             @start-class="startClass"
-            @current-zoom-link="saveCurrentZoomLink"
+            @current-zoom-link="saveCurrentzoom_link"
             @delete-slot="deleteSlot"
             :focus="focus"
           ></calendar-month-drag-component>
@@ -231,16 +232,16 @@
                         <div class="form-group col-sm-12 col-lg-12 d-flex">
                           <div class="zoom-link">
                             <input
-                              v-model="zoomLink"
+                              v-model="zoom_link"
                               type="text"
                               class="form-control remove-border"
-                              id="zoomlink"
+                              id="zoom_link"
                               placeholder="add link"
-                              @input="saveZoomLink"
+                              @input="savezoom_link"
                             />
                             <i
                               class="bi bi-clipboard"
-                              @click.stop="copyZoomLink"
+                              @click.stop="copyzoom_link"
                             ></i>
                           </div>
                           <button
@@ -293,14 +294,14 @@ export default {
     userType: "",
     showDeleteModel: false,
     currentEvent: {},
-    currentZoomLink: "",
+    currentzoom_link: "",
     showStartModel: false,
     monthCalendar: {},
     calendarTitle: "",
     startDragAttempt: 0,
     show: true,
     sessionId: "",
-    event_message: "",
+    description: "",
     openMeetwith: false,
     titleInfo: {},
     openDetail: false,
@@ -316,7 +317,7 @@ export default {
       "4day": "4 Days",
     },
     selectedEvent: {},
-    zoomLink: "",
+    zoom_link: "",
     selectedElement: null,
     selectedOpen: false,
     events: [],
@@ -338,6 +339,9 @@ export default {
     createStart: null,
     extendOriginal: null,
   }),
+  props:{
+    slot_info:Array
+  },
   components: {
     "calendar-month-drag-component": CalendarMonthDragComponent,
   },
@@ -349,9 +353,9 @@ export default {
   },
   methods: {
 
-    copyZoomLink() {
+    copyzoom_link() {
       /* Get the text field */
-      var copyText = document.getElementById("zoomlink");
+      var copyText = document.getElementById("zoom_link");
 
       /* Select the text field */
       copyText.select();
@@ -378,9 +382,9 @@ export default {
       this.showDeleteModel = true;
       this.userType = " this slot";
     },
-    saveCurrentZoomLink(val) {
+    saveCurrentzoom_link(val) {
       this.currentEvent = val;
-      this.zoomLink = val.zoomLink;
+      this.zoom_link = val.zoom_link;
       this.current_timetable_id = val.id;
     },
     startClass() {
@@ -395,8 +399,8 @@ export default {
       });
     },
     openLink() {
-      if (this.zoomLink != null) {
-        window.open(this.zoomLink);
+      if (this.zoom_link != null) {
+        window.open(this.zoom_link);
       } else {
         this.emptyLink();
       }
@@ -409,18 +413,18 @@ export default {
         dismissible: true,
       });
     },
-    saveZoomLink(e) {
+    savezoom_link(e) {
       let formData = {};
-      formData["zoomLink"] = e.target.value;
+      formData["zoom_link"] = e.target.value;
       formData["timetable_id"] = this.current_timetable_id;
 
-      axios.post("/api/saveZoomLink", formData).then((response) => {
+      axios.post("/api/savezoom_link", formData).then((response) => {
         this.zoomSaveSuccessfully();
       });
     },
-    copyZoomLink() {
+    copyzoom_link() {
       /* Get the text field */
-      var copyText = document.getElementById("zoomlink");
+      var copyText = document.getElementById("zoom_link");
 
       /* Select the text field */
       copyText.select();
@@ -611,7 +615,7 @@ export default {
     },
     openDetailModel() {
       this.sessionId = this.selectedEvent.session_id;
-      this.event_message = this.selectedEvent.event_message;
+      this.description = this.selectedEvent.description;
       this.openMeetwith = true;
     },
     modalClose() {
@@ -660,7 +664,7 @@ export default {
     },
     showEvent({ nativeEvent, event }) {
       this.currentEvent = event;
-      this.zoomLink = event.zoomLink;
+      this.zoom_link = event.zoom_link;
       this.current_timetable_id = event.id;
       const open = () => {
         this.selectedEvent = event;
@@ -679,29 +683,16 @@ export default {
       nativeEvent.stopPropagation();
     },
     async updateRange() {
-      // this.show = true;
-      let formData = {};
       const events = [];
-      this.userType = this.getLoginInfo.user.role[0];
-
-      if (this.userType == "teacher") {
-        formData["mode"] = "teacher";
-        formData["teacher_id"] = this.getLoginInfo.user.teacher.id;
-      } else if (this.userType == "student") {
-        formData["mode"] = "student";
-        formData["student_id"] = this.getLoginInfo.user.student.id;
-      } else if (this.userType == "parent") {
-        formData["mode"] = "parent";
-        formData["parent_id"] = this.getLoginInfo.user.parent.id;
-      } else {
-        formData["mode"] = "admin";
-      }
 
       let postResponse = {};
-      let urlText = "getTimetables";
-      postResponse = await this.get(urlText);
+      // let urlText = "getTimetables";
+      // postResponse = await this.get(urlText);
 
-      this.slots = postResponse.data.data;
+      // this.slots = postResponse.data.data;
+      
+      this.slots =await this.slot_info;
+      
       this.slots.map((data) => {
         events.push({
           id: data.id,
@@ -710,11 +701,8 @@ export default {
           start: new Date(data.start_date),
           end: new Date(data.end_date),
           timed: data.start_date,
-          event_message: data.event_message,
-          students: data.student,
-          teacher: data.teacher,
-          session_id: data.session_id,
-          zoomLink: data.zoomLink,
+          description: data.description,
+          zoom_link: data.zoom_link,
           teacher: data.teacher,
           subject: data.subject,
         });
@@ -730,11 +718,11 @@ export default {
       //       start: new Date(data.start_date),
       //       end: new Date(data.end_date),
       //       timed: data.start_date,
-      //       event_message: data.event_message,
-      //       students: data.student,
+      //       description: data.description,
+      //       
       //       teacher: data.teacher,
-      //       session_id: data.session_id,
-      //       zoomLink: data.zoomLink,
+      //       
+      //       zoom_link: data.zoom_link,
       //       teacher: data.teacher,
       //       subject: data.subject,
       //     });

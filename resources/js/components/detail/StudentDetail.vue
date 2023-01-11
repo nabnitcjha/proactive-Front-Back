@@ -673,7 +673,7 @@
                                                                         class="col-lg-9 col-md-8"
                                                                       
                                                                     >
-                                                                        <slot-calendar></slot-calendar>
+                                                                        <slot-calendar :slot_info="thr_info.class_according_teacher"></slot-calendar>
                                                                     </div>
                                                                 </div>
                                                             </div>
