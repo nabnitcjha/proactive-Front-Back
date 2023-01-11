@@ -27,7 +27,7 @@ class profileOverview extends JsonResource
             "subject_info" => SubjectResource::collection($this->subject),
             "teacher_info" => TeacherAdvanceResource::collection($this->teacher),
             "parent_info" => GuardianResource::collection($this->guardian),
-            // "class_schedule_info" => ClassScheduleAdvanceResource::collection($this->classSchedule),
+            "class_according_student" => ClassScheduleAdvanceResource::collection($this->classSchedule),
         ];
     }
 }

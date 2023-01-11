@@ -22,4 +22,9 @@ class Teacher extends Model
     {
         return $this->belongsToMany(Student::class, 'student_teachers','teacher_id', 'student_id');
     }
+
+    public function classSchedule()
+    {
+        return $this->hasMany(ClassSchedule::class);
+    }
 }
