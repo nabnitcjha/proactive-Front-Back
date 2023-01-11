@@ -112,18 +112,6 @@ class StudentController extends BaseController
         return  ClassScheduleAdvanceResource::collection($sorted_class);
     }
 
-    public function teachers($id)
-    {
-    }
-
-    public function groupDiscussion($id)
-    {
-    }
-
-    public function Classes($id)
-    {
-    }
-
     public function changePassword(Request $request, $id)
     {
     }
