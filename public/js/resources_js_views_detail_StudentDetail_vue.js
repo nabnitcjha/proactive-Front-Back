@@ -37,19 +37,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     findDay: function findDay(day) {
       switch (day) {
         case "0":
-          return 'Sun';
+          return "Sun";
         case "1":
-          return 'Mon';
+          return "Mon";
         case "2":
-          return 'Tues';
+          return "Tues";
         case "3":
-          return 'Wed';
+          return "Wed";
         case "4":
-          return 'Thurs';
+          return "Thurs";
         case "5":
-          return 'Fri';
+          return "Fri";
         case "6":
-          return 'Sat';
+          return "Sat";
       }
     },
     profileOverview: function profileOverview() {
@@ -67,7 +67,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               getResponse = _context.sent;
               _this.sortedClass();
               _this.profile_overview = _objectSpread(_objectSpread({}, getResponse.data.data), {}, {
-                "sorted_class": _this.sorted_class
+                sorted_class: _this.sorted_class
               });
             case 7:
             case "end":
@@ -97,92 +97,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    teacherProfile: function teacherProfile() {
+    changePassword: function changePassword() {
       var _this3 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-        var id, formData, urlText, getResponse;
+        var id, formData, urlText, putResponse;
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) switch (_context3.prev = _context3.next) {
-            case 0:
-              _this3.showTeacherCalendar = true;
-              _this3.showAllCalendar = false;
-              id = 1;
-              formData = {};
-              urlText = "student/" + id + "/teachers";
-              _context3.next = 7;
-              return _this3.get(urlText, id, formData);
-            case 7:
-              getResponse = _context3.sent;
-            case 8:
-            case "end":
-              return _context3.stop();
-          }
-        }, _callee3);
-      }))();
-    },
-    groupDiscussion: function groupDiscussion() {
-      var _this4 = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-        var id, formData, urlText, getResponse;
-        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-          while (1) switch (_context4.prev = _context4.next) {
-            case 0:
-              id = 1;
-              formData = {};
-              urlText = "student/" + id + "/groupDiscussion";
-              _context4.next = 5;
-              return _this4.get(urlText, id, formData);
-            case 5:
-              getResponse = _context4.sent;
-            case 6:
-            case "end":
-              return _context4.stop();
-          }
-        }, _callee4);
-      }))();
-    },
-    allClasses: function allClasses() {
-      var _this5 = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5() {
-        var id, formData, urlText, getResponse;
-        return _regeneratorRuntime().wrap(function _callee5$(_context5) {
-          while (1) switch (_context5.prev = _context5.next) {
-            case 0:
-              _this5.showTeacherCalendar = false;
-              _this5.showAllCalendar = true;
-              id = 1;
-              formData = {};
-              urlText = "student/" + id + "/Classes";
-              _context5.next = 7;
-              return _this5.get(urlText, id, formData);
-            case 7:
-              getResponse = _context5.sent;
-            case 8:
-            case "end":
-              return _context5.stop();
-          }
-        }, _callee5);
-      }))();
-    },
-    changePassword: function changePassword() {
-      var _this6 = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee6() {
-        var id, formData, urlText, putResponse;
-        return _regeneratorRuntime().wrap(function _callee6$(_context6) {
-          while (1) switch (_context6.prev = _context6.next) {
             case 0:
               id = 1;
               formData = {};
               urlText = "student/" + id + "/changePassword";
-              _context6.next = 5;
-              return _this6.put(urlText, formData);
+              _context3.next = 5;
+              return _this3.put(urlText, formData);
             case 5:
-              putResponse = _context6.sent;
+              putResponse = _context3.sent;
             case 6:
             case "end":
-              return _context6.stop();
+              return _context3.stop();
           }
-        }, _callee6);
+        }, _callee3);
       }))();
     }
   }
@@ -263,7 +196,7 @@ var render = function render() {
         return _vm.profileOverview.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                    Overview\n                  ")])]), _vm._v(" "), _c("li", {
+  }, [_vm._v("\n                                        Overview\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("button", {
     staticClass: "nav-link",
@@ -277,7 +210,7 @@ var render = function render() {
         return _vm.teacherProfile.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                    Teachers\n                  ")])]), _vm._v(" "), _c("li", {
+  }, [_vm._v("\n                                        Teachers\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("button", {
     staticClass: "nav-link",
@@ -291,7 +224,7 @@ var render = function render() {
         return _vm.groupDiscussion.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                    Discussion\n                  ")])]), _vm._v(" "), _c("li", {
+  }, [_vm._v("\n                                        Discussion\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("button", {
     staticClass: "nav-link",
@@ -305,7 +238,7 @@ var render = function render() {
         return _vm.allClasses.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                    Classes\n                  ")])]), _vm._v(" "), _c("li", {
+  }, [_vm._v("\n                                        Classes\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("button", {
     staticClass: "nav-link",
@@ -319,7 +252,7 @@ var render = function render() {
         return _vm.changePassword.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                    Change Password\n                  ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                        Change Password\n                                    ")])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-content pt-2"
   }, [_c("div", {
     staticClass: "tab-pane fade show active profile-overview",
@@ -328,17 +261,17 @@ var render = function render() {
     }
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("Profile Details")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                        Profile Details\n                                    ")]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("Full Name")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            Full Name\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                      " + _vm._s(_vm.profile_overview.student_info.full_name) + "\n                    ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.full_name) + "\n                                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("Classes")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            Classes\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
   }, _vm._l(_vm.profile_overview.class_schedule_info, function (class_info, index) {
     return _c("div", {
@@ -363,7 +296,7 @@ var render = function render() {
         "aria-expanded": "false",
         "aria-controls": "flush-overview_class_accordion" + index
       }
-    }, [_vm._v("\n                              " + _vm._s(class_info.topic) + "\n                            ")])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                            " + _vm._s(class_info.topic) + "\n                                                        ")])]), _vm._v(" "), _c("div", {
       staticClass: "accordion-collapse collapse",
       attrs: {
         id: "flush-overview_class_accordion" + index,
@@ -376,29 +309,29 @@ var render = function render() {
       staticClass: "list-group"
     }, [_c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("START TIME : ")]), _vm._v(_vm._s(_vm.timeFormater(class_info.start_date)) + "\n                                ")]), _vm._v(" "), _c("li", {
+    }, [_c("b", [_vm._v("START\n                                                                        TIME\n                                                                        : ")]), _vm._v(_vm._s(_vm.timeFormater(class_info.start_date)) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("END TIME : ")]), _vm._v(_vm._s(_vm.timeFormater(class_info.end_date)) + "\n                                ")]), _vm._v(" "), _c("li", {
+    }, [_c("b", [_vm._v("END\n                                                                        TIME\n                                                                        : ")]), _vm._v(_vm._s(_vm.timeFormater(class_info.end_date)) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("CLASS DAY : ")]), _vm._l(class_info.selected_day, function (cls_selected_day, index) {
+    }, [_c("b", [_vm._v("CLASS\n                                                                        DAY\n                                                                        : ")]), _vm._l(class_info.selected_day, function (cls_selected_day, index) {
       return _c("span", {
         key: index,
         staticClass: "badge rounded-pill text-bg-warning mr-2"
       }, [_vm._v(_vm._s(_vm.findDay(cls_selected_day)))]);
     })], 2), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("DURATION : ")]), _vm._v(_vm._s(class_info.duration) + "\n                                ")]), _vm._v(" "), _c("li", {
+    }, [_c("b", [_vm._v("DURATION\n                                                                        : ")]), _vm._v(_vm._s(class_info.duration) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("DESCRIPTION : ")]), _vm._v(_vm._s(class_info.description) + "\n                                ")]), _vm._v(" "), _c("li", {
+    }, [_c("b", [_vm._v("DESCRIPTION\n                                                                        : ")]), _vm._v(_vm._s(class_info.description) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("TEACHER : ")]), _c("span", {
+    }, [_c("b", [_vm._v("TEACHER\n                                                                        : ")]), _c("span", {
       staticClass: "badge rounded-pill text-bg-warning mr-2"
-    }, [_vm._v("\n                                    " + _vm._s(class_info.teacher.full_name))])])])])])])]);
+    }, [_vm._v("\n                                                                        " + _vm._s(class_info.teacher.full_name))])])])])])])]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("Teachers")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            Teachers\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
   }, _vm._l(_vm.profile_overview.teacher_info, function (thr_info, index) {
     return _c("div", {
@@ -423,7 +356,7 @@ var render = function render() {
         "aria-expanded": "false",
         "aria-controls": "flush-overview_teacher_accordion" + index
       }
-    }, [_vm._v("\n                              " + _vm._s(thr_info.full_name) + "\n                            ")])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                            " + _vm._s(thr_info.full_name) + "\n                                                        ")])]), _vm._v(" "), _c("div", {
       staticClass: "accordion-collapse collapse",
       attrs: {
         id: "flush-overview_teacher_accordion" + index,
@@ -436,11 +369,11 @@ var render = function render() {
       staticClass: "list-group"
     }, [_c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("EMAIL : ")]), _vm._v(_vm._s(thr_info.user.email) + "\n                                ")]), _vm._v(" "), _c("li", {
+    }, [_c("b", [_vm._v("EMAIL\n                                                                        : ")]), _vm._v(_vm._s(thr_info.user.email) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("PHONE : ")]), _vm._v(_vm._s(thr_info.phone) + "\n                                ")]), _vm._v(" "), _c("li", {
+    }, [_c("b", [_vm._v("PHONE\n                                                                        : ")]), _vm._v(_vm._s(thr_info.phone) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("SUBJECT : ")]), _vm._v(" "), _vm._l(thr_info.subject, function (tch_sub_info, index) {
+    }, [_c("b", [_vm._v("SUBJECT\n                                                                        :\n                                                                    ")]), _vm._v(" "), _vm._l(thr_info.subject, function (tch_sub_info, index) {
       return _c("span", {
         key: index,
         staticClass: "badge rounded-pill text-bg-warning mr-2"
@@ -450,7 +383,7 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("Subject")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            Subject\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
   }, _vm._l(_vm.profile_overview.subject_info, function (sub_info, index) {
     return _c("span", {
@@ -461,7 +394,7 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("Parents")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            Parents\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
   }, _vm._l(_vm.profile_overview.parent_info, function (prnt_info, index) {
     return _c("div", {
@@ -486,7 +419,7 @@ var render = function render() {
         "aria-expanded": "false",
         "aria-controls": "flush-overview_parent_accordion" + index
       }
-    }, [_vm._v("\n                              " + _vm._s(prnt_info.full_name) + "\n                            ")])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                            " + _vm._s(prnt_info.full_name) + "\n                                                        ")])]), _vm._v(" "), _c("div", {
       staticClass: "accordion-collapse collapse",
       attrs: {
         id: "flush-overview_parent_accordion" + index,
@@ -499,22 +432,22 @@ var render = function render() {
       staticClass: "list-group"
     }, [_c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("EMAIL : ")]), _vm._v(_vm._s(prnt_info.user.email) + "\n                                ")]), _vm._v(" "), _c("li", {
+    }, [_c("b", [_vm._v("EMAIL\n                                                                        : ")]), _vm._v(_vm._s(prnt_info.user.email) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("PHONE : ")]), _vm._v(_vm._s(prnt_info.phone) + "\n                                ")])])])])])]);
+    }, [_c("b", [_vm._v("PHONE\n                                                                        : ")]), _vm._v(_vm._s(prnt_info.phone) + "\n                                                                ")])])])])])]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("Email")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            Email\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                      " + _vm._s(_vm.profile_overview.student_info.email) + "\n                    ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.email) + "\n                                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("Phone")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            Phone\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                      " + _vm._s(_vm.profile_overview.student_info.phone) + "\n                    ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.phone) + "\n                                        ")])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade profile-teacher pt-3",
     attrs: {
       id: "profile-teacher"
@@ -542,7 +475,7 @@ var render = function render() {
       "aria-expanded": "false",
       "aria-controls": "flush-collapseOne"
     }
-  }, [_vm._v("\n                              Accordion Item #1\n                            ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                            Accordion Item\n                                                            #1\n                                                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "accordion-collapse collapse",
     attrs: {
       id: "flush-collapseOne",
@@ -555,7 +488,7 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                  Subjects\n                                ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    Subjects\n                                                                ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
   }, [_c("span", {
     staticClass: "badge rounded-pill bg-warning text-dark"
@@ -563,25 +496,25 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                  Send Message\n                                ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    Send\n                                                                    Message\n                                                                ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                                  Web Designer\n                                ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    Web\n                                                                    Designer\n                                                                ")])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                  Email\n                                ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    Email\n                                                                ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("USA")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    USA\n                                                                ")])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                  Phone\n                                ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    Phone\n                                                                ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                                  (436) 486-3538 x29071\n                                ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                                    (436)\n                                                                    486-3538\n                                                                    x29071\n                                                                ")])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                  Classes\n                                ")]), _vm._v(" "), _vm.showTeacherCalendar ? _c("div", {
+  }, [_vm._v("\n                                                                    Classes\n                                                                ")]), _vm._v(" "), _vm.showTeacherCalendar ? _c("div", {
     staticClass: "col-lg-9 col-md-8"
   }, [_c("slot-calendar")], 1) : _vm._e()])])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
@@ -611,7 +544,7 @@ var render = function render() {
     attrs: {
       "for": "changesMade"
     }
-  }, [_vm._v("\n                            Changes made to your account\n                          ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                        Changes made to your\n                                                        account\n                                                    ")])]), _vm._v(" "), _c("div", {
     staticClass: "form-check"
   }, [_c("input", {
     staticClass: "form-check-input",
@@ -625,7 +558,7 @@ var render = function render() {
     attrs: {
       "for": "newProducts"
     }
-  }, [_vm._v("\n                            Information on new products and services\n                          ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                        Information on new\n                                                        products and\n                                                        services\n                                                    ")])]), _vm._v(" "), _c("div", {
     staticClass: "form-check"
   }, [_c("input", {
     staticClass: "form-check-input",
@@ -638,7 +571,7 @@ var render = function render() {
     attrs: {
       "for": "proOffers"
     }
-  }, [_vm._v("\n                            Marketing and promo offers\n                          ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                        Marketing and promo\n                                                        offers\n                                                    ")])]), _vm._v(" "), _c("div", {
     staticClass: "form-check"
   }, [_c("input", {
     staticClass: "form-check-input",
@@ -653,14 +586,14 @@ var render = function render() {
     attrs: {
       "for": "securityNotify"
     }
-  }, [_vm._v("\n                            Security alerts\n                          ")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                        Security alerts\n                                                    ")])])])]), _vm._v(" "), _c("div", {
     staticClass: "text-center"
   }, [_c("button", {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("\n                        Save Changes\n                      ")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                Save Changes\n                                            ")])])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {
       id: "profile-classes"
@@ -711,7 +644,7 @@ var render = function render() {
     attrs: {
       "for": "renewPassword"
     }
-  }, [_vm._v("Re-enter New Password")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Re-enter New\n                                                Password")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-8 col-lg-9"
   }, [_c("input", {
     staticClass: "form-control",
@@ -727,7 +660,7 @@ var render = function render() {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("\n                        Change Password\n                      ")])])])])])])])])], 1)])])]);
+  }, [_vm._v("\n                                                Change Password\n                                            ")])])])])])])])])], 1)])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
