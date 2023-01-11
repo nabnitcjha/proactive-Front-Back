@@ -165,7 +165,7 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "row"
-  }, [_c("div", {
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
     staticClass: "col-lg-12"
   }, [_c("div", {
     staticClass: "row"
@@ -495,7 +495,12 @@ var render = function render() {
     }, [_vm._v("\n                                                                    Message\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
     }, [_c("button", {
-      staticClass: "btn btn-primary"
+      staticClass: "btn btn-success",
+      attrs: {
+        type: "button",
+        "data-bs-toggle": "modal",
+        "data-bs-target": "#sendMessageToTeacher"
+      }
     }, [_vm._v("\n                                                                        SEND\n                                                                        MESSAGE\n                                                                    ")])])]), _vm._v(" "), _c("div", {
       staticClass: "row"
     }, [_c("div", {
@@ -665,7 +670,56 @@ var render = function render() {
     }
   }, [_vm._v("\n                                                Change Password\n                                            ")])])])])])])])])], 1)])])]);
 };
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "modal fade modal-tall",
+    attrs: {
+      id: "sendMessageToTeacher",
+      tabindex: "-1",
+      "aria-labelledby": "sendMessageToTeacherLabel",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog modal-dialog-scrollable"
+  }, [_c("div", {
+    staticClass: "modal-content"
+  }, [_c("div", {
+    staticClass: "modal-header"
+  }, [_c("h1", {
+    staticClass: "modal-title fs-5",
+    attrs: {
+      id: "sendMessageToTeacherLabel"
+    }
+  }, [_vm._v("\n                        SEND MESSAGE\n                    ")]), _vm._v(" "), _c("button", {
+    staticClass: "btn-close",
+    attrs: {
+      type: "button",
+      "data-bs-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("div", {
+    staticClass: "card-header d-flex justify-content-between"
+  }, [_c("span", [_vm._v("Study Resources")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "modal-footer"
+  }, [_c("div", {
+    staticClass: "input-group"
+  }, [_c("textarea", {
+    staticClass: "form-control",
+    attrs: {
+      "aria-label": "With textarea"
+    }
+  }), _vm._v(" "), _c("div", {
+    staticClass: "input-group-prepend"
+  }, [_c("span", {
+    staticClass: "input-group-text"
+  }, [_vm._v("SEND")])])])])])])]);
+}];
 render._withStripped = true;
 
 

@@ -1,5 +1,52 @@
 <template>
     <div class="row">
+        <!-- modal start -->
+        <div
+            class="modal fade modal-tall"
+            id="sendMessageToTeacher"
+            tabindex="-1"
+            aria-labelledby="sendMessageToTeacherLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1
+                            class="modal-title fs-5"
+                            id="sendMessageToTeacherLabel"
+                        >
+                            SEND MESSAGE
+                        </h1>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- start body -->
+                        <div class="card">
+                            <div
+                                class="card-header d-flex justify-content-between"
+                            >
+                                <span>Study Resources</span>
+                            </div>
+                        </div>
+                        <!-- end body -->
+                    </div>
+                    <div class="modal-footer">
+                        <div class="input-group">
+                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">SEND</span>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- modal end -->
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-xl-4">
@@ -628,7 +675,10 @@
                                                                         class="col-lg-9 col-md-8"
                                                                     >
                                                                         <button
-                                                                            class="btn btn-primary"
+                                                                            type="button"
+                                                                            class="btn btn-success"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#sendMessageToTeacher"
                                                                         >
                                                                             SEND
                                                                             MESSAGE
