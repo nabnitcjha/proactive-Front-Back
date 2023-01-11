@@ -20,6 +20,7 @@ class ClassScheduleAdvanceResource extends JsonResource
             "duration" => $this->duration,
             "description" => $this->description,
             "zoom_link" => $this->zoom_link,
+            "selected_day" => $this->selected_day,
             'subject' => SubjectResource::make($this->subject),
             'teacher' => TeacherResource::make($this->teacher),
             "start_date" => $this->start_date,

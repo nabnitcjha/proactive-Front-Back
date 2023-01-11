@@ -12,22 +12,7 @@
                                 alt="Profile"
                                 class="rounded-circle"
                             />
-                            <h2>Kevin Anderson</h2>
-                            <h3>Web Designer</h3>
-                            <div class="social-links mt-2">
-                                <a href="#" class="twitter"
-                                    ><i class="bi bi-twitter"></i
-                                ></a>
-                                <a href="#" class="facebook"
-                                    ><i class="bi bi-facebook"></i
-                                ></a>
-                                <a href="#" class="instagram"
-                                    ><i class="bi bi-instagram"></i
-                                ></a>
-                                <a href="#" class="linkedin"
-                                    ><i class="bi bi-linkedin"></i
-                                ></a>
-                            </div>
+                            <h2>{{ profile_overview.student_info.full_name }}</h2>
                         </div>
                     </div>
                 </div>
@@ -49,7 +34,6 @@
                                             class="nav-link active"
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-overview"
-                                            @click.stop="profileOverview"
                                         >
                                             Overview
                                         </button>
@@ -60,7 +44,6 @@
                                             class="nav-link"
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-teacher"
-                                            @click.stop="teacherProfile"
                                         >
                                             Teachers
                                         </button>
@@ -71,7 +54,6 @@
                                             class="nav-link"
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-discussion"
-                                            @click.stop="groupDiscussion"
                                         >
                                             Discussion
                                         </button>
@@ -82,7 +64,6 @@
                                             class="nav-link"
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-classes"
-                                            @click.stop="allClasses"
                                         >
                                             Classes
                                         </button>
@@ -137,7 +118,7 @@
                                                     "
                                                     v-for="(
                                                         class_info, index
-                                                    ) in profile_overview.class_schedule_info"
+                                                    ) in profile_overview.sorted_class"
                                                     :key="index"
                                                 >
                                                     <div class="accordion-item">
@@ -268,11 +249,8 @@
                                                                         ><span
                                                                             class="badge rounded-pill text-bg-warning mr-2"
                                                                         >
-                                                                            {{
-                                                                                class_info
-                                                                                    .teacher
-                                                                                    .full_name
-                                                                            }}</span
+                                                                            {{ class_info.teacher.full_name }}
+                                                                            </span
                                                                         >
                                                                     </li>
                                                                 </ul>
@@ -359,7 +337,6 @@
                                                                             : </b
                                                                         >{{
                                                                             thr_info
-                                                                                .user
                                                                                 .email
                                                                         }}
                                                                     </li>
@@ -495,9 +472,7 @@
                                                                             >EMAIL
                                                                             : </b
                                                                         >{{
-                                                                            prnt_info
-                                                                                .user
-                                                                                .email
+                                                                            prnt_info.email
                                                                         }}
                                                                     </li>
                                                                     <li
@@ -895,7 +870,7 @@ export default {
             let urlText = "student/" + id + "/profileOverview";
 
             let getResponse = await this.get(urlText, id, false);
-            this.sortedClass();
+           let sortedClass = await this.sortedClass();
 
             this.profile_overview = {
                 ...getResponse.data.data,

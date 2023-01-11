@@ -55,7 +55,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     profileOverview: function profileOverview() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var id, urlText, getResponse;
+        var id, urlText, getResponse, sortedClass;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
@@ -65,11 +65,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _this.get(urlText, id, false);
             case 4:
               getResponse = _context.sent;
-              _this.sortedClass();
+              _context.next = 7;
+              return _this.sortedClass();
+            case 7:
+              sortedClass = _context.sent;
               _this.profile_overview = _objectSpread(_objectSpread({}, getResponse.data.data), {}, {
                 sorted_class: _this.sorted_class
               });
-            case 7:
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -166,7 +169,19 @@ var render = function render() {
     staticClass: "col-lg-12"
   }, [_c("div", {
     staticClass: "row"
-  }, [_vm._m(0), _vm._v(" "), _c("div", {
+  }, [_c("div", {
+    staticClass: "col-xl-4"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("div", {
+    staticClass: "card-body profile-card pt-4 d-flex flex-column align-items-center"
+  }, [_c("img", {
+    staticClass: "rounded-circle",
+    attrs: {
+      src: __webpack_require__(/*! ../../../../public/dashboard_css/assets/img/profile-img.jpg */ "./public/dashboard_css/assets/img/profile-img.jpg"),
+      alt: "Profile"
+    }
+  }), _vm._v(" "), _c("h2", [_vm._v(_vm._s(_vm.profile_overview.student_info.full_name))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-xl-8"
   }, [_c("b-overlay", {
     staticClass: "col-lg-12",
@@ -189,12 +204,6 @@ var render = function render() {
     attrs: {
       "data-bs-toggle": "tab",
       "data-bs-target": "#profile-overview"
-    },
-    on: {
-      click: function click($event) {
-        $event.stopPropagation();
-        return _vm.profileOverview.apply(null, arguments);
-      }
     }
   }, [_vm._v("\n                                        Overview\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
@@ -203,12 +212,6 @@ var render = function render() {
     attrs: {
       "data-bs-toggle": "tab",
       "data-bs-target": "#profile-teacher"
-    },
-    on: {
-      click: function click($event) {
-        $event.stopPropagation();
-        return _vm.teacherProfile.apply(null, arguments);
-      }
     }
   }, [_vm._v("\n                                        Teachers\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
@@ -217,12 +220,6 @@ var render = function render() {
     attrs: {
       "data-bs-toggle": "tab",
       "data-bs-target": "#profile-discussion"
-    },
-    on: {
-      click: function click($event) {
-        $event.stopPropagation();
-        return _vm.groupDiscussion.apply(null, arguments);
-      }
     }
   }, [_vm._v("\n                                        Discussion\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
@@ -231,12 +228,6 @@ var render = function render() {
     attrs: {
       "data-bs-toggle": "tab",
       "data-bs-target": "#profile-classes"
-    },
-    on: {
-      click: function click($event) {
-        $event.stopPropagation();
-        return _vm.allClasses.apply(null, arguments);
-      }
     }
   }, [_vm._v("\n                                        Classes\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
@@ -273,7 +264,7 @@ var render = function render() {
     staticClass: "col-lg-3 col-md-4 label"
   }, [_vm._v("\n                                            Classes\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, _vm._l(_vm.profile_overview.class_schedule_info, function (class_info, index) {
+  }, _vm._l(_vm.profile_overview.sorted_class, function (class_info, index) {
     return _c("div", {
       key: index,
       staticClass: "accordion accordion-flush",
@@ -326,7 +317,7 @@ var render = function render() {
       staticClass: "list-group-item"
     }, [_c("b", [_vm._v("TEACHER\n                                                                        : ")]), _c("span", {
       staticClass: "badge rounded-pill text-bg-warning mr-2"
-    }, [_vm._v("\n                                                                        " + _vm._s(class_info.teacher.full_name))])])])])])])]);
+    }, [_vm._v("\n                                                                        " + _vm._s(class_info.teacher.full_name) + "\n                                                                        ")])])])])])])]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
@@ -369,7 +360,7 @@ var render = function render() {
       staticClass: "list-group"
     }, [_c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("EMAIL\n                                                                        : ")]), _vm._v(_vm._s(thr_info.user.email) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+    }, [_c("b", [_vm._v("EMAIL\n                                                                        : ")]), _vm._v(_vm._s(thr_info.email) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
     }, [_c("b", [_vm._v("PHONE\n                                                                        : ")]), _vm._v(_vm._s(thr_info.phone) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
@@ -432,7 +423,7 @@ var render = function render() {
       staticClass: "list-group"
     }, [_c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("EMAIL\n                                                                        : ")]), _vm._v(_vm._s(prnt_info.user.email) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+    }, [_c("b", [_vm._v("EMAIL\n                                                                        : ")]), _vm._v(_vm._s(prnt_info.email) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
     }, [_c("b", [_vm._v("PHONE\n                                                                        : ")]), _vm._v(_vm._s(prnt_info.phone) + "\n                                                                ")])])])])])]);
   }), 0)]), _vm._v(" "), _c("div", {
@@ -662,53 +653,7 @@ var render = function render() {
     }
   }, [_vm._v("\n                                                Change Password\n                                            ")])])])])])])])])], 1)])])]);
 };
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "col-xl-4"
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
-    staticClass: "card-body profile-card pt-4 d-flex flex-column align-items-center"
-  }, [_c("img", {
-    staticClass: "rounded-circle",
-    attrs: {
-      src: __webpack_require__(/*! ../../../../public/dashboard_css/assets/img/profile-img.jpg */ "./public/dashboard_css/assets/img/profile-img.jpg"),
-      alt: "Profile"
-    }
-  }), _vm._v(" "), _c("h2", [_vm._v("Kevin Anderson")]), _vm._v(" "), _c("h3", [_vm._v("Web Designer")]), _vm._v(" "), _c("div", {
-    staticClass: "social-links mt-2"
-  }, [_c("a", {
-    staticClass: "twitter",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("i", {
-    staticClass: "bi bi-twitter"
-  })]), _vm._v(" "), _c("a", {
-    staticClass: "facebook",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("i", {
-    staticClass: "bi bi-facebook"
-  })]), _vm._v(" "), _c("a", {
-    staticClass: "instagram",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("i", {
-    staticClass: "bi bi-instagram"
-  })]), _vm._v(" "), _c("a", {
-    staticClass: "linkedin",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("i", {
-    staticClass: "bi bi-linkedin"
-  })])])])])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 
