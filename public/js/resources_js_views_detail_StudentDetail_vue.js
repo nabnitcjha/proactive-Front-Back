@@ -717,7 +717,7 @@ var staticRenderFns = [function () {
   }), _vm._v(" "), _c("div", {
     staticClass: "input-group-prepend"
   }, [_c("span", {
-    staticClass: "input-group-text"
+    staticClass: "input-group-text msg-send"
   }, [_vm._v("SEND")])])])])])])]);
 }];
 render._withStripped = true;

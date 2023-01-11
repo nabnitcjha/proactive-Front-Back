@@ -39,7 +39,7 @@
                         <div class="input-group">
                         <textarea class="form-control" aria-label="With textarea"></textarea>
                         <div class="input-group-prepend">
-                          <span class="input-group-text">SEND</span>
+                          <span class="input-group-text msg-send">SEND</span>
                         </div>
                       </div>
                     </div>

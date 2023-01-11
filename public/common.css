@@ -125,3 +125,7 @@ span.custom-checkbox {
 .user-list td{
   cursor: pointer;
 }
+
+.msg-send{
+  height: 100%!important;
+}
