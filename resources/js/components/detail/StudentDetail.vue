@@ -609,7 +609,9 @@
                                                                             :key="
                                                                                 index
                                                                             "
-                                                                            >{{ sub_info.name }}</span
+                                                                            >{{
+                                                                                sub_info.name
+                                                                            }}</span
                                                                         >
                                                                     </div>
                                                                 </div>
@@ -620,14 +622,17 @@
                                                                     <div
                                                                         class="col-lg-3 col-md-4 label"
                                                                     >
-                                                                        Send
                                                                         Message
                                                                     </div>
                                                                     <div
                                                                         class="col-lg-9 col-md-8"
                                                                     >
-                                                                        Web
-                                                                        Designer
+                                                                        <button
+                                                                            class="btn btn-primary"
+                                                                        >
+                                                                            SEND
+                                                                            MESSAGE
+                                                                        </button>
                                                                     </div>
                                                                 </div>
 
@@ -642,7 +647,9 @@
                                                                     <div
                                                                         class="col-lg-9 col-md-8"
                                                                     >
-                                                                        {{ thr_info.email }}
+                                                                        {{
+                                                                            thr_info.email
+                                                                        }}
                                                                     </div>
                                                                 </div>
 
@@ -657,7 +664,9 @@
                                                                     <div
                                                                         class="col-lg-9 col-md-8"
                                                                     >
-                                                                       {{ thr_info.phone }}
+                                                                        {{
+                                                                            thr_info.phone
+                                                                        }}
                                                                     </div>
                                                                 </div>
 
@@ -671,9 +680,12 @@
                                                                     </div>
                                                                     <div
                                                                         class="col-lg-9 col-md-8"
-                                                                      
                                                                     >
-                                                                        <slot-calendar :slot_info="thr_info.class_according_teacher"></slot-calendar>
+                                                                        <slot-calendar
+                                                                            :slot_info="
+                                                                                thr_info.class_according_teacher
+                                                                            "
+                                                                        ></slot-calendar>
                                                                     </div>
                                                                 </div>
                                                             </div>

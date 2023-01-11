@@ -492,9 +492,11 @@ var render = function render() {
       staticClass: "row"
     }, [_c("div", {
       staticClass: "col-lg-3 col-md-4 label"
-    }, [_vm._v("\n                                                                    Send\n                                                                    Message\n                                                                ")]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                    Message\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
-    }, [_vm._v("\n                                                                    Web\n                                                                    Designer\n                                                                ")])]), _vm._v(" "), _c("div", {
+    }, [_c("button", {
+      staticClass: "btn btn-primary"
+    }, [_vm._v("\n                                                                        SEND\n                                                                        MESSAGE\n                                                                    ")])])]), _vm._v(" "), _c("div", {
       staticClass: "row"
     }, [_c("div", {
       staticClass: "col-lg-3 col-md-4 label"
@@ -506,7 +508,7 @@ var render = function render() {
       staticClass: "col-lg-3 col-md-4 label"
     }, [_vm._v("\n                                                                    Phone\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
-    }, [_vm._v("\n                                                                   " + _vm._s(thr_info.phone) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                    " + _vm._s(thr_info.phone) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
       staticClass: "row"
     }, [_c("div", {
       staticClass: "col-lg-3 col-md-4 label"
