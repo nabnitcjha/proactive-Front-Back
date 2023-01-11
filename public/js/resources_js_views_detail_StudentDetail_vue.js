@@ -468,7 +468,7 @@ var render = function render() {
         "aria-expanded": "false",
         "aria-controls": "profile-teacher-flush-collapseOne" + index
       }
-    }, [_vm._v("\n                                                            Accordion Item\n                                                            #1\n                                                        ")])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                            " + _vm._s(thr_info.full_name) + "\n                                                        ")])]), _vm._v(" "), _c("div", {
       staticClass: "accordion-collapse collapse",
       attrs: {
         id: "profile-teacher-flush-collapseOne" + index,
@@ -483,9 +483,12 @@ var render = function render() {
       staticClass: "col-lg-3 col-md-4 label"
     }, [_vm._v("\n                                                                    Subjects\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
-    }, [_c("span", {
-      staticClass: "badge rounded-pill bg-warning text-dark"
-    }, [_vm._v("Math")])])]), _vm._v(" "), _c("div", {
+    }, _vm._l(thr_info.subject, function (sub_info, index) {
+      return _c("span", {
+        key: index,
+        staticClass: "badge rounded-pill bg-warning text-dark"
+      }, [_vm._v(_vm._s(sub_info.name))]);
+    }), 0)]), _vm._v(" "), _c("div", {
       staticClass: "row"
     }, [_c("div", {
       staticClass: "col-lg-3 col-md-4 label"
@@ -497,19 +500,19 @@ var render = function render() {
       staticClass: "col-lg-3 col-md-4 label"
     }, [_vm._v("\n                                                                    Email\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
-    }, [_vm._v("\n                                                                    USA\n                                                                ")])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                    " + _vm._s(thr_info.email) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
       staticClass: "row"
     }, [_c("div", {
       staticClass: "col-lg-3 col-md-4 label"
     }, [_vm._v("\n                                                                    Phone\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
-    }, [_vm._v("\n                                                                    (436)\n                                                                    486-3538\n                                                                    x29071\n                                                                ")])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                   " + _vm._s(thr_info.phone) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
       staticClass: "row"
     }, [_c("div", {
       staticClass: "col-lg-3 col-md-4 label"
-    }, [_vm._v("\n                                                                    Classes\n                                                                ")]), _vm._v(" "), _vm.showTeacherCalendar ? _c("div", {
+    }, [_vm._v("\n                                                                    Classes\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
-    }, [_c("slot-calendar")], 1) : _vm._e()])])])])]);
+    }, [_c("slot-calendar")], 1)])])])])]);
   }), 0)])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {

@@ -568,8 +568,9 @@
                                                                     index
                                                                 "
                                                             >
-                                                                Accordion Item
-                                                                #1
+                                                                {{
+                                                                    thr_info.full_name
+                                                                }}
                                                             </button>
                                                         </h2>
                                                         <div
@@ -601,7 +602,14 @@
                                                                     >
                                                                         <span
                                                                             class="badge rounded-pill bg-warning text-dark"
-                                                                            >Math</span
+                                                                            v-for="(
+                                                                                sub_info,
+                                                                                index
+                                                                            ) in thr_info.subject"
+                                                                            :key="
+                                                                                index
+                                                                            "
+                                                                            >{{ sub_info.name }}</span
                                                                         >
                                                                     </div>
                                                                 </div>
@@ -634,7 +642,7 @@
                                                                     <div
                                                                         class="col-lg-9 col-md-8"
                                                                     >
-                                                                        USA
+                                                                        {{ thr_info.email }}
                                                                     </div>
                                                                 </div>
 
@@ -649,9 +657,7 @@
                                                                     <div
                                                                         class="col-lg-9 col-md-8"
                                                                     >
-                                                                        (436)
-                                                                        486-3538
-                                                                        x29071
+                                                                       {{ thr_info.phone }}
                                                                     </div>
                                                                 </div>
 
@@ -665,9 +671,7 @@
                                                                     </div>
                                                                     <div
                                                                         class="col-lg-9 col-md-8"
-                                                                        v-if="
-                                                                            showTeacherCalendar
-                                                                        "
+                                                                      
                                                                     >
                                                                         <slot-calendar></slot-calendar>
                                                                     </div>
