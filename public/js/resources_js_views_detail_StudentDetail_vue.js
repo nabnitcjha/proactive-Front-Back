@@ -181,7 +181,7 @@ var render = function render() {
       src: __webpack_require__(/*! ../../../../public/dashboard_css/assets/img/profile-img.jpg */ "./public/dashboard_css/assets/img/profile-img.jpg"),
       alt: "Profile"
     }
-  }), _vm._v(" "), _c("h2", [_vm._v(_vm._s(_vm.profile_overview.student_info.full_name))])])])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("h2", [_vm._v("\n                            " + _vm._s(_vm.profile_overview.student_info.full_name) + "\n                        ")])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-xl-8"
   }, [_c("b-overlay", {
     staticClass: "col-lg-12",
@@ -317,7 +317,7 @@ var render = function render() {
       staticClass: "list-group-item"
     }, [_c("b", [_vm._v("TEACHER\n                                                                        : ")]), _c("span", {
       staticClass: "badge rounded-pill text-bg-warning mr-2"
-    }, [_vm._v("\n                                                                        " + _vm._s(class_info.teacher.full_name) + "\n                                                                        ")])])])])])])]);
+    }, [_vm._v("\n                                                                        " + _vm._s(class_info.teacher.full_name) + "\n                                                                    ")])])])])])])]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
@@ -445,69 +445,72 @@ var render = function render() {
     }
   }, [_c("form", [_c("div", {
     staticClass: "row mb-3"
-  }, [_c("div", {
-    staticClass: "accordion accordion-flush",
-    attrs: {
-      id: "accordionFlushExample"
-    }
-  }, [_c("div", {
-    staticClass: "accordion-item"
-  }, [_c("h2", {
-    staticClass: "accordion-header",
-    attrs: {
-      id: "flush-headingOne"
-    }
-  }, [_c("button", {
-    staticClass: "accordion-button collapsed",
-    attrs: {
-      type: "button",
-      "data-bs-toggle": "collapse",
-      "data-bs-target": "#flush-collapseOne",
-      "aria-expanded": "false",
-      "aria-controls": "flush-collapseOne"
-    }
-  }, [_vm._v("\n                                                            Accordion Item\n                                                            #1\n                                                        ")])]), _vm._v(" "), _c("div", {
-    staticClass: "accordion-collapse collapse",
-    attrs: {
-      id: "flush-collapseOne",
-      "aria-labelledby": "flush-headingOne",
-      "data-bs-parent": "#accordionFlushExample"
-    }
-  }, [_c("div", {
-    staticClass: "accordion-body"
-  }, [_c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                                                    Subjects\n                                                                ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-9 col-md-8"
-  }, [_c("span", {
-    staticClass: "badge rounded-pill bg-warning text-dark"
-  }, [_vm._v("Math")])])]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                                                    Send\n                                                                    Message\n                                                                ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                                                                    Web\n                                                                    Designer\n                                                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                                                    Email\n                                                                ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                                                                    USA\n                                                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                                                    Phone\n                                                                ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                                                                    (436)\n                                                                    486-3538\n                                                                    x29071\n                                                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                                                    Classes\n                                                                ")]), _vm._v(" "), _vm.showTeacherCalendar ? _c("div", {
-    staticClass: "col-lg-9 col-md-8"
-  }, [_c("slot-calendar")], 1) : _vm._e()])])])])])])])]), _vm._v(" "), _c("div", {
+  }, _vm._l(_vm.profile_overview.teacher_info, function (thr_info, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "accordion accordion-flush",
+      attrs: {
+        id: "profile-teacher-accordion" + index
+      }
+    }, [_c("div", {
+      staticClass: "accordion-item"
+    }, [_c("h2", {
+      staticClass: "accordion-header",
+      attrs: {
+        id: "profile-teacher-flush" + index
+      }
+    }, [_c("button", {
+      staticClass: "accordion-button collapsed",
+      attrs: {
+        type: "button",
+        "data-bs-toggle": "collapse",
+        "data-bs-target": "#" + "profile-teacher-flush-collapseOne" + index,
+        "aria-expanded": "false",
+        "aria-controls": "profile-teacher-flush-collapseOne" + index
+      }
+    }, [_vm._v("\n                                                            Accordion Item\n                                                            #1\n                                                        ")])]), _vm._v(" "), _c("div", {
+      staticClass: "accordion-collapse collapse",
+      attrs: {
+        id: "profile-teacher-flush-collapseOne" + index,
+        "aria-labelledby": "profile-teacher-flush",
+        "data-bs-parent": "#" + "profile-teacher-accordion" + index
+      }
+    }, [_c("div", {
+      staticClass: "accordion-body"
+    }, [_c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-lg-3 col-md-4 label"
+    }, [_vm._v("\n                                                                    Subjects\n                                                                ")]), _vm._v(" "), _c("div", {
+      staticClass: "col-lg-9 col-md-8"
+    }, [_c("span", {
+      staticClass: "badge rounded-pill bg-warning text-dark"
+    }, [_vm._v("Math")])])]), _vm._v(" "), _c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-lg-3 col-md-4 label"
+    }, [_vm._v("\n                                                                    Send\n                                                                    Message\n                                                                ")]), _vm._v(" "), _c("div", {
+      staticClass: "col-lg-9 col-md-8"
+    }, [_vm._v("\n                                                                    Web\n                                                                    Designer\n                                                                ")])]), _vm._v(" "), _c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-lg-3 col-md-4 label"
+    }, [_vm._v("\n                                                                    Email\n                                                                ")]), _vm._v(" "), _c("div", {
+      staticClass: "col-lg-9 col-md-8"
+    }, [_vm._v("\n                                                                    USA\n                                                                ")])]), _vm._v(" "), _c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-lg-3 col-md-4 label"
+    }, [_vm._v("\n                                                                    Phone\n                                                                ")]), _vm._v(" "), _c("div", {
+      staticClass: "col-lg-9 col-md-8"
+    }, [_vm._v("\n                                                                    (436)\n                                                                    486-3538\n                                                                    x29071\n                                                                ")])]), _vm._v(" "), _c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-lg-3 col-md-4 label"
+    }, [_vm._v("\n                                                                    Classes\n                                                                ")]), _vm._v(" "), _vm.showTeacherCalendar ? _c("div", {
+      staticClass: "col-lg-9 col-md-8"
+    }, [_c("slot-calendar")], 1) : _vm._e()])])])])]);
+  }), 0)])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {
       id: "profile-discussion"

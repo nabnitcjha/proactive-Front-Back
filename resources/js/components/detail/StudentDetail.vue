@@ -12,7 +12,9 @@
                                 alt="Profile"
                                 class="rounded-circle"
                             />
-                            <h2>{{ profile_overview.student_info.full_name }}</h2>
+                            <h2>
+                                {{ profile_overview.student_info.full_name }}
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -249,9 +251,12 @@
                                                                         ><span
                                                                             class="badge rounded-pill text-bg-warning mr-2"
                                                                         >
-                                                                            {{ class_info.teacher.full_name }}
-                                                                            </span
-                                                                        >
+                                                                            {{
+                                                                                class_info
+                                                                                    .teacher
+                                                                                    .full_name
+                                                                            }}
+                                                                        </span>
                                                                     </li>
                                                                 </ul>
                                                             </div>
@@ -336,8 +341,7 @@
                                                                             >EMAIL
                                                                             : </b
                                                                         >{{
-                                                                            thr_info
-                                                                                .email
+                                                                            thr_info.email
                                                                         }}
                                                                     </li>
                                                                     <li
@@ -532,30 +536,54 @@
                                                 <!-- Accordion without outline borders -->
                                                 <div
                                                     class="accordion accordion-flush"
-                                                    id="accordionFlushExample"
+                                                    v-bind:id="
+                                                        'profile-teacher-accordion' +
+                                                        index
+                                                    "
+                                                    v-for="(
+                                                        thr_info, index
+                                                    ) in profile_overview.teacher_info"
+                                                    :key="index"
                                                 >
                                                     <div class="accordion-item">
                                                         <h2
                                                             class="accordion-header"
-                                                            id="flush-headingOne"
+                                                            v-bind:id="
+                                                                'profile-teacher-flush' +
+                                                                index
+                                                            "
                                                         >
                                                             <button
                                                                 class="accordion-button collapsed"
                                                                 type="button"
                                                                 data-bs-toggle="collapse"
-                                                                data-bs-target="#flush-collapseOne"
+                                                                v-bind:data-bs-target="
+                                                                    '#' +
+                                                                    'profile-teacher-flush-collapseOne' +
+                                                                    index
+                                                                "
                                                                 aria-expanded="false"
-                                                                aria-controls="flush-collapseOne"
+                                                                v-bind:aria-controls="
+                                                                    'profile-teacher-flush-collapseOne' +
+                                                                    index
+                                                                "
                                                             >
                                                                 Accordion Item
                                                                 #1
                                                             </button>
                                                         </h2>
                                                         <div
-                                                            id="flush-collapseOne"
+                                                            v-bind:id="
+                                                                'profile-teacher-flush-collapseOne' +
+                                                                index
+                                                            "
                                                             class="accordion-collapse collapse"
-                                                            aria-labelledby="flush-headingOne"
-                                                            data-bs-parent="#accordionFlushExample"
+                                                            aria-labelledby="profile-teacher-flush"
+                                                            v-bind:data-bs-parent="
+                                                                '#' +
+                                                                'profile-teacher-accordion' +
+                                                                index
+                                                            "
                                                         >
                                                             <div
                                                                 class="accordion-body"
@@ -870,7 +898,7 @@ export default {
             let urlText = "student/" + id + "/profileOverview";
 
             let getResponse = await this.get(urlText, id, false);
-           let sortedClass = await this.sortedClass();
+            let sortedClass = await this.sortedClass();
 
             this.profile_overview = {
                 ...getResponse.data.data,
