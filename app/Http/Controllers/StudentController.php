@@ -7,6 +7,7 @@ use App\Http\Resources\ClassScheduleResource;
 use App\Http\Resources\student\profileOverview;
 use App\Http\Resources\StudentAdvanceResource;
 use App\Http\Resources\StudentResource;
+use App\Http\Resources\TeacherAdvanceResource;
 use App\Models\ClassSchedule;
 use App\Models\Student;
 use App\Models\StudentSession;
@@ -92,6 +93,14 @@ class StudentController extends BaseController
 
         return  $this->profileOverviewResource->make($profile_overview);
 
+    }
+
+    public function getTeacherSlot($student_id,$teacher_id){
+        $student = Student::with(['classSchedule'=>function($query) use($teacher_id){
+            $query->where('teacher_id',$teacher_id);
+        }])->where('id',$student_id)->first();
+
+        return ClassScheduleResource::collection($student->classSchedule);
     }
 
     public function sortedClass($id)

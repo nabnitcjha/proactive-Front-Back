@@ -340,7 +340,9 @@ export default {
     extendOriginal: null,
   }),
   props:{
-    slot_info:Array
+    current_teacher_id:String,
+    current_student_id:String,
+    calType:String
   },
   components: {
     "calendar-month-drag-component": CalendarMonthDragComponent,
@@ -575,32 +577,32 @@ export default {
         ? `rgba(${r}, ${g}, ${b}, 0.7)`
         : event.color;
     },
-    getEvents({ start, end }) {
-      const events = [];
+    // getEvents({ start, end }) {
+    //   const events = [];
 
-      const min = new Date(`${start.date}T00:00:00`).getTime();
-      const max = new Date(`${end.date}T23:59:59`).getTime();
-      const days = (max - min) / 86400000;
-      const eventCount = this.rnd(days, days + 20);
+    //   const min = new Date(`${start.date}T00:00:00`).getTime();
+    //   const max = new Date(`${end.date}T23:59:59`).getTime();
+    //   const days = (max - min) / 86400000;
+    //   const eventCount = this.rnd(days, days + 20);
 
-      for (let i = 0; i < eventCount; i++) {
-        const timed = this.rnd(0, 3) !== 0;
-        const firstTimestamp = this.rnd(min, max);
-        const secondTimestamp = this.rnd(2, timed ? 8 : 288) * 900000;
-        const start = firstTimestamp - (firstTimestamp % 900000);
-        const end = start + secondTimestamp;
+    //   for (let i = 0; i < eventCount; i++) {
+    //     const timed = this.rnd(0, 3) !== 0;
+    //     const firstTimestamp = this.rnd(min, max);
+    //     const secondTimestamp = this.rnd(2, timed ? 8 : 288) * 900000;
+    //     const start = firstTimestamp - (firstTimestamp % 900000);
+    //     const end = start + secondTimestamp;
 
-        events.push({
-          name: this.rndElement(this.names),
-          color: this.rndElement(this.colors),
-          start,
-          end,
-          timed,
-        });
-      }
+    //     events.push({
+    //       name: this.rndElement(this.names),
+    //       color: this.rndElement(this.colors),
+    //       start,
+    //       end,
+    //       timed,
+    //     });
+    //   }
 
-      this.events = events;
-    },
+    //   this.events = events;
+    // },
     rnd(a, b) {
       return Math.floor((b - a + 1) * Math.random()) + a;
     },
@@ -683,15 +685,27 @@ export default {
       nativeEvent.stopPropagation();
     },
     async updateRange() {
+      debugger;
       const events = [];
+      let urlText = '';
 
-      let postResponse = {};
-      // let urlText = "getTimetables";
-      // postResponse = await this.get(urlText);
-
-      // this.slots = postResponse.data.data;
+      let getResponse = {};
+      if (this.calType=='student_all') { //student-detail class tab
+        urlText = "student/"+this.current_student_id+"/class";
+      }else if (this.calType=='teacher_all') { //teacher-detail class tab
+        urlText = "teacher/"+this.current_teacher_id+"/class";
+      }else if (this.calType=='student_teacher_all') //student-detail teacher tab
+      {
+        urlText = "student/"+this.current_student_id+"/teacher"+this.current_teacher_id+"/class";
+      }else{ //teacher-detail student tab
+         urlText = "teacher/"+this.current_teacher_id+"/student"+this.current_student_id+"/class";
+      }
       
-      this.slots =await this.slot_info;
+      getResponse = await this.get(urlText);
+
+      this.slots = getResponse.data.data;
+      
+      // this.slots =await this.slot_info;
       
       this.slots.map((data) => {
         events.push({

@@ -35,6 +35,7 @@ Route::group([
     Route::get('getStudents/{allowPagination}', 'StudentController@getData');
     // student-detail page route
     Route::get('student/{id}/profileOverview', 'StudentController@profileOverview');
+    Route::get('student/{student_id}/teacher/{teacher_id}/class', 'StudentController@getTeacherSlot');
     Route::get('student/{id}/sortedClass', 'StudentController@sortedClass');
     Route::put('student/{id}/changePassword', 'StudentController@changePassword');
 });

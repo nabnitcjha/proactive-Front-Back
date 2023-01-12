@@ -19,9 +19,9 @@ class TeacherAdvanceResource extends JsonResource
             "full_name" => $this->full_name,
             "phone" => $this->phone,
             "email" => $this->user->email,
-            'student' => StudentResource::collection($this->student),
-            'subject' => SubjectResource::collection($this->subject),
-            'class_according_teacher' => ClassScheduleAdvanceResource::collection($this->classSchedule),
+            // 'student' => StudentResource::collection($this->student),
+            // 'subject' => SubjectResource::collection($this->subject),
+            'class_according_teacher' => ClassScheduleResource::collection($this->classSchedule),
         ];
     }
 }

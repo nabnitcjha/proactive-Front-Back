@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <!-- modal start -->
+        <!--Message modal start -->
         <div
             class="modal fade modal-tall"
             id="sendMessageToTeacher"
@@ -37,16 +37,61 @@
                     </div>
                     <div class="modal-footer">
                         <div class="input-group">
-                        <textarea class="form-control" aria-label="With textarea"></textarea>
-                        <div class="input-group-prepend">
-                          <span class="input-group-text msg-send">SEND</span>
+                            <textarea
+                                class="form-control"
+                                aria-label="With textarea"
+                            ></textarea>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text msg-send"
+                                    >SEND</span
+                                >
+                            </div>
                         </div>
-                      </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- modal end -->
+        <!--Message modal end -->
+        <!--Message modal start -->
+        <div
+            class="modal fade modal-tall"
+            id="classAccordingTeacher"
+            tabindex="-1"
+            aria-labelledby="classAccordingTeacherLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1
+                            class="modal-title fs-5"
+                            id="classAccordingTeacherLabel"
+                        >
+                            SLOTS
+                        </h1>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- start body -->
+                        <slot-calendar
+                            :current_teacher_id="current_teacher_id"
+                            :current_student_id="current_student_id"
+                            :calType="student_teacher_all"
+                        ></slot-calendar>
+                        <!-- end body -->
+                    </div>
+                    <div class="modal-footer invisible">
+                         
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Message modal end -->
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-xl-4">
@@ -731,11 +776,20 @@
                                                                     <div
                                                                         class="col-lg-9 col-md-8"
                                                                     >
-                                                                        <slot-calendar
-                                                                            :slot_info="
-                                                                                thr_info.class_according_teacher
+                                                                        <button
+                                                                            type="button"
+                                                                            class="btn btn-success"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#classAccordingTeacher"
+                                                                            @click.stop="
+                                                                                setInfoForCalendar(
+                                                                                    thr_info
+                                                                                )
                                                                             "
-                                                                        ></slot-calendar>
+                                                                        >
+                                                                            VIEW
+                                                                            SLOT
+                                                                        </button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -930,11 +984,15 @@
 export default {
     data() {
         return {
+            student_teacher_all:'student_teacher_all',
+            student_all:'student_all',
             show: false,
             showTeacherCalendar: false,
             showAllCalendar: false,
             profile_overview: [],
             sorted_class: [],
+            current_teacher_id: "",
+            current_student_id: "",
         };
     },
     mounted() {
@@ -958,6 +1016,10 @@ export default {
                 case "6":
                     return "Sat";
             }
+        },
+        setInfoForCalendar(thr_info) {
+            this.current_teacher_id = thr_info.id;
+            this.current_student_id = this.$route.params.id;
         },
         async profileOverview() {
             let id = this.$route.params.id;
