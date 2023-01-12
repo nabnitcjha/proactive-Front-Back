@@ -3,9 +3,11 @@
 namespace App\Http\Resources\student;
 
 use App\Http\Resources\ClassScheduleAdvanceResource;
+use App\Http\Resources\ClassScheduleResource;
 use App\Http\Resources\GuardianResource;
 use App\Http\Resources\SubjectResource;
-use App\Http\Resources\TeacherAdvanceResource;
+use App\Http\Resources\TeacherResource;
+use App\Http\Resources\TeacherWithoutClassResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class profileOverview extends JsonResource
@@ -25,9 +27,8 @@ class profileOverview extends JsonResource
                 'phone'=>$this->phone,
             ],
             "subject_info" => SubjectResource::collection($this->subject),
-            "teacher_info" => TeacherAdvanceResource::collection($this->teacher),
-            "parent_info" => GuardianResource::collection($this->guardian),
-            "class_according_student" => ClassScheduleAdvanceResource::collection($this->classSchedule),
+            "teacher_info" => TeacherWithoutClassResource::collection($this->teacher),
+            "parent_info" => GuardianResource::collection($this->guardian)
         ];
     }
 }
