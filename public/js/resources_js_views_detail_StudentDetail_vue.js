@@ -26,14 +26,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     return _ref = {
       student_all: "student_all",
       student_teacher_all: "student_teacher_all"
-    }, _defineProperty(_ref, "student_all", "student_all"), _defineProperty(_ref, "show", false), _defineProperty(_ref, "showTeacherCalendar", false), _defineProperty(_ref, "showAllCalendar", false), _defineProperty(_ref, "profile_overview", []), _defineProperty(_ref, "sorted_class", []), _defineProperty(_ref, "current_teacher_id", ""), _defineProperty(_ref, "current_student_id", ""), _defineProperty(_ref, "showCalendar", false), _ref;
+    }, _defineProperty(_ref, "student_all", "student_all"), _defineProperty(_ref, "show", false), _defineProperty(_ref, "showTeacherCalendar", false), _defineProperty(_ref, "showAllCalendar", false), _defineProperty(_ref, "profile_overview", []), _defineProperty(_ref, "sorted_class", []), _defineProperty(_ref, "current_teacher_id", ""), _defineProperty(_ref, "current_student_id", ""), _defineProperty(_ref, "current_class_id", ""), _defineProperty(_ref, "showCalendar", false), _ref;
   },
   mounted: function mounted() {
     this.profileOverview();
   },
   methods: {
-    makeFalse: function makeFalse() {
-      this.showCalendar = false;
+    setClassId: function setClassId(id) {
+      this.current_class_id = id;
     },
     findDay: function findDay(day) {
       switch (day) {
@@ -473,12 +473,6 @@ var render = function render() {
         "data-bs-target": "#" + "profile-teacher-flush-collapseOne" + index,
         "aria-expanded": "false",
         "aria-controls": "profile-teacher-flush-collapseOne" + index
-      },
-      on: {
-        click: function click($event) {
-          $event.stopPropagation();
-          return _vm.makeFalse.apply(null, arguments);
-        }
       }
     }, [_c("h1", {
       staticClass: "fs-5"
@@ -562,6 +556,12 @@ var render = function render() {
         href: "#",
         "data-bs-toggle": "modal",
         "data-bs-target": "#groupDiscussionMessage"
+      },
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.setClassId(class_info.id);
+        }
       }
     }, [_vm._v("Open Discussion")])])]);
   }), 0), _vm._v(" "), _c("div", {
