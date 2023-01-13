@@ -13,6 +13,7 @@
                             >
                                 Today
                             </v-btn>
+                            <v-spacer></v-spacer>
                             <v-btn
                                 fab
                                 text
@@ -22,6 +23,12 @@
                             >
                                 <v-icon small> mdi-chevron-left </v-icon>
                             </v-btn>
+                             <v-toolbar-title v-if="$refs.calendar">
+                                {{ $refs.calendar.title }}
+                            </v-toolbar-title>
+                            <v-toolbar-title v-else>
+                                {{ calendarTitle }}
+                            </v-toolbar-title>
                             <v-btn
                                 fab
                                 text
@@ -31,12 +38,7 @@
                             >
                                 <v-icon small> mdi-chevron-right </v-icon>
                             </v-btn>
-                            <v-toolbar-title v-if="$refs.calendar">
-                                {{ $refs.calendar.title }}
-                            </v-toolbar-title>
-                            <v-toolbar-title v-else>
-                                {{ calendarTitle }}
-                            </v-toolbar-title>
+                           
                             <v-spacer></v-spacer>
                             <v-menu bottom right>
                                 <template v-slot:activator="{ on, attrs }">
@@ -659,32 +661,32 @@ export default {
                 ? `rgba(${r}, ${g}, ${b}, 0.7)`
                 : event.color;
         },
-        // getEvents({ start, end }) {
-        //   const events = [];
+        getEvents({ start, end }) {
+          const events = [];
 
-        //   const min = new Date(`${start.date}T00:00:00`).getTime();
-        //   const max = new Date(`${end.date}T23:59:59`).getTime();
-        //   const days = (max - min) / 86400000;
-        //   const eventCount = this.rnd(days, days + 20);
+          const min = new Date(`${start.date}T00:00:00`).getTime();
+          const max = new Date(`${end.date}T23:59:59`).getTime();
+          const days = (max - min) / 86400000;
+          const eventCount = this.rnd(days, days + 20);
 
-        //   for (let i = 0; i < eventCount; i++) {
-        //     const timed = this.rnd(0, 3) !== 0;
-        //     const firstTimestamp = this.rnd(min, max);
-        //     const secondTimestamp = this.rnd(2, timed ? 8 : 288) * 900000;
-        //     const start = firstTimestamp - (firstTimestamp % 900000);
-        //     const end = start + secondTimestamp;
+          for (let i = 0; i < eventCount; i++) {
+            const timed = this.rnd(0, 3) !== 0;
+            const firstTimestamp = this.rnd(min, max);
+            const secondTimestamp = this.rnd(2, timed ? 8 : 288) * 900000;
+            const start = firstTimestamp - (firstTimestamp % 900000);
+            const end = start + secondTimestamp;
 
-        //     events.push({
-        //       name: this.rndElement(this.names),
-        //       color: this.rndElement(this.colors),
-        //       start,
-        //       end,
-        //       timed,
-        //     });
-        //   }
+            events.push({
+              name: this.rndElement(this.names),
+              color: this.rndElement(this.colors),
+              start,
+              end,
+              timed,
+            });
+          }
 
-        //   this.events = events;
-        // },
+          this.events = events;
+        },
         rnd(a, b) {
             return Math.floor((b - a + 1) * Math.random()) + a;
         },

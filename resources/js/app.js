@@ -9,6 +9,7 @@ import moment from "moment";
 import Multiselect from "vue-multiselect";
 import "vue-multiselect/dist/vue-multiselect.min.css";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import '@mdi/font/css/materialdesignicons.css'
 
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";

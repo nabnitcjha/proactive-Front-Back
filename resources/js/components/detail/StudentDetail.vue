@@ -164,7 +164,7 @@
                                             >
                                                 Classes
                                             </div>
-                                            <div class="col-lg-9 col-md-8">
+                                            <div class="col-lg-12 col-md-12">
                                                 <div
                                                     class="accordion accordion-flush"
                                                     v-bind:id="
@@ -749,7 +749,11 @@
                                                                             VIEW
                                                                             SLOT
                                                                         </button>
-                                                                        <div v-if="showCalendar">
+                                                            
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div v-if="showCalendar">
                                                                             <slot-calendar
                                                                                 :current_teacher_id="
                                                                                     current_teacher_id
@@ -762,7 +766,6 @@
                                                                                 "
                                                                             ></slot-calendar>
                                                                         </div>
-                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>

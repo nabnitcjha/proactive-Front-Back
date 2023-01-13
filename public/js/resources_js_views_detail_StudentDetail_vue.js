@@ -273,7 +273,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
   }, [_vm._v("\n                                            Classes\n                                        ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-9 col-md-8"
+    staticClass: "col-lg-12 col-md-12"
   }, _vm._l(_vm.profile_overview.sorted_class, function (class_info, index) {
     return _c("div", {
       key: index,
@@ -540,13 +540,15 @@ var render = function render() {
           return _vm.setInfoForCalendar(thr_info);
         }
       }
-    }, [_vm._v("\n                                                                        VIEW\n                                                                        SLOT\n                                                                    ")]), _vm._v(" "), _vm.showCalendar ? _c("div", [_c("slot-calendar", {
+    }, [_vm._v("\n                                                                        VIEW\n                                                                        SLOT\n                                                                    ")])])]), _vm._v(" "), _c("div", {
+      staticClass: "row"
+    }, [_vm.showCalendar ? _c("div", [_c("slot-calendar", {
       attrs: {
         current_teacher_id: _vm.current_teacher_id,
         current_student_id: _vm.current_student_id,
         calType: _vm.student_teacher_all
       }
-    })], 1) : _vm._e()])])])])])]);
+    })], 1) : _vm._e()])])])])]);
   }), 0)])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {
