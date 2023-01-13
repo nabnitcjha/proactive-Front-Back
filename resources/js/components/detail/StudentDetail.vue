@@ -739,22 +739,23 @@
                                                                     <div
                                                                         class="col-lg-3 col-md-4 label cstm-font"
                                                                     >
-                                                                       <h1>Classes</h1> 
+                                                                        <h1>
+                                                                            Classes
+                                                                        </h1>
                                                                     </div>
-                                                                    
                                                                 </div>
                                                                 <div
                                                                     class="row"
                                                                 >
-                                                                    <div
-                                                                        
-                                                                    >
+                                                                    <div>
                                                                         <slot-calendar
                                                                             :current_teacher_id="
                                                                                 thr_info.id
                                                                             "
                                                                             :current_student_id="
-                                                                                $route.params.id
+                                                                                $route
+                                                                                    .params
+                                                                                    .id
                                                                             "
                                                                             :calType="
                                                                                 student_teacher_all
@@ -779,7 +780,6 @@
                                         <!-- Settings Form -->
                                         <div class="messaging">
                                             <div class="inbox_msg">
-                                             
                                                 <div class="mesgs col-12">
                                                     <div class="msg_history">
                                                         <div
@@ -973,13 +973,12 @@
                                         class="tab-pane fade pt-3"
                                         id="profile-classes"
                                     >
-                                        <!-- Settings Form -->
-                                        <form v-if="showAllCalendar">
-                                            <div class="row mb-3">
-                                                <slot-calendar></slot-calendar>
-                                            </div>
-                                        </form>
-                                        <!-- End settings Form -->
+                                        <slot-calendar
+                                            :current_student_id="
+                                                $route.params.id
+                                            "
+                                            :calType="student_all"
+                                        ></slot-calendar>
                                     </div>
 
                                     <div
@@ -1063,6 +1062,7 @@
 export default {
     data() {
         return {
+            student_all:"student_all",
             student_teacher_all: "student_teacher_all",
             student_all: "student_all",
             show: false,
