@@ -37,6 +37,7 @@ Route::group([
     Route::get('student/{id}/profileOverview', 'StudentController@profileOverview');
     Route::get('student/{student_id}/teacher/{teacher_id}/class', 'StudentController@getTeacherSlot');
     Route::get('student/{id}/sortedClass', 'StudentController@sortedClass');
+    Route::get('student/{id}/class', 'StudentController@allClasses');
     Route::put('student/{id}/changePassword', 'StudentController@changePassword');
 });
 

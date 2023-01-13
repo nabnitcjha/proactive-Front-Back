@@ -103,6 +103,12 @@ class StudentController extends BaseController
         return ClassScheduleResource::collection($student->classSchedule);
     }
 
+    public function allClasses($id){
+        $student = Student::where('id',$id)->first();
+
+        return ClassScheduleResource::collection($student->classSchedule);
+    }
+
     public function sortedClass($id)
     {
         $class_unique_ids = StudentSession::where('student_id',$id)->groupBy('class_unique_id')->pluck('class_unique_id');

@@ -817,7 +817,7 @@ export default {
                     timed: data.start_date,
                     description: data.description,
                     zoom_link: data.zoom_link,
-                    teacher_id: this.current_teacher_id,
+                    // teacher_id: this.current_teacher_id,
                     student_id:this.current_student_id
                 });
             });
