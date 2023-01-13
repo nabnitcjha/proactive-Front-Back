@@ -39,6 +39,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.profileOverview();
   },
   methods: {
+    makeFalse: function makeFalse() {
+      this.showCalendar = false;
+    },
     findDay: function findDay(day) {
       switch (day) {
         case "0":
@@ -477,6 +480,12 @@ var render = function render() {
         "data-bs-target": "#" + "profile-teacher-flush-collapseOne" + index,
         "aria-expanded": "false",
         "aria-controls": "profile-teacher-flush-collapseOne" + index
+      },
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.makeFalse.apply(null, arguments);
+        }
       }
     }, [_vm._v("\n                                                            " + _vm._s(thr_info.full_name) + "\n                                                        ")])]), _vm._v(" "), _c("div", {
       staticClass: "accordion-collapse collapse",

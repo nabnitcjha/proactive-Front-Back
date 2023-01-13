@@ -620,6 +620,7 @@
                                                                     'profile-teacher-flush-collapseOne' +
                                                                     index
                                                                 "
+                                                                @click.stop="makeFalse"
                                                             >
                                                                 {{
                                                                     thr_info.full_name
@@ -975,6 +976,9 @@ export default {
         this.profileOverview();
     },
     methods: {
+        makeFalse(){
+            this.showCalendar = false;
+        },
         findDay(day) {
             switch (day) {
                 case "0":
