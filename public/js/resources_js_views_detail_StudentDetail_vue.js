@@ -23,15 +23,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      student_teacher_all: 'student_teacher_all',
-      student_all: 'student_all',
+      student_teacher_all: "student_teacher_all",
+      student_all: "student_all",
       show: false,
       showTeacherCalendar: false,
       showAllCalendar: false,
       profile_overview: [],
       sorted_class: [],
       current_teacher_id: "",
-      current_student_id: ""
+      current_student_id: "",
+      showCalendar: false
     };
   },
   mounted: function mounted() {
@@ -59,6 +60,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     setInfoForCalendar: function setInfoForCalendar(thr_info) {
       this.current_teacher_id = thr_info.id;
       this.current_student_id = this.$route.params.id;
+      this.showCalendar = !this.showCalendar;
     },
     profileOverview: function profileOverview() {
       var _this = this;
@@ -174,28 +176,6 @@ var render = function render() {
   return _c("div", {
     staticClass: "row"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
-    staticClass: "modal fade modal-tall",
-    attrs: {
-      id: "classAccordingTeacher",
-      tabindex: "-1",
-      "aria-labelledby": "classAccordingTeacherLabel",
-      "aria-hidden": "true"
-    }
-  }, [_c("div", {
-    staticClass: "modal-dialog modal-dialog-scrollable"
-  }, [_c("div", {
-    staticClass: "modal-content"
-  }, [_vm._m(1), _vm._v(" "), _c("div", {
-    staticClass: "modal-body"
-  }, [_c("slot-calendar", {
-    attrs: {
-      current_teacher_id: _vm.current_teacher_id,
-      current_student_id: _vm.current_student_id,
-      calType: _vm.student_teacher_all
-    }
-  })], 1), _vm._v(" "), _c("div", {
-    staticClass: "modal-footer invisible"
-  })])])]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-12"
   }, [_c("div", {
     staticClass: "row"
@@ -552,9 +532,7 @@ var render = function render() {
     }, [_c("button", {
       staticClass: "btn btn-success",
       attrs: {
-        type: "button",
-        "data-bs-toggle": "modal",
-        "data-bs-target": "#classAccordingTeacher"
+        type: "button"
       },
       on: {
         click: function click($event) {
@@ -562,7 +540,13 @@ var render = function render() {
           return _vm.setInfoForCalendar(thr_info);
         }
       }
-    }, [_vm._v("\n                                                                        VIEW\n                                                                        SLOT\n                                                                    ")])])])])])])]);
+    }, [_vm._v("\n                                                                        VIEW\n                                                                        SLOT\n                                                                    ")]), _vm._v(" "), _vm.showCalendar ? _c("div", [_c("slot-calendar", {
+      attrs: {
+        current_teacher_id: _vm.current_teacher_id,
+        current_student_id: _vm.current_student_id,
+        calType: _vm.student_teacher_all
+      }
+    })], 1) : _vm._e()])])])])])]);
   }), 0)])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {
@@ -758,24 +742,6 @@ var staticRenderFns = [function () {
   }, [_c("span", {
     staticClass: "input-group-text msg-send"
   }, [_vm._v("SEND")])])])])])])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("div", {
-    staticClass: "modal-header"
-  }, [_c("h1", {
-    staticClass: "modal-title fs-5",
-    attrs: {
-      id: "classAccordingTeacherLabel"
-    }
-  }, [_vm._v("\n                        SLOTS\n                    ")]), _vm._v(" "), _c("button", {
-    staticClass: "btn-close",
-    attrs: {
-      type: "button",
-      "data-bs-dismiss": "modal",
-      "aria-label": "Close"
-    }
-  })]);
 }];
 render._withStripped = true;
 

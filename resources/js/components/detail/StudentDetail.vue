@@ -52,46 +52,7 @@
             </div>
         </div>
         <!--Message modal end -->
-        <!--Message modal start -->
-        <div
-            class="modal fade modal-tall"
-            id="classAccordingTeacher"
-            tabindex="-1"
-            aria-labelledby="classAccordingTeacherLabel"
-            aria-hidden="true"
-        >
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1
-                            class="modal-title fs-5"
-                            id="classAccordingTeacherLabel"
-                        >
-                            SLOTS
-                        </h1>
-                        <button
-                            type="button"
-                            class="btn-close"
-                            data-bs-dismiss="modal"
-                            aria-label="Close"
-                        ></button>
-                    </div>
-                    <div class="modal-body">
-                        <!-- start body -->
-                        <slot-calendar
-                            :current_teacher_id="current_teacher_id"
-                            :current_student_id="current_student_id"
-                            :calType="student_teacher_all"
-                        ></slot-calendar>
-                        <!-- end body -->
-                    </div>
-                    <div class="modal-footer invisible">
-                         
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Message modal end -->
+
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-xl-4">
@@ -779,8 +740,6 @@
                                                                         <button
                                                                             type="button"
                                                                             class="btn btn-success"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#classAccordingTeacher"
                                                                             @click.stop="
                                                                                 setInfoForCalendar(
                                                                                     thr_info
@@ -790,6 +749,19 @@
                                                                             VIEW
                                                                             SLOT
                                                                         </button>
+                                                                        <div v-if="showCalendar">
+                                                                            <slot-calendar
+                                                                                :current_teacher_id="
+                                                                                    current_teacher_id
+                                                                                "
+                                                                                :current_student_id="
+                                                                                    current_student_id
+                                                                                "
+                                                                                :calType="
+                                                                                    student_teacher_all
+                                                                                "
+                                                                            ></slot-calendar>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -984,8 +956,8 @@
 export default {
     data() {
         return {
-            student_teacher_all:'student_teacher_all',
-            student_all:'student_all',
+            student_teacher_all: "student_teacher_all",
+            student_all: "student_all",
             show: false,
             showTeacherCalendar: false,
             showAllCalendar: false,
@@ -993,6 +965,7 @@ export default {
             sorted_class: [],
             current_teacher_id: "",
             current_student_id: "",
+            showCalendar:false
         };
     },
     mounted() {
@@ -1018,8 +991,10 @@ export default {
             }
         },
         setInfoForCalendar(thr_info) {
+            
             this.current_teacher_id = thr_info.id;
             this.current_student_id = this.$route.params.id;
+            this.showCalendar =!this.showCalendar;
         },
         async profileOverview() {
             let id = this.$route.params.id;

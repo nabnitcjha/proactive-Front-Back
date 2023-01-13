@@ -280,7 +280,9 @@ export default {
     resourceFileName: "",
   }),
   props:{
-    slot_info:Array
+    current_teacher_id:String,
+    current_student_id:String,
+    calType:String
   },
   methods: {
     async saveResourceFile() {
@@ -473,11 +475,28 @@ export default {
         : event.color;
     },
     async getEvents({ start, end }) {
+      
       this.$emit("set-focus", this.value);
       const events = [];
+      let getResponse = {};
+      let urlText = '';
+      if (this.calType=='student_all') { //student-detail class tab
+        urlText = "student/"+this.current_student_id+"/class";
+      }else if (this.calType=='teacher_all') { //teacher-detail class tab
+        urlText = "teacher/"+this.current_teacher_id+"/class";
+      }else if (this.calType=='student_teacher_all') //student-detail teacher tab
+      {
+        urlText = "student/"+this.current_student_id+"/teacher/"+this.current_teacher_id+"/class";
+      }else{ //teacher-detail student tab
+         urlText = "teacher/"+this.current_teacher_id+"/student/"+this.current_student_id+"/class";
+      }
+      
+      getResponse = await this.get(urlText,1,false);
+      
+      this.slots = getResponse.data.data;
       
       
-      this.slots =await this.slot_info;
+      // this.slots =await this.slot_info;
       
       this.slots.map((data) => {
         events.push({
@@ -489,8 +508,8 @@ export default {
           time: data.duration,
           description: data.description,
           zoom_link: data.zoom_link,
-          teacher: data.teacher,
-          subject: data.subject,
+          teacher_id: this.current_teacher_id,
+          student_id:this.current_student_id
         });
       });
 
