@@ -737,41 +737,24 @@
                                                                     class="row"
                                                                 >
                                                                     <div
-                                                                        class="col-lg-3 col-md-4 label"
+                                                                        class="col-lg-3 col-md-4 label cstm-font"
                                                                     >
-                                                                        Classes
+                                                                       <h1>Classes</h1> 
                                                                     </div>
-                                                                    <div
-                                                                        class="col-lg-9 col-md-8"
-                                                                    >
-                                                                        <button
-                                                                            type="button"
-                                                                            class="btn btn-success"
-                                                                            @click.stop="
-                                                                                setInfoForCalendar(
-                                                                                    thr_info
-                                                                                )
-                                                                            "
-                                                                        >
-                                                                            VIEW
-                                                                            SLOT
-                                                                        </button>
-                                                                    </div>
+                                                                    
                                                                 </div>
                                                                 <div
                                                                     class="row"
                                                                 >
                                                                     <div
-                                                                        v-if="
-                                                                            showCalendar
-                                                                        "
+                                                                        
                                                                     >
                                                                         <slot-calendar
                                                                             :current_teacher_id="
-                                                                                current_teacher_id
+                                                                                thr_info.id
                                                                             "
                                                                             :current_student_id="
-                                                                                current_student_id
+                                                                                $route.params.id
                                                                             "
                                                                             :calType="
                                                                                 student_teacher_all

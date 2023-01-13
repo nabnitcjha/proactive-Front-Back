@@ -136,3 +136,7 @@ span.custom-checkbox {
   background-color: yellowgreen!important;
   color: #ffff!important;
 }
+.cstm-font{
+  font-size: 24px;
+  font-weight: 500;
+}

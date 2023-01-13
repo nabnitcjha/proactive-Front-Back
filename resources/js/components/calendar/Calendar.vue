@@ -118,6 +118,7 @@
                             <template
                                 v-slot:event="{ event, timed, eventSummary }"
                             >
+                            
                                 <div class="v-event-draggable">
                                     <component
                                         :is="{ render: eventSummary }"

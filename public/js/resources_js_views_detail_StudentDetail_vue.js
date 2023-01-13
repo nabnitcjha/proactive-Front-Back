@@ -537,29 +537,16 @@ var render = function render() {
     }, [_vm._v("\n                                                                    " + _vm._s(thr_info.phone) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
       staticClass: "row"
     }, [_c("div", {
-      staticClass: "col-lg-3 col-md-4 label"
-    }, [_vm._v("\n                                                                    Classes\n                                                                ")]), _vm._v(" "), _c("div", {
-      staticClass: "col-lg-9 col-md-8"
-    }, [_c("button", {
-      staticClass: "btn btn-success",
-      attrs: {
-        type: "button"
-      },
-      on: {
-        click: function click($event) {
-          $event.stopPropagation();
-          return _vm.setInfoForCalendar(thr_info);
-        }
-      }
-    }, [_vm._v("\n                                                                        VIEW\n                                                                        SLOT\n                                                                    ")])])]), _vm._v(" "), _c("div", {
+      staticClass: "col-lg-3 col-md-4 label cstm-font"
+    }, [_c("h1", [_vm._v("Classes")])])]), _vm._v(" "), _c("div", {
       staticClass: "row"
-    }, [_vm.showCalendar ? _c("div", [_c("slot-calendar", {
+    }, [_c("div", [_c("slot-calendar", {
       attrs: {
-        current_teacher_id: _vm.current_teacher_id,
-        current_student_id: _vm.current_student_id,
+        current_teacher_id: thr_info.id,
+        current_student_id: _vm.$route.params.id,
         calType: _vm.student_teacher_all
       }
-    })], 1) : _vm._e()])])])])]);
+    })], 1)])])])])]);
   }), 0)])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {

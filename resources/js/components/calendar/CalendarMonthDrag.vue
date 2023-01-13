@@ -22,7 +22,7 @@
         <!-- <div class="v-event-draggable">
           <component :is="{ render: eventSummary }"></component>
         </div> -->
-
+        
         <div
           v-if="timed"
           class="v-event-drag-bottom"
