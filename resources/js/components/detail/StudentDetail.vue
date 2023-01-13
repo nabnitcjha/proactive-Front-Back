@@ -27,26 +27,12 @@
                     <div class="modal-body">
                         <!-- start body -->
                         <div class="card">
-                            <div
-                                class="card-header d-flex justify-content-between"
-                            >
-                                <span>Study Resources</span>
-                            </div>
+                           <chat-form></chat-form>
                         </div>
                         <!-- end body -->
                     </div>
-                    <div class="modal-footer">
-                        <div class="input-group">
-                            <textarea
-                                class="form-control"
-                                aria-label="With textarea"
-                            ></textarea>
-                            <div class="input-group-prepend">
-                                <span class="input-group-text msg-send"
-                                    >SEND</span
-                                >
-                            </div>
-                        </div>
+                    <div class="modal-footer invisible">
+                        
                     </div>
                 </div>
             </div>
@@ -80,26 +66,12 @@
                     <div class="modal-body">
                         <!-- start body -->
                         <div class="card">
-                            <div
-                                class="card-header d-flex justify-content-between"
-                            >
-                                <span>Study Resources</span>
-                            </div>
+                            <chat-form></chat-form>
                         </div>
                         <!-- end body -->
                     </div>
-                    <div class="modal-footer">
-                        <div class="input-group">
-                            <textarea
-                                class="form-control"
-                                aria-label="With textarea"
-                            ></textarea>
-                            <div class="input-group-prepend">
-                                <span class="input-group-text msg-send"
-                                    >SEND</span
-                                >
-                            </div>
-                        </div>
+                    <div class="modal-footer invisible">
+                      
                     </div>
                 </div>
             </div>

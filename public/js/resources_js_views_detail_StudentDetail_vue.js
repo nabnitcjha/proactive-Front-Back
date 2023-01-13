@@ -171,7 +171,43 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "row"
-  }, [_vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c("div", {
+  }, [_c("div", {
+    staticClass: "modal fade modal-tall",
+    attrs: {
+      id: "sendMessageToTeacher",
+      tabindex: "-1",
+      "aria-labelledby": "sendMessageToTeacherLabel",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog modal-dialog-scrollable"
+  }, [_c("div", {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("chat-form")], 1)]), _vm._v(" "), _c("div", {
+    staticClass: "modal-footer invisible"
+  })])])]), _vm._v(" "), _c("div", {
+    staticClass: "modal fade modal-tall",
+    attrs: {
+      id: "groupDiscussionMessage",
+      tabindex: "-1",
+      "aria-labelledby": "groupDiscussionMessageLabel",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog modal-dialog-scrollable"
+  }, [_c("div", {
+    staticClass: "modal-content"
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("chat-form")], 1)]), _vm._v(" "), _c("div", {
+    staticClass: "modal-footer invisible"
+  })])])]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-12"
   }, [_c("div", {
     staticClass: "row"
@@ -640,18 +676,6 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "modal fade modal-tall",
-    attrs: {
-      id: "sendMessageToTeacher",
-      tabindex: "-1",
-      "aria-labelledby": "sendMessageToTeacherLabel",
-      "aria-hidden": "true"
-    }
-  }, [_c("div", {
-    staticClass: "modal-dialog modal-dialog-scrollable"
-  }, [_c("div", {
-    staticClass: "modal-content"
-  }, [_c("div", {
     staticClass: "modal-header"
   }, [_c("h1", {
     staticClass: "modal-title fs-5",
@@ -665,42 +689,11 @@ var staticRenderFns = [function () {
       "data-bs-dismiss": "modal",
       "aria-label": "Close"
     }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "modal-body"
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
-    staticClass: "card-header d-flex justify-content-between"
-  }, [_c("span", [_vm._v("Study Resources")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "modal-footer"
-  }, [_c("div", {
-    staticClass: "input-group"
-  }, [_c("textarea", {
-    staticClass: "form-control",
-    attrs: {
-      "aria-label": "With textarea"
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "input-group-prepend"
-  }, [_c("span", {
-    staticClass: "input-group-text msg-send"
-  }, [_vm._v("SEND")])])])])])])]);
+  })]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "modal fade modal-tall",
-    attrs: {
-      id: "groupDiscussionMessage",
-      tabindex: "-1",
-      "aria-labelledby": "groupDiscussionMessageLabel",
-      "aria-hidden": "true"
-    }
-  }, [_c("div", {
-    staticClass: "modal-dialog modal-dialog-scrollable"
-  }, [_c("div", {
-    staticClass: "modal-content"
-  }, [_c("div", {
     staticClass: "modal-header"
   }, [_c("h1", {
     staticClass: "modal-title fs-5",
@@ -714,26 +707,7 @@ var staticRenderFns = [function () {
       "data-bs-dismiss": "modal",
       "aria-label": "Close"
     }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "modal-body"
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
-    staticClass: "card-header d-flex justify-content-between"
-  }, [_c("span", [_vm._v("Study Resources")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "modal-footer"
-  }, [_c("div", {
-    staticClass: "input-group"
-  }, [_c("textarea", {
-    staticClass: "form-control",
-    attrs: {
-      "aria-label": "With textarea"
-    }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "input-group-prepend"
-  }, [_c("span", {
-    staticClass: "input-group-text msg-send"
-  }, [_vm._v("SEND")])])])])])])]);
+  })]);
 }];
 render._withStripped = true;
 

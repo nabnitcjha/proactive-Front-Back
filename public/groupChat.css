@@ -217,6 +217,10 @@
 }
 
 .msg_history {
-	height: 516px;
-	overflow-y: auto;
+	height: 459px;
+    overflow-y: auto;
+}
+
+#sendMessageToTeacher .modal-dialog-scrollable .modal-body , #groupDiscussionMessage .modal-dialog-scrollable .modal-body{
+    overflow-y: hidden;
 }
