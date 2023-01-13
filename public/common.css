@@ -140,3 +140,8 @@ span.custom-checkbox {
   font-size: 24px;
   font-weight: 500;
 }
+
+.profile-discussion-card{
+  display: flex!important;
+  justify-content: space-between!important;
+}

@@ -541,96 +541,28 @@ var render = function render() {
       }
     })], 1)])])])])]);
   }), 0)])]), _vm._v(" "), _c("div", {
-    staticClass: "tab-pane fade pt-3",
+    staticClass: "tab-pane fade pt-3 profile-discussion-card",
     attrs: {
       id: "profile-discussion"
     }
-  }, [_c("div", {
-    staticClass: "messaging"
-  }, [_c("div", {
-    staticClass: "inbox_msg"
-  }, [_c("div", {
-    staticClass: "mesgs col-12"
-  }, [_c("div", {
-    staticClass: "msg_history"
-  }, [_c("div", {
-    staticClass: "incoming_msg"
-  }, [_c("div", {
-    staticClass: "incoming_msg_img"
-  }, [_c("img", {
-    attrs: {
-      src: "https://ptetutorials.com/images/user-profile.png",
-      alt: "sunil"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "received_msg"
-  }, [_c("div", {
-    staticClass: "received_withd_msg"
-  }, [_c("p", [_vm._v("\n                                                                    Test\n                                                                    which is\n                                                                    a new\n                                                                    approach\n                                                                    to have\n                                                                    all\n                                                                    solutions\n                                                                ")]), _vm._v(" "), _c("span", {
-    staticClass: "time_date"
-  }, [_vm._v("\n                                                                    11:01 AM\n                                                                    | June\n                                                                    9")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "outgoing_msg"
-  }, [_c("div", {
-    staticClass: "sent_msg"
-  }, [_c("p", [_vm._v("\n                                                                Test which\n                                                                is a new\n                                                                approach to\n                                                                have all\n                                                                solutions\n                                                            ")]), _vm._v(" "), _c("span", {
-    staticClass: "time_date"
-  }, [_vm._v("\n                                                                11:01 AM |\n                                                                June 9")])])]), _vm._v(" "), _c("div", {
-    staticClass: "incoming_msg"
-  }, [_c("div", {
-    staticClass: "incoming_msg_img"
-  }, [_c("img", {
-    attrs: {
-      src: "https://ptetutorials.com/images/user-profile.png",
-      alt: "sunil"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "received_msg"
-  }, [_c("div", {
-    staticClass: "received_withd_msg"
-  }, [_c("p", [_vm._v("\n                                                                    Test,\n                                                                    which is\n                                                                    a new\n                                                                    approach\n                                                                    to have\n                                                                ")]), _vm._v(" "), _c("span", {
-    staticClass: "time_date"
-  }, [_vm._v("\n                                                                    11:01 AM\n                                                                    |\n                                                                    Yesterday")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "outgoing_msg"
-  }, [_c("div", {
-    staticClass: "sent_msg"
-  }, [_c("p", [_vm._v("\n                                                                Apollo\n                                                                University,\n                                                                Delhi, India\n                                                                Test\n                                                            ")]), _vm._v(" "), _c("span", {
-    staticClass: "time_date"
-  }, [_vm._v("\n                                                                11:01 AM |\n                                                                Today")])])]), _vm._v(" "), _c("div", {
-    staticClass: "incoming_msg"
-  }, [_c("div", {
-    staticClass: "incoming_msg_img"
-  }, [_c("img", {
-    attrs: {
-      src: "https://ptetutorials.com/images/user-profile.png",
-      alt: "sunil"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "received_msg"
-  }, [_c("div", {
-    staticClass: "received_withd_msg"
-  }, [_c("p", [_vm._v("\n                                                                    We work\n                                                                    directly\n                                                                    with our\n                                                                    designers\n                                                                    and\n                                                                    suppliers,\n                                                                    and sell\n                                                                    direct\n                                                                    to you,\n                                                                    which\n                                                                    means\n                                                                    quality,\n                                                                    exclusive\n                                                                    products,\n                                                                    at a\n                                                                    price\n                                                                    anyone\n                                                                    can\n                                                                    afford.\n                                                                ")]), _vm._v(" "), _c("span", {
-    staticClass: "time_date"
-  }, [_vm._v("\n                                                                    11:01 AM\n                                                                    |\n                                                                    Today")])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "type_msg"
-  }, [_c("div", {
-    staticClass: "input_msg_write"
-  }, [_c("input", {
-    staticClass: "write_msg",
-    attrs: {
-      type: "text",
-      placeholder: "Type a message"
-    }
-  }), _vm._v(" "), _c("button", {
-    staticClass: "msg_send_btn",
-    attrs: {
-      type: "button"
-    }
-  }, [_c("i", {
-    staticClass: "fa fa-paper-plane",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  })])])])])])])]), _vm._v(" "), _c("div", {
+  }, _vm._l(_vm.profile_overview.sorted_class, function (class_info, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "card",
+      staticStyle: {
+        width: "18rem"
+      }
+    }, [_c("div", {
+      staticClass: "card-body"
+    }, [_c("h5", {
+      staticClass: "card-title"
+    }, [_vm._v("\n                                               " + _vm._s(class_info.topic) + "\n                                            ")]), _vm._v(" "), _c("a", {
+      staticClass: "btn btn-primary",
+      attrs: {
+        href: "#"
+      }
+    }, [_vm._v("Open Discussion")])])]);
+  }), 0), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {
       id: "profile-classes"
