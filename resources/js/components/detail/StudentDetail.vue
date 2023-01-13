@@ -53,6 +53,59 @@
         </div>
         <!--Message modal end -->
 
+                <!--Group discussion Message modal start -->
+                <div
+            class="modal fade modal-tall"
+            id="groupDiscussionMessage"
+            tabindex="-1"
+            aria-labelledby="groupDiscussionMessageLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1
+                            class="modal-title fs-5"
+                            id="groupDiscussionMessageLabel"
+                        >
+                            SEND MESSAGE
+                        </h1>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- start body -->
+                        <div class="card">
+                            <div
+                                class="card-header d-flex justify-content-between"
+                            >
+                                <span>Study Resources</span>
+                            </div>
+                        </div>
+                        <!-- end body -->
+                    </div>
+                    <div class="modal-footer">
+                        <div class="input-group">
+                            <textarea
+                                class="form-control"
+                                aria-label="With textarea"
+                            ></textarea>
+                            <div class="input-group-prepend">
+                                <span class="input-group-text msg-send"
+                                    >SEND</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Group discussion Message modal end -->
+
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-xl-4">
@@ -788,7 +841,9 @@
                                                 </h5>
                                                 <a
                                                     href="#"
-                                                    class="btn btn-primary"
+                                                    class="btn btn-success"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#groupDiscussionMessage"
                                                     >Open Discussion</a
                                                 >
                                             </div>
