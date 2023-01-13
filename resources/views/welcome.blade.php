@@ -20,6 +20,7 @@
     <!-- Template Main CSS File -->
     <link href="{{ asset('dashboard_css/assets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('common.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('groupChat.css')}}">
 
     <link href="{{ asset('') }}" rel="stylesheet" type="text/css">
 

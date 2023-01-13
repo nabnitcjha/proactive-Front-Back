@@ -194,9 +194,7 @@ var render = function render() {
       src: __webpack_require__(/*! ../../../../public/dashboard_css/assets/img/profile-img.jpg */ "./public/dashboard_css/assets/img/profile-img.jpg"),
       alt: "Profile"
     }
-  }), _vm._v(" "), _c("h1", {
-    staticClass: "fs-5"
-  }, [_vm._v("\n                            " + _vm._s(_vm.profile_overview.student_info.full_name) + "\n                        ")])])])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("h2", [_vm._v("\n                            " + _vm._s(_vm.profile_overview.student_info.full_name) + "\n                        ")])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-xl-8"
   }, [_c("b-overlay", {
     staticClass: "col-lg-12",
@@ -491,7 +489,7 @@ var render = function render() {
       }
     }, [_c("h1", {
       staticClass: "fs-5"
-    }, [_vm._v("\n                                                                 " + _vm._s(thr_info.full_name) + "\n                                                           ")])])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                " + _vm._s(thr_info.full_name) + "\n                                                            ")])])]), _vm._v(" "), _c("div", {
       staticClass: "accordion-collapse collapse",
       attrs: {
         id: "profile-teacher-flush-collapseOne" + index,
@@ -567,79 +565,92 @@ var render = function render() {
     attrs: {
       id: "profile-discussion"
     }
-  }, [_c("form", [_c("div", {
-    staticClass: "row mb-3"
-  }, [_c("label", {
-    staticClass: "col-md-4 col-lg-3 col-form-label",
-    attrs: {
-      "for": "fullName"
-    }
-  }, [_vm._v("Email Notifications")]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-8 col-lg-9"
   }, [_c("div", {
-    staticClass: "form-check"
+    staticClass: "messaging"
+  }, [_c("div", {
+    staticClass: "inbox_msg"
+  }, [_c("div", {
+    staticClass: "mesgs col-12"
+  }, [_c("div", {
+    staticClass: "msg_history"
+  }, [_c("div", {
+    staticClass: "incoming_msg"
+  }, [_c("div", {
+    staticClass: "incoming_msg_img"
+  }, [_c("img", {
+    attrs: {
+      src: "https://ptetutorials.com/images/user-profile.png",
+      alt: "sunil"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "received_msg"
+  }, [_c("div", {
+    staticClass: "received_withd_msg"
+  }, [_c("p", [_vm._v("\n                                                                    Test\n                                                                    which is\n                                                                    a new\n                                                                    approach\n                                                                    to have\n                                                                    all\n                                                                    solutions\n                                                                ")]), _vm._v(" "), _c("span", {
+    staticClass: "time_date"
+  }, [_vm._v("\n                                                                    11:01 AM\n                                                                    | June\n                                                                    9")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "outgoing_msg"
+  }, [_c("div", {
+    staticClass: "sent_msg"
+  }, [_c("p", [_vm._v("\n                                                                Test which\n                                                                is a new\n                                                                approach to\n                                                                have all\n                                                                solutions\n                                                            ")]), _vm._v(" "), _c("span", {
+    staticClass: "time_date"
+  }, [_vm._v("\n                                                                11:01 AM |\n                                                                June 9")])])]), _vm._v(" "), _c("div", {
+    staticClass: "incoming_msg"
+  }, [_c("div", {
+    staticClass: "incoming_msg_img"
+  }, [_c("img", {
+    attrs: {
+      src: "https://ptetutorials.com/images/user-profile.png",
+      alt: "sunil"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "received_msg"
+  }, [_c("div", {
+    staticClass: "received_withd_msg"
+  }, [_c("p", [_vm._v("\n                                                                    Test,\n                                                                    which is\n                                                                    a new\n                                                                    approach\n                                                                    to have\n                                                                ")]), _vm._v(" "), _c("span", {
+    staticClass: "time_date"
+  }, [_vm._v("\n                                                                    11:01 AM\n                                                                    |\n                                                                    Yesterday")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "outgoing_msg"
+  }, [_c("div", {
+    staticClass: "sent_msg"
+  }, [_c("p", [_vm._v("\n                                                                Apollo\n                                                                University,\n                                                                Delhi, India\n                                                                Test\n                                                            ")]), _vm._v(" "), _c("span", {
+    staticClass: "time_date"
+  }, [_vm._v("\n                                                                11:01 AM |\n                                                                Today")])])]), _vm._v(" "), _c("div", {
+    staticClass: "incoming_msg"
+  }, [_c("div", {
+    staticClass: "incoming_msg_img"
+  }, [_c("img", {
+    attrs: {
+      src: "https://ptetutorials.com/images/user-profile.png",
+      alt: "sunil"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "received_msg"
+  }, [_c("div", {
+    staticClass: "received_withd_msg"
+  }, [_c("p", [_vm._v("\n                                                                    We work\n                                                                    directly\n                                                                    with our\n                                                                    designers\n                                                                    and\n                                                                    suppliers,\n                                                                    and sell\n                                                                    direct\n                                                                    to you,\n                                                                    which\n                                                                    means\n                                                                    quality,\n                                                                    exclusive\n                                                                    products,\n                                                                    at a\n                                                                    price\n                                                                    anyone\n                                                                    can\n                                                                    afford.\n                                                                ")]), _vm._v(" "), _c("span", {
+    staticClass: "time_date"
+  }, [_vm._v("\n                                                                    11:01 AM\n                                                                    |\n                                                                    Today")])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "type_msg"
+  }, [_c("div", {
+    staticClass: "input_msg_write"
   }, [_c("input", {
-    staticClass: "form-check-input",
+    staticClass: "write_msg",
     attrs: {
-      type: "checkbox",
-      id: "changesMade",
-      checked: ""
+      type: "text",
+      placeholder: "Type a message"
     }
-  }), _vm._v(" "), _c("label", {
-    staticClass: "form-check-label",
+  }), _vm._v(" "), _c("button", {
+    staticClass: "msg_send_btn",
     attrs: {
-      "for": "changesMade"
+      type: "button"
     }
-  }, [_vm._v("\n                                                        Changes made to your\n                                                        account\n                                                    ")])]), _vm._v(" "), _c("div", {
-    staticClass: "form-check"
-  }, [_c("input", {
-    staticClass: "form-check-input",
+  }, [_c("i", {
+    staticClass: "fa fa-paper-plane",
     attrs: {
-      type: "checkbox",
-      id: "newProducts",
-      checked: ""
+      "aria-hidden": "true"
     }
-  }), _vm._v(" "), _c("label", {
-    staticClass: "form-check-label",
-    attrs: {
-      "for": "newProducts"
-    }
-  }, [_vm._v("\n                                                        Information on new\n                                                        products and\n                                                        services\n                                                    ")])]), _vm._v(" "), _c("div", {
-    staticClass: "form-check"
-  }, [_c("input", {
-    staticClass: "form-check-input",
-    attrs: {
-      type: "checkbox",
-      id: "proOffers"
-    }
-  }), _vm._v(" "), _c("label", {
-    staticClass: "form-check-label",
-    attrs: {
-      "for": "proOffers"
-    }
-  }, [_vm._v("\n                                                        Marketing and promo\n                                                        offers\n                                                    ")])]), _vm._v(" "), _c("div", {
-    staticClass: "form-check"
-  }, [_c("input", {
-    staticClass: "form-check-input",
-    attrs: {
-      type: "checkbox",
-      id: "securityNotify",
-      checked: "",
-      disabled: ""
-    }
-  }), _vm._v(" "), _c("label", {
-    staticClass: "form-check-label",
-    attrs: {
-      "for": "securityNotify"
-    }
-  }, [_vm._v("\n                                                        Security alerts\n                                                    ")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "text-center"
-  }, [_c("button", {
-    staticClass: "btn btn-primary",
-    attrs: {
-      type: "submit"
-    }
-  }, [_vm._v("\n                                                Save Changes\n                                            ")])])])]), _vm._v(" "), _c("div", {
+  })])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {
       id: "profile-classes"
