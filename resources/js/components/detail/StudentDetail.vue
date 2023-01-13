@@ -622,9 +622,11 @@
                                                                 "
                                                                 @click.stop="makeFalse"
                                                             >
-                                                                {{
-                                                                    thr_info.full_name
-                                                                }}
+                                                               <h1 class="fs-5">
+                                                                     {{
+                                                                        thr_info.full_name
+                                                                    }}
+                                                               </h1>
                                                             </button>
                                                         </h2>
                                                         <div
