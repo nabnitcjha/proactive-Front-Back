@@ -24,6 +24,8 @@ import DeleteModal from "./components/common/DeleteModal.vue";
 import ClassSchedule from "./components/form/ClassSchedule.vue";
 import SlotCalendar from "./components/calendar/Calendar.vue";
 
+import ChatForm from "./components/chat/ChatForm.vue";
+
 // Install VeeValidate components globally
 
 Vue.component("multiselect", Multiselect);
@@ -31,6 +33,7 @@ Vue.component("date-picker", DatePicker);
 Vue.component("delete-modal", DeleteModal);
 Vue.component("class-schedule", ClassSchedule);
 Vue.component("slot-calendar", SlotCalendar);
+Vue.component("chat-form", ChatForm);
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";

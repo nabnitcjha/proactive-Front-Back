@@ -822,36 +822,6 @@
                                         </form>
                                         <!-- End Profile Edit Form -->
                                     </div>
-
-                                    <div
-                                        class="tab-pane fade pt-3 profile-discussion-card"
-                                        id="profile-discussion"
-                                    >
-                                        <div class="card" style="width: 18rem"  
-                                             v-for="(
-                                                        class_info, index
-                                                    ) in profile_overview.sorted_class"
-                                                    :key="index">
-                                            <div class="card-body">
-                                                <h5 class="card-title">
-                                                   {{ class_info.topic }}
-                                                </h5>
-                                                <a
-                                                    href="#"
-                                                    class="btn btn-success"
-                                                    data-bs-toggle="modal"
-                                                    data-bs-target="#groupDiscussionMessage"
-                                                    @click.stop="setClassId(class_info.id)"
-                                                    >Open Discussion</a
-                                                >
-                                            </div>
-                                        </div>
-                                        <!-- Settings Form -->
-                                      
-
-                                        <!-- End settings Form -->
-                                    </div>
-
                                     <div
                                         class="tab-pane fade pt-3"
                                         id="profile-classes"
@@ -929,6 +899,34 @@
                                             </div>
                                         </form>
                                         <!-- End Change Password Form -->
+                                    </div>
+                                    <div
+                                        class="tab-pane fade pt-3 profile-discussion-card"
+                                        id="profile-discussion"
+                                    >
+                                        <div class="card" style="width: 18rem"  
+                                             v-for="(
+                                                        class_info, index
+                                                    ) in profile_overview.sorted_class"
+                                                    :key="index">
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                   {{ class_info.topic }}
+                                                </h5>
+                                                <a
+                                                    href="#"
+                                                    class="btn btn-success"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#groupDiscussionMessage"
+                                                    @click.stop="setClassId(class_info.id)"
+                                                    >Open Discussion</a
+                                                >
+                                            </div>
+                                        </div>
+                                        <!-- Settings Form -->
+                                      
+
+                                        <!-- End settings Form -->
                                     </div>
                                 </div>
                                 <!-- End Bordered Tabs -->
