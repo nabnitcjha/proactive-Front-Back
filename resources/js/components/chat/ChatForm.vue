@@ -1,5 +1,55 @@
 <template>
-    <div class="input-group">
+    <div class="messaging">
+        <div class="inbox_msg">
+            <div class="mesgs col-12">
+                <div class="msg_history">
+                    <div class="incoming_msg">
+                        <div class="incoming_msg_img">
+                            <img
+                                src="https://ptetutorials.com/images/user-profile.png"
+                                alt="sunil"
+                            />
+                        </div>
+                        <div class="received_msg">
+                            <div class="received_withd_msg">
+                                <p>
+                                    Test which is a new approach to have all
+                                    solutions
+                                </p>
+                                <span class="time_date">
+                                    11:01 AM | June 9</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="outgoing_msg">
+                        <div class="sent_msg">
+                            <p>
+                                Test which is a new approach to have all
+                                solutions
+                            </p>
+                            <span class="time_date"> 11:01 AM | June 9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="type_msg">
+                    <div class="input_msg_write">
+                        <input
+                            type="text"
+                            class="write_msg"
+                            placeholder="Type your message here..."
+                            v-model="newMessage"
+                            @keyup.enter="addMessage"
+                        />
+                        <button class="msg_send_btn" type="button" @click="addMessage">
+                            <i class="bi bi-send" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <div class="input-group">
         <input
             id="btn-input"
             type="text"
@@ -18,22 +68,27 @@
                 Send
             </button>
         </span>
-    </div>
+    </div> -->
 </template>
 <script>
+  import {chatInfoStore} from '../../stores/chatInfo';
+  import {mapState} from 'pinia'
 export default {
     props: ["user"],
     data() {
         return {
             newMessage: "",
-            urlText:""
+            urlText: "",
         };
     },
-    mounted(){
-        this.$root.fetchMessages(1,1);
+    computed: {
+    ...mapState(chatInfoStore, ['getMessageInfo']),
+  },
+    mounted() {
+        // this.$root.fetchMessages(1, 1);
     },
     methods: {
-         addMessage() {
+        addMessage() {
             let friend_id = 1;
             let my_id = 1;
             this.urlText = "messages";
@@ -42,7 +97,7 @@ export default {
             formData.append("message_info[message]", this.newMessage);
             formData.append("message_info[friend_id]", friend_id);
             formData.append("message_info[my_id]", my_id);
-            let postResponse =  this.post(this.urlText, formData);
+            let postResponse = this.post(this.urlText, formData);
             this.newMessage = "";
         },
     },

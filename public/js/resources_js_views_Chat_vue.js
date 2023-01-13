@@ -11,6 +11,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _stores_chatInfo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../stores/chatInfo */ "./resources/js/stores/chatInfo.js");
+/* harmony import */ var pinia__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! pinia */ "./node_modules/pinia/dist/pinia.mjs");
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["user"],
   data: function data() {
@@ -19,8 +29,9 @@ __webpack_require__.r(__webpack_exports__);
       urlText: ""
     };
   },
+  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapState)(_stores_chatInfo__WEBPACK_IMPORTED_MODULE_0__.chatInfoStore, ['getMessageInfo'])),
   mounted: function mounted() {
-    this.$root.fetchMessages(1, 1);
+    // this.$root.fetchMessages(1, 1);
   },
   methods: {
     addMessage: function addMessage() {
@@ -79,7 +90,15 @@ var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "input-group"
+    staticClass: "messaging"
+  }, [_c("div", {
+    staticClass: "inbox_msg"
+  }, [_c("div", {
+    staticClass: "mesgs col-12"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "type_msg"
+  }, [_c("div", {
+    staticClass: "input_msg_write"
   }, [_c("input", {
     directives: [{
       name: "model",
@@ -87,11 +106,9 @@ var render = function render() {
       value: _vm.newMessage,
       expression: "newMessage"
     }],
-    staticClass: "form-control input-sm",
+    staticClass: "write_msg",
     attrs: {
-      id: "btn-input",
       type: "text",
-      name: "message",
       placeholder: "Type your message here..."
     },
     domProps: {
@@ -107,19 +124,49 @@ var render = function render() {
         _vm.newMessage = $event.target.value;
       }
     }
-  }), _vm._v(" "), _c("span", {
-    staticClass: "input-group-btn"
-  }, [_c("button", {
-    staticClass: "btn btn-primary btn-sm",
+  }), _vm._v(" "), _c("button", {
+    staticClass: "msg_send_btn",
     attrs: {
-      id: "btn-chat"
+      type: "button"
     },
     on: {
       click: _vm.addMessage
     }
-  }, [_vm._v("\n            Send\n        ")])])]);
+  }, [_c("i", {
+    staticClass: "bi bi-send",
+    attrs: {
+      "aria-hidden": "true"
+    }
+  })])])])])])]);
 };
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "msg_history"
+  }, [_c("div", {
+    staticClass: "incoming_msg"
+  }, [_c("div", {
+    staticClass: "incoming_msg_img"
+  }, [_c("img", {
+    attrs: {
+      src: "https://ptetutorials.com/images/user-profile.png",
+      alt: "sunil"
+    }
+  })]), _vm._v(" "), _c("div", {
+    staticClass: "received_msg"
+  }, [_c("div", {
+    staticClass: "received_withd_msg"
+  }, [_c("p", [_vm._v("\n                                Test which is a new approach to have all\n                                solutions\n                            ")]), _vm._v(" "), _c("span", {
+    staticClass: "time_date"
+  }, [_vm._v("\n                                11:01 AM | June 9")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "outgoing_msg"
+  }, [_c("div", {
+    staticClass: "sent_msg"
+  }, [_c("p", [_vm._v("\n                            Test which is a new approach to have all\n                            solutions\n                        ")]), _vm._v(" "), _c("span", {
+    staticClass: "time_date"
+  }, [_vm._v(" 11:01 AM | June 9")])])])]);
+}];
 render._withStripped = true;
 
 
