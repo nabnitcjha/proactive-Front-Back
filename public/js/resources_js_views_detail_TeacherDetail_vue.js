@@ -26,14 +26,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     return _ref = {
       student_all: "student_all",
       student_teacher_all: "student_teacher_all"
-    }, _defineProperty(_ref, "student_all", "student_all"), _defineProperty(_ref, "show", false), _defineProperty(_ref, "showTeacherCalendar", false), _defineProperty(_ref, "showAllCalendar", false), _defineProperty(_ref, "profile_overview", []), _defineProperty(_ref, "sorted_class", []), _defineProperty(_ref, "current_teacher_id", ""), _defineProperty(_ref, "current_student_id", ""), _defineProperty(_ref, "showCalendar", false), _ref;
+    }, _defineProperty(_ref, "student_all", "student_all"), _defineProperty(_ref, "show", false), _defineProperty(_ref, "showTeacherCalendar", false), _defineProperty(_ref, "showAllCalendar", false), _defineProperty(_ref, "profile_overview", []), _defineProperty(_ref, "sorted_class", []), _defineProperty(_ref, "current_teacher_id", ""), _defineProperty(_ref, "current_student_id", ""), _defineProperty(_ref, "current_class_id", ""), _defineProperty(_ref, "showCalendar", false), _ref;
   },
   mounted: function mounted() {
     this.profileOverview();
   },
   methods: {
-    makeFalse: function makeFalse() {
-      this.showCalendar = false;
+    setClassId: function setClassId(id) {
+      this.current_class_id = id;
     },
     findDay: function findDay(day) {
       switch (day) {
@@ -53,10 +53,11 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           return "Sat";
       }
     },
-    setInfoForCalendar: function setInfoForCalendar(thr_info) {
-      this.current_teacher_id = thr_info.id;
-      this.current_student_id = this.$route.params.id;
-      this.showCalendar = !this.showCalendar;
+    makeTrue: function makeTrue() {
+      this.showCalendar = true;
+    },
+    makeFalse: function makeFalse() {
+      this.showCalendar = false;
     },
     profileOverview: function profileOverview() {
       var _this = this;
@@ -171,7 +172,43 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", {
     staticClass: "row"
+  }, [_c("div", {
+    staticClass: "modal fade modal-tall",
+    attrs: {
+      id: "sendMessageToTeacher",
+      tabindex: "-1",
+      "aria-labelledby": "sendMessageToTeacherLabel",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog modal-dialog-scrollable"
+  }, [_c("div", {
+    staticClass: "modal-content"
   }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("chat-form")], 1)]), _vm._v(" "), _c("div", {
+    staticClass: "modal-footer invisible"
+  })])])]), _vm._v(" "), _c("div", {
+    staticClass: "modal fade modal-tall",
+    attrs: {
+      id: "groupDiscussionMessage",
+      tabindex: "-1",
+      "aria-labelledby": "groupDiscussionMessageLabel",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog modal-dialog-scrollable"
+  }, [_c("div", {
+    staticClass: "modal-content"
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("chat-form")], 1)]), _vm._v(" "), _c("div", {
+    staticClass: "modal-footer invisible"
+  })])])]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-12"
   }, [_c("div", {
     staticClass: "row"
@@ -218,6 +255,12 @@ var render = function render() {
     attrs: {
       "data-bs-toggle": "tab",
       "data-bs-target": "#profile-teacher"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.makeTrue.apply(null, arguments);
+      }
     }
   }, [_vm._v("\n                                        Teachers\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
@@ -234,6 +277,12 @@ var render = function render() {
     attrs: {
       "data-bs-toggle": "tab",
       "data-bs-target": "#profile-classes"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.makeFalse.apply(null, arguments);
+      }
     }
   }, [_vm._v("\n                                        Classes\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
@@ -473,12 +522,6 @@ var render = function render() {
         "data-bs-target": "#" + "profile-teacher-flush-collapseOne" + index,
         "aria-expanded": "false",
         "aria-controls": "profile-teacher-flush-collapseOne" + index
-      },
-      on: {
-        click: function click($event) {
-          $event.stopPropagation();
-          return _vm.makeFalse.apply(null, arguments);
-        }
       }
     }, [_c("h1", {
       staticClass: "fs-5"
@@ -531,7 +574,7 @@ var render = function render() {
       staticClass: "row"
     }, [_c("div", {
       staticClass: "col-lg-3 col-md-4 label cstm-font"
-    }, [_c("h1", [_vm._v("\n                                                                        Classes\n                                                                    ")])])]), _vm._v(" "), _c("div", {
+    }, [_c("h1", [_vm._v("\n                                                                        Classes\n                                                                    ")])])]), _vm._v(" "), _vm.showCalendar ? _c("div", {
       staticClass: "row"
     }, [_c("div", [_c("slot-calendar", {
       attrs: {
@@ -539,98 +582,8 @@ var render = function render() {
         current_student_id: _vm.$route.params.id,
         calType: _vm.student_teacher_all
       }
-    })], 1)])])])])]);
+    })], 1)]) : _vm._e()])])])]);
   }), 0)])]), _vm._v(" "), _c("div", {
-    staticClass: "tab-pane fade pt-3",
-    attrs: {
-      id: "profile-discussion"
-    }
-  }, [_c("div", {
-    staticClass: "messaging"
-  }, [_c("div", {
-    staticClass: "inbox_msg"
-  }, [_c("div", {
-    staticClass: "mesgs col-12"
-  }, [_c("div", {
-    staticClass: "msg_history"
-  }, [_c("div", {
-    staticClass: "incoming_msg"
-  }, [_c("div", {
-    staticClass: "incoming_msg_img"
-  }, [_c("img", {
-    attrs: {
-      src: "https://ptetutorials.com/images/user-profile.png",
-      alt: "sunil"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "received_msg"
-  }, [_c("div", {
-    staticClass: "received_withd_msg"
-  }, [_c("p", [_vm._v("\n                                                                    Test\n                                                                    which is\n                                                                    a new\n                                                                    approach\n                                                                    to have\n                                                                    all\n                                                                    solutions\n                                                                ")]), _vm._v(" "), _c("span", {
-    staticClass: "time_date"
-  }, [_vm._v("\n                                                                    11:01 AM\n                                                                    | June\n                                                                    9")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "outgoing_msg"
-  }, [_c("div", {
-    staticClass: "sent_msg"
-  }, [_c("p", [_vm._v("\n                                                                Test which\n                                                                is a new\n                                                                approach to\n                                                                have all\n                                                                solutions\n                                                            ")]), _vm._v(" "), _c("span", {
-    staticClass: "time_date"
-  }, [_vm._v("\n                                                                11:01 AM |\n                                                                June 9")])])]), _vm._v(" "), _c("div", {
-    staticClass: "incoming_msg"
-  }, [_c("div", {
-    staticClass: "incoming_msg_img"
-  }, [_c("img", {
-    attrs: {
-      src: "https://ptetutorials.com/images/user-profile.png",
-      alt: "sunil"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "received_msg"
-  }, [_c("div", {
-    staticClass: "received_withd_msg"
-  }, [_c("p", [_vm._v("\n                                                                    Test,\n                                                                    which is\n                                                                    a new\n                                                                    approach\n                                                                    to have\n                                                                ")]), _vm._v(" "), _c("span", {
-    staticClass: "time_date"
-  }, [_vm._v("\n                                                                    11:01 AM\n                                                                    |\n                                                                    Yesterday")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "outgoing_msg"
-  }, [_c("div", {
-    staticClass: "sent_msg"
-  }, [_c("p", [_vm._v("\n                                                                Apollo\n                                                                University,\n                                                                Delhi, India\n                                                                Test\n                                                            ")]), _vm._v(" "), _c("span", {
-    staticClass: "time_date"
-  }, [_vm._v("\n                                                                11:01 AM |\n                                                                Today")])])]), _vm._v(" "), _c("div", {
-    staticClass: "incoming_msg"
-  }, [_c("div", {
-    staticClass: "incoming_msg_img"
-  }, [_c("img", {
-    attrs: {
-      src: "https://ptetutorials.com/images/user-profile.png",
-      alt: "sunil"
-    }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "received_msg"
-  }, [_c("div", {
-    staticClass: "received_withd_msg"
-  }, [_c("p", [_vm._v("\n                                                                    We work\n                                                                    directly\n                                                                    with our\n                                                                    designers\n                                                                    and\n                                                                    suppliers,\n                                                                    and sell\n                                                                    direct\n                                                                    to you,\n                                                                    which\n                                                                    means\n                                                                    quality,\n                                                                    exclusive\n                                                                    products,\n                                                                    at a\n                                                                    price\n                                                                    anyone\n                                                                    can\n                                                                    afford.\n                                                                ")]), _vm._v(" "), _c("span", {
-    staticClass: "time_date"
-  }, [_vm._v("\n                                                                    11:01 AM\n                                                                    |\n                                                                    Today")])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "type_msg"
-  }, [_c("div", {
-    staticClass: "input_msg_write"
-  }, [_c("input", {
-    staticClass: "write_msg",
-    attrs: {
-      type: "text",
-      placeholder: "Type a message"
-    }
-  }), _vm._v(" "), _c("button", {
-    staticClass: "msg_send_btn",
-    attrs: {
-      type: "button"
-    }
-  }, [_c("i", {
-    staticClass: "fa fa-paper-plane",
-    attrs: {
-      "aria-hidden": "true"
-    }
-  })])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {
       id: "profile-classes"
@@ -700,24 +653,42 @@ var render = function render() {
     attrs: {
       type: "submit"
     }
-  }, [_vm._v("\n                                                Change Password\n                                            ")])])])])])])])])], 1)])])]);
+  }, [_vm._v("\n                                                Change Password\n                                            ")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "tab-pane fade pt-3 profile-discussion-card",
+    attrs: {
+      id: "profile-discussion"
+    }
+  }, _vm._l(_vm.profile_overview.sorted_class, function (class_info, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "card",
+      staticStyle: {
+        width: "18rem"
+      }
+    }, [_c("div", {
+      staticClass: "card-body"
+    }, [_c("h5", {
+      staticClass: "card-title"
+    }, [_vm._v("\n                                               " + _vm._s(class_info.topic) + "\n                                            ")]), _vm._v(" "), _c("a", {
+      staticClass: "btn btn-success",
+      attrs: {
+        href: "#",
+        "data-bs-toggle": "modal",
+        "data-bs-target": "#groupDiscussionMessage"
+      },
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.setClassId(class_info.id);
+        }
+      }
+    }, [_vm._v("Open Discussion")])])]);
+  }), 0)])])])])], 1)])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "modal fade modal-tall",
-    attrs: {
-      id: "sendMessageToTeacher",
-      tabindex: "-1",
-      "aria-labelledby": "sendMessageToTeacherLabel",
-      "aria-hidden": "true"
-    }
-  }, [_c("div", {
-    staticClass: "modal-dialog modal-dialog-scrollable"
-  }, [_c("div", {
-    staticClass: "modal-content"
-  }, [_c("div", {
     staticClass: "modal-header"
   }, [_c("h1", {
     staticClass: "modal-title fs-5",
@@ -731,26 +702,25 @@ var staticRenderFns = [function () {
       "data-bs-dismiss": "modal",
       "aria-label": "Close"
     }
-  })]), _vm._v(" "), _c("div", {
-    staticClass: "modal-body"
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
-    staticClass: "card-header d-flex justify-content-between"
-  }, [_c("span", [_vm._v("Study Resources")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "modal-footer"
-  }, [_c("div", {
-    staticClass: "input-group"
-  }, [_c("textarea", {
-    staticClass: "form-control",
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "modal-header"
+  }, [_c("h1", {
+    staticClass: "modal-title fs-5",
     attrs: {
-      "aria-label": "With textarea"
+      id: "groupDiscussionMessageLabel"
     }
-  }), _vm._v(" "), _c("div", {
-    staticClass: "input-group-prepend"
-  }, [_c("span", {
-    staticClass: "input-group-text msg-send"
-  }, [_vm._v("SEND")])])])])])])]);
+  }, [_vm._v("\n                        SEND MESSAGE\n                    ")]), _vm._v(" "), _c("button", {
+    staticClass: "btn-close",
+    attrs: {
+      type: "button",
+      "data-bs-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  })]);
 }];
 render._withStripped = true;
 
