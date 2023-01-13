@@ -273,7 +273,7 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
   }, [_vm._v("\n                                            Classes\n                                        ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-12 col-md-12"
+    staticClass: "col-lg-9 col-md-8"
   }, _vm._l(_vm.profile_overview.sorted_class, function (class_info, index) {
     return _c("div", {
       key: index,

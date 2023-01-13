@@ -164,7 +164,7 @@
                                             >
                                                 Classes
                                             </div>
-                                            <div class="col-lg-12 col-md-12">
+                                            <div class="col-lg-9 col-md-8">
                                                 <div
                                                     class="accordion accordion-flush"
                                                     v-bind:id="
