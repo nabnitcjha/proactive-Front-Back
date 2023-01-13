@@ -120,9 +120,9 @@
                             >
                             
                                 <div class="v-event-draggable">
-                                    <component
+                                    <!-- <component
                                         :is="{ render: eventSummary }"
-                                    ></component>
+                                    ></component> -->
                                 </div>
                                 <div
                                     v-if="timed"
