@@ -124,6 +124,7 @@
                                             class="nav-link"
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-teacher"
+                                            @click.stop="makeTrue"
                                         >
                                             Teachers
                                         </button>
@@ -144,6 +145,7 @@
                                             class="nav-link"
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-classes"
+                                            @click.stop="makeFalse"
                                         >
                                             Classes
                                         </button>
@@ -768,6 +770,7 @@
                                                                 </div>
                                                                 <div
                                                                     class="row"
+                                                                    v-if="showCalendar"
                                                                 >
                                                                     <div>
                                                                         <slot-calendar
@@ -954,10 +957,11 @@ export default {
                     return "Sat";
             }
         },
-        setInfoForCalendar(thr_info) {
-            this.current_teacher_id = thr_info.id;
-            this.current_student_id = this.$route.params.id;
-            this.showCalendar = !this.showCalendar;
+        makeTrue() {
+            this.showCalendar = true;
+        },
+        makeFalse() {
+            this.showCalendar = false;
         },
         async profileOverview() {
             let id = this.$route.params.id;

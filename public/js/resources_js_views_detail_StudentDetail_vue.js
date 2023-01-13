@@ -53,10 +53,11 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           return "Sat";
       }
     },
-    setInfoForCalendar: function setInfoForCalendar(thr_info) {
-      this.current_teacher_id = thr_info.id;
-      this.current_student_id = this.$route.params.id;
-      this.showCalendar = !this.showCalendar;
+    makeTrue: function makeTrue() {
+      this.showCalendar = true;
+    },
+    makeFalse: function makeFalse() {
+      this.showCalendar = false;
     },
     profileOverview: function profileOverview() {
       var _this = this;
@@ -254,6 +255,12 @@ var render = function render() {
     attrs: {
       "data-bs-toggle": "tab",
       "data-bs-target": "#profile-teacher"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.makeTrue.apply(null, arguments);
+      }
     }
   }, [_vm._v("\n                                        Teachers\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
@@ -270,6 +277,12 @@ var render = function render() {
     attrs: {
       "data-bs-toggle": "tab",
       "data-bs-target": "#profile-classes"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.makeFalse.apply(null, arguments);
+      }
     }
   }, [_vm._v("\n                                        Classes\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
@@ -561,7 +574,7 @@ var render = function render() {
       staticClass: "row"
     }, [_c("div", {
       staticClass: "col-lg-3 col-md-4 label cstm-font"
-    }, [_c("h1", [_vm._v("\n                                                                        Classes\n                                                                    ")])])]), _vm._v(" "), _c("div", {
+    }, [_c("h1", [_vm._v("\n                                                                        Classes\n                                                                    ")])])]), _vm._v(" "), _vm.showCalendar ? _c("div", {
       staticClass: "row"
     }, [_c("div", [_c("slot-calendar", {
       attrs: {
@@ -569,7 +582,7 @@ var render = function render() {
         current_student_id: _vm.$route.params.id,
         calType: _vm.student_teacher_all
       }
-    })], 1)])])])])]);
+    })], 1)]) : _vm._e()])])])]);
   }), 0)])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {
