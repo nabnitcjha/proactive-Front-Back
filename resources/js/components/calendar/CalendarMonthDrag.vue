@@ -73,6 +73,7 @@
                     <label for="file" class="input input-file">
                       <div class="button">
                         <input
+                          id="study_resource"
                           type="file"
                           class="form-control form-control-sm"
                           name="file"
@@ -285,13 +286,22 @@ export default {
     calType:String
   },
   methods: {
+    async saveFile(formData){
+      let urlText = "timetable/" + this.currentSlotId + "/resourceFile";
+      let postResponse = await this.post(urlText, formData);
+    },
     async saveResourceFile() {
       let formData = new FormData();
       formData.append("teacher_id", this.currentTeacherId);
       formData.append("assessment_file", this.assessment_file);
+      formData.append("type", 'study_resource');
+      
+      let svf = await this.saveFile(formData);
+      
+      this.assessment_file = "";
+      this.resourceFileName = "";
+      document.getElementById('study_resource').value= null;
 
-      let urlText = "timetable/" + this.currentSlotId + "/resourceFile";
-      let patchResponse = await this.post(urlText, formData);
     },
     handleResourceFile(e) {
       e.preventDefault();
