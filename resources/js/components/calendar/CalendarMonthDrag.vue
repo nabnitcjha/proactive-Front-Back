@@ -193,14 +193,15 @@
                                         <td>Mark</td>
                                         <td>Otto</td>
                                         <td>
-                                            <label for="file" class="hand">
+                                            <label for="assignment_answer_file" class="hand">
                                               <i class="bi bi-upload"></i>
                                                 <input
                                                     type="file"
-                                                    id="file"
+                                                    id="assignment_answer_file"
                                                     style="display: none"
                                                     name="image"
                                                     data-original-title="upload photos"
+                                                    @change="handleAssignmentAnswerFile"
                                                 />
                                             </label>
                                         </td>
@@ -309,6 +310,7 @@ export default {
         currentTeacherId: "",
         resourceFileName: "",
         assignmentFileName: "",
+        assignmentAnswerFileName:""
     }),
     props: {
         current_teacher_id: String,
@@ -348,6 +350,14 @@ export default {
 
             this.assignmentFileName = this.assessment_file.name;
         },
+        handleAssignmentAnswerFile(e) {
+            e.preventDefault();
+            this.assessment_file = document.querySelector(
+                "input[id=assignment_answer_file]"
+            ).files[0];
+
+            this.saveAssignmentAnswerFile();
+        },
         async saveAssignmentFile() {
             let formData = new FormData();
             formData.append("teacher_id", this.currentTeacherId);
@@ -359,6 +369,17 @@ export default {
             this.assessment_file = "";
             this.assignmentFileName = "";
             document.getElementById("assignment_file").value = null;
+        },
+        async saveAssignmentAnswerFile() {
+            let formData = new FormData();
+            formData.append("teacher_id", this.currentTeacherId);
+            formData.append("assessment_file", this.assessment_file);
+            formData.append("type", "assignment_answer");
+
+            let svf = await this.saveFile(formData);
+
+            this.assessment_file = "";
+            document.getElementById("assignment_answer_file").value = null;
         },
         copyzoom_link() {
             /* Get the text field */
