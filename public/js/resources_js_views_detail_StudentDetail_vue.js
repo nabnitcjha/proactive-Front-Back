@@ -500,37 +500,37 @@ var render = function render() {
     }
   }, [_c("form", [_c("div", {
     staticClass: "row mb-3"
-  }, _vm._l(_vm.profile_overview.teacher_info, function (thr_info, index) {
+  }, _vm._l(_vm.profile_overview.teacher_info, function (thr_info, tchr_info_index) {
     return _c("div", {
-      key: index,
+      key: tchr_info_index,
       staticClass: "accordion accordion-flush",
       attrs: {
-        id: "profile-teacher-accordion" + index
+        id: "profile-teacher-accordion" + thr_info.id
       }
     }, [_c("div", {
       staticClass: "accordion-item"
     }, [_c("h2", {
       staticClass: "accordion-header",
       attrs: {
-        id: "profile-teacher-flush" + index
+        id: "profile-teacher-flush" + thr_info.id
       }
     }, [_c("button", {
       staticClass: "accordion-button collapsed",
       attrs: {
         type: "button",
         "data-bs-toggle": "collapse",
-        "data-bs-target": "#" + "profile-teacher-flush-collapseOne" + index,
+        "data-bs-target": "#" + "profile-teacher-flush-collapseOne" + thr_info.id,
         "aria-expanded": "false",
-        "aria-controls": "profile-teacher-flush-collapseOne" + index
+        "aria-controls": "profile-teacher-flush-collapseOne" + thr_info.id
       }
     }, [_c("h1", {
       staticClass: "fs-5"
     }, [_vm._v("\n                                                                " + _vm._s(thr_info.full_name) + "\n                                                            ")])])]), _vm._v(" "), _c("div", {
-      staticClass: "accordion-collapse collapse",
+      "class": ["accordion-collapse collapse", tchr_info_index == 0 ? "show" : ""],
       attrs: {
-        id: "profile-teacher-flush-collapseOne" + index,
+        id: "profile-teacher-flush-collapseOne" + thr_info.id,
         "aria-labelledby": "profile-teacher-flush",
-        "data-bs-parent": "#" + "profile-teacher-accordion" + index
+        "data-bs-parent": "#" + "profile-teacher-accordion" + thr_info.id
       }
     }, [_c("div", {
       staticClass: "accordion-body"
@@ -540,9 +540,9 @@ var render = function render() {
       staticClass: "col-lg-3 col-md-4 label"
     }, [_vm._v("\n                                                                    Subjects\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
-    }, _vm._l(thr_info.subject, function (sub_info, index) {
+    }, _vm._l(thr_info.subject, function (sub_info, sub_info_index) {
       return _c("span", {
-        key: index,
+        key: sub_info_index,
         staticClass: "badge rounded-pill bg-warning text-dark"
       }, [_vm._v(_vm._s(sub_info.name))]);
     }), 0)]), _vm._v(" "), _c("div", {

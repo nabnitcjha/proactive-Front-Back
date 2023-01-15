@@ -618,19 +618,19 @@
                                                     class="accordion accordion-flush"
                                                     v-bind:id="
                                                         'profile-teacher-accordion' +
-                                                        index
+                                                        thr_info.id
                                                     "
                                                     v-for="(
-                                                        thr_info, index
+                                                        thr_info, tchr_info_index
                                                     ) in profile_overview.teacher_info"
-                                                    :key="index"
+                                                    :key="tchr_info_index"
                                                 >
                                                     <div class="accordion-item">
                                                         <h2
                                                             class="accordion-header"
                                                             v-bind:id="
                                                                 'profile-teacher-flush' +
-                                                                index
+                                                                thr_info.id
                                                             "
                                                         >
                                                             <button
@@ -640,12 +640,12 @@
                                                                 v-bind:data-bs-target="
                                                                     '#' +
                                                                     'profile-teacher-flush-collapseOne' +
-                                                                    index
+                                                                    thr_info.id
                                                                 "
                                                                 aria-expanded="false"
                                                                 v-bind:aria-controls="
                                                                     'profile-teacher-flush-collapseOne' +
-                                                                    index
+                                                                    thr_info.id
                                                                 "
                                                             >
                                                                 <h1
@@ -660,14 +660,14 @@
                                                         <div
                                                             v-bind:id="
                                                                 'profile-teacher-flush-collapseOne' +
-                                                                index
+                                                                thr_info.id
                                                             "
-                                                            class="accordion-collapse collapse"
+                                                            v-bind:class="['accordion-collapse collapse', tchr_info_index == 0 ? 'show' : '']"
                                                             aria-labelledby="profile-teacher-flush"
                                                             v-bind:data-bs-parent="
                                                                 '#' +
                                                                 'profile-teacher-accordion' +
-                                                                index
+                                                                thr_info.id
                                                             "
                                                         >
                                                             <div
@@ -688,10 +688,10 @@
                                                                             class="badge rounded-pill bg-warning text-dark"
                                                                             v-for="(
                                                                                 sub_info,
-                                                                                index
+                                                                                sub_info_index
                                                                             ) in thr_info.subject"
                                                                             :key="
-                                                                                index
+                                                                                sub_info_index
                                                                             "
                                                                             >{{
                                                                                 sub_info.name

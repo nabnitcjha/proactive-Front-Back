@@ -497,8 +497,8 @@ export default {
       
       
       // this.slots =await this.slot_info;
-      
-      this.slots.map((data) => {
+      if (this.calType=='student_all' || this.calType=='teacher_all') {
+        this.slots.map((data) => {
         events.push({
           id: data.id,
           name: data.topic,
@@ -508,10 +508,27 @@ export default {
           time: data.duration,
           description: data.description,
           zoom_link: data.zoom_link,
-          // teacher_id: this.current_teacher_id,
+          teacher_id: data.teacher.id,
           student_id:this.current_student_id
         });
       });
+      }else{
+        this.slots.map((data) => {
+        events.push({
+          id: data.id,
+          name: data.topic,
+          color: this.colors[this.rnd(0, this.colors.length - 1)],
+          start: new Date(data.start_date),
+          end: new Date(data.end_date),
+          time: data.duration,
+          description: data.description,
+          zoom_link: data.zoom_link,
+          teacher_id: this.current_teacher_id,
+          student_id:this.current_student_id
+        });
+      });
+      }
+      
 
       this.events = events;
     },

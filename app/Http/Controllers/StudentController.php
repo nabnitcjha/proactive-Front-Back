@@ -106,7 +106,7 @@ class StudentController extends BaseController
     public function allClasses($id){
         $student = Student::where('id',$id)->first();
 
-        return ClassScheduleResource::collection($student->classSchedule);
+        return ClassScheduleAdvanceResource::collection($student->classSchedule);
     }
 
     public function sortedClass($id)
