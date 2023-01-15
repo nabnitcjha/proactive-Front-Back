@@ -167,18 +167,9 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
                                         <td>Jacob</td>
                                         <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
+                                        <td>ABC</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -201,16 +192,18 @@
                                     <tr>
                                         <td>Mark</td>
                                         <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">Larry the Bird</td>
-                                        <td>@twitter</td>
+                                        <td>
+                                            <label for="file" class="hand">
+                                              <i class="bi bi-upload"></i>
+                                                <input
+                                                    type="file"
+                                                    id="file"
+                                                    style="display: none"
+                                                    name="image"
+                                                    data-original-title="upload photos"
+                                                />
+                                            </label>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
