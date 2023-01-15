@@ -16,6 +16,7 @@ class Assignment extends Migration
         Schema::create('assignments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('assignment')->default(0);
+            $table->string('type')->nullable();
             $table->timestamps();
         });
     }
