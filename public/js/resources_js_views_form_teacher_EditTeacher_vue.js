@@ -20,6 +20,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      teachers: [],
       icons: {
         First_name: _Assets_formIcons_index__WEBPACK_IMPORTED_MODULE_0__.First_name,
         Last_name: _Assets_formIcons_index__WEBPACK_IMPORTED_MODULE_0__.Last_name,
@@ -88,6 +89,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return _context.stop();
           }
         }, _callee);
+      }))();
+    },
+    getTeachers: function getTeachers() {
+      var _this2 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var urlText, getResponse;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              urlText = "getTeachers";
+              _context2.next = 3;
+              return _this2.get(urlText, 0, true);
+            case 3:
+              getResponse = _context2.sent;
+              _this2.teachers = getResponse.data.data;
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2);
       }))();
     }
   }
@@ -163,7 +184,60 @@ var render = function render() {
     staticClass: "bi bi-plus"
   }), _vm._v(" ADD TEACHER\n                    ")])]), _vm._v(" "), _c("hr", {
     staticClass: "hr-color"
-  }), _vm._v(" "), _vm._m(0)])]) : _c("div", {
+  }), _vm._v(" "), _c("table", {
+    staticClass: "table table-hover"
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.teachers, function (tech, index) {
+    return _c("tr", {
+      key: index
+    }, [_c("th", {
+      attrs: {
+        scope: "row"
+      }
+    }, [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", {
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.$root.changeRoute("/teacher/" + tech.id + "/detail");
+        }
+      }
+    }, [_vm._v(_vm._s(tech.full_name))]), _vm._v(" "), _c("td", {
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.$root.changeRoute("/teacher/" + tech.id + "/detail");
+        }
+      }
+    }, [_vm._v(_vm._s(tech.email))]), _vm._v(" "), _c("td", {
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.$root.changeRoute("/teacher/" + tech.id + "/detail");
+        }
+      }
+    }, [_vm._v(_vm._s(tech.phone))]), _vm._v(" "), _c("td", {
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.$root.changeRoute("/teacher/" + tech.id + "/detail");
+        }
+      }
+    }, [_c("b-list-group", _vm._l(tech.subject, function (sb) {
+      return _c("b-list-group-item", {
+        key: sb.id
+      }, [_vm._v(_vm._s(sb.name))]);
+    }), 1)], 1), _vm._v(" "), _c("td", {
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.$root.changeRoute("/teacher/" + tech.id + "/detail");
+        }
+      }
+    }, [_c("b-list-group", _vm._l(tech.students, function (stu) {
+      return _c("b-list-group-item", {
+        key: stu.id
+      }, [_vm._v(_vm._s(stu.full_name))]);
+    }), 1)], 1)]);
+  }), 0)])])]) : _c("div", {
     staticClass: "card"
   }, [_c("div", {
     staticClass: "card-body"
@@ -414,9 +488,7 @@ var render = function render() {
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("table", {
-    staticClass: "table table-hover"
-  }, [_c("thead", [_c("tr", [_c("th", {
+  return _c("thead", [_c("tr", [_c("th", {
     attrs: {
       scope: "col"
     }
@@ -424,23 +496,23 @@ var staticRenderFns = [function () {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("First")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Name")]), _vm._v(" "), _c("th", {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("Last")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Email")]), _vm._v(" "), _c("th", {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("Handle")])])]), _vm._v(" "), _c("tbody", [_c("tr", [_c("th", {
+  }, [_vm._v("Phone")]), _vm._v(" "), _c("th", {
     attrs: {
-      scope: "row"
+      scope: "col"
     }
-  }, [_vm._v("1")]), _vm._v(" "), _c("td", [_vm._v("Mark")]), _vm._v(" "), _c("td", [_vm._v("Otto")]), _vm._v(" "), _c("td", [_vm._v("@mdo")])]), _vm._v(" "), _c("tr", [_c("th", {
+  }, [_vm._v("Subject")]), _vm._v(" "), _c("th", {
     attrs: {
-      scope: "row"
+      scope: "col"
     }
-  }, [_vm._v("2")]), _vm._v(" "), _c("td", [_vm._v("Jacob")]), _vm._v(" "), _c("td", [_vm._v("Thornton")]), _vm._v(" "), _c("td", [_vm._v("@fat")])])])]);
+  }, [_vm._v("Student")])])]);
 }];
 render._withStripped = true;
 

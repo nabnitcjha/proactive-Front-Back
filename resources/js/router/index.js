@@ -74,7 +74,7 @@ const routes = [
     component: () => import('../views/form/teacher/EditTeacher.vue')
   },
   {
-    path: '/teacher-detail',
+    path: '/teacher/:id/detail',
     name: 'teacherDetail',
     component: () => import('../views/detail/TeacherDetail.vue')
   },

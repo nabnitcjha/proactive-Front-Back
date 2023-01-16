@@ -18,23 +18,30 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Subject</th>
+                                <th scope="col">Student</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
+                            <tr v-for="(tech,index) in teachers" :key="index">
+                                <th scope="row">{{ index + 1 }}</th>
+                                <td @click.stop="$root.changeRoute('/teacher/'+tech.id+'/detail')">{{ tech.full_name }}</td>
+                                <td @click.stop="$root.changeRoute('/teacher/'+tech.id+'/detail')">{{ tech.email }}</td>
+                                <td @click.stop="$root.changeRoute('/teacher/'+tech.id+'/detail')">{{ tech.phone }}</td>
+                                <td @click.stop="$root.changeRoute('/teacher/'+tech.id+'/detail')">
+                                    <b-list-group>
+                                        <b-list-group-item  v-for="sb in tech.subject" :key="sb.id">{{ sb.name }}</b-list-group-item>
+                                    </b-list-group>
+                                </td>
+                                <td @click.stop="$root.changeRoute('/teacher/'+tech.id+'/detail')">
+                                    <b-list-group>
+                                        <b-list-group-item  v-for="stu in tech.students" :key="stu.id">{{ stu.full_name }}</b-list-group-item>
+                                    </b-list-group>
+                                </td>
+                
                             </tr>
                         </tbody>
                     </table>
@@ -210,6 +217,7 @@ import {
 export default {
     data() {
         return {
+            teachers:[],
             icons: {
                 First_name: First_name,
                 Last_name: Last_name,
@@ -268,6 +276,11 @@ export default {
                 Country: "",
             };
             this.$router.push({ name: 'teacher' })
+        },
+        async getTeachers() {
+            let urlText = "getTeachers";
+            let getResponse = await this.get(urlText, 0, true);
+            this.teachers = getResponse.data.data;
         },
     },
 };

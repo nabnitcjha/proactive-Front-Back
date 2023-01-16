@@ -6,6 +6,7 @@ use App\Http\Resources\ClassScheduleAdvanceResource;
 use App\Http\Resources\ClassScheduleResource;
 use App\Http\Resources\student\profileOverview;
 use App\Http\Resources\StudentAdvanceResource;
+use App\Http\Resources\StudentListResource;
 use App\Http\Resources\StudentResource;
 use App\Http\Resources\TeacherAdvanceResource;
 use App\Models\ClassSchedule;
@@ -33,7 +34,7 @@ class StudentController extends BaseController
     {
         $students = parent::index($allowPagination);
 
-        return $this->studentAdvanceResource->collection($students);
+        return StudentListResource::collection($students);
     }
 
     public function saveData(Request $request)

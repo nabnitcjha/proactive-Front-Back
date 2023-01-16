@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\TeacherAdvanceResource;
+use App\Http\Resources\TeacherListResource;
 use App\Http\Resources\TeacherResource;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -20,9 +21,9 @@ class TeacherController extends BaseController
 
     public function getData($allowPagination)
     {
-        $subjects = parent::index($allowPagination);
+        $teachers = parent::index($allowPagination);
 
-        return $this->teacherAdvanceResource->collection($subjects);
+        return TeacherListResource::collection($teachers);
     }
 
     public function saveData(Request $request)

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TeacherAdvanceResource extends JsonResource
+class StudentListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,9 +19,9 @@ class TeacherAdvanceResource extends JsonResource
             "full_name" => $this->full_name,
             "phone" => $this->phone,
             "email" => $this->user->email,
-            'student' => StudentResource::collection($this->student),
+            'teacher' => TeacherResource::collection($this->teacher),
             'subject' => SubjectResource::collection($this->subject),
-            'class_according_teacher' => ClassScheduleResource::collection($this->classSchedule),
+            'guardian' => GuardianResource::collection($this->guardian),
         ];
     }
 }
