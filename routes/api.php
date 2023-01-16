@@ -49,6 +49,7 @@ Route::group([
 
 ], function ($router) {
     Route::get('getTeachers/{allowPagination}', 'TeacherController@getData');
+    Route::get('teacher/{id}/sortedClass', 'TeacherController@sortedClass');
     Route::post('addTeacher', 'TeacherController@saveData');
     Route::get('getTeachers/{allowPagination}', 'TeacherController@getData');
 });

@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ClassScheduleAdvanceResource;
+use App\Http\Resources\ClassScheduleForTeacherDetail;
 use App\Http\Resources\TeacherAdvanceResource;
 use App\Http\Resources\TeacherListResource;
 use App\Http\Resources\TeacherResource;
+use App\Models\ClassSchedule;
+use App\Models\Student;
+use App\Models\StudentTeacher;
+use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeacherController extends BaseController
 {
@@ -42,6 +49,27 @@ class TeacherController extends BaseController
         $teacher = parent::store($teacher_info);
 
         $this->successResponse($teacher, 'save successfully');
+    }
+
+    public function sortedClass($id)
+    {
+        $sub = ClassSchedule::with('subject')->orderBy('id', 'DESC');
+        $sorted_class = DB::table(DB::raw("({$sub->toSql()}) as sub"))
+            ->where('teacher_id',$id)
+            ->groupBy('class_unique_id')
+            ->get();
+
+            $studentIds = StudentTeacher::where('teacher_id',$id)->pluck('student_id');
+            $students = Student::whereIn('id',$studentIds)->get();
+
+            foreach ($sorted_class as $key => $value) {
+                $subject = Subject::where('id',$value->subject_id)->first();
+                $value->student=$students;
+                $value->subject=$subject;
+            }
+
+
+        return  ClassScheduleForTeacherDetail::collection($sorted_class);
     }
 
     public function show($id)
