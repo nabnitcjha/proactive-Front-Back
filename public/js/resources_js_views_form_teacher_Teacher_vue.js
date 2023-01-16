@@ -171,7 +171,7 @@ var render = function render() {
     staticClass: "add-item"
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("teacher Info")]), _vm._v(" "), _c("button", {
+  }, [_vm._v("teacher Info")]), _vm._v(" "), _vm.$route.name == "addTeacher" ? _c("button", {
     staticClass: "btn btn-back",
     attrs: {
       type: "button"
@@ -182,7 +182,7 @@ var render = function render() {
         return _vm.$router.go(-1);
       }
     }
-  }, [_vm._v("\n                        BACK\n                    ")])]), _vm._v(" "), _c("hr", {
+  }, [_vm._v("\n                        BACK\n                    ")]) : _vm._e()]), _vm._v(" "), _c("hr", {
     staticClass: "hr-color"
   }), _vm._v(" "), _c("form", {
     staticClass: "row g-3 needs-validation",

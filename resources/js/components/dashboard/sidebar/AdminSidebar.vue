@@ -50,12 +50,12 @@
   </a>
   <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
     <li>
-      <a>
+      <a @click.stop="$root.changeRoute('/register-student')" class="hand">
         <i class="bi bi-circle"></i><span>Register Student</span>
       </a>
     </li>
     <li>
-      <a>
+      <a @click.stop="$root.changeRoute('/register-teacher')" class="hand">
         <i class="bi bi-circle"></i><span>Register Teacher</span>
       </a>
     </li>

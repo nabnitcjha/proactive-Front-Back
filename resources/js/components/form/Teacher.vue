@@ -49,6 +49,7 @@
                             type="button"
                             class="btn btn-back"
                             @click.stop="$router.go(-1)"
+                            v-if="$route.name=='addTeacher'"
                         >
                             BACK
                         </button>
