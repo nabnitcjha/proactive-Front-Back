@@ -32,7 +32,7 @@
                     <button
                         type="button"
                         data-bs-toggle="modal"
-                        data-bs-target="#monthDragModal"
+                        v-bind:data-bs-target="'#'+'monthDragModal'+current_teacher_id"
                         @click="getSlotInfo(event)"
                     >
                         {{ event.name }}{{ " "
@@ -44,7 +44,7 @@
         <!-- modal start -->
         <div
             class="modal fade modal-tall"
-            id="monthDragModal"
+            v-bind:id="'monthDragModal'+current_teacher_id"
             tabindex="-1"
             aria-labelledby="monthDragModalLabel"
             aria-hidden="true"
