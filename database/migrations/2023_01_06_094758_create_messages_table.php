@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('my_id')->unsigned();
             $table->integer('friend_id')->unsigned();
             $table->text('message');
+            $table->string('message_type')->default('ont-to-one');
             $table->timestamps();
 
             $table->foreign('my_id')->references('id')->on('users')->onDelete('cascade');
