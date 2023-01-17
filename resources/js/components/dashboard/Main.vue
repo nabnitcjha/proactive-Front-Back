@@ -52,7 +52,7 @@
 
 <div class="pagetitle">
 
-  <h1>Dashboard</h1>
+  <!-- <h1>Dashboard</h1> -->
 
 
   <!-- start bread crumb -->
