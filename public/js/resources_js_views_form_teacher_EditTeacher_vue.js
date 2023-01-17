@@ -111,6 +111,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     }
+  },
+  mounted: function mounted() {
+    this.getTeachers();
   }
 });
 
@@ -188,7 +191,8 @@ var render = function render() {
     staticClass: "table table-hover"
   }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.teachers, function (tech, index) {
     return _c("tr", {
-      key: index
+      key: index,
+      staticClass: "hand"
     }, [_c("th", {
       attrs: {
         scope: "row"
@@ -232,7 +236,7 @@ var render = function render() {
           return _vm.$root.changeRoute("/teacher/" + tech.id + "/detail");
         }
       }
-    }, [_c("b-list-group", _vm._l(tech.students, function (stu) {
+    }, [_c("b-list-group", _vm._l(tech.student, function (stu) {
       return _c("b-list-group-item", {
         key: stu.id
       }, [_vm._v(_vm._s(stu.full_name))]);

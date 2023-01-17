@@ -26,7 +26,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(tech,index) in teachers" :key="index">
+                            <tr v-for="(tech,index) in teachers" :key="index" class="hand">
                                 <th scope="row">{{ index + 1 }}</th>
                                 <td @click.stop="$root.changeRoute('/teacher/'+tech.id+'/detail')">{{ tech.full_name }}</td>
                                 <td @click.stop="$root.changeRoute('/teacher/'+tech.id+'/detail')">{{ tech.email }}</td>
@@ -38,7 +38,7 @@
                                 </td>
                                 <td @click.stop="$root.changeRoute('/teacher/'+tech.id+'/detail')">
                                     <b-list-group>
-                                        <b-list-group-item  v-for="stu in tech.students" :key="stu.id">{{ stu.full_name }}</b-list-group-item>
+                                        <b-list-group-item  v-for="stu in tech.student" :key="stu.id">{{ stu.full_name }}</b-list-group-item>
                                     </b-list-group>
                                 </td>
                 
@@ -283,5 +283,8 @@ export default {
             this.teachers = getResponse.data.data;
         },
     },
+    mounted(){
+        this.getTeachers();
+    }
 };
 </script>
