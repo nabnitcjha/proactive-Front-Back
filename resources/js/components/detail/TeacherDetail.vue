@@ -123,10 +123,10 @@
                                         <button
                                             class="nav-link"
                                             data-bs-toggle="tab"
-                                            data-bs-target="#profile-teacher"
+                                            data-bs-target="#profile-student"
                                             @click.stop="makeTrue"
                                         >
-                                            Teachers
+                                            Students
                                         </button>
                                     </li>
 
@@ -517,8 +517,8 @@
                                     </div>
 
                                     <div
-                                        class="tab-pane fade profile-teacher pt-3"
-                                        id="profile-teacher"
+                                        class="tab-pane fade profile-student pt-3"
+                                        id="profile-student"
                                     >
                                         <!-- Profile Edit Form -->
                                         <form>
@@ -527,20 +527,20 @@
                                                 <div
                                                     class="accordion accordion-flush"
                                                     v-bind:id="
-                                                        'profile-teacher-accordion' +
-                                                        index
+                                                        'profile-student-accordion' +
+                                                        student_info_index
                                                     "
                                                     v-for="(
-                                                        thr_info, index
-                                                    ) in profile_overview.teacher_info"
-                                                    :key="index"
+                                                        student_info, student_info_index
+                                                    ) in profile_overview.student_info"
+                                                    :key="student_info_index"
                                                 >
                                                     <div class="accordion-item">
                                                         <h2
                                                             class="accordion-header"
                                                             v-bind:id="
-                                                                'profile-teacher-flush' +
-                                                                index
+                                                                'profile-student-flush' +
+                                                                student_info_index
                                                             "
                                                         >
                                                             <button
@@ -549,35 +549,36 @@
                                                                 data-bs-toggle="collapse"
                                                                 v-bind:data-bs-target="
                                                                     '#' +
-                                                                    'profile-teacher-flush-collapseOne' +
-                                                                    index
+                                                                    'profile-student-flush-collapseOne' +
+                                                                    student_info_index
                                                                 "
                                                                 aria-expanded="false"
                                                                 v-bind:aria-controls="
-                                                                    'profile-teacher-flush-collapseOne' +
-                                                                    index
+                                                                    'profile-student-flush-collapseOne' +
+                                                                    student_info_index
                                                                 "
                                                             >
                                                                 <h1
                                                                     class="fs-5"
                                                                 >
                                                                     {{
-                                                                        thr_info.full_name
+                                                                        student_info.full_name
                                                                     }}
                                                                 </h1>
                                                             </button>
                                                         </h2>
                                                         <div
                                                             v-bind:id="
-                                                                'profile-teacher-flush-collapseOne' +
-                                                                index
+                                                                'profile-student-flush-collapseOne' +
+                                                                student_info_index
                                                             "
-                                                            class="accordion-collapse collapse"
-                                                            aria-labelledby="profile-teacher-flush"
+                                                           
+                                                            v-bind:class="['accordion-collapse collapse', student_info_index == 0 ? 'show' : '']"
+                                                            aria-labelledby="profile-student-flush"
                                                             v-bind:data-bs-parent="
                                                                 '#' +
-                                                                'profile-teacher-accordion' +
-                                                                index
+                                                                'profile-student-accordion' +
+                                                                student_info_index
                                                             "
                                                         >
                                                             <div
@@ -599,10 +600,11 @@
                                                                             v-for="(
                                                                                 sub_info,
                                                                                 index
-                                                                            ) in thr_info.subject"
+                                                                            ) in student_info.subject"
                                                                             :key="
                                                                                 index
                                                                             "
+                                                                            v-if="checkSubject(sub_info)"
                                                                             >{{
                                                                                 sub_info.name
                                                                             }}</span
@@ -645,7 +647,7 @@
                                                                         class="col-lg-9 col-md-8"
                                                                     >
                                                                         {{
-                                                                            thr_info.email
+                                                                            student_info.email
                                                                         }}
                                                                     </div>
                                                                 </div>
@@ -662,7 +664,7 @@
                                                                         class="col-lg-9 col-md-8"
                                                                     >
                                                                         {{
-                                                                            thr_info.phone
+                                                                            student_info.phone
                                                                         }}
                                                                     </div>
                                                                 </div>
@@ -684,10 +686,10 @@
                                                                 >
                                                                     <div>
                                                                         <slot-calendar
-                                                                            :current_teacher_id="
-                                                                                thr_info.id
-                                                                            "
                                                                             :current_student_id="
+                                                                                student_info.id
+                                                                            "
+                                                                            :current_teacher_id="
                                                                                 $route
                                                                                     .params
                                                                                     .id

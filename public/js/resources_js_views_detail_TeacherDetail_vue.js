@@ -274,7 +274,7 @@ var render = function render() {
     staticClass: "nav-link",
     attrs: {
       "data-bs-toggle": "tab",
-      "data-bs-target": "#profile-teacher"
+      "data-bs-target": "#profile-student"
     },
     on: {
       click: function click($event) {
@@ -282,7 +282,7 @@ var render = function render() {
         return _vm.makeTrue.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                                        Teachers\n                                    ")])]), _vm._v(" "), _c("li", {
+  }, [_vm._v("\n                                        Students\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("button", {
     staticClass: "nav-link",
@@ -472,43 +472,43 @@ var render = function render() {
   }, [_vm._v("\n                                            Phone\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
   }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.teacher_info.phone) + "\n                                        ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "tab-pane fade profile-teacher pt-3",
+    staticClass: "tab-pane fade profile-student pt-3",
     attrs: {
-      id: "profile-teacher"
+      id: "profile-student"
     }
   }, [_c("form", [_c("div", {
     staticClass: "row mb-3"
-  }, _vm._l(_vm.profile_overview.teacher_info, function (thr_info, index) {
+  }, _vm._l(_vm.profile_overview.student_info, function (student_info, student_info_index) {
     return _c("div", {
-      key: index,
+      key: student_info_index,
       staticClass: "accordion accordion-flush",
       attrs: {
-        id: "profile-teacher-accordion" + index
+        id: "profile-student-accordion" + student_info_index
       }
     }, [_c("div", {
       staticClass: "accordion-item"
     }, [_c("h2", {
       staticClass: "accordion-header",
       attrs: {
-        id: "profile-teacher-flush" + index
+        id: "profile-student-flush" + student_info_index
       }
     }, [_c("button", {
       staticClass: "accordion-button collapsed",
       attrs: {
         type: "button",
         "data-bs-toggle": "collapse",
-        "data-bs-target": "#" + "profile-teacher-flush-collapseOne" + index,
+        "data-bs-target": "#" + "profile-student-flush-collapseOne" + student_info_index,
         "aria-expanded": "false",
-        "aria-controls": "profile-teacher-flush-collapseOne" + index
+        "aria-controls": "profile-student-flush-collapseOne" + student_info_index
       }
     }, [_c("h1", {
       staticClass: "fs-5"
-    }, [_vm._v("\n                                                                " + _vm._s(thr_info.full_name) + "\n                                                            ")])])]), _vm._v(" "), _c("div", {
-      staticClass: "accordion-collapse collapse",
+    }, [_vm._v("\n                                                                " + _vm._s(student_info.full_name) + "\n                                                            ")])])]), _vm._v(" "), _c("div", {
+      "class": ["accordion-collapse collapse", student_info_index == 0 ? "show" : ""],
       attrs: {
-        id: "profile-teacher-flush-collapseOne" + index,
-        "aria-labelledby": "profile-teacher-flush",
-        "data-bs-parent": "#" + "profile-teacher-accordion" + index
+        id: "profile-student-flush-collapseOne" + student_info_index,
+        "aria-labelledby": "profile-student-flush",
+        "data-bs-parent": "#" + "profile-student-accordion" + student_info_index
       }
     }, [_c("div", {
       staticClass: "accordion-body"
@@ -518,11 +518,11 @@ var render = function render() {
       staticClass: "col-lg-3 col-md-4 label"
     }, [_vm._v("\n                                                                    Subjects\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
-    }, _vm._l(thr_info.subject, function (sub_info, index) {
-      return _c("span", {
+    }, _vm._l(student_info.subject, function (sub_info, index) {
+      return _vm.checkSubject(sub_info) ? _c("span", {
         key: index,
         staticClass: "badge rounded-pill bg-warning text-dark"
-      }, [_vm._v(_vm._s(sub_info.name))]);
+      }, [_vm._v(_vm._s(sub_info.name))]) : _vm._e();
     }), 0)]), _vm._v(" "), _c("div", {
       staticClass: "row"
     }, [_c("div", {
@@ -542,13 +542,13 @@ var render = function render() {
       staticClass: "col-lg-3 col-md-4 label"
     }, [_vm._v("\n                                                                    Email\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
-    }, [_vm._v("\n                                                                    " + _vm._s(thr_info.email) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                    " + _vm._s(student_info.email) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
       staticClass: "row"
     }, [_c("div", {
       staticClass: "col-lg-3 col-md-4 label"
     }, [_vm._v("\n                                                                    Phone\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
-    }, [_vm._v("\n                                                                    " + _vm._s(thr_info.phone) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                    " + _vm._s(student_info.phone) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
       staticClass: "row"
     }, [_c("div", {
       staticClass: "col-lg-3 col-md-4 label cstm-font"
@@ -556,8 +556,8 @@ var render = function render() {
       staticClass: "row"
     }, [_c("div", [_c("slot-calendar", {
       attrs: {
-        current_teacher_id: thr_info.id,
-        current_student_id: _vm.$route.params.id,
+        current_student_id: student_info.id,
+        current_teacher_id: _vm.$route.params.id,
         calType: _vm.teacher_student_all
       }
     })], 1)]) : _vm._e()])])])]);
