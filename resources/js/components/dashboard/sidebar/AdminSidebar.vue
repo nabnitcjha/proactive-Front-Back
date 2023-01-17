@@ -15,12 +15,13 @@
   </a>
 </li><!-- End Student Nav -->
 
-<li class="nav-item">
+<!-- <li class="nav-item">
   <a class="nav-link collapsed hand"  @click.stop="$root.changeRoute('/chat')">
     <i class="bi bi-person"></i>
     <span>Chat</span>
   </a>
-</li><!-- End Student Nav -->
+</li> -->
+<!-- End Student Nav -->
 
 <li class="nav-item">
   <a class="nav-link collapsed hand"  @click.stop="$root.changeRoute('/teacher')">
@@ -28,14 +29,6 @@
     <span>Teacher</span>
   </a>
 </li><!-- End Teacher Nav -->
-
-<li class="nav-item">
-  <a class="nav-link collapsed hand"  @click.stop="$root.changeRoute('/class-schedule')">
-    <i class="bi bi-person"></i>
-    <span>Class Schedule</span>
-  </a>
-</li><!-- End Class Schedule Nav -->
-
 
 <li class="nav-item">
   <a class="nav-link collapsed">
@@ -62,6 +55,11 @@
     <li>
       <a @click.stop="$root.changeRoute('/subject')" class="hand">
         <i class="bi bi-circle"></i><span>Subject</span>
+      </a>
+    </li>
+    <li>
+      <a @click.stop="$root.changeRoute('/class-schedule')" class="hand">
+        <i class="bi bi-circle"></i><span>Class Schedule</span>
       </a>
     </li>
    
