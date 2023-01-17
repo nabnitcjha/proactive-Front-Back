@@ -573,21 +573,13 @@ export default {
             } else if (this.calType == "teacher_all") {
                 //teacher-detail class tab
                 urlText = "teacher/" + this.current_teacher_id + "/class";
-            } else if (this.calType == "student_teacher_all") {
-                //student-detail teacher tab
-                urlText =
+            }  else {
+                   //teacher-detail student tab // or //student-detail teacher tab 
+                   urlText =
                     "student/" +
                     this.current_student_id +
                     "/teacher/" +
                     this.current_teacher_id +
-                    "/class";
-            } else {
-                //teacher-detail student tab
-                urlText =
-                    "teacher/" +
-                    this.current_teacher_id +
-                    "/student/" +
-                    this.current_student_id +
                     "/class";
             }
 
