@@ -61,6 +61,7 @@ class StudentController extends BaseController
             $user_info["last_name"] = $value['last_name'];
             $user_info["email"] = $value['email'];
             $user_info["role"] = $value['role'];
+            $user_info["password"] = $value['password'];
             $user = parent::store($user_info);
 
             parent::createModelObject("App\Models\Guardian");

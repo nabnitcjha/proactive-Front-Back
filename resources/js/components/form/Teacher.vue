@@ -253,6 +253,7 @@ export default {
             formData.append("user_info[first_name]", this.teacher.First_name);
             formData.append("user_info[last_name]", this.teacher.Last_name);
             formData.append("user_info[role]", "teacher");
+            formData.append("user_info[password]", "1234");
             formData.append("user_info[email]", this.teacher.Email);
 
             formData.append("teacher_info[phone]", this.teacher.Phone);

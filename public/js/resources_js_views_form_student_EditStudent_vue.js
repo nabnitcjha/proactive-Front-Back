@@ -86,13 +86,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   full_name: data.First_name + " " + data.Last_name,
                   role: "parent",
                   phone: data.Phone,
-                  email: data.Email
+                  email: data.Email,
+                  password: '1234'
                 };
               });
               formData = new FormData();
               formData.append("user_info[first_name]", _this.student.First_name);
               formData.append("user_info[last_name]", _this.student.Last_name);
               formData.append("user_info[role]", "student");
+              formData.append("user_info[password]", "1234");
               formData.append("user_info[email]", _this.student.Email);
               formData.append("student_info[phone]", _this.student.Phone);
               formData.append("student_info[dob]", _this.student.Dob);
@@ -101,9 +103,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               formData.append("parent_info", JSON.stringify(dynamic_parent_list));
               postResponse = {};
               urlText = "addStudent";
-              _context.next = 15;
+              _context.next = 16;
               return _this.post(urlText, formData);
-            case 15:
+            case 16:
               postResponse = _context.sent;
               _this.student = {};
               _this.dynamicParentList = [{
@@ -116,7 +118,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _this.$router.push({
                 name: "student"
               });
-            case 19:
+            case 20:
             case "end":
               return _context.stop();
           }

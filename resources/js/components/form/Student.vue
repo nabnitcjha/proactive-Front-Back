@@ -419,6 +419,7 @@ export default {
                     role: "parent",
                     phone: data.Phone,
                     email: data.Email,
+                    password: '1234',
                 };
             });
 
@@ -426,6 +427,7 @@ export default {
             formData.append("user_info[first_name]", this.student.First_name);
             formData.append("user_info[last_name]", this.student.Last_name);
             formData.append("user_info[role]", "student");
+            formData.append("user_info[password]", "1234");
             formData.append("user_info[email]", this.student.Email);
 
             formData.append("student_info[phone]", this.student.Phone);

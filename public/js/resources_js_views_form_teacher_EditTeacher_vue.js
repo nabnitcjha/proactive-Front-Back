@@ -62,6 +62,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               formData.append("user_info[first_name]", _this.teacher.First_name);
               formData.append("user_info[last_name]", _this.teacher.Last_name);
               formData.append("user_info[role]", "teacher");
+              formData.append("user_info[password]", "1234");
               formData.append("user_info[email]", _this.teacher.Email);
               formData.append("teacher_info[phone]", _this.teacher.Phone);
               formData.append("teacher_info[dob]", _this.teacher.Dob);
@@ -69,9 +70,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               formData.append("teacher_info[country]", _this.teacher.Country);
               postResponse = {};
               urlText = "addTeacher";
-              _context.next = 13;
+              _context.next = 14;
               return _this.post(urlText, formData);
-            case 13:
+            case 14:
               postResponse = _context.sent;
               _this.teacher = {
                 First_name: "",
@@ -84,7 +85,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _this.$router.push({
                 name: 'teacher'
               });
-            case 16:
+            case 17:
             case "end":
               return _context.stop();
           }

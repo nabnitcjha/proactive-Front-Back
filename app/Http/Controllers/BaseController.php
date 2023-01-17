@@ -38,7 +38,11 @@ class BaseController extends Controller
 
         $Model = $this->getModel();
         foreach ($params as $key => $value) {
+            if ($key==='password') {
+                $Model->$key = bcrypt($value);
+            }else{
             $Model->$key = $value;
+            }
         }
         if (!$Model->save()) {
             return $this->getError("faild to save");
