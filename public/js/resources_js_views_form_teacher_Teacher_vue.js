@@ -205,7 +205,31 @@ var render = function render() {
     staticClass: "hr-color"
   }), _vm._v(" "), _c("table", {
     staticClass: "table table-hover"
-  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.teachers, function (tech, index) {
+  }, [_c("thead", [_c("tr", [_c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("#")]), _vm._v(" "), _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("Name")]), _vm._v(" "), _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("Email")]), _vm._v(" "), _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("Phone")]), _vm._v(" "), _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("Subject")]), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("Student")]) : _vm._e()])]), _vm._v(" "), _c("tbody", _vm._l(_vm.teachers, function (tech, index) {
     return _c("tr", {
       key: index,
       staticClass: "hand"
@@ -245,7 +269,7 @@ var render = function render() {
       return _c("b-list-group-item", {
         key: sb.id
       }, [_vm._v(_vm._s(sb.name))]);
-    }), 1)], 1), _vm._v(" "), _c("td", {
+    }), 1)], 1), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("td", {
       on: {
         click: function click($event) {
           $event.stopPropagation();
@@ -256,7 +280,7 @@ var render = function render() {
       return _c("b-list-group-item", {
         key: stu.id
       }, [_vm._v(_vm._s(stu.full_name))]);
-    }), 1)], 1)]);
+    }), 1)], 1) : _vm._e()]);
   }), 0)])])]) : _c("div", {
     staticClass: "card"
   }, [_c("div", {
@@ -505,35 +529,7 @@ var render = function render() {
     }
   }, [_vm._v("\n                            Save\n                        ")])])])])])])]);
 };
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("#")]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("Name")]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("Email")]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("Phone")]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("Subject")]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("Student")])])]);
-}];
+var staticRenderFns = [];
 render._withStripped = true;
 
 

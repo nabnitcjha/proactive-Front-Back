@@ -22,7 +22,7 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Subject</th>
-                                <th scope="col">Teacher</th>
+                                <th scope="col" v-if="getLoginInfo.user.role!='teacher'">Teacher</th>
                                 <th scope="col">Parent</th>
                             </tr>
                         </thead>
@@ -37,7 +37,9 @@
                                         <b-list-group-item  v-for="sb in std.subject" :key="sb.id">{{ sb.name }}</b-list-group-item>
                                     </b-list-group>
                                 </td>
-                                <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')">
+                                <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')"
+                                v-if="getLoginInfo.user.role!='teacher'"
+                                >
                                     <b-list-group>
                                         <b-list-group-item  v-for="tec in std.teacher" :key="tec.id">{{ tec.full_name }}</b-list-group-item>
                                     </b-list-group>

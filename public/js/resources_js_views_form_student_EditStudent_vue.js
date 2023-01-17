@@ -257,7 +257,35 @@ var render = function render() {
     staticClass: "hr-color"
   }), _vm._v(" "), _c("table", {
     staticClass: "table table-hover user-list"
-  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.students, function (std, index) {
+  }, [_c("thead", [_c("tr", [_c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("#")]), _vm._v(" "), _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("Name")]), _vm._v(" "), _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("Email")]), _vm._v(" "), _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("Phone")]), _vm._v(" "), _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("Subject")]), _vm._v(" "), _vm.getLoginInfo.user.role != "teacher" ? _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("Teacher")]) : _vm._e(), _vm._v(" "), _c("th", {
+    attrs: {
+      scope: "col"
+    }
+  }, [_vm._v("Parent")])])]), _vm._v(" "), _c("tbody", _vm._l(_vm.students, function (std, index) {
     return _c("tr", {
       key: index
     }, [_c("th", {
@@ -296,7 +324,7 @@ var render = function render() {
       return _c("b-list-group-item", {
         key: sb.id
       }, [_vm._v(_vm._s(sb.name))]);
-    }), 1)], 1), _vm._v(" "), _c("td", {
+    }), 1)], 1), _vm._v(" "), _vm.getLoginInfo.user.role != "teacher" ? _c("td", {
       on: {
         click: function click($event) {
           $event.stopPropagation();
@@ -307,7 +335,7 @@ var render = function render() {
       return _c("b-list-group-item", {
         key: tec.id
       }, [_vm._v(_vm._s(tec.full_name))]);
-    }), 1)], 1), _vm._v(" "), _c("td", {
+    }), 1)], 1) : _vm._e(), _vm._v(" "), _c("td", {
       on: {
         click: function click($event) {
           $event.stopPropagation();
@@ -741,7 +769,7 @@ var render = function render() {
           return _vm.removeParent(_input.parent_id);
         }
       }
-    })]), _vm._v(" "), _vm._m(1, true)]);
+    })]), _vm._v(" "), _vm._m(0, true)]);
   }), _vm._v(" "), _c("div", {
     staticClass: "col-12"
   }, [_c("button", {
@@ -755,38 +783,6 @@ var render = function render() {
   }, [_vm._v("\n                            Save\n                        ")])])], 2)])])])]);
 };
 var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("#")]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("Name")]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("Email")]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("Phone")]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("Subject")]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("Teacher")]), _vm._v(" "), _c("th", {
-    attrs: {
-      scope: "col"
-    }
-  }, [_vm._v("Parent")])])]);
-}, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
