@@ -66,26 +66,24 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   props: {
     mode: String
   },
-  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_2__.mapState)(_stores_loginInfo__WEBPACK_IMPORTED_MODULE_1__.loginInfoStore, ['getLoginInfo'])),
+  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_2__.mapState)(_stores_loginInfo__WEBPACK_IMPORTED_MODULE_1__.loginInfoStore, ["getLoginInfo"])),
   mounted: function mounted() {
     this.getStudents();
   },
   methods: {
     checkSubject: function checkSubject(val) {
       var results = [];
-      if (this.getLoginInfo.user.role == 'teacher') {
+      if (this.getLoginInfo.user.role == "teacher") {
         results = this.getLoginInfo.teacher_info.subject.filter(function (sub) {
           return sub.name === val.name;
         });
+        if (results.length > 0) {
+          return true;
+        } else {
+          return false;
+        }
       } else {
-        results = this.subjects.filter(function (sub) {
-          return sub.name === val.name;
-        });
-      }
-      if (results.length > 0) {
         return true;
-      } else {
-        return false;
       }
     },
     callBack: function callBack() {
@@ -109,7 +107,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
                   role: "parent",
                   phone: data.Phone,
                   email: data.Email,
-                  password: '1234'
+                  password: "1234"
                 };
               });
               formData = new FormData();
@@ -181,8 +179,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              urlText = '';
-              if (_this2.getLoginInfo.user.role == 'student') {
+              urlText = "";
+              if (_this2.getLoginInfo.user.role == "student") {
                 urlText = "student/" + id + "/teacher";
               } else {
                 urlText = "getStudents";
@@ -298,7 +296,7 @@ var render = function render() {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("Teacher")]) : _vm._e(), _vm._v(" "), _c("th", {
+  }, [_vm._v("\n                                Teacher\n                            ")]) : _vm._e(), _vm._v(" "), _c("th", {
     attrs: {
       scope: "col"
     }
@@ -316,21 +314,21 @@ var render = function render() {
           return _vm.$root.changeRoute("/student/" + std.id + "/detail");
         }
       }
-    }, [_vm._v(_vm._s(std.full_name))]), _vm._v(" "), _c("td", {
+    }, [_vm._v("\n                                " + _vm._s(std.full_name) + "\n                            ")]), _vm._v(" "), _c("td", {
       on: {
         click: function click($event) {
           $event.stopPropagation();
           return _vm.$root.changeRoute("/student/" + std.id + "/detail");
         }
       }
-    }, [_vm._v(_vm._s(std.email))]), _vm._v(" "), _c("td", {
+    }, [_vm._v("\n                                " + _vm._s(std.email) + "\n                            ")]), _vm._v(" "), _c("td", {
       on: {
         click: function click($event) {
           $event.stopPropagation();
           return _vm.$root.changeRoute("/student/" + std.id + "/detail");
         }
       }
-    }, [_vm._v(_vm._s(std.phone))]), _vm._v(" "), _c("td", {
+    }, [_vm._v("\n                                " + _vm._s(std.phone) + "\n                            ")]), _vm._v(" "), _c("td", {
       on: {
         click: function click($event) {
           $event.stopPropagation();

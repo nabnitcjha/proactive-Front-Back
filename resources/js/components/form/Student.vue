@@ -9,7 +9,7 @@
                             type="button"
                             class="btn btn-add"
                             @click.stop="$root.changeRoute('/add-student')"
-                            v-if="getLoginInfo.user.role=='admin'"
+                            v-if="getLoginInfo.user.role == 'admin'"
                         >
                             <i class="bi bi-plus"></i> ADD STUDENT
                         </button>
@@ -23,31 +23,94 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Subject</th>
-                                <th scope="col" v-if="getLoginInfo.user.role=='admin'">Teacher</th>
+                                <th
+                                    scope="col"
+                                    v-if="getLoginInfo.user.role == 'admin'"
+                                >
+                                    Teacher
+                                </th>
                                 <th scope="col">Parent</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="(std,index) in students" :key="index">
+                            <tr v-for="(std, index) in students" :key="index">
                                 <th scope="row">{{ index + 1 }}</th>
-                                <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')">{{ std.full_name }}</td>
-                                <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')">{{ std.email }}</td>
-                                <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')">{{ std.phone }}</td>
-                                <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')">
-                                    <b-list-group>
-                                        <b-list-group-item  v-for="sb in std.subject" :key="sb.id" v-if="checkSubject(sb)">{{ sb.name }}</b-list-group-item>
-                                    </b-list-group>
+                                <td
+                                    @click.stop="
+                                        $root.changeRoute(
+                                            '/student/' + std.id + '/detail'
+                                        )
+                                    "
+                                >
+                                    {{ std.full_name }}
                                 </td>
-                                <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')"
-                                v-if="getLoginInfo.user.role=='admin'"
+                                <td
+                                    @click.stop="
+                                        $root.changeRoute(
+                                            '/student/' + std.id + '/detail'
+                                        )
+                                    "
+                                >
+                                    {{ std.email }}
+                                </td>
+                                <td
+                                    @click.stop="
+                                        $root.changeRoute(
+                                            '/student/' + std.id + '/detail'
+                                        )
+                                    "
+                                >
+                                    {{ std.phone }}
+                                </td>
+                                <td
+                                    @click.stop="
+                                        $root.changeRoute(
+                                            '/student/' + std.id + '/detail'
+                                        )
+                                    "
                                 >
                                     <b-list-group>
-                                        <b-list-group-item  v-for="tec in std.teacher" :key="tec.id">{{ tec.full_name }}</b-list-group-item>
+                                        <b-list-group-item
+                                            v-for="sb in std.subject"
+                                            :key="sb.id"
+                                            v-if="checkSubject(sb)"
+                                            >{{ sb.name }}</b-list-group-item
+                                        >
                                     </b-list-group>
                                 </td>
-                                <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')">
+                                <td
+                                    @click.stop="
+                                        $root.changeRoute(
+                                            '/student/' + std.id + '/detail'
+                                        )
+                                    "
+                                    v-if="getLoginInfo.user.role == 'admin'"
+                                >
                                     <b-list-group>
-                                        <b-list-group-item  v-for="gu in std.guardian" :key="gu.id">{{ gu.full_name }}</b-list-group-item>
+                                        <b-list-group-item
+                                            v-for="tec in std.teacher"
+                                            :key="tec.id"
+                                            >{{
+                                                tec.full_name
+                                            }}</b-list-group-item
+                                        >
+                                    </b-list-group>
+                                </td>
+                                <td
+                                    @click.stop="
+                                        $root.changeRoute(
+                                            '/student/' + std.id + '/detail'
+                                        )
+                                    "
+                                >
+                                    <b-list-group>
+                                        <b-list-group-item
+                                            v-for="gu in std.guardian"
+                                            :key="gu.id"
+                                            >{{
+                                                gu.full_name
+                                            }}</b-list-group-item
+                                        >
                                     </b-list-group>
                                 </td>
                             </tr>
@@ -64,7 +127,7 @@
                             type="button"
                             class="btn btn-back"
                             @click.stop="$router.go(-1)"
-                            v-if="$route.name=='addStudent'"
+                            v-if="$route.name == 'addStudent'"
                         >
                             BACK
                         </button>
@@ -367,8 +430,8 @@ import {
     Country,
     State,
 } from "../../Assets/formIcons/index";
-import { loginInfoStore } from '../../stores/loginInfo';
-import {mapState} from 'pinia'
+import { loginInfoStore } from "../../stores/loginInfo";
+import { mapState } from "pinia";
 export default {
     data() {
         return {
@@ -406,25 +469,27 @@ export default {
         mode: String,
     },
     computed: {
-    ...mapState(loginInfoStore, ['getLoginInfo']),
-  },
+        ...mapState(loginInfoStore, ["getLoginInfo"]),
+    },
     mounted() {
         this.getStudents();
     },
     methods: {
-        checkSubject(val){
-            
+        checkSubject(val) {
             let results = [];
-            if (this.getLoginInfo.user.role=='teacher') {
-                 results = this.getLoginInfo.teacher_info.subject.filter(sub => sub.name === val.name);
+            if (this.getLoginInfo.user.role == "teacher") {
+                results = this.getLoginInfo.teacher_info.subject.filter(
+                    (sub) => sub.name === val.name
+                );
+                if (results.length > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
             }else{
-             results = this.subjects.filter(sub => sub.name === val.name);
-            }
-            if (results.length>0) {
                 return true;
-            }else{
-                return false;
             }
+            
         },
         callBack() {
             this.save();
@@ -441,7 +506,7 @@ export default {
                     role: "parent",
                     phone: data.Phone,
                     email: data.Email,
-                    password: '1234',
+                    password: "1234",
                 };
             });
 
@@ -508,14 +573,14 @@ export default {
             );
         },
         async getStudents() {
-            let urlText = '';
+            let urlText = "";
 
-            if (this.getLoginInfo.user.role=='student') {
-                 urlText = "student/" + id + "/teacher";
-            }else{
+            if (this.getLoginInfo.user.role == "student") {
+                urlText = "student/" + id + "/teacher";
+            } else {
                 urlText = "getStudents";
             }
-             
+
             let getResponse = await this.get(urlText, 0, true);
             this.students = getResponse.data.data;
         },
