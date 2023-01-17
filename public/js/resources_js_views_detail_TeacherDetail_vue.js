@@ -74,9 +74,16 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       this.showCalendar = false;
     },
     checkSubject: function checkSubject(val) {
-      var results = this.subjects.filter(function (sub) {
-        return sub.name === val.name;
-      });
+      var results = [];
+      if (this.getLoginInfo.user.role == 'student') {
+        results = this.getLoginInfo.teacher_info.subject.filter(function (sub) {
+          return sub.name === val.name;
+        });
+      } else {
+        results = this.subjects.filter(function (sub) {
+          return sub.name === val.name;
+        });
+      }
       if (results.length > 0) {
         return true;
       } else {
