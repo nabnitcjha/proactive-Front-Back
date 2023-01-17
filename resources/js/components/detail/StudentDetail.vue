@@ -973,9 +973,13 @@ export default {
             this.showCalendar = false;
         },
         checkSubject(val){
-            debugger;
-            const results = this.subjects.filter(sub => sub.name === val.name);
-            debugger;
+            
+            let results = [];
+            if (this.getLoginInfo.user.role=='teacher') {
+                 results = this.getLoginInfo.teacher_info.subject.filter(sub => sub.name === val.name);
+            }else{
+             results = this.subjects.filter(sub => sub.name === val.name);
+            }
             if (results.length>0) {
                 return true;
             }else{
