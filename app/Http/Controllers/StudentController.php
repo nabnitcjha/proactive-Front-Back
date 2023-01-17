@@ -9,6 +9,7 @@ use App\Http\Resources\StudentAdvanceResource;
 use App\Http\Resources\StudentListResource;
 use App\Http\Resources\StudentResource;
 use App\Http\Resources\TeacherAdvanceResource;
+use App\Http\Resources\TeacherListResource;
 use App\Models\ClassSchedule;
 use App\Models\Student;
 use App\Models\StudentSession;
@@ -77,6 +78,14 @@ class StudentController extends BaseController
         }
 
         $this->successResponse($student, 'save successfully');
+    }
+
+    public function getTeacher($id)
+    {
+        $student = Student::where('id',$id)->first();
+
+        return  TeacherListResource::collection($student->teacher);
+
     }
 
     public function show($id)

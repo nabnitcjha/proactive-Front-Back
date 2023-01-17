@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ClassScheduleAdvanceResource;
 use App\Http\Resources\ClassScheduleForTeacherDetail;
+use App\Http\Resources\StudentListResource;
 use App\Http\Resources\TeacherAdvanceResource;
 use App\Http\Resources\TeacherListResource;
 use App\Http\Resources\teacher\profileOverview;
@@ -59,6 +60,13 @@ class TeacherController extends BaseController
         $profile_overview = Teacher::where('id',$id)->first();
 
         return  $this->profileOverviewResource->make($profile_overview);
+
+    }
+    public function getStudent($id)
+    {
+        $teacher = Teacher::where('id',$id)->first();
+
+        return  StudentListResource::collection($teacher->student);
 
     }
 

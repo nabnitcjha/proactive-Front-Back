@@ -214,6 +214,8 @@ import {
     Country,
     State,
 } from "../../Assets/formIcons/index";
+import { loginInfoStore } from '../../stores/loginInfo';
+import {mapState,mapActions} from 'pinia'
 export default {
     data() {
         return {
@@ -241,6 +243,9 @@ export default {
     props: {
         mode: String,
     },
+    computed: {
+    ...mapState(loginInfoStore, ['getLoginInfo']),
+  },
     methods: {
         callBack() {
             this.save();
@@ -279,7 +284,14 @@ export default {
             this.$router.push({ name: 'teacher' })
         },
         async getTeachers() {
-            let urlText = "getTeachers";
+            let urlText = '';
+            
+            if (this.getLoginInfo.user.role=='teacher') {
+                urlText = "teacher/" + id + "/student";
+            }else{
+                urlText = "getTeachers";
+            }
+             
             let getResponse = await this.get(urlText, 0, true);
             this.teachers = getResponse.data.data;
         },

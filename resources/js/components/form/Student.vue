@@ -364,6 +364,8 @@ import {
     Country,
     State,
 } from "../../Assets/formIcons/index";
+import { loginInfoStore } from '../../stores/loginInfo';
+import {mapState,mapActions} from 'pinia'
 export default {
     data() {
         return {
@@ -400,6 +402,9 @@ export default {
     props: {
         mode: String,
     },
+    computed: {
+    ...mapState(loginInfoStore, ['getLoginInfo']),
+  },
     mounted() {
         this.getStudents();
     },
@@ -486,7 +491,14 @@ export default {
             );
         },
         async getStudents() {
-            let urlText = "getStudents";
+            let urlText = '';
+
+            if (this.getLoginInfo.user.role=='student') {
+                 urlText = "student/" + id + "/teacher";
+            }else{
+                urlText = "getStudents";
+            }
+             
             let getResponse = await this.get(urlText, 0, true);
             this.students = getResponse.data.data;
         },

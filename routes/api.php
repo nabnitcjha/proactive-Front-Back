@@ -33,12 +33,16 @@ Route::group([
 
     Route::post('addStudent', 'StudentController@saveData');
     Route::get('getStudents/{allowPagination}', 'StudentController@getData');
+    
     // student-detail page route
     Route::get('student/{id}/profileOverview', 'StudentController@profileOverview');
     Route::get('student/{student_id}/teacher/{teacher_id}/class', 'StudentController@getTeacherSlot');
     Route::get('student/{id}/sortedClass', 'StudentController@sortedClass');
     Route::get('student/{id}/class', 'StudentController@allClasses');
     Route::put('student/{id}/changePassword', 'StudentController@changePassword');
+
+    // student login route
+    Route::get('student/{id}/teacher', 'StudentController@getTeacher');
 });
 
 // teacher routes
@@ -54,6 +58,9 @@ Route::group([
     Route::get('teacher/{id}/class', 'TeacherController@allClasses');
     Route::post('addTeacher', 'TeacherController@saveData');
     Route::get('getTeachers/{allowPagination}', 'TeacherController@getData');
+
+        // teacher login route
+        Route::get('teacher/{id}/student', 'TeacherController@getStudent');
 });
 
 // subject routes
