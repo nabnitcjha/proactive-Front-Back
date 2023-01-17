@@ -26,11 +26,20 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    var _ref;
-    return _ref = {
+    return {
       student_all: "student_all",
-      student_teacher_all: "student_teacher_all"
-    }, _defineProperty(_ref, "student_all", "student_all"), _defineProperty(_ref, "show", false), _defineProperty(_ref, "showTeacherCalendar", false), _defineProperty(_ref, "showAllCalendar", false), _defineProperty(_ref, "profile_overview", []), _defineProperty(_ref, "sorted_class", []), _defineProperty(_ref, "current_teacher_id", ""), _defineProperty(_ref, "current_student_id", ""), _defineProperty(_ref, "current_class_id", ""), _defineProperty(_ref, "showCalendar", false), _defineProperty(_ref, "subjects", []), _ref;
+      student_teacher_all: "student_teacher_all",
+      show: false,
+      showTeacherCalendar: false,
+      showAllCalendar: false,
+      profile_overview: [],
+      sorted_class: [],
+      current_teacher_id: "",
+      current_student_id: "",
+      current_class_id: "",
+      showCalendar: false,
+      subjects: []
+    };
   },
   computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapState)(_stores_loginInfo__WEBPACK_IMPORTED_MODULE_0__.loginInfoStore, ['getLoginInfo'])),
   mounted: function mounted() {
@@ -701,10 +710,16 @@ var render = function render() {
     attrs: {
       id: "profile-classes"
     }
-  }, [_c("slot-calendar", {
+  }, [_vm.getLoginInfo.user.role == "admin" ? _c("slot-calendar", {
     attrs: {
       current_student_id: _vm.$route.params.id,
       calType: _vm.student_all
+    }
+  }) : _c("slot-calendar", {
+    attrs: {
+      current_student_id: _vm.$route.params.id,
+      current_teacher_id: _vm.getLoginInfo.teacher_info.id,
+      calType: _vm.student_teacher_all
     }
   })], 1), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",

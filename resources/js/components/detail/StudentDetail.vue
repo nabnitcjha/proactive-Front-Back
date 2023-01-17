@@ -1002,6 +1002,17 @@
                                                 $route.params.id
                                             "
                                             :calType="student_all"
+                                            v-if="getLoginInfo.user.role=='admin'"
+                                        ></slot-calendar>
+                                        <slot-calendar
+                                            :current_student_id="
+                                                $route.params.id
+                                            "
+                                            :current_teacher_id="
+                                                getLoginInfo.teacher_info.id
+                                            "
+                                            :calType="student_teacher_all"
+                                            v-else
                                         ></slot-calendar>
                                     </div>
 
@@ -1120,7 +1131,6 @@ export default {
         return {
             student_all: "student_all",
             student_teacher_all: "student_teacher_all",
-            student_all: "student_all",
             show: false,
             showTeacherCalendar: false,
             showAllCalendar: false,
