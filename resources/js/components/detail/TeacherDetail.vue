@@ -714,7 +714,7 @@
                                         id="profile-classes"
                                     >
                                         <slot-calendar
-                                            :current_student_id="
+                                            :current_teacher_id="
                                                 $route.params.id
                                             "
                                             :calType="teacher_all"

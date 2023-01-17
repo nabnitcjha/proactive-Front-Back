@@ -51,6 +51,7 @@ Route::group([
     Route::get('teacher/{id}/profileOverview', 'TeacherController@profileOverview');
     Route::get('getTeachers/{allowPagination}', 'TeacherController@getData');
     Route::get('teacher/{id}/sortedClass', 'TeacherController@sortedClass');
+    Route::get('teacher/{id}/class', 'TeacherController@allClasses');
     Route::post('addTeacher', 'TeacherController@saveData');
     Route::get('getTeachers/{allowPagination}', 'TeacherController@getData');
 });

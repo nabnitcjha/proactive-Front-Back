@@ -568,7 +568,7 @@ var render = function render() {
     }
   }, [_c("slot-calendar", {
     attrs: {
-      current_student_id: _vm.$route.params.id,
+      current_teacher_id: _vm.$route.params.id,
       calType: _vm.teacher_all
     }
   })], 1), _vm._v(" "), _c("div", {

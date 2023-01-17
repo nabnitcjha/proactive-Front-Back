@@ -62,6 +62,12 @@ class TeacherController extends BaseController
 
     }
 
+    public function allClasses($id){
+        $teacher = Teacher::where('id',$id)->first();
+
+        return ClassScheduleAdvanceResource::collection($teacher->classSchedule);
+    }
+
     public function sortedClass($id)
     {
         $sub = ClassSchedule::with('subject')->orderBy('id', 'DESC');
