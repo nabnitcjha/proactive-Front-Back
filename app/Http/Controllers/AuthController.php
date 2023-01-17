@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\LoginResource;
 use App\Http\Resources\Admin\UserResource;
+use App\Http\Resources\StudentListResource;
+use App\Http\Resources\TeacherListResource;
+use App\Models\Student;
+use App\Models\Teacher;
 use PhpParser\Node\Expr\New_;
 use Symfony\Component\HttpFoundation\Response;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -33,9 +37,21 @@ class AuthController extends Controller
 
         if ($access_token = $this->guard()->attempt($credentials)) {
             $user = $this->loginResource->make($this->guard()->user());
+           
             $token_type = 'bearer';
             $expires_in = $this->guard()->factory()->getTTL() * 60;
             $message = 'login successfully';
+
+            if ($user->role=='student') {
+                $student = Student::where('user_id',$user->id)->first();
+                $student_info = StudentListResource::make($student);
+                return response()->json(compact('access_token', 'token_type', 'expires_in', 'user','student_info', 'message'));
+            }
+            if ($user->role=='teacher') {
+                $teacher = Teacher::where('user_id',$user->id)->first();
+                $teacher_info = TeacherListResource::make($teacher);
+                return response()->json(compact('access_token', 'token_type', 'expires_in', 'user','teacher_info', 'message'));
+            }
 
             return response()->json(compact('access_token', 'token_type', 'expires_in', 'user', 'message'));
         }

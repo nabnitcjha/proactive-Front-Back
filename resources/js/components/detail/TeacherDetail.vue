@@ -827,6 +827,8 @@
 </template>
 
 <script>
+import { loginInfoStore } from '../../stores/loginInfo';
+import {mapState} from 'pinia'
 export default {
     data() {
         return {
@@ -844,6 +846,9 @@ export default {
             subjects:[]
         };
     },
+    computed: {
+    ...mapState(loginInfoStore, ['getLoginInfo']),
+  },
     mounted() {
         this.profileOverview();
     },

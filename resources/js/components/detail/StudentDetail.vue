@@ -202,6 +202,7 @@
                                                         class_info, index
                                                     ) in profile_overview.sorted_class"
                                                     :key="index"
+                                                    v-if="getLoginInfo.user.name==class_info.teacher.full_name"
                                                 >
                                                     <div class="accordion-item">
                                                         <h2
@@ -346,7 +347,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
+                                        <div class="row" v-if="getLoginInfo.user.role=='admin'">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
@@ -477,6 +478,7 @@
                                                         sub_info, index
                                                     ) in profile_overview.subject_info"
                                                     :key="index"
+                                                    v-if="checkSubject(sub_info)"
                                                     >{{ sub_info.name }}</span
                                                 >
                                             </div>
@@ -916,6 +918,8 @@
 </template>
 
 <script>
+import { loginInfoStore } from '../../stores/loginInfo';
+import {mapState} from 'pinia'
 export default {
     data() {
         return {
@@ -934,6 +938,9 @@ export default {
             subjects:[]
         };
     },
+    computed: {
+    ...mapState(loginInfoStore, ['getLoginInfo']),
+  },
     mounted() {
         this.profileOverview();
     },
@@ -966,7 +973,9 @@ export default {
             this.showCalendar = false;
         },
         checkSubject(val){
+            debugger;
             const results = this.subjects.filter(sub => sub.name === val.name);
+            debugger;
             if (results.length>0) {
                 return true;
             }else{

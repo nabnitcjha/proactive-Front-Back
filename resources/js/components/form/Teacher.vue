@@ -218,7 +218,7 @@ import {
     State,
 } from "../../Assets/formIcons/index";
 import { loginInfoStore } from '../../stores/loginInfo';
-import {mapState,mapActions} from 'pinia'
+import {mapState} from 'pinia'
 export default {
     data() {
         return {
