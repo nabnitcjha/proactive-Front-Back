@@ -26,7 +26,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     return _ref = {
       student_all: "student_all",
       student_teacher_all: "student_teacher_all"
-    }, _defineProperty(_ref, "student_all", "student_all"), _defineProperty(_ref, "show", false), _defineProperty(_ref, "showTeacherCalendar", false), _defineProperty(_ref, "showAllCalendar", false), _defineProperty(_ref, "profile_overview", []), _defineProperty(_ref, "sorted_class", []), _defineProperty(_ref, "current_teacher_id", ""), _defineProperty(_ref, "current_student_id", ""), _defineProperty(_ref, "current_class_id", ""), _defineProperty(_ref, "showCalendar", false), _ref;
+    }, _defineProperty(_ref, "student_all", "student_all"), _defineProperty(_ref, "show", false), _defineProperty(_ref, "showTeacherCalendar", false), _defineProperty(_ref, "showAllCalendar", false), _defineProperty(_ref, "profile_overview", []), _defineProperty(_ref, "sorted_class", []), _defineProperty(_ref, "current_teacher_id", ""), _defineProperty(_ref, "current_student_id", ""), _defineProperty(_ref, "current_class_id", ""), _defineProperty(_ref, "showCalendar", false), _defineProperty(_ref, "subjects", []), _ref;
   },
   mounted: function mounted() {
     this.profileOverview();
@@ -59,6 +59,16 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     makeFalse: function makeFalse() {
       this.showCalendar = false;
     },
+    checkSubject: function checkSubject(val) {
+      var results = this.subjects.filter(function (sub) {
+        return sub.name === val.name;
+      });
+      if (results.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     profileOverview: function profileOverview() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -79,7 +89,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
               _this.profile_overview = _objectSpread(_objectSpread({}, getResponse.data.data), {}, {
                 sorted_class: _this.sorted_class
               });
-            case 9:
+              _this.subjects = _this.profile_overview.subject_info;
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -420,10 +431,10 @@ var render = function render() {
     }, [_c("b", [_vm._v("PHONE\n                                                                        : ")]), _vm._v(_vm._s(thr_info.phone) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
     }, [_c("b", [_vm._v("SUBJECT\n                                                                        :\n                                                                    ")]), _vm._v(" "), _vm._l(thr_info.subject, function (tch_sub_info, index) {
-      return _c("span", {
+      return _vm.checkSubject(tch_sub_info) ? _c("span", {
         key: index,
         staticClass: "badge rounded-pill text-bg-warning mr-2"
-      }, [_vm._v(_vm._s(tch_sub_info.name))]);
+      }, [_vm._v(_vm._s(tch_sub_info.name))]) : _vm._e();
     })], 2)])])])])]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "row"
