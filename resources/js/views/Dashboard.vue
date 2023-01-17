@@ -1,7 +1,7 @@
 <template>
-  <admin-dashboard  v-if="getLoginInfo.user.role[0]=='admin'" />
-  <teacher-dashboard v-else-if="getLoginInfo.user.role[0] == 'teacher'" />
-  <student-dashboard v-else-if="getLoginInfo.user.role[0] == 'student'" />
+  <admin-dashboard  v-if="getLoginInfo.user.role=='admin'" />
+  <teacher-dashboard v-else-if="getLoginInfo.user.role == 'teacher'" />
+  <student-dashboard v-else-if="getLoginInfo.user.role == 'student'" />
   <parent-dashboard v-else />
 </template>
   

@@ -42,16 +42,19 @@
 <aside id="sidebar" class="sidebar">
 
 <!-- Start Sidebar-->
-<admin-sidebar v-if="getLoginInfo.user.role[0]=='admin'"/>
-<student-sidebar v-if="getLoginInfo.user.role[0]=='student'"/>
-<teacher-sidebar v-if="getLoginInfo.user.role[0]=='teacher'"/>
+<admin-sidebar v-if="getLoginInfo.user.role=='admin'"/>
+<student-sidebar v-if="getLoginInfo.user.role=='student'"/>
+<teacher-sidebar v-if="getLoginInfo.user.role=='teacher'"/>
 <!-- End Sidebar-->
 </aside>
 
 <main id="main" class="main">
 
 <div class="pagetitle">
+
   <h1>Dashboard</h1>
+
+
   <!-- start bread crumb -->
   <!-- end bread crumb -->
 </div><!-- End Page Title -->
