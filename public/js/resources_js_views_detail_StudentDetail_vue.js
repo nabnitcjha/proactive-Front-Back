@@ -516,7 +516,7 @@ var render = function render() {
     staticClass: "col-lg-3 col-md-4 label"
   }, [_vm._v("\n                                            Phone\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.phone) + "\n                                        ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.phone) + "\n                                        ")])])]), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("div", {
     staticClass: "tab-pane fade profile-teacher pt-3",
     attrs: {
       id: "profile-teacher"
@@ -606,6 +606,96 @@ var render = function render() {
         calType: _vm.student_teacher_all
       }
     })], 1)]) : _vm._e()])])])]);
+  }), 0)])]) : _c("div", {
+    staticClass: "tab-pane fade profile-teacher pt-3",
+    attrs: {
+      id: "profile-teacher"
+    }
+  }, [_c("form", [_c("div", {
+    staticClass: "row mb-3"
+  }, _vm._l(_vm.profile_overview.teacher_info, function (thr_info, tchr_info_index) {
+    return _vm.getLoginInfo.teacher_info.id == thr_info.id ? _c("div", {
+      key: tchr_info_index,
+      staticClass: "accordion accordion-flush",
+      attrs: {
+        id: "profile-teacher-accordion" + thr_info.id
+      }
+    }, [_c("div", {
+      staticClass: "accordion-item"
+    }, [_c("h2", {
+      staticClass: "accordion-header",
+      attrs: {
+        id: "profile-teacher-flush" + thr_info.id
+      }
+    }, [_c("button", {
+      staticClass: "accordion-button collapsed",
+      attrs: {
+        type: "button",
+        "data-bs-toggle": "collapse",
+        "data-bs-target": "#" + "profile-teacher-flush-collapseOne" + thr_info.id,
+        "aria-expanded": "false",
+        "aria-controls": "profile-teacher-flush-collapseOne" + thr_info.id
+      }
+    }, [_c("h1", {
+      staticClass: "fs-5"
+    }, [_vm._v("\n                                                                " + _vm._s(thr_info.full_name) + "\n                                                            ")])])]), _vm._v(" "), _c("div", {
+      "class": ["accordion-collapse collapse", tchr_info_index == 0 ? "show" : ""],
+      attrs: {
+        id: "profile-teacher-flush-collapseOne" + thr_info.id,
+        "aria-labelledby": "profile-teacher-flush",
+        "data-bs-parent": "#" + "profile-teacher-accordion" + thr_info.id
+      }
+    }, [_c("div", {
+      staticClass: "accordion-body"
+    }, [_c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-lg-3 col-md-4 label"
+    }, [_vm._v("\n                                                                    Subjects\n                                                                ")]), _vm._v(" "), _c("div", {
+      staticClass: "col-lg-9 col-md-8"
+    }, _vm._l(thr_info.subject, function (sub_info, sub_info_index) {
+      return _c("span", {
+        key: sub_info_index,
+        staticClass: "badge rounded-pill bg-warning text-dark"
+      }, [_vm._v(_vm._s(sub_info.name))]);
+    }), 0)]), _vm._v(" "), _c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-lg-3 col-md-4 label"
+    }, [_vm._v("\n                                                                    Message\n                                                                ")]), _vm._v(" "), _c("div", {
+      staticClass: "col-lg-9 col-md-8"
+    }, [_c("button", {
+      staticClass: "btn btn-success",
+      attrs: {
+        type: "button",
+        "data-bs-toggle": "modal",
+        "data-bs-target": "#sendMessageToTeacher"
+      }
+    }, [_vm._v("\n                                                                        SEND\n                                                                        MESSAGE\n                                                                    ")])])]), _vm._v(" "), _c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-lg-3 col-md-4 label"
+    }, [_vm._v("\n                                                                    Email\n                                                                ")]), _vm._v(" "), _c("div", {
+      staticClass: "col-lg-9 col-md-8"
+    }, [_vm._v("\n                                                                    " + _vm._s(thr_info.email) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-lg-3 col-md-4 label"
+    }, [_vm._v("\n                                                                    Phone\n                                                                ")]), _vm._v(" "), _c("div", {
+      staticClass: "col-lg-9 col-md-8"
+    }, [_vm._v("\n                                                                    " + _vm._s(thr_info.phone) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
+      staticClass: "row"
+    }, [_c("div", {
+      staticClass: "col-lg-3 col-md-4 label cstm-font"
+    }, [_c("h1", [_vm._v("\n                                                                        Classes\n                                                                    ")])])]), _vm._v(" "), _vm.showCalendar ? _c("div", {
+      staticClass: "row"
+    }, [_c("div", [_c("slot-calendar", {
+      attrs: {
+        current_teacher_id: thr_info.id,
+        current_student_id: _vm.$route.params.id,
+        calType: _vm.student_teacher_all
+      }
+    })], 1)]) : _vm._e()])])])]) : _vm._e();
   }), 0)])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {
@@ -682,7 +772,7 @@ var render = function render() {
       id: "profile-discussion"
     }
   }, _vm._l(_vm.profile_overview.sorted_class, function (class_info, index) {
-    return _c("div", {
+    return _vm.checkSubject(class_info.subject) ? _c("div", {
       key: index,
       staticClass: "card",
       staticStyle: {
@@ -705,7 +795,7 @@ var render = function render() {
           return _vm.setClassId(class_info.id);
         }
       }
-    }, [_vm._v("Open Discussion")])])]);
+    }, [_vm._v("Open Discussion")])])]) : _vm._e();
   }), 0)])])])])], 1)])])]);
 };
 var staticRenderFns = [function () {

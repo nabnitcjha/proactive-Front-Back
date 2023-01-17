@@ -608,10 +608,10 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div
                                         class="tab-pane fade profile-teacher pt-3"
                                         id="profile-teacher"
+                                        v-if="getLoginInfo.user.role=='admin'"
                                     >
                                         <!-- Profile Edit Form -->
                                         <form>
@@ -627,6 +627,199 @@
                                                         thr_info, tchr_info_index
                                                     ) in profile_overview.teacher_info"
                                                     :key="tchr_info_index"
+                                                >
+                                                    <div class="accordion-item">
+                                                        <h2
+                                                            class="accordion-header"
+                                                            v-bind:id="
+                                                                'profile-teacher-flush' +
+                                                                thr_info.id
+                                                            "
+                                                        >
+                                                            <button
+                                                                class="accordion-button collapsed"
+                                                                type="button"
+                                                                data-bs-toggle="collapse"
+                                                                v-bind:data-bs-target="
+                                                                    '#' +
+                                                                    'profile-teacher-flush-collapseOne' +
+                                                                    thr_info.id
+                                                                "
+                                                                aria-expanded="false"
+                                                                v-bind:aria-controls="
+                                                                    'profile-teacher-flush-collapseOne' +
+                                                                    thr_info.id
+                                                                "
+                                                            >
+                                                                <h1
+                                                                    class="fs-5"
+                                                                >
+                                                                    {{
+                                                                        thr_info.full_name
+                                                                    }}
+                                                                </h1>
+                                                            </button>
+                                                        </h2>
+                                                        <div
+                                                            v-bind:id="
+                                                                'profile-teacher-flush-collapseOne' +
+                                                                thr_info.id
+                                                            "
+                                                            v-bind:class="['accordion-collapse collapse', tchr_info_index == 0 ? 'show' : '']"
+                                                            aria-labelledby="profile-teacher-flush"
+                                                            v-bind:data-bs-parent="
+                                                                '#' +
+                                                                'profile-teacher-accordion' +
+                                                                thr_info.id
+                                                            "
+                                                        >
+                                                            <div
+                                                                class="accordion-body"
+                                                            >
+                                                                <div
+                                                                    class="row"
+                                                                >
+                                                                    <div
+                                                                        class="col-lg-3 col-md-4 label"
+                                                                    >
+                                                                        Subjects
+                                                                    </div>
+                                                                    <div
+                                                                        class="col-lg-9 col-md-8"
+                                                                    >
+                                                                        <span
+                                                                            class="badge rounded-pill bg-warning text-dark"
+                                                                            v-for="(
+                                                                                sub_info,
+                                                                                sub_info_index
+                                                                            ) in thr_info.subject"
+                                                                            :key="
+                                                                                sub_info_index
+                                                                            "
+                                                                            >{{
+                                                                                sub_info.name
+                                                                            }}</span
+                                                                        >
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="row"
+                                                                >
+                                                                    <div
+                                                                        class="col-lg-3 col-md-4 label"
+                                                                    >
+                                                                        Message
+                                                                    </div>
+                                                                    <div
+                                                                        class="col-lg-9 col-md-8"
+                                                                    >
+                                                                        <button
+                                                                            type="button"
+                                                                            class="btn btn-success"
+                                                                            data-bs-toggle="modal"
+                                                                            data-bs-target="#sendMessageToTeacher"
+                                                                        >
+                                                                            SEND
+                                                                            MESSAGE
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="row"
+                                                                >
+                                                                    <div
+                                                                        class="col-lg-3 col-md-4 label"
+                                                                    >
+                                                                        Email
+                                                                    </div>
+                                                                    <div
+                                                                        class="col-lg-9 col-md-8"
+                                                                    >
+                                                                        {{
+                                                                            thr_info.email
+                                                                        }}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="row"
+                                                                >
+                                                                    <div
+                                                                        class="col-lg-3 col-md-4 label"
+                                                                    >
+                                                                        Phone
+                                                                    </div>
+                                                                    <div
+                                                                        class="col-lg-9 col-md-8"
+                                                                    >
+                                                                        {{
+                                                                            thr_info.phone
+                                                                        }}
+                                                                    </div>
+                                                                </div>
+
+                                                                <div
+                                                                    class="row"
+                                                                >
+                                                                    <div
+                                                                        class="col-lg-3 col-md-4 label cstm-font"
+                                                                    >
+                                                                        <h1>
+                                                                            Classes
+                                                                        </h1>
+                                                                    </div>
+                                                                </div>
+                                                                <div
+                                                                    class="row"
+                                                                    v-if="showCalendar"
+                                                                >
+                                                                    <div>
+                                                                        <slot-calendar
+                                                                            :current_teacher_id="
+                                                                                thr_info.id
+                                                                            "
+                                                                            :current_student_id="
+                                                                                $route
+                                                                                    .params
+                                                                                    .id
+                                                                            "
+                                                                            :calType="
+                                                                                student_teacher_all
+                                                                            "
+                                                                        ></slot-calendar>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Accordion without outline borders -->
+                                            </div>
+                                        </form>
+                                        <!-- End Profile Edit Form -->
+                                    </div>
+                                    <div
+                                        class="tab-pane fade profile-teacher pt-3"
+                                        id="profile-teacher"
+                                        v-else
+                                    >
+                                        <!-- Profile Edit Form -->
+                                        <form>
+                                            <div class="row mb-3">
+                                                <!-- Accordion without outline borders -->
+                                                <div
+                                                    class="accordion accordion-flush"
+                                                    v-bind:id="
+                                                        'profile-teacher-accordion' +
+                                                        thr_info.id
+                                                    "
+                                                    v-for="(
+                                                        thr_info, tchr_info_index
+                                                    ) in profile_overview.teacher_info"
+                                                    :key="tchr_info_index"
+                                                    v-if="getLoginInfo.teacher_info.id==thr_info.id"
                                                 >
                                                     <div class="accordion-item">
                                                         <h2
@@ -886,7 +1079,9 @@
                                              v-for="(
                                                         class_info, index
                                                     ) in profile_overview.sorted_class"
-                                                    :key="index">
+                                                    :key="index"
+                                                    v-if="checkSubject(class_info.subject)"
+                                                    >
                                             <div class="card-body">
                                                 <h5 class="card-title">
                                                    {{ class_info.topic }}
