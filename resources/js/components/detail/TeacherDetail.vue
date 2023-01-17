@@ -91,7 +91,7 @@
                                 class="rounded-circle"
                             />
                             <h2>
-                                {{ profile_overview.student_info.full_name }}
+                                {{ profile_overview.teacher_info.full_name }}
                             </h2>
                         </div>
                     </div>
@@ -180,7 +180,7 @@
                                             <div class="col-lg-9 col-md-8">
                                                 {{
                                                     profile_overview
-                                                        .student_info.full_name
+                                                        .teacher_info.full_name
                                                 }}
                                             </div>
                                         </div>
@@ -326,15 +326,20 @@
                                                                         class="list-group-item"
                                                                     >
                                                                         <b
-                                                                            >TEACHER
+                                                                            >STUDENT
                                                                             : </b
                                                                         ><span
                                                                             class="badge rounded-pill text-bg-warning mr-2"
+                                                                            v-for="(
+                                                                                cls_stu,
+                                                                                index
+                                                                            ) in class_info.student"
+                                                                            :key="
+                                                                                index
+                                                                            "
                                                                         >
                                                                             {{
-                                                                                class_info
-                                                                                    .teacher
-                                                                                    .full_name
+                                                                                cls_stu.full_name
                                                                             }}
                                                                         </span>
                                                                     </li>
@@ -350,7 +355,7 @@
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
-                                                Teachers
+                                                Students
                                             </div>
                                             <div class="col-lg-9 col-md-8">
                                                 <div
@@ -360,8 +365,8 @@
                                                         index
                                                     "
                                                     v-for="(
-                                                        thr_info, index
-                                                    ) in profile_overview.teacher_info"
+                                                        stu_info, index
+                                                    ) in profile_overview.student_info"
                                                     :key="index"
                                                 >
                                                     <div class="accordion-item">
@@ -388,7 +393,7 @@
                                                                 "
                                                             >
                                                                 {{
-                                                                    thr_info.full_name
+                                                                    stu_info.full_name
                                                                 }}
                                                             </button>
                                                         </h2>
@@ -421,7 +426,7 @@
                                                                             >EMAIL
                                                                             : </b
                                                                         >{{
-                                                                            thr_info.email
+                                                                            stu_info.email
                                                                         }}
                                                                     </li>
                                                                     <li
@@ -431,7 +436,7 @@
                                                                             >PHONE
                                                                             : </b
                                                                         >{{
-                                                                            thr_info.phone
+                                                                            stu_info.phone
                                                                         }}
                                                                     </li>
                                                                     <li
@@ -446,7 +451,7 @@
                                                                             v-for="(
                                                                                 tch_sub_info,
                                                                                 index
-                                                                            ) in thr_info.subject"
+                                                                            ) in stu_info.subject"
                                                                             :key="
                                                                                 index
                                                                             "
@@ -485,108 +490,12 @@
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
-                                                Parents
-                                            </div>
-                                            <div class="col-lg-9 col-md-8">
-                                                <div
-                                                    class="accordion accordion-flush"
-                                                    v-bind:id="
-                                                        'overview_parent_accordion' +
-                                                        index
-                                                    "
-                                                    v-for="(
-                                                        prnt_info, index
-                                                    ) in profile_overview.parent_info"
-                                                    :key="index"
-                                                >
-                                                    <div class="accordion-item">
-                                                        <h2
-                                                            class="accordion-header"
-                                                            v-bind:id="
-                                                                'overview_parent_heading' +
-                                                                index
-                                                            "
-                                                        >
-                                                            <button
-                                                                class="accordion-button collapsed"
-                                                                type="button"
-                                                                data-bs-toggle="collapse"
-                                                                v-bind:data-bs-target="
-                                                                    '#' +
-                                                                    'flush-overview_parent_accordion' +
-                                                                    index
-                                                                "
-                                                                aria-expanded="false"
-                                                                v-bind:aria-controls="
-                                                                    'flush-overview_parent_accordion' +
-                                                                    index
-                                                                "
-                                                            >
-                                                                {{
-                                                                    prnt_info.full_name
-                                                                }}
-                                                            </button>
-                                                        </h2>
-                                                        <div
-                                                            v-bind:id="
-                                                                'flush-overview_parent_accordion' +
-                                                                index
-                                                            "
-                                                            class="accordion-collapse collapse"
-                                                            v-bind:aria-labelledby="
-                                                                'flush-overview_parent_heading' +
-                                                                index
-                                                            "
-                                                            v-bind:data-bs-parent="
-                                                                '#' +
-                                                                'overview_parent_accordion' +
-                                                                index
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="accordion-body"
-                                                            >
-                                                                <ul
-                                                                    class="list-group"
-                                                                >
-                                                                    <li
-                                                                        class="list-group-item"
-                                                                    >
-                                                                        <b
-                                                                            >EMAIL
-                                                                            : </b
-                                                                        >{{
-                                                                            prnt_info.email
-                                                                        }}
-                                                                    </li>
-                                                                    <li
-                                                                        class="list-group-item"
-                                                                    >
-                                                                        <b
-                                                                            >PHONE
-                                                                            : </b
-                                                                        >{{
-                                                                            prnt_info.phone
-                                                                        }}
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div
-                                                class="col-lg-3 col-md-4 label"
-                                            >
                                                 Email
                                             </div>
                                             <div class="col-lg-9 col-md-8">
                                                 {{
                                                     profile_overview
-                                                        .student_info.email
+                                                        .teacher_info.email
                                                 }}
                                             </div>
                                         </div>
@@ -600,7 +509,7 @@
                                             <div class="col-lg-9 col-md-8">
                                                 {{
                                                     profile_overview
-                                                        .student_info.phone
+                                                        .teacher_info.phone
                                                 }}
                                             </div>
                                         </div>

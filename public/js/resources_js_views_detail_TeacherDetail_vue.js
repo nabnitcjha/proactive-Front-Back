@@ -232,7 +232,7 @@ var render = function render() {
       src: __webpack_require__(/*! ../../../../public/dashboard_css/assets/img/profile-img.jpg */ "./public/dashboard_css/assets/img/profile-img.jpg"),
       alt: "Profile"
     }
-  }), _vm._v(" "), _c("h2", [_vm._v("\n                            " + _vm._s(_vm.profile_overview.student_info.full_name) + "\n                        ")])])])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("h2", [_vm._v("\n                            " + _vm._s(_vm.profile_overview.teacher_info.full_name) + "\n                        ")])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-xl-8"
   }, [_c("b-overlay", {
     staticClass: "col-lg-12",
@@ -321,7 +321,7 @@ var render = function render() {
     staticClass: "col-lg-3 col-md-4 label"
   }, [_vm._v("\n                                            Full Name\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.full_name) + "\n                                        ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.teacher_info.full_name) + "\n                                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
@@ -378,16 +378,19 @@ var render = function render() {
       staticClass: "list-group-item"
     }, [_c("b", [_vm._v("DESCRIPTION\n                                                                        : ")]), _vm._v(_vm._s(class_info.description) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("TEACHER\n                                                                        : ")]), _c("span", {
-      staticClass: "badge rounded-pill text-bg-warning mr-2"
-    }, [_vm._v("\n                                                                        " + _vm._s(class_info.teacher.full_name) + "\n                                                                    ")])])])])])])]);
+    }, [_c("b", [_vm._v("STUDENT\n                                                                        : ")]), _vm._l(class_info.student, function (cls_stu, index) {
+      return _c("span", {
+        key: index,
+        staticClass: "badge rounded-pill text-bg-warning mr-2"
+      }, [_vm._v("\n                                                                        " + _vm._s(cls_stu.full_name) + "\n                                                                    ")]);
+    })], 2)])])])])]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                            Teachers\n                                        ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            Students\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, _vm._l(_vm.profile_overview.teacher_info, function (thr_info, index) {
+  }, _vm._l(_vm.profile_overview.student_info, function (stu_info, index) {
     return _c("div", {
       key: index,
       staticClass: "accordion accordion-flush",
@@ -410,7 +413,7 @@ var render = function render() {
         "aria-expanded": "false",
         "aria-controls": "flush-overview_teacher_accordion" + index
       }
-    }, [_vm._v("\n                                                            " + _vm._s(thr_info.full_name) + "\n                                                        ")])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                            " + _vm._s(stu_info.full_name) + "\n                                                        ")])]), _vm._v(" "), _c("div", {
       staticClass: "accordion-collapse collapse",
       attrs: {
         id: "flush-overview_teacher_accordion" + index,
@@ -423,11 +426,11 @@ var render = function render() {
       staticClass: "list-group"
     }, [_c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("EMAIL\n                                                                        : ")]), _vm._v(_vm._s(thr_info.email) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+    }, [_c("b", [_vm._v("EMAIL\n                                                                        : ")]), _vm._v(_vm._s(stu_info.email) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("PHONE\n                                                                        : ")]), _vm._v(_vm._s(thr_info.phone) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+    }, [_c("b", [_vm._v("PHONE\n                                                                        : ")]), _vm._v(_vm._s(stu_info.phone) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("SUBJECT\n                                                                        :\n                                                                    ")]), _vm._v(" "), _vm._l(thr_info.subject, function (tch_sub_info, index) {
+    }, [_c("b", [_vm._v("SUBJECT\n                                                                        :\n                                                                    ")]), _vm._v(" "), _vm._l(stu_info.subject, function (tch_sub_info, index) {
       return _c("span", {
         key: index,
         staticClass: "badge rounded-pill text-bg-warning mr-2"
@@ -448,60 +451,15 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                            Parents\n                                        ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-9 col-md-8"
-  }, _vm._l(_vm.profile_overview.parent_info, function (prnt_info, index) {
-    return _c("div", {
-      key: index,
-      staticClass: "accordion accordion-flush",
-      attrs: {
-        id: "overview_parent_accordion" + index
-      }
-    }, [_c("div", {
-      staticClass: "accordion-item"
-    }, [_c("h2", {
-      staticClass: "accordion-header",
-      attrs: {
-        id: "overview_parent_heading" + index
-      }
-    }, [_c("button", {
-      staticClass: "accordion-button collapsed",
-      attrs: {
-        type: "button",
-        "data-bs-toggle": "collapse",
-        "data-bs-target": "#" + "flush-overview_parent_accordion" + index,
-        "aria-expanded": "false",
-        "aria-controls": "flush-overview_parent_accordion" + index
-      }
-    }, [_vm._v("\n                                                            " + _vm._s(prnt_info.full_name) + "\n                                                        ")])]), _vm._v(" "), _c("div", {
-      staticClass: "accordion-collapse collapse",
-      attrs: {
-        id: "flush-overview_parent_accordion" + index,
-        "aria-labelledby": "flush-overview_parent_heading" + index,
-        "data-bs-parent": "#" + "overview_parent_accordion" + index
-      }
-    }, [_c("div", {
-      staticClass: "accordion-body"
-    }, [_c("ul", {
-      staticClass: "list-group"
-    }, [_c("li", {
-      staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("EMAIL\n                                                                        : ")]), _vm._v(_vm._s(prnt_info.email) + "\n                                                                ")]), _vm._v(" "), _c("li", {
-      staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("PHONE\n                                                                        : ")]), _vm._v(_vm._s(prnt_info.phone) + "\n                                                                ")])])])])])]);
-  }), 0)]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-lg-3 col-md-4 label"
   }, [_vm._v("\n                                            Email\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.email) + "\n                                        ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.teacher_info.email) + "\n                                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
   }, [_vm._v("\n                                            Phone\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.phone) + "\n                                        ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.teacher_info.phone) + "\n                                        ")])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade profile-teacher pt-3",
     attrs: {
       id: "profile-teacher"
