@@ -2,6 +2,8 @@
 
 namespace App\Http\Resources\teacher;
 
+use App\Http\Resources\StudentWithoutClassResource;
+use App\Http\Resources\SubjectResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class profileOverview extends JsonResource
@@ -14,6 +16,14 @@ class profileOverview extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            "teacher_info" => [
+                'full_name'=>$this->full_name,
+                'email'=>$this->user->email,
+                'phone'=>$this->phone,
+            ],
+            "subject_info" => SubjectResource::collection($this->subject),
+            "student_info" => StudentWithoutClassResource::collection($this->student)
+        ];
     }
 }

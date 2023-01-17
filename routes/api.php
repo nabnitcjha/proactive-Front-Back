@@ -48,6 +48,7 @@ Route::group([
     'namespace' => 'App\Http\Controllers'
 
 ], function ($router) {
+    Route::get('teacher/{id}/profileOverview', 'TeacherController@profileOverview');
     Route::get('getTeachers/{allowPagination}', 'TeacherController@getData');
     Route::get('teacher/{id}/sortedClass', 'TeacherController@sortedClass');
     Route::post('addTeacher', 'TeacherController@saveData');

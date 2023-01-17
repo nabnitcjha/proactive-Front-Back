@@ -783,7 +783,7 @@
                                                                                     .id
                                                                             "
                                                                             :calType="
-                                                                                student_teacher_all
+                                                                                teacher_student_all
                                                                             "
                                                                         ></slot-calendar>
                                                                     </div>
@@ -805,7 +805,7 @@
                                             :current_student_id="
                                                 $route.params.id
                                             "
-                                            :calType="student_all"
+                                            :calType="teacher_all"
                                         ></slot-calendar>
                                     </div>
 
@@ -918,11 +918,10 @@
 export default {
     data() {
         return {
-            student_all: "student_all",
-            student_teacher_all: "student_teacher_all",
-            student_all: "student_all",
+            teacher_all: "teacher_all",
+            teacher_student_all: "teacher_student_all",
             show: false,
-            showTeacherCalendar: false,
+            showStudentCalendar: false,
             showAllCalendar: false,
             profile_overview: [],
             sorted_class: [],
@@ -965,7 +964,7 @@ export default {
         },
         async profileOverview() {
             let id = this.$route.params.id;
-            let urlText = "student/" + id + "/profileOverview";
+            let urlText = "teacher/" + id + "/profileOverview";
 
             let getResponse = await this.get(urlText, id, false);
             let sortedClass = await this.sortedClass();
@@ -977,7 +976,7 @@ export default {
         },
         async sortedClass() {
             let id = this.$route.params.id;
-            let urlText = "student/" + id + "/sortedClass";
+            let urlText = "teacher/" + id + "/sortedClass";
 
             let getResponse = await this.get(urlText, id, false);
 
@@ -987,7 +986,7 @@ export default {
         async changePassword() {
             let id = 1;
             let formData = {};
-            let urlText = "student/" + id + "/changePassword";
+            let urlText = "teacher/" + id + "/changePassword";
 
             let putResponse = await this.put(urlText, formData);
         },

@@ -6,6 +6,7 @@ use App\Http\Resources\ClassScheduleAdvanceResource;
 use App\Http\Resources\ClassScheduleForTeacherDetail;
 use App\Http\Resources\TeacherAdvanceResource;
 use App\Http\Resources\TeacherListResource;
+use App\Http\Resources\teacher\profileOverview;
 use App\Http\Resources\TeacherResource;
 use App\Models\ClassSchedule;
 use App\Models\Student;
@@ -17,12 +18,14 @@ use Illuminate\Support\Facades\DB;
 
 class TeacherController extends BaseController
 {
+    private $profileOverviewResource;
     public $Model;
     private $teacherAdvanceResource;
     
     public function __construct()
     {
         $this->teacherAdvanceResource = new TeacherAdvanceResource(array());
+        $this->profileOverviewResource = new profileOverview(array());
         $this->Model = new Teacher();
     }
 
@@ -49,6 +52,14 @@ class TeacherController extends BaseController
         $teacher = parent::store($teacher_info);
 
         $this->successResponse($teacher, 'save successfully');
+    }
+
+    public function profileOverview($id)
+    {
+        $profile_overview = Teacher::where('id',$id)->first();
+
+        return  $this->profileOverviewResource->make($profile_overview);
+
     }
 
     public function sortedClass($id)
