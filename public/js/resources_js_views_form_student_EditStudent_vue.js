@@ -240,7 +240,7 @@ var render = function render() {
     staticClass: "add-item"
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("Student List")]), _vm._v(" "), _c("button", {
+  }, [_vm._v("Student List")]), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("button", {
     staticClass: "btn btn-add",
     attrs: {
       type: "button"
@@ -253,7 +253,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "bi bi-plus"
-  }), _vm._v(" ADD STUDENT\n                    ")])]), _vm._v(" "), _c("hr", {
+  }), _vm._v(" ADD STUDENT\n                    ")]) : _vm._e()]), _vm._v(" "), _c("hr", {
     staticClass: "hr-color"
   }), _vm._v(" "), _c("table", {
     staticClass: "table table-hover user-list"
@@ -277,7 +277,7 @@ var render = function render() {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("Subject")]), _vm._v(" "), _vm.getLoginInfo.user.role != "teacher" ? _c("th", {
+  }, [_vm._v("Subject")]), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("th", {
     attrs: {
       scope: "col"
     }
@@ -324,7 +324,7 @@ var render = function render() {
       return _c("b-list-group-item", {
         key: sb.id
       }, [_vm._v(_vm._s(sb.name))]);
-    }), 1)], 1), _vm._v(" "), _vm.getLoginInfo.user.role != "teacher" ? _c("td", {
+    }), 1)], 1), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("td", {
       on: {
         click: function click($event) {
           $event.stopPropagation();

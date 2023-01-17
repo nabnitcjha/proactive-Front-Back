@@ -9,6 +9,7 @@
                             type="button"
                             class="btn btn-add"
                             @click.stop="$root.changeRoute('/add-teacher')"
+                            v-if="getLoginInfo.user.role=='admin'"
                         >
                             <i class="bi bi-plus"></i> ADD TEACHER
                         </button>

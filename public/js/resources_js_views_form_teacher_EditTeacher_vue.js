@@ -188,7 +188,7 @@ var render = function render() {
     staticClass: "add-item"
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("Teacher List")]), _vm._v(" "), _c("button", {
+  }, [_vm._v("Teacher List")]), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("button", {
     staticClass: "btn btn-add",
     attrs: {
       type: "button"
@@ -201,7 +201,7 @@ var render = function render() {
     }
   }, [_c("i", {
     staticClass: "bi bi-plus"
-  }), _vm._v(" ADD TEACHER\n                    ")])]), _vm._v(" "), _c("hr", {
+  }), _vm._v(" ADD TEACHER\n                    ")]) : _vm._e()]), _vm._v(" "), _c("hr", {
     staticClass: "hr-color"
   }), _vm._v(" "), _c("table", {
     staticClass: "table table-hover"

@@ -9,6 +9,7 @@
                             type="button"
                             class="btn btn-add"
                             @click.stop="$root.changeRoute('/add-student')"
+                            v-if="getLoginInfo.user.role=='admin'"
                         >
                             <i class="bi bi-plus"></i> ADD STUDENT
                         </button>
@@ -22,7 +23,7 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Subject</th>
-                                <th scope="col" v-if="getLoginInfo.user.role!='teacher'">Teacher</th>
+                                <th scope="col" v-if="getLoginInfo.user.role=='admin'">Teacher</th>
                                 <th scope="col">Parent</th>
                             </tr>
                         </thead>
@@ -38,7 +39,7 @@
                                     </b-list-group>
                                 </td>
                                 <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')"
-                                v-if="getLoginInfo.user.role!='teacher'"
+                                v-if="getLoginInfo.user.role=='admin'"
                                 >
                                     <b-list-group>
                                         <b-list-group-item  v-for="tec in std.teacher" :key="tec.id">{{ tec.full_name }}</b-list-group-item>
