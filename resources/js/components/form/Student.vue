@@ -486,10 +486,9 @@ export default {
                 } else {
                     return false;
                 }
-            }else{
+            } else {
                 return true;
             }
-            
         },
         callBack() {
             this.save();
