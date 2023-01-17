@@ -33,7 +33,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       current_teacher_id: "",
       current_student_id: "",
       current_class_id: "",
-      showCalendar: false
+      showCalendar: false,
+      subjects: []
     };
   },
   mounted: function mounted() {
@@ -67,6 +68,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     makeFalse: function makeFalse() {
       this.showCalendar = false;
     },
+    checkSubject: function checkSubject(val) {
+      var results = this.subjects.filter(function (sub) {
+        return sub.name === val.name;
+      });
+      if (results.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     profileOverview: function profileOverview() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -87,7 +98,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _this.profile_overview = _objectSpread(_objectSpread({}, getResponse.data.data), {}, {
                 sorted_class: _this.sorted_class
               });
-            case 9:
+              _this.subjects = _this.profile_overview.subject_info;
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -431,10 +443,10 @@ var render = function render() {
     }, [_c("b", [_vm._v("PHONE\n                                                                        : ")]), _vm._v(_vm._s(stu_info.phone) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
     }, [_c("b", [_vm._v("SUBJECT\n                                                                        :\n                                                                    ")]), _vm._v(" "), _vm._l(stu_info.subject, function (tch_sub_info, index) {
-      return _c("span", {
+      return _vm.checkSubject(tch_sub_info) ? _c("span", {
         key: index,
         staticClass: "badge rounded-pill text-bg-warning mr-2"
-      }, [_vm._v(_vm._s(tch_sub_info.name))]);
+      }, [_vm._v(_vm._s(tch_sub_info.name))]) : _vm._e();
     })], 2)])])])])]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "row"

@@ -455,6 +455,7 @@
                                                                             :key="
                                                                                 index
                                                                             "
+                                                                            v-if="checkSubject(tch_sub_info)"
                                                                             >{{
                                                                                 tch_sub_info.name
                                                                             }}</span
@@ -838,6 +839,7 @@ export default {
             current_student_id: "",
             current_class_id: "",
             showCalendar: false,
+            subjects:[]
         };
     },
     mounted() {
@@ -871,17 +873,25 @@ export default {
         makeFalse() {
             this.showCalendar = false;
         },
+        checkSubject(val){
+            const results = this.subjects.filter(sub => sub.name === val.name);
+            if (results.length>0) {
+                return true;
+            }else{
+                return false;
+            }
+        },
         async profileOverview() {
             let id = this.$route.params.id;
             let urlText = "teacher/" + id + "/profileOverview";
 
             let getResponse = await this.get(urlText, id, false);
             let sortedClass = await this.sortedClass();
-
             this.profile_overview = {
                 ...getResponse.data.data,
                 sorted_class: this.sorted_class,
             };
+            this.subjects = this.profile_overview.subject_info;
         },
         async sortedClass() {
             let id = this.$route.params.id;
