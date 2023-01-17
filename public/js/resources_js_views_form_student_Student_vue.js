@@ -71,6 +71,23 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     this.getStudents();
   },
   methods: {
+    checkSubject: function checkSubject(val) {
+      var results = [];
+      if (this.getLoginInfo.user.role == 'teacher') {
+        results = this.getLoginInfo.teacher_info.subject.filter(function (sub) {
+          return sub.name === val.name;
+        });
+      } else {
+        results = this.subjects.filter(function (sub) {
+          return sub.name === val.name;
+        });
+      }
+      if (results.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     callBack: function callBack() {
       this.save();
     },
@@ -321,9 +338,9 @@ var render = function render() {
         }
       }
     }, [_c("b-list-group", _vm._l(std.subject, function (sb) {
-      return _c("b-list-group-item", {
+      return _vm.checkSubject(sb) ? _c("b-list-group-item", {
         key: sb.id
-      }, [_vm._v(_vm._s(sb.name))]);
+      }, [_vm._v(_vm._s(sb.name))]) : _vm._e();
     }), 1)], 1), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("td", {
       on: {
         click: function click($event) {

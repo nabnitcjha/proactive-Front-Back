@@ -168,7 +168,7 @@
                                         id="profile-overview"
                                     >
                                         <h5 class="card-title">
-                                            Profile Details
+                                           Student Profile Details
                                         </h5>
 
                                         <div class="row">

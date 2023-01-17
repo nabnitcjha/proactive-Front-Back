@@ -35,7 +35,7 @@
                                 <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')">{{ std.phone }}</td>
                                 <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')">
                                     <b-list-group>
-                                        <b-list-group-item  v-for="sb in std.subject" :key="sb.id">{{ sb.name }}</b-list-group-item>
+                                        <b-list-group-item  v-for="sb in std.subject" :key="sb.id" v-if="checkSubject(sb)">{{ sb.name }}</b-list-group-item>
                                     </b-list-group>
                                 </td>
                                 <td @click.stop="$root.changeRoute('/student/'+std.id+'/detail')"
@@ -412,6 +412,20 @@ export default {
         this.getStudents();
     },
     methods: {
+        checkSubject(val){
+            
+            let results = [];
+            if (this.getLoginInfo.user.role=='teacher') {
+                 results = this.getLoginInfo.teacher_info.subject.filter(sub => sub.name === val.name);
+            }else{
+             results = this.subjects.filter(sub => sub.name === val.name);
+            }
+            if (results.length>0) {
+                return true;
+            }else{
+                return false;
+            }
+        },
         callBack() {
             this.save();
         },

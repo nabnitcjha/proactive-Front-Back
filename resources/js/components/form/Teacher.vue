@@ -250,6 +250,7 @@ export default {
     ...mapState(loginInfoStore, ['getLoginInfo']),
   },
     methods: {
+        
         callBack() {
             this.save();
         },
