@@ -884,7 +884,7 @@ export default {
             
             let results = [];
             if (this.getLoginInfo.user.role=='student') {
-                 results = this.getLoginInfo.teacher_info.subject.filter(sub => sub.name === val.name);
+                 results = this.getLoginInfo.student_info.subject.filter(sub => sub.name === val.name);
             }else{
              results = this.subjects.filter(sub => sub.name === val.name);
             }

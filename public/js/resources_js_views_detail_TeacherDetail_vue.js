@@ -76,7 +76,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     checkSubject: function checkSubject(val) {
       var results = [];
       if (this.getLoginInfo.user.role == 'student') {
-        results = this.getLoginInfo.teacher_info.subject.filter(function (sub) {
+        results = this.getLoginInfo.student_info.subject.filter(function (sub) {
           return sub.name === val.name;
         });
       } else {
