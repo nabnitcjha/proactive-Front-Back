@@ -11,6 +11,7 @@ use App\Http\Resources\teacher\profileOverview;
 use App\Http\Resources\TeacherResource;
 use App\Models\ClassSchedule;
 use App\Models\Student;
+use App\Models\StudentSession;
 use App\Models\StudentTeacher;
 use App\Models\Subject;
 use App\Models\Teacher;
@@ -84,10 +85,12 @@ class TeacherController extends BaseController
             ->groupBy('class_unique_id')
             ->get();
 
-            $studentIds = StudentTeacher::where('teacher_id',$id)->pluck('student_id');
-            $students = Student::whereIn('id',$studentIds)->get();
+            // $studentIds = StudentTeacher::where('teacher_id',$id)->pluck('student_id');
+            // $students = Student::whereIn('id',$studentIds)->get();
 
             foreach ($sorted_class as $key => $value) {
+                $studentIds = StudentSession::where('class_schedule_id',$value->id)->pluck('student_id');
+                $students = Student::whereIn('id',$studentIds)->get();
                 $subject = Subject::where('id',$value->subject_id)->first();
                 $value->student=$students;
                 $value->subject=$subject;
