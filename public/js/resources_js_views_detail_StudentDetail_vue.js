@@ -787,7 +787,7 @@ var render = function render() {
       id: "profile-discussion"
     }
   }, _vm._l(_vm.profile_overview.sorted_class, function (class_info, index) {
-    return _vm.checkSubject(class_info.subject) ? _c("div", {
+    return _vm.getLoginInfo.user.name == class_info.teacher.full_name ? _c("div", {
       key: index,
       staticClass: "card",
       staticStyle: {

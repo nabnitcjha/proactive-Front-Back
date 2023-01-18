@@ -180,13 +180,13 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
               urlText = "";
-              if (_this2.getLoginInfo.user.role == "student") {
-                urlText = "student/" + id + "/teacher";
+              if (_this2.getLoginInfo.user.role == "teacher") {
+                urlText = "teacher/" + _this2.getLoginInfo.teacher_info.id + "/student";
               } else {
                 urlText = "getStudents";
               }
               _context2.next = 4;
-              return _this2.get(urlText, 0, true);
+              return _this2.get(urlText, 1, false);
             case 4:
               getResponse = _context2.sent;
               _this2.students = getResponse.data.data;

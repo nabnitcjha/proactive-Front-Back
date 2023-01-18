@@ -290,13 +290,13 @@ export default {
         async getTeachers() {
             let urlText = '';
             
-            if (this.getLoginInfo.user.role=='teacher') {
-                urlText = "teacher/" + id + "/student";
+            if (this.getLoginInfo.user.role=='student') {
+                urlText = "student/" + this.getLoginInfo.student_info.id + "/teacher";
             }else{
                 urlText = "getTeachers";
             }
              
-            let getResponse = await this.get(urlText, 0, true);
+            let getResponse = await this.get(urlText, 1, false);
             this.teachers = getResponse.data.data;
         },
     },

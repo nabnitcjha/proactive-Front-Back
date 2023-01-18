@@ -1091,7 +1091,7 @@
                                                         class_info, index
                                                     ) in profile_overview.sorted_class"
                                                     :key="index"
-                                                    v-if="checkSubject(class_info.subject)"
+                                                    v-if="getLoginInfo.user.name==class_info.teacher.full_name"
                                                     >
                                             <div class="card-body">
                                                 <h5 class="card-title">
@@ -1185,6 +1185,7 @@ export default {
             }else{
              results = this.subjects.filter(sub => sub.name === val.name);
             }
+            
             if (results.length>0) {
                 return true;
             }else{

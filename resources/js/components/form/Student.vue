@@ -574,13 +574,12 @@ export default {
         async getStudents() {
             let urlText = "";
 
-            if (this.getLoginInfo.user.role == "student") {
-                urlText = "student/" + id + "/teacher";
+            if (this.getLoginInfo.user.role == "teacher") {
+                urlText = "teacher/" + this.getLoginInfo.teacher_info.id + "/student";
             } else {
                 urlText = "getStudents";
             }
-
-            let getResponse = await this.get(urlText, 0, true);
+            let getResponse = await this.get(urlText, 1, false);
             this.students = getResponse.data.data;
         },
     },
