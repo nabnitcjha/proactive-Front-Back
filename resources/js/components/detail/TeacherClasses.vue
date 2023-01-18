@@ -8,12 +8,12 @@
                 :key="index"
             >
                 <div class="card-body">
-                    <h5 class="card-title">
+                    <h5 class="card-title d-flex justify-content-center">
                         {{ class_info.topic }}
                     </h5>
                     <ul class="list-group">
-                        <li class="list-group-item">
-                            ><span
+                        <li class="list-group-item d-flex justify-content-around">
+                            <span
                                 class="badge rounded-pill text-bg-warning mr-2"
                                 v-for="(
                                     cls_selected_day, index
@@ -22,15 +22,17 @@
                                 >{{ findDay(cls_selected_day) }}</span
                             >
                         </li>
-                        <li class="list-group-item">
-                          {{ class_info.duration }}
+                        <li class="list-group-item d-flex justify-content-center">
+                            {{ class_info.duration }}
                         </li>
-                        <li class="list-group-item">
-                            <b>{{ timeFormater(class_info.start_date) }}{{ ' - ' }}{{ {{ timeFormater(class_info.end_date) }} }}</b>
+                        <li class="list-group-item d-flex justify-content-center">
+                            <b
+                                >{{ timeFormater(class_info.start_date)}}{{ " - "}}{{ timeFormater(class_info.end_date) }}</b
+                            >
                         </li>
                     </ul>
                     <a
-                        class="btn btn-success"
+                        class="btn btn-success d-flex justify-content-center mt-5"
                         @click.stop="setClassId(class_info.id)"
                         >Go TO Class</a
                     >
@@ -52,7 +54,7 @@ export default {
     computed: {
         ...mapState(loginInfoStore, ["getLoginInfo"]),
     },
-    mounted(){
+    mounted() {
         this.getClasses();
     },
     methods: {
@@ -60,7 +62,7 @@ export default {
             let urlText =
                 "teacher/" + this.getLoginInfo.teacher_info.id + "/sortedClass";
 
-            getResponse = await this.get(urlText, 0, true);
+           let getResponse = await this.get(urlText, 1, false);
             this.sorted_class = getResponse.data.data;
         },
         findDay(day) {

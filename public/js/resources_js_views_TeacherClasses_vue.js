@@ -38,13 +38,13 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     getClasses: function getClasses() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var urlText;
+        var urlText, getResponse;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               urlText = "teacher/" + _this.getLoginInfo.teacher_info.id + "/sortedClass";
               _context.next = 3;
-              return _this.get(urlText, 0, true);
+              return _this.get(urlText, 1, false);
             case 3:
               getResponse = _context.sent;
               _this.sorted_class = getResponse.data.data;
@@ -114,8 +114,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function render() {};
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-12"
+  }, _vm._l(_vm.sorted_class, function (class_info, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "card",
+      staticStyle: {
+        width: "18rem"
+      }
+    }, [_c("div", {
+      staticClass: "card-body"
+    }, [_c("h5", {
+      staticClass: "card-title d-flex justify-content-center"
+    }, [_vm._v("\n                    " + _vm._s(class_info.topic) + "\n                ")]), _vm._v(" "), _c("ul", {
+      staticClass: "list-group"
+    }, [_c("li", {
+      staticClass: "list-group-item d-flex justify-content-around"
+    }, _vm._l(class_info.selected_day, function (cls_selected_day, index) {
+      return _c("span", {
+        key: index,
+        staticClass: "badge rounded-pill text-bg-warning mr-2"
+      }, [_vm._v(_vm._s(_vm.findDay(cls_selected_day)))]);
+    }), 0), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item d-flex justify-content-center"
+    }, [_vm._v("\n                        " + _vm._s(class_info.duration) + "\n                    ")]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item d-flex justify-content-center"
+    }, [_c("b", [_vm._v(_vm._s(_vm.timeFormater(class_info.start_date)) + _vm._s(" - ") + _vm._s(_vm.timeFormater(class_info.end_date)))])])]), _vm._v(" "), _c("a", {
+      staticClass: "btn btn-success d-flex justify-content-center mt-5",
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.setClassId(class_info.id);
+        }
+      }
+    }, [_vm._v("Go TO Class")])])]);
+  }), 0)]);
+};
 var staticRenderFns = [];
+render._withStripped = true;
 
 
 /***/ }),
