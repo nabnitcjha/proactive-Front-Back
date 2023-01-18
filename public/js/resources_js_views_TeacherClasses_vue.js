@@ -120,7 +120,7 @@ var render = function render() {
   return _c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-lg-12"
+    staticClass: "col-lg-1 d-flex justify-content-around"
   }, _vm._l(_vm.sorted_class, function (class_info, index) {
     return _c("div", {
       key: index,
