@@ -20,6 +20,11 @@ const routes = [
     name: 'dashboard',
     component: () => import('../views/Dashboard.vue')
   },
+  {
+    path: '/payment',
+    name: 'classPayment',
+    component: () => import('../views/ClassPayment.vue')
+  },
    // calendar
    {
     path: '/calendar',
