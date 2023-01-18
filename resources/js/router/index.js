@@ -78,6 +78,11 @@ const routes = [
     name: 'teacherDetail',
     component: () => import('../views/detail/TeacherDetail.vue')
   },
+  {
+    path: '/teacher-classes',
+    name: 'teacherDetail',
+    component: () => import('../views/TeacherClasses.vue')
+  },
   // subject
   {
     path: '/subject',
