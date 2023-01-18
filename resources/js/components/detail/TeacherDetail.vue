@@ -590,7 +590,7 @@
                                                                     <div
                                                                         class="col-lg-3 col-md-4 label"
                                                                     >
-                                                                        Subjects
+                                                                        Subjects 
                                                                     </div>
                                                                     <div
                                                                         class="col-lg-9 col-md-8"
@@ -605,9 +605,9 @@
                                                                                 index
                                                                             "
                                                                             v-if="checkSubject(sub_info)"
-                                                                            >{{
-                                                                                sub_info.name
-                                                                            }}</span
+                                                                            >
+                                                                            <!-- {{sub_info.name }} -->
+                                                                                </span
                                                                         >
                                                                     </div>
                                                                 </div>

@@ -528,13 +528,13 @@ var render = function render() {
       staticClass: "row"
     }, [_c("div", {
       staticClass: "col-lg-3 col-md-4 label"
-    }, [_vm._v("\n                                                                    Subjects\n                                                                ")]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                    Subjects \n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
     }, _vm._l(student_info.subject, function (sub_info, index) {
       return _vm.checkSubject(sub_info) ? _c("span", {
         key: index,
         staticClass: "badge rounded-pill bg-warning text-dark"
-      }, [_vm._v(_vm._s(sub_info.name))]) : _vm._e();
+      }) : _vm._e();
     }), 0)]), _vm._v(" "), _c("div", {
       staticClass: "row"
     }, [_c("div", {
