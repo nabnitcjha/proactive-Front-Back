@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-lg-1 d-flex justify-content-around">
+        <div class="col-lg-12 d-flex justify-content-around">
             <div
                 class="card"
                 style="width: 18rem"
