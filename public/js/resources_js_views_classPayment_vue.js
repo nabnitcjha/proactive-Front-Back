@@ -42,13 +42,19 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              urlText = "student/" + _this.getLoginInfo.student_info.id + "/sortedClass";
-              _context.next = 3;
+              debugger;
+              urlText = '';
+              if (_this.getLoginInfo.user.role == 'student') {
+                urlText = "student/" + _this.getLoginInfo.student_info.id + "/sortedClass";
+              } else {
+                urlText = "student/" + 1 + "/sortedClass";
+              }
+              _context.next = 5;
               return _this.get(urlText, 1, false);
-            case 3:
+            case 5:
               getResponse = _context.sent;
               _this.sorted_class = getResponse.data.data;
-            case 5:
+            case 7:
             case "end":
               return _context.stop();
           }

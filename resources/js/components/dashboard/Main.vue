@@ -45,6 +45,7 @@
 <admin-sidebar v-if="getLoginInfo.user.role=='admin'"/>
 <student-sidebar v-if="getLoginInfo.user.role=='student'"/>
 <teacher-sidebar v-if="getLoginInfo.user.role=='teacher'"/>
+<parent-sidebar v-if="getLoginInfo.user.role=='parent'"/>
 <!-- End Sidebar-->
 </aside>
 
@@ -79,6 +80,7 @@ import ProfileNav from './ProfileNav.vue';
 import AdminSidebar from './sidebar/AdminSidebar.vue';
 import StudentSidebar from './sidebar/StudentSidebar.vue';
 import TeacherSidebar from './sidebar/TeacherSidebar.vue';
+import ParentSidebar from './sidebar/ParentSidebar.vue';
 import BreadCrumb from './BreadCrumb.vue';
 import Footer from './Footer.vue';
 import {mapState,mapActions} from 'pinia'
@@ -93,6 +95,7 @@ export default {
      AdminSidebar,
      StudentSidebar,
      TeacherSidebar,
+     ParentSidebar,
      BreadCrumb,
      Footer
   },

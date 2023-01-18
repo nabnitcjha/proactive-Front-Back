@@ -47,8 +47,15 @@ export default {
     },
     methods: {
         async getClasses() {
-            let urlText =
+            debugger;
+            let urlText = '';
+            if (this.getLoginInfo.user.role=='student') {
+                urlText =
                 "student/" + this.getLoginInfo.student_info.id + "/sortedClass";
+            }else{
+                urlText =
+                "student/" + 1 + "/sortedClass";
+            }
 
            let getResponse = await this.get(urlText, 1, false);
             this.sorted_class = getResponse.data.data;
