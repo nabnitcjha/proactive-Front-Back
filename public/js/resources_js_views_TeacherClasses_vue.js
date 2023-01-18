@@ -31,6 +31,9 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     };
   },
   computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapState)(_stores_loginInfo__WEBPACK_IMPORTED_MODULE_0__.loginInfoStore, ["getLoginInfo"])),
+  mounted: function mounted() {
+    this.getClasses();
+  },
   methods: {
     getClasses: function getClasses() {
       var _this = this;

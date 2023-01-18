@@ -52,6 +52,9 @@ export default {
     computed: {
         ...mapState(loginInfoStore, ["getLoginInfo"]),
     },
+    mounted(){
+        this.getClasses();
+    },
     methods: {
         async getClasses() {
             let urlText =
