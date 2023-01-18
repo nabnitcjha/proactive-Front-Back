@@ -179,18 +179,26 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
+              if (!(_this2.getLoginInfo.user.role == "parent")) {
+                _context2.next = 4;
+                break;
+              }
+              _this2.students = _this2.getLoginInfo.student_info;
+              _context2.next = 10;
+              break;
+            case 4:
               urlText = "";
               if (_this2.getLoginInfo.user.role == "teacher") {
                 urlText = "teacher/" + _this2.getLoginInfo.teacher_info.id + "/student";
               } else {
                 urlText = "getStudents";
               }
-              _context2.next = 4;
+              _context2.next = 8;
               return _this2.get(urlText, 1, false);
-            case 4:
+            case 8:
               getResponse = _context2.sent;
               _this2.students = getResponse.data.data;
-            case 6:
+            case 10:
             case "end":
               return _context2.stop();
           }

@@ -47,7 +47,7 @@ export default {
     },
     methods: {
         async getClasses() {
-            debugger;
+            
             let urlText = '';
             if (this.getLoginInfo.user.role=='student') {
                 urlText =

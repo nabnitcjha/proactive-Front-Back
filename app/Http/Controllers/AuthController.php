@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\LoginResource;
 use App\Http\Resources\Admin\UserResource;
+use App\Http\Resources\GuardianResource;
 use App\Http\Resources\StudentListResource;
 use App\Http\Resources\TeacherListResource;
+use App\Models\Guardian;
 use App\Models\Student;
 use App\Models\Teacher;
 use PhpParser\Node\Expr\New_;
@@ -51,6 +53,13 @@ class AuthController extends Controller
                 $teacher = Teacher::where('user_id',$user->id)->first();
                 $teacher_info = TeacherListResource::make($teacher);
                 return response()->json(compact('access_token', 'token_type', 'expires_in', 'user','teacher_info', 'message'));
+            }
+
+            if ($user->role=='parent') {
+                $guardian = Guardian::where('user_id',$user->id)->first();
+                $parent_info = GuardianResource::make($guardian);
+                $student_info = StudentListResource::collection($guardian->student);
+                return response()->json(compact('access_token', 'token_type', 'expires_in', 'user','student_info','parent_info','message'));
             }
 
             return response()->json(compact('access_token', 'token_type', 'expires_in', 'user', 'message'));

@@ -572,15 +572,22 @@ export default {
             );
         },
         async getStudents() {
-            let urlText = "";
-
-            if (this.getLoginInfo.user.role == "teacher") {
-                urlText = "teacher/" + this.getLoginInfo.teacher_info.id + "/student";
+            if (this.getLoginInfo.user.role == "parent") {
+                this.students = this.getLoginInfo.student_info;
             } else {
-                urlText = "getStudents";
+                let urlText = "";
+
+                if (this.getLoginInfo.user.role == "teacher") {
+                    urlText =
+                        "teacher/" +
+                        this.getLoginInfo.teacher_info.id +
+                        "/student";
+                } else {
+                    urlText = "getStudents";
+                }
+                let getResponse = await this.get(urlText, 1, false);
+                this.students = getResponse.data.data;
             }
-            let getResponse = await this.get(urlText, 1, false);
-            this.students = getResponse.data.data;
         },
     },
 };
