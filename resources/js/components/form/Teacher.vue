@@ -288,15 +288,18 @@ export default {
             this.$router.push({ name: 'teacher' })
         },
         async getTeachers() {
+            
             let urlText = '';
+            let getResponse =[];
             
             if (this.getLoginInfo.user.role=='student') {
                 urlText = "student/" + this.getLoginInfo.student_info.id + "/teacher";
+                getResponse = await this.get(urlText, 1, false);
             }else{
                 urlText = "getTeachers";
+                getResponse = await this.get(urlText, 0, false);
             }
              
-            let getResponse = await this.get(urlText, 1, false);
             this.teachers = getResponse.data.data;
         },
     },
