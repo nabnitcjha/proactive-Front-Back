@@ -16,9 +16,11 @@ class TeacherAssignment extends Migration
         Schema::create('teacher_assignments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('assignment_id')->unsigned();
+            $table->integer('teacher_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('assignment_id')->references('id')->on('assignments')->onDelete('cascade');
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
         });
     }
 
