@@ -54,8 +54,10 @@
 <div class="pagetitle">
 
   <!-- <h1>Dashboard</h1> -->
-
-
+  <div class="bd-callout bd-callout-info text-uppercase">
+<strong>{{ getLoginInfo.user.role }} {{ ' ' }} {{ 'Dashboard' }}</strong> <span>{{  }}</span>
+</div>
+  
   <!-- start bread crumb -->
   <!-- end bread crumb -->
 </div><!-- End Page Title -->

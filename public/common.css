@@ -145,3 +145,17 @@ span.custom-checkbox {
   display: flex!important;
   justify-content: space-between!important;
 }
+
+.bd-callout-info {
+  --bd-callout-color: #087990;
+  --bd-callout-bg: #cff4fc;
+  --bd-callout-border: #9eeaf9;
+}
+.bd-callout {
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  color: var(--bd-callout-color, inherit);
+  background-color: #cff4fc;
+  border-left: 0.25rem solid #9eeaf9;
+}
