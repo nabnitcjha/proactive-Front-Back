@@ -98,12 +98,17 @@ class StudentController extends BaseController
         return parent::destroy($id);
     }
 
-    public function profileOverview($id)
+    public function detailForAdmin($id)
     {
         $profile_overview = Student::where('id',$id)->first();
 
         return  $this->profileOverviewResource->make($profile_overview);
 
+    }
+
+    public function detail($teacher_id,$student_id)
+    {
+        return 'sonu jha';
     }
 
     public function getTeacherSlot($student_id,$teacher_id){

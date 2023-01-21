@@ -41,7 +41,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       subjects: []
     };
   },
-  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapState)(_stores_loginInfo__WEBPACK_IMPORTED_MODULE_0__.loginInfoStore, ['getLoginInfo'])),
+  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapState)(_stores_loginInfo__WEBPACK_IMPORTED_MODULE_0__.loginInfoStore, ["getLoginInfo"])),
   mounted: function mounted() {
     this.profileOverview();
   },
@@ -75,7 +75,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     },
     checkSubject: function checkSubject(val) {
       var results = [];
-      if (this.getLoginInfo.user.role == 'teacher') {
+      if (this.getLoginInfo.user.role == "teacher") {
         results = this.getLoginInfo.teacher_info.subject.filter(function (sub) {
           return sub.name === val.name;
         });
@@ -98,20 +98,25 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           while (1) switch (_context.prev = _context.next) {
             case 0:
               id = _this.$route.params.id;
-              urlText = "student/" + id + "/profileOverview";
-              _context.next = 4;
+              urlText = "";
+              if (_this.getLoginInfo.user.role == "teacher") {
+                urlText = "teacher/" + _this.getLoginInfo.teacher_info.id + "/student/" + id + "/detail";
+              } else {
+                urlText = "student/" + id + "/detailForAdmin";
+              }
+              _context.next = 5;
               return _this.get(urlText, id, false);
-            case 4:
+            case 5:
               getResponse = _context.sent;
-              _context.next = 7;
+              _context.next = 8;
               return _this.sortedClass();
-            case 7:
+            case 8:
               sortedClass = _context.sent;
               _this.profile_overview = _objectSpread(_objectSpread({}, getResponse.data.data), {}, {
                 sorted_class: _this.sorted_class
               });
               _this.subjects = _this.profile_overview.subject_info;
-            case 10:
+            case 11:
             case "end":
               return _context.stop();
           }
@@ -339,7 +344,7 @@ var render = function render() {
     }
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("\n                                       Student Profile Details\n                                    ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                        Student Profile Details\n                                    ")]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
@@ -797,7 +802,7 @@ var render = function render() {
       staticClass: "card-body"
     }, [_c("h5", {
       staticClass: "card-title"
-    }, [_vm._v("\n                                               " + _vm._s(class_info.topic) + "\n                                            ")]), _vm._v(" "), _c("a", {
+    }, [_vm._v("\n                                                " + _vm._s(class_info.topic) + "\n                                            ")]), _vm._v(" "), _c("a", {
       staticClass: "btn btn-success",
       attrs: {
         href: "#",

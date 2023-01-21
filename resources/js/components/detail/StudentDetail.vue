@@ -27,20 +27,18 @@
                     <div class="modal-body">
                         <!-- start body -->
                         <div class="card">
-                           <chat-form></chat-form>
+                            <chat-form></chat-form>
                         </div>
                         <!-- end body -->
                     </div>
-                    <div class="modal-footer invisible">
-                        
-                    </div>
+                    <div class="modal-footer invisible"></div>
                 </div>
             </div>
         </div>
         <!--Message modal end -->
 
-                <!--Group discussion Message modal start -->
-                <div
+        <!--Group discussion Message modal start -->
+        <div
             class="modal fade modal-tall"
             id="groupDiscussionMessage"
             tabindex="-1"
@@ -70,9 +68,7 @@
                         </div>
                         <!-- end body -->
                     </div>
-                    <div class="modal-footer invisible">
-                      
-                    </div>
+                    <div class="modal-footer invisible"></div>
                 </div>
             </div>
         </div>
@@ -168,7 +164,7 @@
                                         id="profile-overview"
                                     >
                                         <h5 class="card-title">
-                                           Student Profile Details
+                                            Student Profile Details
                                         </h5>
 
                                         <div class="row">
@@ -202,7 +198,12 @@
                                                         class_info, index
                                                     ) in profile_overview.sorted_class"
                                                     :key="index"
-                                                    v-if="getLoginInfo.user.name==class_info.teacher.full_name"
+                                                    v-if="
+                                                        getLoginInfo.user
+                                                            .name ==
+                                                        class_info.teacher
+                                                            .full_name
+                                                    "
                                                 >
                                                     <div class="accordion-item">
                                                         <h2
@@ -347,7 +348,13 @@
                                             </div>
                                         </div>
 
-                                        <div class="row" v-if="getLoginInfo.user.role=='admin'">
+                                        <div
+                                            class="row"
+                                            v-if="
+                                                getLoginInfo.user.role ==
+                                                'admin'
+                                            "
+                                        >
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
@@ -451,7 +458,11 @@
                                                                             :key="
                                                                                 index
                                                                             "
-                                                                            v-if="checkSubject(tch_sub_info)"
+                                                                            v-if="
+                                                                                checkSubject(
+                                                                                    tch_sub_info
+                                                                                )
+                                                                            "
                                                                             >{{
                                                                                 tch_sub_info.name
                                                                             }}</span
@@ -478,7 +489,9 @@
                                                         sub_info, index
                                                     ) in profile_overview.subject_info"
                                                     :key="index"
-                                                    v-if="checkSubject(sub_info)"
+                                                    v-if="
+                                                        checkSubject(sub_info)
+                                                    "
                                                     >{{ sub_info.name }}</span
                                                 >
                                             </div>
@@ -611,7 +624,7 @@
                                     <div
                                         class="tab-pane fade profile-teacher pt-3"
                                         id="profile-teacher"
-                                        v-if="getLoginInfo.user.role=='admin'"
+                                        v-if="getLoginInfo.user.role == 'admin'"
                                     >
                                         <!-- Profile Edit Form -->
                                         <form>
@@ -624,7 +637,8 @@
                                                         thr_info.id
                                                     "
                                                     v-for="(
-                                                        thr_info, tchr_info_index
+                                                        thr_info,
+                                                        tchr_info_index
                                                     ) in profile_overview.teacher_info"
                                                     :key="tchr_info_index"
                                                 >
@@ -665,7 +679,13 @@
                                                                 'profile-teacher-flush-collapseOne' +
                                                                 thr_info.id
                                                             "
-                                                            v-bind:class="['accordion-collapse collapse', tchr_info_index == 0 ? 'show' : '']"
+                                                            v-bind:class="[
+                                                                'accordion-collapse collapse',
+                                                                tchr_info_index ==
+                                                                0
+                                                                    ? 'show'
+                                                                    : '',
+                                                            ]"
                                                             aria-labelledby="profile-teacher-flush"
                                                             v-bind:data-bs-parent="
                                                                 '#' +
@@ -773,7 +793,9 @@
                                                                 </div>
                                                                 <div
                                                                     class="row"
-                                                                    v-if="showCalendar"
+                                                                    v-if="
+                                                                        showCalendar
+                                                                    "
                                                                 >
                                                                     <div>
                                                                         <slot-calendar
@@ -816,10 +838,15 @@
                                                         thr_info.id
                                                     "
                                                     v-for="(
-                                                        thr_info, tchr_info_index
+                                                        thr_info,
+                                                        tchr_info_index
                                                     ) in profile_overview.teacher_info"
                                                     :key="tchr_info_index"
-                                                    v-if="getLoginInfo.teacher_info.id==thr_info.id"
+                                                    v-if="
+                                                        getLoginInfo
+                                                            .teacher_info.id ==
+                                                        thr_info.id
+                                                    "
                                                 >
                                                     <div class="accordion-item">
                                                         <h2
@@ -858,7 +885,13 @@
                                                                 'profile-teacher-flush-collapseOne' +
                                                                 thr_info.id
                                                             "
-                                                            v-bind:class="['accordion-collapse collapse', tchr_info_index == 0 ? 'show' : '']"
+                                                            v-bind:class="[
+                                                                'accordion-collapse collapse',
+                                                                tchr_info_index ==
+                                                                0
+                                                                    ? 'show'
+                                                                    : '',
+                                                            ]"
                                                             aria-labelledby="profile-teacher-flush"
                                                             v-bind:data-bs-parent="
                                                                 '#' +
@@ -966,7 +999,9 @@
                                                                 </div>
                                                                 <div
                                                                     class="row"
-                                                                    v-if="showCalendar"
+                                                                    v-if="
+                                                                        showCalendar
+                                                                    "
                                                                 >
                                                                     <div>
                                                                         <slot-calendar
@@ -1002,7 +1037,10 @@
                                                 $route.params.id
                                             "
                                             :calType="student_all"
-                                            v-if="getLoginInfo.user.role=='admin'"
+                                            v-if="
+                                                getLoginInfo.user.role ==
+                                                'admin'
+                                            "
                                         ></slot-calendar>
                                         <slot-calendar
                                             :current_student_id="
@@ -1086,29 +1124,37 @@
                                         class="tab-pane fade pt-3 profile-discussion-card"
                                         id="profile-discussion"
                                     >
-                                        <div class="card" style="width: 18rem"  
-                                             v-for="(
-                                                        class_info, index
-                                                    ) in profile_overview.sorted_class"
-                                                    :key="index"
-                                                    v-if="getLoginInfo.user.name==class_info.teacher.full_name"
-                                                    >
+                                        <div
+                                            class="card"
+                                            style="width: 18rem"
+                                            v-for="(
+                                                class_info, index
+                                            ) in profile_overview.sorted_class"
+                                            :key="index"
+                                            v-if="
+                                                getLoginInfo.user.name ==
+                                                class_info.teacher.full_name
+                                            "
+                                        >
                                             <div class="card-body">
                                                 <h5 class="card-title">
-                                                   {{ class_info.topic }}
+                                                    {{ class_info.topic }}
                                                 </h5>
                                                 <a
                                                     href="#"
                                                     class="btn btn-success"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#groupDiscussionMessage"
-                                                    @click.stop="setClassId(class_info.id)"
+                                                    @click.stop="
+                                                        setClassId(
+                                                            class_info.id
+                                                        )
+                                                    "
                                                     >Open Discussion</a
                                                 >
                                             </div>
                                         </div>
                                         <!-- Settings Form -->
-                                      
 
                                         <!-- End settings Form -->
                                     </div>
@@ -1124,8 +1170,8 @@
 </template>
 
 <script>
-import { loginInfoStore } from '../../stores/loginInfo';
-import {mapState} from 'pinia'
+import { loginInfoStore } from "../../stores/loginInfo";
+import { mapState } from "pinia";
 export default {
     data() {
         return {
@@ -1140,12 +1186,12 @@ export default {
             current_student_id: "",
             current_class_id: "",
             showCalendar: false,
-            subjects:[]
+            subjects: [],
         };
     },
     computed: {
-    ...mapState(loginInfoStore, ['getLoginInfo']),
-  },
+        ...mapState(loginInfoStore, ["getLoginInfo"]),
+    },
     mounted() {
         this.profileOverview();
     },
@@ -1177,24 +1223,30 @@ export default {
         makeFalse() {
             this.showCalendar = false;
         },
-        checkSubject(val){
-            
+        checkSubject(val) {
             let results = [];
-            if (this.getLoginInfo.user.role=='teacher') {
-                 results = this.getLoginInfo.teacher_info.subject.filter(sub => sub.name === val.name);
-            }else{
-             results = this.subjects.filter(sub => sub.name === val.name);
+            if (this.getLoginInfo.user.role == "teacher") {
+                results = this.getLoginInfo.teacher_info.subject.filter(
+                    (sub) => sub.name === val.name
+                );
+            } else {
+                results = this.subjects.filter((sub) => sub.name === val.name);
             }
-            
-            if (results.length>0) {
+
+            if (results.length > 0) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         },
         async profileOverview() {
             let id = this.$route.params.id;
-            let urlText = "student/" + id + "/profileOverview";
+            let urlText = "";
+            if (this.getLoginInfo.user.role == "teacher") {
+                urlText = "teacher/" +this.getLoginInfo.teacher_info.id+ "/student/" + id + "/detail";
+            } else {
+                urlText = "student/" + id + "/detailForAdmin";
+            }
 
             let getResponse = await this.get(urlText, id, false);
             let sortedClass = await this.sortedClass();
