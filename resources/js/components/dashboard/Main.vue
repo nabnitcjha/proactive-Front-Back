@@ -28,7 +28,7 @@
     <!-- End Messages Icon -->
 
     <!-- Start Profile Nav Icon -->
-    <profile-nav />
+    <profile-nav :user_name="getLoginInfo.teacher_info.full_name" :user_role="getLoginInfo.user.role"/>
     <!-- End Profile Nav Icon -->
 
  
@@ -54,8 +54,8 @@
 <div class="pagetitle">
 
   <!-- <h1>Dashboard</h1> -->
-  <div class="bd-callout bd-callout-info text-uppercase">
-<strong>{{ getLoginInfo.user.role }} {{ ' ' }} {{ 'Dashboard' }}</strong> <span>{{  }}</span>
+  <div class="bd-callout bd-callout-info text-uppercase d-flex justify-content-between">
+<strong>{{ getLoginInfo.user.role }} {{ ' ' }} {{ 'Dashboard   ' }}</strong> <span class="text-capitalize">{{  }}</span>
 </div>
   
   <!-- start bread crumb -->
