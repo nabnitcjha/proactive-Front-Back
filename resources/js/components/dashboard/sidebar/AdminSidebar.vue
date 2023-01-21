@@ -2,7 +2,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
 <li class="nav-item">
-  <a class="nav-link ">
+  <a class="nav-link hand"   @click.stop="$root.changeRoute('/dashboard')">
     <i class="bi bi-grid"></i>
     <span>Dashboard</span>
   </a>
