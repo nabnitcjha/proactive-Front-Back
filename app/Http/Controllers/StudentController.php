@@ -105,24 +105,19 @@ class StudentController extends BaseController
 
     public function detail($teacher_id, $student_id)
     {
-        $sub = StudentSession::orderBy('id', 'DESC');
-        $student_session = DB::table('student_sessions')
+        $subjectIds = DB::table('student_sessions')
             ->where([
                 ['student_id', $student_id],
                 ['teacher_id', $teacher_id]
             ])
-            // ->groupBy('class_unique_id')
-            ->get();
-        // $sub = StudentSession::orderBy('id', 'DESC');
-        // $student_session = DB::table(DB::raw("({$sub->toSql()}) as sub"))
-        // ->where([
-        //     ['student_id',$student_id],
-        //     ['teacher_id',$teacher_id]
-        //     ])
-        //     ->groupBy('class_unique_id')
-        //     ->get();
+            ->distinct()
+            ->pluck('subject_id');
 
-        return $student_session;
+        $student = Student::with(['subject'=>function($query) use($subjectIds){
+            $query->whereIn('id',$subjectIds);
+        }])->where('id',$student_id)->first();
+
+        return $student;
     }
 
     public function getTeacherSlot($student_id, $teacher_id)
