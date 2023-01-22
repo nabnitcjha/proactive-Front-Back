@@ -113,11 +113,12 @@ class StudentController extends BaseController
             ->distinct()
             ->pluck('subject_id');
 
-        $student = Student::with(['subject'=>function($query) use($subjectIds){
-            $query->whereIn('id',$subjectIds);
-        }])->where('id',$student_id)->first();
+        $student = Student::with(['subject' => function ($query) use ($subjectIds) {
+            $query->whereIn('id', $subjectIds);
+        }])
+            ->where('id', $student_id)->first();
 
-        return $student;
+        return  $this->profileOverviewResource->make($student);
     }
 
     public function getTeacherSlot($student_id, $teacher_id)

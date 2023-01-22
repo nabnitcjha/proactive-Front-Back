@@ -19,7 +19,7 @@ class TeacherWithoutClassResource extends JsonResource
             "full_name" => $this->full_name,
             "phone" => $this->phone,
             "email" => $this->user->email,
-            'subject' => SubjectResource::collection($this->subject),
+            // 'subject' => SubjectResource::collection($this->subject),
         ];
     }
 }

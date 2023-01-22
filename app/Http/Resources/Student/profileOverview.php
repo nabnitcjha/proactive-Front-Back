@@ -27,7 +27,7 @@ class profileOverview extends JsonResource
                 'phone'=>$this->phone,
             ],
             "subject_info" => SubjectResource::collection($this->subject),
-            "teacher_info" => TeacherWithoutClassResource::collection($this->teacher),
+            // "teacher_info" => TeacherWithoutClassResource::collection($this->teacher),
             "parent_info" => GuardianResource::collection($this->guardian)
         ];
     }
