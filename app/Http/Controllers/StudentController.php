@@ -15,13 +15,14 @@ use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use LDAP\Result;
 
 class StudentController extends BaseController
 {
     private $studentAdvanceResource;
     private $profileOverviewResource;
     public $Model;
-    
+
     public function __construct()
     {
         $this->studentAdvanceResource = new StudentAdvanceResource(array());
@@ -80,10 +81,9 @@ class StudentController extends BaseController
 
     public function getTeacher($id)
     {
-        $student = Student::where('id',$id)->first();
+        $student = Student::where('id', $id)->first();
 
         return  TeacherListResource::collection($student->teacher);
-
     }
 
     public function show($id)
@@ -98,50 +98,62 @@ class StudentController extends BaseController
 
     public function detailForAdmin($id)
     {
-        $profile_overview = Student::where('id',$id)->first();
+        $profile_overview = Student::where('id', $id)->first();
 
         return  $this->profileOverviewResource->make($profile_overview);
-
     }
 
-    public function detail($teacher_id,$student_id)
+    public function detail($teacher_id, $student_id)
     {
-        $student_session = StudentSession::where([
-            ['student_id',$student_id],
-            ['teacher_id',$teacher_id]
-            ])->get();
-        // $student = Student::where('id',$student_id)->first();
-        
+        $sub = StudentSession::orderBy('id', 'DESC');
+        $student_session = DB::table('student_sessions')
+            ->where([
+                ['student_id', $student_id],
+                ['teacher_id', $teacher_id]
+            ])
+            // ->groupBy('class_unique_id')
+            ->get();
+        // $sub = StudentSession::orderBy('id', 'DESC');
+        // $student_session = DB::table(DB::raw("({$sub->toSql()}) as sub"))
+        // ->where([
+        //     ['student_id',$student_id],
+        //     ['teacher_id',$teacher_id]
+        //     ])
+        //     ->groupBy('class_unique_id')
+        //     ->get();
+
         return $student_session;
     }
 
-    public function getTeacherSlot($student_id,$teacher_id){
-        $student = Student::with(['classSchedule'=>function($query) use($teacher_id){
-            $query->where('teacher_id',$teacher_id);
-        }])->where('id',$student_id)->first();
+    public function getTeacherSlot($student_id, $teacher_id)
+    {
+        $student = Student::with(['classSchedule' => function ($query) use ($teacher_id) {
+            $query->where('teacher_id', $teacher_id);
+        }])->where('id', $student_id)->first();
 
         return ClassScheduleResource::collection($student->classSchedule);
     }
 
-    public function allClasses($id){
-        $student = Student::where('id',$id)->first();
+    public function allClasses($id)
+    {
+        $student = Student::where('id', $id)->first();
 
         return ClassScheduleAdvanceResource::collection($student->classSchedule);
     }
 
     public function sortedClass($id)
     {
-        $class_unique_ids = StudentSession::where('student_id',$id)->groupBy('class_unique_id')->pluck('class_unique_id');
+        $class_unique_ids = StudentSession::where('student_id', $id)->groupBy('class_unique_id')->pluck('class_unique_id');
         $sub = ClassSchedule::with('subject')->orderBy('id', 'DESC');
         $sorted_class = DB::table(DB::raw("({$sub->toSql()}) as sub"))
             ->whereIn('class_unique_id', $class_unique_ids)
             ->groupBy('class_unique_id')
             ->get();
         foreach ($sorted_class as $key => $value) {
-            $teacher = Teacher::where('id',$value->teacher_id)->first();
-            $subject = Subject::where('id',$value->subject_id)->first();
-            $value->teacher=$teacher;
-            $value->subject=$subject;
+            $teacher = Teacher::where('id', $value->teacher_id)->first();
+            $subject = Subject::where('id', $value->subject_id)->first();
+            $value->teacher = $teacher;
+            $value->subject = $subject;
         }
 
         return  ClassScheduleAdvanceResource::collection($sorted_class);
