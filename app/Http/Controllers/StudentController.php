@@ -7,8 +7,6 @@ use App\Http\Resources\ClassScheduleResource;
 use App\Http\Resources\student\profileOverview;
 use App\Http\Resources\StudentAdvanceResource;
 use App\Http\Resources\StudentListResource;
-use App\Http\Resources\StudentResource;
-use App\Http\Resources\TeacherAdvanceResource;
 use App\Http\Resources\TeacherListResource;
 use App\Models\ClassSchedule;
 use App\Models\Student;
@@ -108,7 +106,13 @@ class StudentController extends BaseController
 
     public function detail($teacher_id,$student_id)
     {
-        return 'sonu jha';
+        $student_session = StudentSession::where([
+            ['student_id',$student_id],
+            ['teacher_id',$teacher_id]
+            ])->get();
+        // $student = Student::where('id',$student_id)->first();
+        
+        return $student_session;
     }
 
     public function getTeacherSlot($student_id,$teacher_id){

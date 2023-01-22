@@ -28,7 +28,10 @@
     <!-- End Messages Icon -->
 
     <!-- Start Profile Nav Icon -->
-    <profile-nav :user_name="getLoginInfo.teacher_info.full_name" :user_role="getLoginInfo.user.role"/>
+    <profile-nav :user_name="getLoginInfo.user.name" :user_role="getLoginInfo.user.role"  v-if="getLoginInfo.user.role=='admin'"/>
+    <profile-nav :user_name="getLoginInfo.student_info.full_name" :user_role="getLoginInfo.user.role"  v-if="getLoginInfo.user.role=='student'"/>
+    <profile-nav :user_name="getLoginInfo.teacher_info.full_name" :user_role="getLoginInfo.user.role"  v-if="getLoginInfo.user.role=='teacher'"/>
+    <profile-nav :user_name="getLoginInfo.parent_info.full_name" :user_role="getLoginInfo.user.role"  v-if="getLoginInfo.user.role=='parent'"/>
     <!-- End Profile Nav Icon -->
 
  
