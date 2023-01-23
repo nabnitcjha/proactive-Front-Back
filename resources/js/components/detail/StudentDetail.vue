@@ -840,34 +840,6 @@
                                                     "
                                                 >
                                                     <div class="accordion-item">
-                                                        <h2
-                                                            class="accordion-header"
-                                                            id="
-                                                            profile-teacher-flush
-                                                            "
-                                                        >
-                                                            <button
-                                                                class="accordion-button collapsed"
-                                                                type="button"
-                                                                data-bs-toggle="collapse"
-                                                                data-bs-target="
-                                                                    #profile-teacher-flush-collapseOne
-                                                                "
-                                                                aria-expanded="false"
-                                                                aria-controls="
-                                                                profile-teacher-flush-collapseOne
-                                                                "
-                                                            >
-                                                                <h1
-                                                                    class="fs-5"
-                                                                >
-                                                                    
-                                                                        {{ profile_overview.student_info.full_name }}
-
-                                                                     
-                                                                </h1>
-                                                            </button>
-                                                        </h2>
                                                         <div
                                                             id="
                                                             profile-teacher-flush-collapseOne
@@ -881,37 +853,21 @@
                                                                 class="accordion-body"
                                                             >
                                                                 <div
-                                                                    class="row"
+                                                                    class="row mt-3 mb-4"
                                                                 >
+                                                                
                                                                     <div
-                                                                        class="col-lg-3 col-md-4 label"
-                                                                    >
-                                                                        Message
-                                                                    </div>
-                                                                    <div
-                                                                        class="col-lg-9 col-md-8"
+                                                                        class="col-lg-12 col-md-12  d-flex justify-content-center"
                                                                     >
                                                                         <button
                                                                             type="button"
-                                                                            class="btn btn-success"
+                                                                            class="btn btn-outline-secondary"
                                                                             data-bs-toggle="modal"
                                                                             data-bs-target="#sendMessageToTeacher"
                                                                         >
                                                                             SEND
-                                                                            MESSAGE TO  <span>{{ profile_overview.student_info.full_name }}</span>
+                                                                            MESSAGE TO  <span class="text-uppercase badge badge-info" style="background-color: black;">{{ profile_overview.student_info.full_name }}</span>
                                                                         </button>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div
-                                                                    class="row"
-                                                                >
-                                                                    <div
-                                                                        class="col-lg-3 col-md-4 label cstm-font"
-                                                                    >
-                                                                        <h1>
-                                                                            Classes
-                                                                        </h1>
                                                                     </div>
                                                                 </div>
                                                                 <div

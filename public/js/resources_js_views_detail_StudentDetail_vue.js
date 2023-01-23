@@ -631,23 +631,7 @@ var render = function render() {
     }
   }, [_c("div", {
     staticClass: "accordion-item"
-  }, [_c("h2", {
-    staticClass: "accordion-header",
-    attrs: {
-      id: "\n                                                        profile-teacher-flush\n                                                        "
-    }
-  }, [_c("button", {
-    staticClass: "accordion-button collapsed",
-    attrs: {
-      type: "button",
-      "data-bs-toggle": "collapse",
-      "data-bs-target": "\n                                                                #profile-teacher-flush-collapseOne\n                                                            ",
-      "aria-expanded": "false",
-      "aria-controls": "\n                                                            profile-teacher-flush-collapseOne\n                                                            "
-    }
-  }, [_c("h1", {
-    staticClass: "fs-5"
-  }, [_vm._v("\n                                                                \n                                                                    " + _vm._s(_vm.profile_overview.student_info.full_name) + "\n\n                                                                 \n                                                            ")])])]), _vm._v(" "), _c("div", {
+  }, [_c("div", {
     staticClass: "accordion-collapse collapse show",
     attrs: {
       id: "\n                                                        profile-teacher-flush-collapseOne\n                                                        ",
@@ -657,23 +641,22 @@ var render = function render() {
   }, [_c("div", {
     staticClass: "accordion-body"
   }, [_c("div", {
-    staticClass: "row"
+    staticClass: "row mt-3 mb-4"
   }, [_c("div", {
-    staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                                                    Message\n                                                                ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-9 col-md-8"
+    staticClass: "col-lg-12 col-md-12 d-flex justify-content-center"
   }, [_c("button", {
-    staticClass: "btn btn-success",
+    staticClass: "btn btn-outline-secondary",
     attrs: {
       type: "button",
       "data-bs-toggle": "modal",
       "data-bs-target": "#sendMessageToTeacher"
     }
-  }, [_vm._v("\n                                                                        SEND\n                                                                        MESSAGE TO  "), _c("span", [_vm._v(_vm._s(_vm.profile_overview.student_info.full_name))])])])]), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-lg-3 col-md-4 label cstm-font"
-  }, [_c("h1", [_vm._v("\n                                                                        Classes\n                                                                    ")])])]), _vm._v(" "), _vm.showCalendar ? _c("div", {
+  }, [_vm._v("\n                                                                        SEND\n                                                                        MESSAGE TO  "), _c("span", {
+    staticClass: "text-uppercase badge badge-info",
+    staticStyle: {
+      "background-color": "black"
+    }
+  }, [_vm._v(_vm._s(_vm.profile_overview.student_info.full_name))])])])]), _vm._v(" "), _vm.showCalendar ? _c("div", {
     staticClass: "row"
   }, [_c("div", [_c("slot-calendar", {
     attrs: {
