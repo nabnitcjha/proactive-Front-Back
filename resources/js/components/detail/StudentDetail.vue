@@ -143,6 +143,10 @@
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-classes"
                                             @click.stop="makeFalse"
+                                            v-if="
+                                                getLoginInfo.user.role ==
+                                                'admin'
+                                            "
                                         >
                                             Classes
                                         </button>
@@ -329,6 +333,22 @@
                                                                         class="list-group-item"
                                                                     >
                                                                         <b
+                                                                            >SUBJECT
+                                                                            : </b
+                                                                        ><span
+                                                                            class="badge rounded-pill text-bg-success mr-2"
+                                                                        >
+                                                                            {{
+                                                                                class_info
+                                                                                    .subject
+                                                                                    .name
+                                                                            }}
+                                                                        </span>
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item"
+                                                                    >
+                                                                        <b
                                                                             >TEACHER
                                                                             : </b
                                                                         ><span
@@ -476,27 +496,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <div class="row">
-                                            <div
-                                                class="col-lg-3 col-md-4 label"
-                                            >
-                                                Subject
-                                            </div>
-                                            <div class="col-lg-9 col-md-8">
-                                                <span
-                                                    class="badge rounded-pill text-bg-warning mr-2"
-                                                    v-for="(
-                                                        sub_info, index
-                                                    ) in profile_overview.subject_info"
-                                                    :key="index"
-                                                    v-if="
-                                                        checkSubject(sub_info)
-                                                    "
-                                                    >{{ sub_info.name }}</span
-                                                >
-                                            </div>
-                                        </div>
+ 
 
                                         <div class="row">
                                             <div

@@ -313,7 +313,7 @@ var render = function render() {
     }
   }, [_vm._v("\n                                        Discussion\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
-  }, [_c("button", {
+  }, [_vm.getLoginInfo.user.role == "admin" ? _c("button", {
     staticClass: "nav-link",
     attrs: {
       "data-bs-toggle": "tab",
@@ -325,7 +325,7 @@ var render = function render() {
         return _vm.makeFalse.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                                        Classes\n                                    ")])]), _vm._v(" "), _c("li", {
+  }, [_vm._v("\n                                        Classes\n                                    ")]) : _vm._e()]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("button", {
     staticClass: "nav-link",
@@ -411,6 +411,10 @@ var render = function render() {
       staticClass: "list-group-item"
     }, [_c("b", [_vm._v("DESCRIPTION\n                                                                        : ")]), _vm._v(_vm._s(class_info.description) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("SUBJECT\n                                                                        : ")]), _c("span", {
+      staticClass: "badge rounded-pill text-bg-success mr-2"
+    }, [_vm._v("\n                                                                        " + _vm._s(class_info.subject.name) + "\n                                                                    ")])]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
     }, [_c("b", [_vm._v("TEACHER\n                                                                        : ")]), _c("span", {
       staticClass: "badge rounded-pill text-bg-warning mr-2"
     }, [_vm._v("\n                                                                        " + _vm._s(class_info.teacher.full_name) + "\n                                                                    ")])])])])])])]) : _vm._e();
@@ -467,17 +471,6 @@ var render = function render() {
       }, [_vm._v(_vm._s(tch_sub_info.name))]) : _vm._e();
     })], 2)])])])])]);
   }), 0)]) : _vm._e(), _vm._v(" "), _c("div", {
-    staticClass: "row"
-  }, [_c("div", {
-    staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                            Subject\n                                        ")]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-9 col-md-8"
-  }, _vm._l(_vm.profile_overview.subject_info, function (sub_info, index) {
-    return _vm.checkSubject(sub_info) ? _c("span", {
-      key: index,
-      staticClass: "badge rounded-pill text-bg-warning mr-2"
-    }, [_vm._v(_vm._s(sub_info.name))]) : _vm._e();
-  }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
