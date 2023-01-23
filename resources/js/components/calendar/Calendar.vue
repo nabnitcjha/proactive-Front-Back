@@ -23,7 +23,7 @@
                             >
                                 <v-icon small> mdi-chevron-left </v-icon>
                             </v-btn>
-                             <v-toolbar-title v-if="$refs.calendar">
+                            <v-toolbar-title v-if="$refs.calendar">
                                 {{ $refs.calendar.title }}
                             </v-toolbar-title>
                             <v-toolbar-title v-else>
@@ -38,7 +38,7 @@
                             >
                                 <v-icon small> mdi-chevron-right </v-icon>
                             </v-btn>
-                           
+
                             <v-spacer></v-spacer>
                             <v-menu bottom right>
                                 <template v-slot:activator="{ on, attrs }">
@@ -118,7 +118,6 @@
                             <template
                                 v-slot:event="{ event, timed, eventSummary }"
                             >
-                            
                                 <div class="v-event-draggable">
                                     <!-- <component
                                         :is="{ render: eventSummary }"
@@ -663,30 +662,30 @@ export default {
                 : event.color;
         },
         getEvents({ start, end }) {
-          const events = [];
+            const events = [];
 
-          const min = new Date(`${start.date}T00:00:00`).getTime();
-          const max = new Date(`${end.date}T23:59:59`).getTime();
-          const days = (max - min) / 86400000;
-          const eventCount = this.rnd(days, days + 20);
+            const min = new Date(`${start.date}T00:00:00`).getTime();
+            const max = new Date(`${end.date}T23:59:59`).getTime();
+            const days = (max - min) / 86400000;
+            const eventCount = this.rnd(days, days + 20);
 
-          for (let i = 0; i < eventCount; i++) {
-            const timed = this.rnd(0, 3) !== 0;
-            const firstTimestamp = this.rnd(min, max);
-            const secondTimestamp = this.rnd(2, timed ? 8 : 288) * 900000;
-            const start = firstTimestamp - (firstTimestamp % 900000);
-            const end = start + secondTimestamp;
+            for (let i = 0; i < eventCount; i++) {
+                const timed = this.rnd(0, 3) !== 0;
+                const firstTimestamp = this.rnd(min, max);
+                const secondTimestamp = this.rnd(2, timed ? 8 : 288) * 900000;
+                const start = firstTimestamp - (firstTimestamp % 900000);
+                const end = start + secondTimestamp;
 
-            events.push({
-              name: this.rndElement(this.names),
-              color: this.rndElement(this.colors),
-              start,
-              end,
-              timed,
-            });
-          }
+                events.push({
+                    name: this.rndElement(this.names),
+                    color: this.rndElement(this.colors),
+                    start,
+                    end,
+                    timed,
+                });
+            }
 
-          this.events = events;
+            this.events = events;
         },
         rnd(a, b) {
             return Math.floor((b - a + 1) * Math.random()) + a;
@@ -772,7 +771,6 @@ export default {
             nativeEvent.stopPropagation();
         },
         async updateRange() {
-            
             const events = [];
             let urlText = "";
 
@@ -783,7 +781,7 @@ export default {
             } else if (this.calType == "teacher_all") {
                 //teacher-detail class tab
                 urlText = "teacher/" + this.current_teacher_id + "/class";
-            } else if (this.calType == "student_teacher_all") {
+            } else {
                 //student-detail teacher tab
                 urlText =
                     "student/" +
@@ -791,20 +789,12 @@ export default {
                     "/teacher/" +
                     this.current_teacher_id +
                     "/class";
-            } else {
-                //teacher-detail student tab
-                urlText =
-                    "teacher/" +
-                    this.current_teacher_id +
-                    "/student/" +
-                    this.current_student_id +
-                    "/class";
             }
-            
-            getResponse = await this.get(urlText,1,false);
-            
+
+            getResponse = await this.get(urlText, 1, false);
+
             this.slots = getResponse.data.data;
-            
+
             // this.slots =await this.slot_info;
 
             this.slots.map((data) => {
@@ -818,10 +808,10 @@ export default {
                     description: data.description,
                     zoom_link: data.zoom_link,
                     // teacher_id: this.current_teacher_id,
-                    student_id:this.current_student_id
+                    student_id: this.current_student_id,
                 });
             });
-            
+
             // axios.post("/api/getSlots", formData).then((response) => {
             //   this.slots = response.data.result;
             //   this.slots.map((data) => {

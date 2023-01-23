@@ -123,11 +123,17 @@ class StudentController extends BaseController
 
     public function getTeacherSlot($student_id, $teacher_id)
     {
-        $student = Student::with(['classSchedule' => function ($query) use ($teacher_id) {
-            $query->where('teacher_id', $teacher_id);
-        }])->where('id', $student_id)->first();
+        $classUniqueIds = DB::table('student_sessions')
+            ->where([
+                ['student_id', $student_id],
+                ['teacher_id', $teacher_id]
+            ])
+            ->distinct()
+            ->pluck('class_unique_id');
 
-        return ClassScheduleResource::collection($student->classSchedule);
+        $class_slot = ClassSchedule::whereIn('class_unique_id', $classUniqueIds)->get();
+
+        return ClassScheduleResource::collection($class_slot);
     }
 
     public function allClasses($id)
