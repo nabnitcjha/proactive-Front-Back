@@ -89,6 +89,7 @@
                             <h2>
                                 {{ profile_overview.student_info.full_name }}
                             </h2>
+                            <h1 style="font-size: 14px;">{{ 'Student' }}</h1>
                         </div>
                     </div>
                 </div>

@@ -261,7 +261,11 @@ var render = function render() {
       src: __webpack_require__(/*! ../../../../public/dashboard_css/assets/img/profile-img.jpg */ "./public/dashboard_css/assets/img/profile-img.jpg"),
       alt: "Profile"
     }
-  }), _vm._v(" "), _c("h2", [_vm._v("\n                            " + _vm._s(_vm.profile_overview.student_info.full_name) + "\n                        ")])])])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("h2", [_vm._v("\n                            " + _vm._s(_vm.profile_overview.student_info.full_name) + "\n                        ")]), _vm._v(" "), _c("h1", {
+    staticStyle: {
+      "font-size": "14px"
+    }
+  }, [_vm._v(_vm._s("Student"))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-xl-8"
   }, [_c("b-overlay", {
     staticClass: "col-lg-12",
