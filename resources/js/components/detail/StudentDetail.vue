@@ -89,7 +89,7 @@
                             <h2>
                                 {{ profile_overview.student_info.full_name }}
                             </h2>
-                            <h1 style="font-size: 14px;">{{ 'Student' }}</h1>
+                            <h1 style="font-size: 14px">{{ "Student" }}</h1>
                         </div>
                     </div>
                 </div>
@@ -165,13 +165,10 @@
                                 </ul>
                                 <div class="tab-content pt-2">
                                     <div
-                                        class="tab-pane fade show active profile-overview"
+                                        class="tab-pane fade show active profile-overview mt-5"
                                         id="profile-overview"
                                     >
-                                        <h5 class="card-title">
-                                            Student Profile Details
-                                        </h5>
-
+                                    
                                         <div class="row">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
@@ -183,6 +180,32 @@
                                                     profile_overview
                                                         .student_info.full_name
                                                 }}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4 label">
+                                                Message
+                                            </div>
+                                            <div class="col-lg-9 col-md-8">
+                                                <button
+                                                        type="button"
+                                                        class="btn btn-outline-secondary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#sendMessageToTeacher"
+                                                    >
+                                                        SEND MESSAGE TO
+                                                        <span
+                                                            class="text-uppercase badge badge-info"
+                                                            style="
+                                                                background-color: black;
+                                                            "
+                                                            >{{
+                                                                profile_overview
+                                                                    .student_info
+                                                                    .full_name
+                                                            }}</span
+                                                        >
+                                                    </button>
                                             </div>
                                         </div>
 
@@ -496,7 +519,6 @@
                                                 </div>
                                             </div>
                                         </div>
- 
 
                                         <div class="row">
                                             <div
@@ -844,7 +866,7 @@
                                                             id="
                                                             profile-teacher-flush-collapseOne
                                                             "
-                                                           class="accordion-collapse collapse show"
+                                                            class="accordion-collapse collapse show"
                                                             aria-labelledby="profile-teacher-flush"
                                                             data-bs-parent="#profile-teacher-accordion
                                                             "
@@ -852,24 +874,6 @@
                                                             <div
                                                                 class="accordion-body"
                                                             >
-                                                                <div
-                                                                    class="row mt-3 mb-4"
-                                                                >
-                                                                
-                                                                    <div
-                                                                        class="col-lg-12 col-md-12  d-flex justify-content-center"
-                                                                    >
-                                                                        <button
-                                                                            type="button"
-                                                                            class="btn btn-outline-secondary"
-                                                                            data-bs-toggle="modal"
-                                                                            data-bs-target="#sendMessageToTeacher"
-                                                                        >
-                                                                            SEND
-                                                                            MESSAGE TO  <span class="text-uppercase badge badge-info" style="background-color: black;">{{ profile_overview.student_info.full_name }}</span>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
                                                                 <div
                                                                     class="row"
                                                                     v-if="
@@ -879,7 +883,9 @@
                                                                     <div>
                                                                         <slot-calendar
                                                                             :current_teacher_id="
-                                                                                getLoginInfo.teacher_info.id
+                                                                                getLoginInfo
+                                                                                    .teacher_info
+                                                                                    .id
                                                                             "
                                                                             :current_student_id="
                                                                                 $route
@@ -1116,7 +1122,12 @@ export default {
             let id = this.$route.params.id;
             let urlText = "";
             if (this.getLoginInfo.user.role == "teacher") {
-                urlText = "teacher/" +this.getLoginInfo.teacher_info.id+ "/student/" + id + "/detail";
+                urlText =
+                    "teacher/" +
+                    this.getLoginInfo.teacher_info.id +
+                    "/student/" +
+                    id +
+                    "/detail";
             } else {
                 urlText = "student/" + id + "/detailForAdmin";
             }

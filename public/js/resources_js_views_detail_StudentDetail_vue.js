@@ -342,19 +342,35 @@ var render = function render() {
   }, [_vm._v("\n                                        Change Password\n                                    ")])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-content pt-2"
   }, [_c("div", {
-    staticClass: "tab-pane fade show active profile-overview",
+    staticClass: "tab-pane fade show active profile-overview mt-5",
     attrs: {
       id: "profile-overview"
     }
-  }, [_c("h5", {
-    staticClass: "card-title"
-  }, [_vm._v("\n                                        Student Profile Details\n                                    ")]), _vm._v(" "), _c("div", {
+  }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
   }, [_vm._v("\n                                            Full Name\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
   }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.full_name) + "\n                                        ")])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-3 col-md-4 label"
+  }, [_vm._v("\n                                            Message\n                                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-9 col-md-8"
+  }, [_c("button", {
+    staticClass: "btn btn-outline-secondary",
+    attrs: {
+      type: "button",
+      "data-bs-toggle": "modal",
+      "data-bs-target": "#sendMessageToTeacher"
+    }
+  }, [_vm._v("\n                                                    SEND MESSAGE TO\n                                                    "), _c("span", {
+    staticClass: "text-uppercase badge badge-info",
+    staticStyle: {
+      "background-color": "black"
+    }
+  }, [_vm._v(_vm._s(_vm.profile_overview.student_info.full_name))])])])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
@@ -640,23 +656,7 @@ var render = function render() {
     }
   }, [_c("div", {
     staticClass: "accordion-body"
-  }, [_c("div", {
-    staticClass: "row mt-3 mb-4"
-  }, [_c("div", {
-    staticClass: "col-lg-12 col-md-12 d-flex justify-content-center"
-  }, [_c("button", {
-    staticClass: "btn btn-outline-secondary",
-    attrs: {
-      type: "button",
-      "data-bs-toggle": "modal",
-      "data-bs-target": "#sendMessageToTeacher"
-    }
-  }, [_vm._v("\n                                                                        SEND\n                                                                        MESSAGE TO  "), _c("span", {
-    staticClass: "text-uppercase badge badge-info",
-    staticStyle: {
-      "background-color": "black"
-    }
-  }, [_vm._v(_vm._s(_vm.profile_overview.student_info.full_name))])])])]), _vm._v(" "), _vm.showCalendar ? _c("div", {
+  }, [_vm.showCalendar ? _c("div", {
     staticClass: "row"
   }, [_c("div", [_c("slot-calendar", {
     attrs: {
