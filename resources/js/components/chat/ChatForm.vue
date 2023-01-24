@@ -82,7 +82,8 @@ export default {
         };
     },
     props:{
-        message_type:String
+        message_type:String,
+        current_class_unique_id:String
     },
     computed: {
     ...mapState(chatInfoStore, ['getMessageInfo']),
@@ -111,6 +112,9 @@ export default {
             }
 
             let formData = new FormData();
+            if (this.message_type=='group-chat') {
+                formData.append("message_info[class_unique_id]", this.current_class_unique_id);
+            }
             formData.append("message_info[message]", this.newMessage);
             formData.append("message_info[friend_id]", friend_id);
             formData.append("message_info[my_id]", my_id);

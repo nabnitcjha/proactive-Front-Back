@@ -27,7 +27,7 @@
                     <div class="modal-body">
                         <!-- start body -->
                         <div class="card">
-                            <chat-form :message_type="message_type"></chat-form>
+                            <chat-form :message_type="message_type" :current_class_unique_id="current_class_unique_id"></chat-form>
                         </div>
                         <!-- end body -->
                     </div>
@@ -1027,7 +1027,9 @@
                                                     data-bs-target="#groupDiscussionMessage"
                                                     @click.stop="
                                                         setClassId(
-                                                            class_info.id
+                                                            class_info.id,
+                                                            class_info.class_unique_id,
+                                                            'group-chat'
                                                         )
                                                     "
                                                     >Open Discussion</a
@@ -1065,6 +1067,7 @@ export default {
             sorted_class: [],
             current_teacher_id: "",
             current_student_id: "",
+            current_class_unique_id: "",
             current_class_id: "",
             showCalendar: false,
             subjects: [],
@@ -1080,9 +1083,10 @@ export default {
         setMessage_type(msg_type) {
             this.message_type = msg_type;
         },
-        setClassId(id) {
+        setClassId(id,class_unique_id,msg_type) {
             this.current_class_id = id;
-            this.message_type = 'group-chat';
+            this.current_class_unique_id = class_unique_id;
+            this.message_type = msg_type;
         },
         findDay(day) {
             switch (day) {
