@@ -27,7 +27,7 @@
                     <div class="modal-body">
                         <!-- start body -->
                         <div class="card">
-                            <chat-form></chat-form>
+                            <chat-form :message_type="message_type"></chat-form>
                         </div>
                         <!-- end body -->
                     </div>
@@ -192,6 +192,7 @@
                                                         class="btn btn-outline-secondary"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#sendMessageToTeacher"
+                                                        @click.stop="setMessage_type('one-to-one')"
                                                     >
                                                         SEND MESSAGE TO
                                                         <span
@@ -1054,6 +1055,7 @@ import { mapState } from "pinia";
 export default {
     data() {
         return {
+            message_type:'',
             student_all: "student_all",
             student_teacher_all: "student_teacher_all",
             show: false,
@@ -1077,6 +1079,7 @@ export default {
     methods: {
         setClassId(id) {
             this.current_class_id = id;
+            this.message_type = 'group-chat';
         },
         findDay(day) {
             switch (day) {

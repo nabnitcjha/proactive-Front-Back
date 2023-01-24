@@ -72,31 +72,49 @@
 </template>
 <script>
   import {chatInfoStore} from '../../stores/chatInfo';
+  import { loginInfoStore } from '../../stores/loginInfo';
   import {mapState} from 'pinia'
 export default {
-    props: ["user"],
     data() {
         return {
             newMessage: "",
             urlText: "",
         };
     },
+    props:{
+        message_type:String
+    },
     computed: {
     ...mapState(chatInfoStore, ['getMessageInfo']),
+    ...mapState(loginInfoStore, ['getLoginInfo']),
   },
     mounted() {
         // this.$root.fetchMessages(1, 1);
     },
     methods: {
         addMessage() {
-            let friend_id = 1;
-            let my_id = 1;
+            let friend_id = "";
+            let my_id = "";
             this.urlText = "messages";
+            if (this.getLoginInfo.user.role=='teacher') {
+                my_id = this.getLoginInfo.teacher_info.id;
+                friend_id = this.$route.params.id;
+            }else if (this.getLoginInfo.user.role=='student') {
+                my_id = this.getLoginInfo.student_info.id;
+                friend_id = this.$route.params.id;
+            }else if (this.getLoginInfo.user.role=='admin') {
+                my_id = this.getLoginInfo.user.id;
+                friend_id = this.$route.params.id;
+            }else{
+                my_id = this.getLoginInfo.parent_info.id;
+                friend_id = this.$route.params.id;
+            }
 
             let formData = new FormData();
             formData.append("message_info[message]", this.newMessage);
             formData.append("message_info[friend_id]", friend_id);
             formData.append("message_info[my_id]", my_id);
+            formData.append("message_info[message_type]", this.message_type);
             let postResponse = this.post(this.urlText, formData);
             this.newMessage = "";
         },
