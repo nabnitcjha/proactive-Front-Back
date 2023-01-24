@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Events\MessageSent;
 use App\Http\Resources\MessageResource;
+use App\Models\Student;
+use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -32,6 +35,21 @@ class MessageController extends BaseController
     public function sendMessage(Request $request)
     {
         // Insert into message table
+
+        if ($request->message_info['my_role']=='teacher') {
+            # code...
+            $user = Student::where('id',$request->message_info['friend_id'])->first();
+        }
+        if ($request->message_info['my_role']=='student') {
+            # code...
+            $user = Teacher::where('id',$request->message_info['friend_id'])->first();
+        }
+        $message_info["my_id"] = $request->message_info['my_id'];
+        $message_info["friend_id"] = $user->user_id;
+        $message_info["message"] = $request->message_info['message'];
+        $message_info["message_type"] = $request->message_info['message_type'];
+        $message_info["class_unique_id"] = $request->message_info['class_unique_id'];
+
         parent::store($request->message_info);
 
         broadcast(new MessageSent($request->message_info));
