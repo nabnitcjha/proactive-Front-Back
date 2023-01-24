@@ -1077,6 +1077,9 @@ export default {
         this.profileOverview();
     },
     methods: {
+        setMessage_type(msg_type) {
+            this.message_type = msg_type;
+        },
         setClassId(id) {
             this.current_class_id = id;
             this.message_type = 'group-chat';
