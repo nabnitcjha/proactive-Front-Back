@@ -60,9 +60,18 @@ Vue.mixin(momentMethod);
 // Vue.use(Vuetify)
 
 import { chatInfoStore } from "./stores/chatInfo";
+import { loginInfoStore } from './stores/loginInfo';
 import { mapActions } from "pinia";
 
 new Vue({
+    data() {
+        return {
+            sender_id: "",
+            reciver_id:"",
+            urlText: "",
+        };
+    },
+    // message_info:[],
     vuetify,
     components: { Fragment },
     router,
@@ -74,20 +83,41 @@ new Vue({
             this.fetchMessages(e.messageInfo.friend_id,e.messageInfo.my_id);
         });
     },
+    computed: {
+        ...mapState(loginInfoStore, ['getLoginInfo']),
+      },
+      mounted(){
+        if (this.getLoginInfo.user.role=='teacher') {
+            this.sender_id = this.getLoginInfo.teacher_info.id;
+            this.reciver_id = this.$route.params.id;
+        }else if (this.getLoginInfo.user.role=='student') {
+            this.sender_id = this.getLoginInfo.student_info.id;
+            this.reciver_id = this.$route.params.id;
+        }else if (this.getLoginInfo.user.role=='admin') {
+            this.sender_id = this.getLoginInfo.user.id;
+            this.reciver_id = this.$route.params.id;
+        }else{
+            this.sender_id = this.getLoginInfo.parent_info.id;
+            this.reciver_id = this.$route.params.id;
+        }
+        this.fetchMessages(this.reciver_id,this.sender_id)
+      },
     methods: {
         ...mapActions(chatInfoStore, ["setMessageInfo"]),
 
         changeRoute(route) {
             this.$router.push(route);
         },
-        fetchMessages(friend_id,my_id) {
+        fetchMessages(reciver_id,sender_id) {
+            
             urlText =
                 "http://127.0.0.1:8000/api/messages" +
                 "/" +
-                friend_id +
+                reciver_id +
                 "/" +
-                my_id;
+                sender_id;
             axios.get("http://127.0.0.1:8000/api/messages").then((response) => {
+                // this.message_info = response.data.data;
                 this.setMessageInfo(response.data.data)
             });
         },
