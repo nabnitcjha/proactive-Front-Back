@@ -19,10 +19,12 @@ return new class extends Migration
             $table->integer('friend_id')->unsigned();
             $table->text('message');
             $table->string('message_type')->default('ont-to-one');
+            $table->string('class_unique_id')->nullable();
             $table->timestamps();
 
             $table->foreign('my_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('friend_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('class_schedule_id')->references('id')->on('class_schedule')->onDelete('cascade');
         });
     }
 
