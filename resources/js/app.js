@@ -80,19 +80,7 @@ new Vue({
         changeRoute(route) {
             this.$router.push(route);
         },
-        fetchMessages(friend_id,my_id) {
-            debugger;
-         let   urlText =
-                "http://127.0.0.1:8000/api/messages" +
-                "/" +
-                friend_id +
-                "/" +
-                my_id;
-            axios.get(urlText).then((response) => {
-                debugger;
-                this.setMessageInfo(response.data.data)
-            });
-        },
+        
     },
     render: (h) => h(App),
 }).$mount(".page-wrapper");

@@ -10,11 +10,15 @@
                                 alt="sunil"
                             />
                         </div>
-                        <div class="received_msg">
-                            <div class="received_withd_msg">
+                        <div
+                        v-bind:class="['', msg.message_reciver_info.id == $route.params.id ? 'received_msg' : 'outgoing_msg']"
+                        v-for="(msg,index ) in user_message" :key="index"
+                        >
+                            <div class="received_withd_msg"
+                            v-bind:class="['', msg.message_reciver_info.id == $route.params.id ? 'received_withd_msg' : 'sent_msg']"
+                            >
                                 <p>
-                                    Test which is a new approach to have all
-                                    solutions
+                                   {{ msg.message }}
                                 </p>
                                 <span class="time_date">
                                     11:01 AM | June 9</span
@@ -22,15 +26,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="outgoing_msg">
-                        <div class="sent_msg">
-                            <p>
-                                Test which is a new approach to have all
-                                solutions
-                            </p>
-                            <span class="time_date"> 11:01 AM | June 9</span>
-                        </div>
-                    </div>
+                   
                 </div>
                 <div class="type_msg">
                     <div class="input_msg_write">
@@ -110,7 +106,7 @@ export default {
             this.my_id = this.getLoginInfo.parent_info.id;
             this.friend_id = this.$route.params.id;
         }
-        this.$root.fetchMessages(this.friend_id,this.my_id);
+        this.fetchMessages(this.friend_id,this.my_id);
     },
     methods: {
         addMessage() {
@@ -129,6 +125,17 @@ export default {
             formData.append("message_info[message_type]", this.message_type);
             let postResponse = this.post(this.urlText, formData);
             this.newMessage = "";
+        },
+        fetchMessages(friend_id,my_id) {
+         let   urlText =
+                "http://127.0.0.1:8000/api/messages" +
+                "/" +
+                friend_id +
+                "/" +
+                my_id;
+            axios.get(urlText).then((response) => {
+                this.user_message = response.data.data;
+            });
         },
     },
 };
