@@ -73,7 +73,8 @@
 <script>
 import { chatInfoStore } from "../../stores/chatInfo";
 import { loginInfoStore } from "../../stores/loginInfo";
-import { mapState } from "pinia";
+import { mapState ,storeToRefs} from "pinia";
+
 export default {
     data() {
         return {
@@ -82,6 +83,16 @@ export default {
             friend_id: "",
             my_id: "",
         };
+    },
+    setup() {
+        const { messageInfo } = storeToRefs(chatInfoStore)
+        return { messageInfo }
+    },
+    watch: {
+        messageInfo(newValue, oldValue) {
+            // do something
+            debugger;
+        }
     },
     props: {
         message_type: String,

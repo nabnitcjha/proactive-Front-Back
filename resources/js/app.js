@@ -71,7 +71,7 @@ new Vue({
     created() {
         window.Echo.channel("chat").listen("MessageSent", (e) => {
             console.log(e);
-            this.fetchMessages(e.messageInfo.friend_id,e.messageInfo.my_id);
+            tthis.setMessageInfo(e.messageInfo)
         });
     },
     methods: {
