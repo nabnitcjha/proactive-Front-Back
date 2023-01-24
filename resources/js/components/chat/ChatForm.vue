@@ -85,6 +85,7 @@ export default {
         message_type:String,
         current_class_unique_id:String
     },
+    
     computed: {
     ...mapState(chatInfoStore, ['getMessageInfo']),
     ...mapState(loginInfoStore, ['getLoginInfo']),
