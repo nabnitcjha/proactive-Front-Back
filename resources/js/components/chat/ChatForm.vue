@@ -41,7 +41,11 @@
                             v-model="newMessage"
                             @keyup.enter="addMessage"
                         />
-                        <button class="msg_send_btn" type="button" @click="addMessage">
+                        <button
+                            class="msg_send_btn"
+                            type="button"
+                            @click="addMessage"
+                        >
                             <i class="bi bi-send" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -71,54 +75,57 @@
     </div> -->
 </template>
 <script>
-  import {chatInfoStore} from '../../stores/chatInfo';
-  import { loginInfoStore } from '../../stores/loginInfo';
-  import {mapState} from 'pinia'
+import { chatInfoStore } from "../../stores/chatInfo";
+import { loginInfoStore } from "../../stores/loginInfo";
+import { mapState } from "pinia";
 export default {
     data() {
         return {
-            newMessage: "",
+            user_message: [],
             urlText: "",
+            friend_id: "",
+            my_id: "",
         };
     },
-    props:{
-        message_type:String,
-        current_class_unique_id:String
+    props: {
+        message_type: String,
+        current_class_unique_id: String,
     },
-    
+
     computed: {
-    ...mapState(chatInfoStore, ['getMessageInfo']),
-    ...mapState(loginInfoStore, ['getLoginInfo']),
-  },
+        ...mapState(chatInfoStore, ["getMessageInfo"]),
+        ...mapState(loginInfoStore, ["getLoginInfo"]),
+    },
     mounted() {
-        // this.$root.fetchMessages(1, 1);
+        if (this.getLoginInfo.user.role == "teacher") {
+            this.my_id = this.getLoginInfo.teacher_info.id;
+            this.friend_id = this.$route.params.id;
+        } else if (this.getLoginInfo.user.role == "student") {
+            this.my_id = this.getLoginInfo.student_info.id;
+            this.friend_id = this.$route.params.id;
+        } else if (this.getLoginInfo.user.role == "admin") {
+            this.my_id = this.getLoginInfo.user.id;
+            this.friend_id = this.$route.params.id;
+        } else {
+            this.my_id = this.getLoginInfo.parent_info.id;
+            this.friend_id = this.$route.params.id;
+        }
+        this.$root.fetchMessages(this.friend_id,this.my_id);
     },
     methods: {
         addMessage() {
-            let friend_id = "";
-            let my_id = "";
             this.urlText = "messages";
-            if (this.getLoginInfo.user.role=='teacher') {
-                my_id = this.getLoginInfo.teacher_info.id;
-                friend_id = this.$route.params.id;
-            }else if (this.getLoginInfo.user.role=='student') {
-                my_id = this.getLoginInfo.student_info.id;
-                friend_id = this.$route.params.id;
-            }else if (this.getLoginInfo.user.role=='admin') {
-                my_id = this.getLoginInfo.user.id;
-                friend_id = this.$route.params.id;
-            }else{
-                my_id = this.getLoginInfo.parent_info.id;
-                friend_id = this.$route.params.id;
-            }
 
             let formData = new FormData();
-            if (this.message_type=='group-chat') {
-                formData.append("message_info[class_unique_id]", this.current_class_unique_id);
+            if (this.message_type == "group-chat") {
+                formData.append(
+                    "message_info[class_unique_id]",
+                    this.current_class_unique_id
+                );
             }
             formData.append("message_info[message]", this.newMessage);
-            formData.append("message_info[friend_id]", friend_id);
-            formData.append("message_info[my_id]", my_id);
+            formData.append("message_info[friend_id]", this.friend_id);
+            formData.append("message_info[my_id]", this.my_id);
             formData.append("message_info[message_type]", this.message_type);
             let postResponse = this.post(this.urlText, formData);
             this.newMessage = "";

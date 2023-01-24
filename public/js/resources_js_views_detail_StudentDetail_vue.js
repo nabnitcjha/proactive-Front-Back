@@ -35,10 +35,10 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       showAllCalendar: false,
       profile_overview: [],
       sorted_class: [],
-      current_teacher_id: "",
+      current_teacher_id: 0,
       current_student_id: "",
       current_class_unique_id: "",
-      current_class_id: "",
+      current_class_id: 0,
       showCalendar: false,
       subjects: []
     };
