@@ -110,7 +110,7 @@ export default {
             
             if ((this.my_id == newValue.friend_id)&&(this.friend_id==newValue.my_id)) {
                 let new_msg_info = {
-                message: this.newMessage,
+                message: newValue.message,
                 message_sender_info: {
                     id: '',
                     full_name: '',
