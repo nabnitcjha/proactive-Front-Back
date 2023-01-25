@@ -103,14 +103,13 @@ export default {
             my_id: "",
         };
     },
-    setup() {
-        const { messageInfo } = storeToRefs(chatInfoStore);
-        return { messageInfo };
-    },
+   
     watch: {
         messageInfo(newValue, oldValue) {
             // do something
-            
+            // if (this.my_id == ) {
+                
+            // }
         },
     },
     props: {
@@ -119,7 +118,7 @@ export default {
     },
 
     computed: {
-        ...mapState(chatInfoStore, ["getMessageInfo"]),
+        ...mapState(chatInfoStore, ["getMessageInfo","messageInfo"]),
         ...mapState(loginInfoStore, ["getLoginInfo"]),
     },
     mounted() {
