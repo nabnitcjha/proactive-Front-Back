@@ -96,19 +96,18 @@ import { mapState, storeToRefs } from "pinia";
 export default {
     data() {
         return {
-            newMessage:"",
+            newMessage: "",
             user_message: [],
             urlText: "",
             friend_id: "",
             my_id: "",
         };
     },
-   
+
     watch: {
         messageInfo(newValue, oldValue) {
             // do something
             // if (this.my_id == ) {
-                
             // }
         },
     },
@@ -118,42 +117,57 @@ export default {
     },
 
     computed: {
-        ...mapState(chatInfoStore, ["getMessageInfo","messageInfo"]),
+        ...mapState(chatInfoStore, ["getMessageInfo", "messageInfo"]),
         ...mapState(loginInfoStore, ["getLoginInfo"]),
     },
     mounted() {
-        
         this.my_id = this.getLoginInfo.user.id;
         this.friend_id = this.$route.params.id;
         this.fetchMessages(this.friend_id, this.my_id);
     },
     methods: {
-      async  addMessage() {
+        async addMessage() {
+            debugger;
+            let new_msg_info = {
+                message: this.newMessage,
+                message_sender_info: {
+                    id: this.my_id,
+                    full_name: this.getLoginInfo.user.name,
+                },
+                message_reciver_info: {
+                    id: '',
+                    full_name: '',
+                },
+            };
+            debugger;
+            this.user_message.push(new_msg_info);
+            debugger;
             this.urlText = "messages";
 
             let formData = new FormData();
-            
+
             if (this.message_type == "group-chat") {
                 formData.append(
                     "message_info[class_unique_id]",
                     this.current_class_unique_id
                 );
-            }else{
-                formData.append(
-                    "message_info[class_unique_id]",
-                    ""
-                );
+            } else {
+                formData.append("message_info[class_unique_id]", "");
             }
             formData.append("message_info[message]", this.newMessage);
             formData.append("message_info[friend_id]", this.friend_id);
             formData.append("message_info[my_id]", this.my_id);
             formData.append("message_info[message_type]", this.message_type);
-            formData.append("message_info[my_role]", this.getLoginInfo.user.role);
-            let postResponse = await this.post(this.urlText, formData);
+            formData.append(
+                "message_info[my_role]",
+                this.getLoginInfo.user.role
+            );
+            debugger;
             this.newMessage = "";
+            let postResponse = await this.post(this.urlText, formData);
+            debugger;
         },
         fetchMessages(friend_id, my_id) {
-            
             let urlText =
                 "http://127.0.0.1:8000/api/messages" +
                 "/" +
@@ -161,7 +175,6 @@ export default {
                 "/" +
                 my_id;
             axios.get(urlText).then((response) => {
-                
                 this.user_message = response.data.data;
             });
         },
