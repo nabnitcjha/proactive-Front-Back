@@ -107,8 +107,22 @@ export default {
     watch: {
         messageInfo(newValue, oldValue) {
             // do something
-            // if (this.my_id == ) {
-            // }
+            
+            if ((this.my_id == newValue.friend_id)&&(this.friend_id==newValue.my_id)) {
+                let new_msg_info = {
+                message: this.newMessage,
+                message_sender_info: {
+                    id: '',
+                    full_name: '',
+                },
+                message_reciver_info: {
+                    id: newValue.my_id,
+                    full_name: '',
+                },
+            };
+            
+            this.user_message.push(new_msg_info);
+            }
         },
     },
     props: {
@@ -127,7 +141,7 @@ export default {
     },
     methods: {
         async addMessage() {
-            debugger;
+            
             let new_msg_info = {
                 message: this.newMessage,
                 message_sender_info: {
@@ -139,9 +153,9 @@ export default {
                     full_name: '',
                 },
             };
-            debugger;
+            
             this.user_message.push(new_msg_info);
-            debugger;
+            
             this.urlText = "messages";
 
             let formData = new FormData();
@@ -162,10 +176,10 @@ export default {
                 "message_info[my_role]",
                 this.getLoginInfo.user.role
             );
-            debugger;
+            
             this.newMessage = "";
             let postResponse = await this.post(this.urlText, formData);
-            debugger;
+            
         },
         fetchMessages(friend_id, my_id) {
             let urlText =
