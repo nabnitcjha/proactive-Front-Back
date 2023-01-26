@@ -152,7 +152,7 @@ export default {
                 },
             };
             
-            this.user_message.push(new_msg_info);
+            this.user_message.unshift(new_msg_info);
             
             this.urlText = "messages";
 

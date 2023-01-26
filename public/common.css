@@ -159,3 +159,7 @@ span.custom-checkbox {
   background-color: #cff4fc;
   border-left: 0.25rem solid #9eeaf9;
 }
+.msg_history{
+  display: flex!important;
+  flex-direction: column-reverse!important;
+}
