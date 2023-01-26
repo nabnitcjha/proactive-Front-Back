@@ -2,9 +2,8 @@
     <div class="messaging">
         <div class="inbox_msg">
             <div class="mesgs col-12">
-                <div class="msg_history">
-                    <fragment v-for="(msg, index) in user_message" :key="index">
-                        <div class="incoming_msg">
+                <div class="msg_history" id="msg_history" v-chat-scroll>
+                        <div class="incoming_msg"  v-for="(msg, index) in user_message" :key="index">
                             <div
                                 class="incoming_msg_img"
                                 v-if="
@@ -44,7 +43,6 @@
                                 </div>
                             </div>
                         </div>
-                    </fragment>
                 </div>
                 <div class="type_msg">
                     <div class="input_msg_write">

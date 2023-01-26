@@ -10,6 +10,8 @@ import Multiselect from "vue-multiselect";
 import "vue-multiselect/dist/vue-multiselect.min.css";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import '@mdi/font/css/materialdesignicons.css'
+import VueChatScroll from 'vue-chat-scroll' 
+
 
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
@@ -57,6 +59,7 @@ Vue.use(Plugin);
 Vue.use(axios);
 Vue.mixin(connectAPI);
 Vue.mixin(momentMethod);
+Vue.use(VueChatScroll)
 // Vue.use(Vuetify)
 
 import { chatInfoStore } from "./stores/chatInfo";
