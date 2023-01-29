@@ -35,6 +35,14 @@ class ClassScheduleController extends BaseController
 
     public function saveResourceFile(Request $request)
     {
+        if ($request->type=="assignment_answer") {
+            parent::createModelObject("App\Models\Assignment");
+            $assignment_answer_info = [
+                'assignment_id' => $request->assignment_id,
+                'student_id' => $request->student_id,
+                'class_schedule_id' => $request->class_schedule_id,
+            ];
+        }
         if ($assessment = $request->file('assessment_file')) {
             $groupId = 0;
             $uploadGroupId = $this->imageOrFile->manageUploads($assessment, $savepath = 'classSchedule', $groupId);

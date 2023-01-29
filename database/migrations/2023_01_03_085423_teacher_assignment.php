@@ -17,11 +17,13 @@ class TeacherAssignment extends Migration
             $table->increments('id');
             $table->integer('assignment_id')->unsigned();
             $table->integer('teacher_id')->unsigned();
-            $table->string('class_unique_id');
+            $table->integer('class_schedule_id')->unsigned();
+            $table->string('class_unique_id')->nullable();
             $table->timestamps();
 
             $table->foreign('assignment_id')->references('id')->on('assignments')->onDelete('cascade');
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
+            $table->foreign('class_schedule_id')->references('id')->on('class_schedule')->onDelete('cascade');
         });
     }
 

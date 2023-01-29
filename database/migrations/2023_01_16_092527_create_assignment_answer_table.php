@@ -17,10 +17,12 @@ return new class extends Migration
             $table->id();
             $table->integer('student_id')->unsigned();
             $table->integer('assignment_id')->unsigned();
+            $table->integer('class_schedule_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->foreign('assignment_id')->references('id')->on('assignments')->onDelete('cascade');
+            $table->foreign('class_schedule_id')->references('id')->on('class_schedule')->onDelete('cascade');
         });
     }
 
