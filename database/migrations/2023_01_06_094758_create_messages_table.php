@@ -24,7 +24,6 @@ return new class extends Migration
 
             $table->foreign('my_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('friend_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('class_schedule_id')->references('id')->on('class_schedule')->onDelete('cascade');
         });
     }
 
