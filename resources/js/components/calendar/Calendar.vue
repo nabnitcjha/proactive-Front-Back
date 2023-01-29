@@ -809,6 +809,7 @@ export default {
                     zoom_link: data.zoom_link,
                     // teacher_id: this.current_teacher_id,
                     student_id: this.current_student_id,
+                    class_unique_id: data.class_unique_id,
                 });
             });
 

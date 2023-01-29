@@ -319,10 +319,13 @@ export default {
     },
     methods: {
         async saveFile(formData) {
+            debugger;
             let urlText = "timetable/" + this.currentSlotId + "/resourceFile";
             let postResponse = await this.post(urlText, formData);
         },
         async saveResourceFile() {
+            debugger;
+            // let x = this.currentSlotId;
             let formData = new FormData();
             formData.append("teacher_id", this.currentTeacherId);
             formData.append("assessment_file", this.assessment_file);
@@ -421,6 +424,7 @@ export default {
             this.$emit("open-edit");
         },
         showEvent({ nativeEvent, event }) {
+            debugger;
             this.currentSlotId = event.class_unique_id;
             this.currentTeacherId = event.teacher_id;
             this.$emit("current-zoom-link", event);
@@ -604,6 +608,7 @@ export default {
                         zoom_link: data.zoom_link,
                         teacher_id: data.teacher.id,
                         student_id: this.current_student_id,
+                        class_unique_id: data.class_unique_id,
                     });
                 });
             } else {
@@ -619,6 +624,7 @@ export default {
                         zoom_link: data.zoom_link,
                         teacher_id: this.current_teacher_id,
                         student_id: this.current_student_id,
+                        class_unique_id: data.class_unique_id,
                     });
                 });
             }

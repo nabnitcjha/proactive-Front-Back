@@ -20,6 +20,7 @@ class ClassScheduleResource extends JsonResource
             "duration" => $this->duration,
             "description" => $this->description,
             "zoom_link" => $this->zoom_link,
+            "class_unique_id"=>$this->class_unique_id,
             "start_date" => $this->start_date,
             "end_date" => $this->end_date
         ];
