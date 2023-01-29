@@ -21,7 +21,7 @@ class ClassScheduleController extends BaseController
 
     public function __construct()
     {
-       $this->classScheduleResource = new ClassScheduleResource(array());
+        $this->classScheduleResource = new ClassScheduleResource(array());
         $this->Model = new ClassSchedule();
         $this->imageOrFile = new uploadImageOrFileController();
     }
@@ -35,24 +35,34 @@ class ClassScheduleController extends BaseController
 
     public function saveResourceFile(Request $request)
     {
-        if ($request->type=="assignment_answer") {
-            parent::createModelObject("App\Models\Assignment");
+        if ($request->type == "assignment_answer") {
+            parent::createModelObject("App\Models\Assignment_Answer");
             $assignment_answer_info = [
                 'assignment_id' => $request->assignment_id,
                 'student_id' => $request->student_id,
                 'class_schedule_id' => $request->class_schedule_id,
             ];
-        }
-        if ($assessment = $request->file('assessment_file')) {
-            $groupId = 0;
-            $uploadGroupId = $this->imageOrFile->manageUploads($assessment, $savepath = 'classSchedule', $groupId);
-            $class_schedule_info = [
-                'assignment' => $uploadGroupId,
-                'type' => $request->type
-            ];
-            parent::createModelObject("App\Models\Assignment");
-            $class_schedule = parent::store($class_schedule_info);
+            $assessment_answer = parent::store($assignment_answer_info);
+        } else {
+            if ($assessment = $request->file('assessment_file')) {
+                $groupId = 0;
+                $uploadGroupId = $this->imageOrFile->manageUploads($assessment, $savepath = 'classSchedule', $groupId);
+                $class_schedule_info = [
+                    'assignment' => $uploadGroupId,
+                    'type' => $request->type
+                ];
+                parent::createModelObject("App\Models\Assignment");
+                $assignment_info = parent::store($class_schedule_info);
 
+                $teacher_assignment_info = [
+                    'assignment_id' => $request->assignment_id,
+                    'teacher_id' => $request->teacher_id,
+                    'class_schedule_id' => $request->class_schedule_id,
+                    'class_unique_id' => $request->class_unique_id,
+                ];
+                parent::createModelObject("App\Models\TeacherAssignment");
+                $teacher_assignment = parent::store($teacher_assignment_info);
+            }
         }
     }
 

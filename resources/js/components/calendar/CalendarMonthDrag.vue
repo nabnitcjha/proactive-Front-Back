@@ -306,7 +306,8 @@ export default {
         createStart: null,
         extendOriginal: null,
         assessment_file: "",
-        currentSlotId: "",
+        current_timetable_id: "",
+        current_slot_unique_id:"",
         currentTeacherId: "",
         resourceFileName: "",
         assignmentFileName: "",
@@ -319,16 +320,15 @@ export default {
     },
     methods: {
         async saveFile(formData) {
-            debugger;
-            let urlText = "timetable/" + this.currentSlotId + "/resourceFile";
+            let urlText = "timetable/" + this.current_timetable_id + "/resourceFile";
             let postResponse = await this.post(urlText, formData);
         },
         async saveResourceFile() {
-            debugger;
-            // let x = this.currentSlotId;
+            // let x = this.current_timetable_id;
             let formData = new FormData();
             formData.append("teacher_id", this.currentTeacherId);
             formData.append("assessment_file", this.assessment_file);
+            formData.append("class_unique_id", this.current_slot_unique_id);
             formData.append("type", "study_resource");
 
             let svf = await this.saveFile(formData);
@@ -365,6 +365,7 @@ export default {
             let formData = new FormData();
             formData.append("teacher_id", this.currentTeacherId);
             formData.append("assessment_file", this.assessment_file);
+            formData.append("class_unique_id", this.current_slot_unique_id);
             formData.append("type", "assignment");
 
             let svf = await this.saveFile(formData);
@@ -377,6 +378,7 @@ export default {
             let formData = new FormData();
             formData.append("teacher_id", this.currentTeacherId);
             formData.append("assessment_file", this.assessment_file);
+            formData.append("class_unique_id", this.current_slot_unique_id);
             formData.append("type", "assignment_answer");
 
             let svf = await this.saveFile(formData);
@@ -424,8 +426,8 @@ export default {
             this.$emit("open-edit");
         },
         showEvent({ nativeEvent, event }) {
-            debugger;
-            this.currentSlotId = event.class_unique_id;
+            this.current_slot_unique_id = event.class_unique_id;
+            this.current_timetable_id = event.id;
             this.currentTeacherId = event.teacher_id;
             this.$emit("current-zoom-link", event);
             const open = () => {

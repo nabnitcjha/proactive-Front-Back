@@ -423,6 +423,7 @@ export default {
         createEvent: null,
         createStart: null,
         extendOriginal: null,
+        current_slot_unique_id:""
     }),
     props: {
         current_teacher_id: String,
@@ -752,6 +753,7 @@ export default {
             this.currentEvent = event;
             this.zoom_link = event.zoom_link;
             this.current_timetable_id = event.id;
+            this.current_slot_unique_id = event.class_unique_id;
             const open = () => {
                 this.selectedEvent = event;
                 this.selectedElement = nativeEvent.target;
