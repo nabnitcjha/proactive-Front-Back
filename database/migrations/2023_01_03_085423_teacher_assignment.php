@@ -17,6 +17,7 @@ class TeacherAssignment extends Migration
             $table->increments('id');
             $table->integer('assignment_id')->unsigned();
             $table->integer('teacher_id')->unsigned();
+            $table->string('class_unique_id');
             $table->timestamps();
 
             $table->foreign('assignment_id')->references('id')->on('assignments')->onDelete('cascade');
