@@ -329,6 +329,7 @@ export default {
             formData.append("teacher_id", this.currentTeacherId);
             formData.append("assessment_file", this.assessment_file);
             formData.append("class_unique_id", this.current_slot_unique_id);
+            formData.append("class_schedule_id", this.current_timetable_id);
             formData.append("type", "study_resource");
 
             let svf = await this.saveFile(formData);
@@ -366,6 +367,7 @@ export default {
             formData.append("teacher_id", this.currentTeacherId);
             formData.append("assessment_file", this.assessment_file);
             formData.append("class_unique_id", this.current_slot_unique_id);
+            formData.append("class_schedule_id", this.current_timetable_id);
             formData.append("type", "assignment");
 
             let svf = await this.saveFile(formData);
