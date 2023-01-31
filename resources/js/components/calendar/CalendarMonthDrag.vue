@@ -118,9 +118,7 @@
                                     <i
                                         class="bi bi-upload"
                                         @click.stop="
-                                            downloadFile(
-                                                rsf.resourceFile.id
-                                            )
+                                            downloadFile(rsf.resourceFile.id)
                                         "
                                     ></i>
                                 </li>
@@ -330,23 +328,22 @@ export default {
         assignmentFileName: "",
         assignmentAnswerFileName: "",
         resource_file: [],
-        resource_id:''
+        resource_id: "",
     }),
     props: {
         current_teacher_id: String,
         current_student_id: String,
         calType: String,
     },
-  
+
     methods: {
         async getResourceFile() {
-        
-        let urlText =
-            "timetable/" + this.current_timetable_id + "/resourceFile";
-        let getResponse = await this.get(urlText, 1, false);
-        
-        this.resource_file = getResponse.data.data;
-    },
+            let urlText =
+                "timetable/" + this.current_timetable_id + "/resourceFile";
+            let getResponse = await this.get(urlText, 1, false);
+
+            this.resource_file = getResponse.data.data;
+        },
         downloadFile(id) {
             this.resource_id = id;
             location.href =
@@ -464,7 +461,6 @@ export default {
             this.$emit("open-edit");
         },
         showEvent({ nativeEvent, event }) {
-            
             this.current_slot_unique_id = event.class_unique_id;
             this.current_timetable_id = event.id;
             this.currentTeacherId = event.teacher_id;
