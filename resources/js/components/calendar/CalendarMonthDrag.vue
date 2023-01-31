@@ -107,12 +107,22 @@
 
                                     <span>{{ resourceFileName }}</span>
                                 </li>
-                                <li class="list-group-item">Cras justo odio</li>
-                                <li class="list-group-item">
-                                    Dapibus ac facilisis in
-                                </li>
-                                <li class="list-group-item">
-                                    Vestibulum at eros
+                                <li
+                                    class="list-group-item d-flex justify-content-between"
+                                    v-for="(rsf, index) in resource_file"
+                                    :key="index"
+                                >
+                                    <span>{{
+                                        rsf.resourceFile.original_filename
+                                    }}</span>
+                                    <i
+                                        class="bi bi-upload"
+                                        @click.stop="
+                                            downloadFile(
+                                                rsf.resourceFile.id
+                                            )
+                                        "
+                                    ></i>
                                 </li>
                             </ul>
                         </div>
@@ -319,18 +329,28 @@ export default {
         resourceFileName: "",
         assignmentFileName: "",
         assignmentAnswerFileName: "",
+        resource_file: [],
+        resource_id:''
     }),
     props: {
         current_teacher_id: String,
         current_student_id: String,
         calType: String,
     },
-   async getResourceFile(){
+    async getResourceFile() {
         let urlText =
-                "timetable/" + this.current_timetable_id + "/resourceFile";
-            let getResponse = await this.get(urlText,1,false);
+            "timetable/" + this.current_timetable_id + "/resourceFile";
+        let getResponse = await this.get(urlText, 1, false);
+        this.resource_file = getResponse.data.data;
     },
     methods: {
+        downloadFile(id) {
+            this.resource_id = id;
+            location.href =
+                window.location.origin +
+                "/api/downloadFile/" +
+                this.resource_id;
+        },
         async saveFile(formData) {
             let urlText =
                 "timetable/" + this.current_timetable_id + "/resourceFile";
