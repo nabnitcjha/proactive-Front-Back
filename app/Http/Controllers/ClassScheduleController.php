@@ -47,15 +47,15 @@ class ClassScheduleController extends BaseController
             if ($assessment = $request->file('assessment_file')) {
                 $groupId = 0;
                 $uploadGroupId = $this->imageOrFile->manageUploads($assessment, $savepath = 'classSchedule', $groupId);
-                $class_schedule_info = [
+                $assignment_info = [
                     'assignment' => $uploadGroupId,
                     'type' => $request->type
                 ];
                 parent::createModelObject("App\Models\Assignment");
-                $assignment_info = parent::store($class_schedule_info);
+                $assignmentInfo = parent::store($assignment_info);
 
                 $teacher_assignment_info = [
-                    'assignment_id' => $request->assignment_id,
+                    'assignment_id' => $assignmentInfo->id,
                     'teacher_id' => $request->teacher_id,
                     'class_schedule_id' => $request->class_schedule_id,
                     'class_unique_id' => $request->class_unique_id,

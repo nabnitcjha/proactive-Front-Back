@@ -32,7 +32,9 @@
                     <button
                         type="button"
                         data-bs-toggle="modal"
-                        v-bind:data-bs-target="'#'+'monthDragModal'+current_teacher_id"
+                        v-bind:data-bs-target="
+                            '#' + 'monthDragModal' + current_teacher_id
+                        "
                         @click="getSlotInfo(event)"
                     >
                         {{ event.name }}{{ " "
@@ -44,7 +46,7 @@
         <!-- modal start -->
         <div
             class="modal fade modal-tall"
-            v-bind:id="'monthDragModal'+current_teacher_id"
+            v-bind:id="'monthDragModal' + current_teacher_id"
             tabindex="-1"
             aria-labelledby="monthDragModalLabel"
             aria-hidden="true"
@@ -193,15 +195,20 @@
                                         <td>Mark</td>
                                         <td>Otto</td>
                                         <td>
-                                            <label for="assignment_answer_file" class="hand">
-                                              <i class="bi bi-upload"></i>
+                                            <label
+                                                for="assignment_answer_file"
+                                                class="hand"
+                                            >
+                                                <i class="bi bi-upload"></i>
                                                 <input
                                                     type="file"
                                                     id="assignment_answer_file"
                                                     style="display: none"
                                                     name="image"
                                                     data-original-title="upload photos"
-                                                    @change="handleAssignmentAnswerFile"
+                                                    @change="
+                                                        handleAssignmentAnswerFile
+                                                    "
                                                 />
                                             </label>
                                         </td>
@@ -307,11 +314,11 @@ export default {
         extendOriginal: null,
         assessment_file: "",
         current_timetable_id: "",
-        current_slot_unique_id:"",
+        current_slot_unique_id: "",
         currentTeacherId: "",
         resourceFileName: "",
         assignmentFileName: "",
-        assignmentAnswerFileName:""
+        assignmentAnswerFileName: "",
     }),
     props: {
         current_teacher_id: String,
@@ -320,7 +327,8 @@ export default {
     },
     methods: {
         async saveFile(formData) {
-            let urlText = "timetable/" + this.current_timetable_id + "/resourceFile";
+            let urlText =
+                "timetable/" + this.current_timetable_id + "/resourceFile";
             let postResponse = await this.post(urlText, formData);
         },
         async saveResourceFile() {
@@ -581,9 +589,9 @@ export default {
             } else if (this.calType == "teacher_all") {
                 //teacher-detail class tab
                 urlText = "teacher/" + this.current_teacher_id + "/class";
-            }  else {
-                   //teacher-detail student tab // or //student-detail teacher tab 
-                   urlText =
+            } else {
+                //teacher-detail student tab // or //student-detail teacher tab
+                urlText =
                     "student/" +
                     this.current_student_id +
                     "/teacher/" +
