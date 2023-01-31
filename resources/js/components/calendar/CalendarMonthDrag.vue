@@ -337,13 +337,16 @@ export default {
         current_student_id: String,
         calType: String,
     },
-    async getResourceFile() {
+  
+    methods: {
+        async getResourceFile() {
+        
         let urlText =
             "timetable/" + this.current_timetable_id + "/resourceFile";
         let getResponse = await this.get(urlText, 1, false);
+        
         this.resource_file = getResponse.data.data;
     },
-    methods: {
         downloadFile(id) {
             this.resource_id = id;
             location.href =
@@ -461,9 +464,11 @@ export default {
             this.$emit("open-edit");
         },
         showEvent({ nativeEvent, event }) {
+            
             this.current_slot_unique_id = event.class_unique_id;
             this.current_timetable_id = event.id;
             this.currentTeacherId = event.teacher_id;
+            this.getResourceFile();
             this.$emit("current-zoom-link", event);
             const open = () => {
                 this.selectedEvent = event;
