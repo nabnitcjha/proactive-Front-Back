@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\BaseController;
 use App\Http\Resources\ClassScheduleResource;
+use App\Models\Assignment;
 use App\Models\ClassSchedule;
 use App\Models\StudentSubject as ModelsStudentSubject;
 use App\Models\StudentTeacher;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use StudentSubject;
+use App\Models\TeacherAssignment;
 
 class ClassScheduleController extends BaseController
 {
@@ -31,6 +33,17 @@ class ClassScheduleController extends BaseController
         $subjects = parent::index($allowPagination);
 
         return $this->classScheduleResource->collection($subjects);
+    }
+
+    public function getResourceFile($class_schedule_id)
+    {
+        $assignmentIds = TeacherAssignment::where('class_schedule_id', $class_schedule_id)->pluck('assignment_id');
+        $assignments = Assignment::whereIn('id',$assignmentIds)->get();
+        foreach ($assignments as $key => $value) {
+            # code...
+            $value->resourceFile = $this->imageOrFile->getFile($value->assignment);
+        }
+        return response()->json(compact('assignments'));
     }
 
     public function saveResourceFile(Request $request)

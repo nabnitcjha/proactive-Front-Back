@@ -89,6 +89,7 @@ Route::group([
     Route::get('getTimetables/{allowPagination}', 'ClassScheduleController@getData');
     Route::post('timetable/{id}/drag', 'ClassScheduleController@dragUpdate');
     Route::post('timetable/{id}/resourceFile', 'ClassScheduleController@saveResourceFile');
+    Route::get('timetable/{id}/resourceFile', 'ClassScheduleController@getResourceFile');
 });
 
 // chat routes

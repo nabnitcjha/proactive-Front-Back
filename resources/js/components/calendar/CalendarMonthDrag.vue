@@ -325,6 +325,11 @@ export default {
         current_student_id: String,
         calType: String,
     },
+   async getResourceFile(){
+        let urlText =
+                "timetable/" + this.current_timetable_id + "/resourceFile";
+            let getResponse = await this.get(urlText,1,false);
+    },
     methods: {
         async saveFile(formData) {
             let urlText =
