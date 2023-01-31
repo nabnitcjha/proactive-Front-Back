@@ -33,7 +33,7 @@ Route::group([
 
     Route::post('addStudent', 'StudentController@saveData');
     Route::get('getStudents/{allowPagination}', 'StudentController@getData');
-    
+
     // student-detail page route
     Route::get('student/{id}/detailForAdmin', 'StudentController@detailForAdmin');
     Route::get('student/{student_id}/teacher/{teacher_id}/class', 'StudentController@getTeacherSlot');
@@ -61,8 +61,8 @@ Route::group([
     Route::post('addTeacher', 'TeacherController@saveData');
     Route::get('getTeachers/{allowPagination}', 'TeacherController@getData');
 
-        // teacher login route
-        Route::get('teacher/{id}/student', 'TeacherController@getStudent');
+    // teacher login route
+    Route::get('teacher/{id}/student', 'TeacherController@getStudent');
 });
 
 // subject routes
@@ -90,6 +90,8 @@ Route::group([
     Route::post('timetable/{id}/drag', 'ClassScheduleController@dragUpdate');
     Route::post('timetable/{id}/resourceFile', 'ClassScheduleController@saveResourceFile');
     Route::get('timetable/{id}/resourceFile', 'ClassScheduleController@getResourceFile');
+    Route::get('downloadFile/{id}', 'uploadImageOrFileController@downloadFile');
+    Route::get('displayFile/{id}', 'uploadImageOrFileController@displayFile');
 });
 
 // chat routes

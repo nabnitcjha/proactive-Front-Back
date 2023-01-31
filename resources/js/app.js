@@ -83,7 +83,9 @@ new Vue({
         changeRoute(route) {
             this.$router.push(route);
         },
-        
+        getMedia: function(id) {
+            return window.location.origin + "/api/displayFile/" + id;
+        },
     },
     render: (h) => h(App),
 }).$mount(".page-wrapper");
