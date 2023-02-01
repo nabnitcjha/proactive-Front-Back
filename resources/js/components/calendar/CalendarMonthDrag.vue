@@ -370,6 +370,7 @@ export default {
             this.assessment_file = "";
             this.resourceFileName = "";
             document.getElementById("study_resource").value = null;
+            this.getResourceFile();
         },
         handleResourceFile(e) {
             e.preventDefault();
