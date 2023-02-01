@@ -209,7 +209,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Name</th>
-                                        <th scope="col">File</th>
+                                        <th scope="col">Submited By</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
