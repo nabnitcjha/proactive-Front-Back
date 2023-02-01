@@ -44,7 +44,7 @@ Route::group([
 
     // student login route
     Route::get('student/{id}/teacher', 'StudentController@getTeacher');
-    Route::get('teacher/{teacher_id}/student/{student_id}/detail', 'StudentController@detail');
+        Route::get('teacher/{teacher_id}/student/{student_id}/detail', 'StudentController@detail');
 });
 
 // teacher routes
@@ -63,6 +63,7 @@ Route::group([
 
     // teacher login route
     Route::get('teacher/{id}/student', 'TeacherController@getStudent');
+    Route::get('student/{student_id}/teacher/{teacher_id}/detail', 'TeacherController@detail');
 });
 
 // subject routes

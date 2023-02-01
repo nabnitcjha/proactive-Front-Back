@@ -56,6 +56,24 @@ class TeacherController extends BaseController
         $this->successResponse($teacher, 'save successfully');
     }
 
+    public function detail($student_id, $teacher_id)
+    {
+        $subjectIds = DB::table('student_sessions')
+            ->where([
+                ['student_id', $student_id],
+                ['teacher_id', $teacher_id]
+            ])
+            ->distinct()
+            ->pluck('subject_id');
+
+        $student = Student::with(['subject' => function ($query) use ($subjectIds) {
+            $query->whereIn('id', $subjectIds);
+        }])
+            ->where('id', $student_id)->first();
+
+        return  $this->profileOverviewResource->make($student);
+    }
+
     public function profileOverview($id)
     {
         $profile_overview = Teacher::where('id',$id)->first();

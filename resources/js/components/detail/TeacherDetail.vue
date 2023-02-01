@@ -27,20 +27,18 @@
                     <div class="modal-body">
                         <!-- start body -->
                         <div class="card">
-                           <chat-form></chat-form>
+                            <chat-form :message_type="message_type" :current_class_unique_id="current_class_unique_id"></chat-form>
                         </div>
                         <!-- end body -->
                     </div>
-                    <div class="modal-footer invisible">
-                        
-                    </div>
+                    <div class="modal-footer invisible"></div>
                 </div>
             </div>
         </div>
         <!--Message modal end -->
 
-                <!--Group discussion Message modal start -->
-                <div
+        <!--Group discussion Message modal start -->
+        <div
             class="modal fade modal-tall"
             id="groupDiscussionMessage"
             tabindex="-1"
@@ -70,9 +68,7 @@
                         </div>
                         <!-- end body -->
                     </div>
-                    <div class="modal-footer invisible">
-                      
-                    </div>
+                    <div class="modal-footer invisible"></div>
                 </div>
             </div>
         </div>
@@ -93,6 +89,7 @@
                             <h2>
                                 {{ profile_overview.teacher_info.full_name }}
                             </h2>
+                            <h1 style="font-size: 14px">{{ "Teacher" }}</h1>
                         </div>
                     </div>
                 </div>
@@ -123,10 +120,10 @@
                                         <button
                                             class="nav-link"
                                             data-bs-toggle="tab"
-                                            data-bs-target="#profile-student"
+                                            data-bs-target="#profile-teacher"
                                             @click.stop="makeTrue"
                                         >
-                                            Students
+                                            Classes
                                         </button>
                                     </li>
 
@@ -146,6 +143,10 @@
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-classes"
                                             @click.stop="makeFalse"
+                                            v-if="
+                                                getLoginInfo.user.role ==
+                                                'admin'
+                                            "
                                         >
                                             Classes
                                         </button>
@@ -164,13 +165,10 @@
                                 </ul>
                                 <div class="tab-content pt-2">
                                     <div
-                                        class="tab-pane fade show active profile-overview"
+                                        class="tab-pane fade show active profile-overview mt-5"
                                         id="profile-overview"
                                     >
-                                        <h5 class="card-title">
-                                          Teacher Profile Details
-                                        </h5>
-
+                                    
                                         <div class="row">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
@@ -182,6 +180,33 @@
                                                     profile_overview
                                                         .teacher_info.full_name
                                                 }}
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-3 col-md-4 label">
+                                                Message
+                                            </div>
+                                            <div class="col-lg-9 col-md-8">
+                                                <button
+                                                        type="button"
+                                                        class="btn btn-outline-secondary"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#sendMessageToTeacher"
+                                                        @click.stop="setMessage_type('one-to-one')"
+                                                    >
+                                                        SEND MESSAGE TO
+                                                        <span
+                                                            class="text-uppercase badge badge-info"
+                                                            style="
+                                                                background-color: black;
+                                                            "
+                                                            >{{
+                                                                profile_overview
+                                                                    .teacher_info
+                                                                    .full_name
+                                                            }}</span
+                                                        >
+                                                    </button>
                                             </div>
                                         </div>
 
@@ -202,6 +227,12 @@
                                                         class_info, index
                                                     ) in profile_overview.sorted_class"
                                                     :key="index"
+                                                    v-if="
+                                                        getLoginInfo.user
+                                                            .name ==
+                                                        class_info.teacher
+                                                            .full_name
+                                                    "
                                                 >
                                                     <div class="accordion-item">
                                                         <h2
@@ -326,20 +357,31 @@
                                                                         class="list-group-item"
                                                                     >
                                                                         <b
-                                                                            >STUDENT
+                                                                            >SUBJECT
+                                                                            : </b
+                                                                        ><span
+                                                                            class="badge rounded-pill text-bg-success mr-2"
+                                                                        >
+                                                                            {{
+                                                                                class_info
+                                                                                    .subject
+                                                                                    .name
+                                                                            }}
+                                                                        </span>
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item"
+                                                                    >
+                                                                        <b
+                                                                            >TEACHER
                                                                             : </b
                                                                         ><span
                                                                             class="badge rounded-pill text-bg-warning mr-2"
-                                                                            v-for="(
-                                                                                cls_stu,
-                                                                                index
-                                                                            ) in class_info.student"
-                                                                            :key="
-                                                                                index
-                                                                            "
                                                                         >
                                                                             {{
-                                                                                cls_stu.full_name
+                                                                                class_info
+                                                                                    .teacher
+                                                                                    .full_name
                                                                             }}
                                                                         </span>
                                                                     </li>
@@ -351,11 +393,17 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
+                                        <div
+                                            class="row"
+                                            v-if="
+                                                getLoginInfo.user.role ==
+                                                'admin'
+                                            "
+                                        >
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
-                                                Students
+                                                Teachers
                                             </div>
                                             <div class="col-lg-9 col-md-8">
                                                 <div
@@ -365,8 +413,8 @@
                                                         index
                                                     "
                                                     v-for="(
-                                                        stu_info, index
-                                                    ) in profile_overview.student_info"
+                                                        thr_info, index
+                                                    ) in profile_overview.teacher_info"
                                                     :key="index"
                                                 >
                                                     <div class="accordion-item">
@@ -393,7 +441,7 @@
                                                                 "
                                                             >
                                                                 {{
-                                                                    stu_info.full_name
+                                                                    thr_info.full_name
                                                                 }}
                                                             </button>
                                                         </h2>
@@ -426,7 +474,7 @@
                                                                             >EMAIL
                                                                             : </b
                                                                         >{{
-                                                                            stu_info.email
+                                                                            thr_info.email
                                                                         }}
                                                                     </li>
                                                                     <li
@@ -436,7 +484,7 @@
                                                                             >PHONE
                                                                             : </b
                                                                         >{{
-                                                                            stu_info.phone
+                                                                            thr_info.phone
                                                                         }}
                                                                     </li>
                                                                     <li
@@ -451,11 +499,15 @@
                                                                             v-for="(
                                                                                 tch_sub_info,
                                                                                 index
-                                                                            ) in stu_info.subject"
+                                                                            ) in thr_info.subject"
                                                                             :key="
                                                                                 index
                                                                             "
-                                                                            v-if="checkSubject(tch_sub_info)"
+                                                                            v-if="
+                                                                                checkSubject(
+                                                                                    tch_sub_info
+                                                                                )
+                                                                            "
                                                                             >{{
                                                                                 tch_sub_info.name
                                                                             }}</span
@@ -473,17 +525,95 @@
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
-                                                Subject
+                                                Parents
                                             </div>
                                             <div class="col-lg-9 col-md-8">
-                                                <span
-                                                    class="badge rounded-pill text-bg-warning mr-2"
+                                                <div
+                                                    class="accordion accordion-flush"
+                                                    v-bind:id="
+                                                        'overview_parent_accordion' +
+                                                        index
+                                                    "
                                                     v-for="(
-                                                        sub_info, index
-                                                    ) in profile_overview.subject_info"
+                                                        prnt_info, index
+                                                    ) in profile_overview.parent_info"
                                                     :key="index"
-                                                    >{{ sub_info.name }}</span
                                                 >
+                                                    <div class="accordion-item">
+                                                        <h2
+                                                            class="accordion-header"
+                                                            v-bind:id="
+                                                                'overview_parent_heading' +
+                                                                index
+                                                            "
+                                                        >
+                                                            <button
+                                                                class="accordion-button collapsed"
+                                                                type="button"
+                                                                data-bs-toggle="collapse"
+                                                                v-bind:data-bs-target="
+                                                                    '#' +
+                                                                    'flush-overview_parent_accordion' +
+                                                                    index
+                                                                "
+                                                                aria-expanded="false"
+                                                                v-bind:aria-controls="
+                                                                    'flush-overview_parent_accordion' +
+                                                                    index
+                                                                "
+                                                            >
+                                                                {{
+                                                                    prnt_info.full_name
+                                                                }}
+                                                            </button>
+                                                        </h2>
+                                                        <div
+                                                            v-bind:id="
+                                                                'flush-overview_parent_accordion' +
+                                                                index
+                                                            "
+                                                            class="accordion-collapse collapse"
+                                                            v-bind:aria-labelledby="
+                                                                'flush-overview_parent_heading' +
+                                                                index
+                                                            "
+                                                            v-bind:data-bs-parent="
+                                                                '#' +
+                                                                'overview_parent_accordion' +
+                                                                index
+                                                            "
+                                                        >
+                                                            <div
+                                                                class="accordion-body"
+                                                            >
+                                                                <ul
+                                                                    class="list-group"
+                                                                >
+                                                                    <li
+                                                                        class="list-group-item"
+                                                                    >
+                                                                        <b
+                                                                            >EMAIL
+                                                                            : </b
+                                                                        >{{
+                                                                            prnt_info.email
+                                                                        }}
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item"
+                                                                    >
+                                                                        <b
+                                                                            >PHONE
+                                                                            : </b
+                                                                        >{{
+                                                                            prnt_info.phone
+                                                                        }}
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -515,10 +645,10 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div
-                                        class="tab-pane fade profile-student pt-3"
-                                        id="profile-student"
+                                        class="tab-pane fade profile-teacher pt-3"
+                                        id="profile-teacher"
+                                        v-if="getLoginInfo.user.role == 'admin'"
                                     >
                                         <!-- Profile Edit Form -->
                                         <form>
@@ -527,20 +657,21 @@
                                                 <div
                                                     class="accordion accordion-flush"
                                                     v-bind:id="
-                                                        'profile-student-accordion' +
-                                                        student_info_index
+                                                        'profile-teacher-accordion' +
+                                                        thr_info.id
                                                     "
                                                     v-for="(
-                                                        student_info, student_info_index
-                                                    ) in profile_overview.student_info"
-                                                    :key="student_info_index"
+                                                        thr_info,
+                                                        tchr_info_index
+                                                    ) in profile_overview.teacher_info"
+                                                    :key="tchr_info_index"
                                                 >
                                                     <div class="accordion-item">
                                                         <h2
                                                             class="accordion-header"
                                                             v-bind:id="
-                                                                'profile-student-flush' +
-                                                                student_info_index
+                                                                'profile-teacher-flush' +
+                                                                thr_info.id
                                                             "
                                                         >
                                                             <button
@@ -549,36 +680,41 @@
                                                                 data-bs-toggle="collapse"
                                                                 v-bind:data-bs-target="
                                                                     '#' +
-                                                                    'profile-student-flush-collapseOne' +
-                                                                    student_info_index
+                                                                    'profile-teacher-flush-collapseOne' +
+                                                                    thr_info.id
                                                                 "
                                                                 aria-expanded="false"
                                                                 v-bind:aria-controls="
-                                                                    'profile-student-flush-collapseOne' +
-                                                                    student_info_index
+                                                                    'profile-teacher-flush-collapseOne' +
+                                                                    thr_info.id
                                                                 "
                                                             >
                                                                 <h1
                                                                     class="fs-5"
                                                                 >
                                                                     {{
-                                                                        student_info.full_name
+                                                                        thr_info.full_name
                                                                     }}
                                                                 </h1>
                                                             </button>
                                                         </h2>
                                                         <div
                                                             v-bind:id="
-                                                                'profile-student-flush-collapseOne' +
-                                                                student_info_index
+                                                                'profile-teacher-flush-collapseOne' +
+                                                                thr_info.id
                                                             "
-                                                           
-                                                            v-bind:class="['accordion-collapse collapse', student_info_index == 0 ? 'show' : '']"
-                                                            aria-labelledby="profile-student-flush"
+                                                            v-bind:class="[
+                                                                'accordion-collapse collapse',
+                                                                tchr_info_index ==
+                                                                0
+                                                                    ? 'show'
+                                                                    : '',
+                                                            ]"
+                                                            aria-labelledby="profile-teacher-flush"
                                                             v-bind:data-bs-parent="
                                                                 '#' +
-                                                                'profile-student-accordion' +
-                                                                student_info_index
+                                                                'profile-teacher-accordion' +
+                                                                thr_info.id
                                                             "
                                                         >
                                                             <div
@@ -590,7 +726,7 @@
                                                                     <div
                                                                         class="col-lg-3 col-md-4 label"
                                                                     >
-                                                                        Subjects 
+                                                                        Subjects
                                                                     </div>
                                                                     <div
                                                                         class="col-lg-9 col-md-8"
@@ -599,15 +735,14 @@
                                                                             class="badge rounded-pill bg-warning text-dark"
                                                                             v-for="(
                                                                                 sub_info,
-                                                                                index
-                                                                            ) in student_info.subject"
+                                                                                sub_info_index
+                                                                            ) in thr_info.subject"
                                                                             :key="
-                                                                                index
+                                                                                sub_info_index
                                                                             "
-                                                                            v-if="checkSubject(sub_info)"
-                                                                            >
-                                                                            <!-- {{sub_info.name }} -->
-                                                                                </span
+                                                                            >{{
+                                                                                sub_info.name
+                                                                            }}</span
                                                                         >
                                                                     </div>
                                                                 </div>
@@ -647,7 +782,7 @@
                                                                         class="col-lg-9 col-md-8"
                                                                     >
                                                                         {{
-                                                                            student_info.email
+                                                                            thr_info.email
                                                                         }}
                                                                     </div>
                                                                 </div>
@@ -664,7 +799,7 @@
                                                                         class="col-lg-9 col-md-8"
                                                                     >
                                                                         {{
-                                                                            student_info.phone
+                                                                            thr_info.phone
                                                                         }}
                                                                     </div>
                                                                 </div>
@@ -682,20 +817,84 @@
                                                                 </div>
                                                                 <div
                                                                     class="row"
-                                                                    v-if="showCalendar"
+                                                                    v-if="
+                                                                        showCalendar
+                                                                    "
                                                                 >
                                                                     <div>
                                                                         <slot-calendar
-                                                                            :current_student_id="
-                                                                                student_info.id
-                                                                            "
                                                                             :current_teacher_id="
+                                                                                thr_info.id
+                                                                            "
+                                                                            :current_student_id="
                                                                                 $route
                                                                                     .params
                                                                                     .id
                                                                             "
                                                                             :calType="
-                                                                                teacher_student_all
+                                                                                student_teacher_all
+                                                                            "
+                                                                        ></slot-calendar>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Accordion without outline borders -->
+                                            </div>
+                                        </form>
+                                        <!-- End Profile Edit Form -->
+                                    </div>
+                                    <div
+                                        class="tab-pane fade profile-teacher pt-3"
+                                        id="profile-teacher"
+                                        v-else
+                                    >
+                                        <!-- Profile Edit Form -->
+                                        <form>
+                                            <div class="row mb-3">
+                                                <!-- Accordion without outline borders -->
+                                                <div
+                                                    class="accordion accordion-flush"
+                                                    id="
+                                                    profile-teacher-accordion
+                                                        
+                                                    "
+                                                >
+                                                    <div class="accordion-item">
+                                                        <div
+                                                            id="
+                                                            profile-teacher-flush-collapseOne
+                                                            "
+                                                            class="accordion-collapse collapse show"
+                                                            aria-labelledby="profile-teacher-flush"
+                                                            data-bs-parent="#profile-teacher-accordion
+                                                            "
+                                                        >
+                                                            <div
+                                                                class="accordion-body"
+                                                            >
+                                                                <div
+                                                                    class="row"
+                                                                    v-if="
+                                                                        showCalendar
+                                                                    "
+                                                                >
+                                                                    <div>
+                                                                        <slot-calendar
+                                                                            :current_teacher_id="
+                                                                                getLoginInfo
+                                                                                    .teacher_info
+                                                                                    .id
+                                                                            "
+                                                                            :current_student_id="
+                                                                                $route
+                                                                                    .params
+                                                                                    .id
+                                                                            "
+                                                                            :calType="
+                                                                                student_teacher_all
                                                                             "
                                                                         ></slot-calendar>
                                                                     </div>
@@ -714,10 +913,24 @@
                                         id="profile-classes"
                                     >
                                         <slot-calendar
-                                            :current_teacher_id="
+                                            :current_student_id="
                                                 $route.params.id
                                             "
-                                            :calType="teacher_all"
+                                            :calType="student_all"
+                                            v-if="
+                                                getLoginInfo.user.role ==
+                                                'admin'
+                                            "
+                                        ></slot-calendar>
+                                        <slot-calendar
+                                            :current_student_id="
+                                                $route.params.id
+                                            "
+                                            :current_teacher_id="
+                                                getLoginInfo.teacher_info.id
+                                            "
+                                            :calType="student_teacher_all"
+                                            v-else
                                         ></slot-calendar>
                                     </div>
 
@@ -791,27 +1004,39 @@
                                         class="tab-pane fade pt-3 profile-discussion-card"
                                         id="profile-discussion"
                                     >
-                                        <div class="card" style="width: 18rem"  
-                                             v-for="(
-                                                        class_info, index
-                                                    ) in profile_overview.sorted_class"
-                                                    :key="index">
+                                        <div
+                                            class="card"
+                                            style="width: 18rem"
+                                            v-for="(
+                                                class_info, index
+                                            ) in profile_overview.sorted_class"
+                                            :key="index"
+                                            v-if="
+                                                getLoginInfo.user.name ==
+                                                class_info.teacher.full_name
+                                            "
+                                        >
                                             <div class="card-body">
                                                 <h5 class="card-title">
-                                                   {{ class_info.topic }}
+                                                    {{ class_info.topic }}
                                                 </h5>
                                                 <a
                                                     href="#"
                                                     class="btn btn-success"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#groupDiscussionMessage"
-                                                    @click.stop="setClassId(class_info.id)"
+                                                    @click.stop="
+                                                        setClassId(
+                                                            class_info.id,
+                                                            class_info.class_unique_id,
+                                                            'group-chat'
+                                                        )
+                                                    "
                                                     >Open Discussion</a
                                                 >
                                             </div>
                                         </div>
                                         <!-- Settings Form -->
-                                      
 
                                         <!-- End settings Form -->
                                     </div>
@@ -827,34 +1052,41 @@
 </template>
 
 <script>
-import { loginInfoStore } from '../../stores/loginInfo';
-import {mapState} from 'pinia'
+import { loginInfoStore } from "../../stores/loginInfo";
+import { mapState } from "pinia";
 export default {
     data() {
         return {
-            teacher_all: "teacher_all",
-            teacher_student_all: "teacher_student_all",
+            message_type:'',
+            student_all: "student_all",
+            student_teacher_all: "student_teacher_all",
             show: false,
-            showStudentCalendar: false,
+            showTeacherCalendar: false,
             showAllCalendar: false,
             profile_overview: [],
             sorted_class: [],
-            current_teacher_id: "",
+            current_teacher_id: 0,
             current_student_id: "",
-            current_class_id: "",
+            current_class_unique_id: "",
+            current_class_id: 0,
             showCalendar: false,
-            subjects:[]
+            subjects: [],
         };
     },
     computed: {
-    ...mapState(loginInfoStore, ['getLoginInfo']),
-  },
+        ...mapState(loginInfoStore, ["getLoginInfo"]),
+    },
     mounted() {
         this.profileOverview();
     },
     methods: {
-        setClassId(id) {
+        setMessage_type(msg_type) {
+            this.message_type = msg_type;
+        },
+        setClassId(id,class_unique_id,msg_type) {
             this.current_class_id = id;
+            this.current_class_unique_id = class_unique_id;
+            this.message_type = msg_type;
         },
         findDay(day) {
             switch (day) {
@@ -880,26 +1112,47 @@ export default {
         makeFalse() {
             this.showCalendar = false;
         },
-        checkSubject(val){
-            
+        checkSubject(val) {
             let results = [];
-            if (this.getLoginInfo.user.role=='student') {
-                 results = this.getLoginInfo.student_info.subject.filter(sub => sub.name === val.name);
-            }else{
-             results = this.subjects.filter(sub => sub.name === val.name);
+            if (this.getLoginInfo.user.role == "teacher") {
+                results = this.getLoginInfo.teacher_info.subject.filter(
+                    (sub) => sub.name === val.name
+                );
+            } else {
+                results = this.subjects.filter((sub) => sub.name === val.name);
             }
-            if (results.length>0) {
+
+            if (results.length > 0) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         },
         async profileOverview() {
             let id = this.$route.params.id;
-            let urlText = "teacher/" + id + "/profileOverview";
+            let urlText = "";
+            if (this.getLoginInfo.user.role == "teacher") {
+                urlText =
+                    "teacher/" +
+                    this.getLoginInfo.teacher_info.id +
+                    "/student/" +
+                    id +
+                    "/detail";
+            }else if (this.getLoginInfo.user.role == "student") {
+                urlText =
+                    "student/" +
+                    this.getLoginInfo.student_info.id +
+                    "/teacher/" +
+                    id +
+                    "/detail";
+            } 
+            else {
+                urlText = "student/" + id + "/detailForAdmin";
+            }
 
             let getResponse = await this.get(urlText, id, false);
             let sortedClass = await this.sortedClass();
+
             this.profile_overview = {
                 ...getResponse.data.data,
                 sorted_class: this.sorted_class,
@@ -908,7 +1161,7 @@ export default {
         },
         async sortedClass() {
             let id = this.$route.params.id;
-            let urlText = "teacher/" + id + "/sortedClass";
+            let urlText = "student/" + id + "/sortedClass";
 
             let getResponse = await this.get(urlText, id, false);
 
@@ -918,7 +1171,7 @@ export default {
         async changePassword() {
             let id = 1;
             let formData = {};
-            let urlText = "teacher/" + id + "/changePassword";
+            let urlText = "student/" + id + "/changePassword";
 
             let putResponse = await this.put(urlText, formData);
         },

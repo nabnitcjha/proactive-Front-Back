@@ -27,27 +27,34 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      teacher_all: "teacher_all",
-      teacher_student_all: "teacher_student_all",
+      message_type: '',
+      student_all: "student_all",
+      student_teacher_all: "student_teacher_all",
       show: false,
-      showStudentCalendar: false,
+      showTeacherCalendar: false,
       showAllCalendar: false,
       profile_overview: [],
       sorted_class: [],
-      current_teacher_id: "",
+      current_teacher_id: 0,
       current_student_id: "",
-      current_class_id: "",
+      current_class_unique_id: "",
+      current_class_id: 0,
       showCalendar: false,
       subjects: []
     };
   },
-  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapState)(_stores_loginInfo__WEBPACK_IMPORTED_MODULE_0__.loginInfoStore, ['getLoginInfo'])),
+  computed: _objectSpread({}, (0,pinia__WEBPACK_IMPORTED_MODULE_1__.mapState)(_stores_loginInfo__WEBPACK_IMPORTED_MODULE_0__.loginInfoStore, ["getLoginInfo"])),
   mounted: function mounted() {
     this.profileOverview();
   },
   methods: {
-    setClassId: function setClassId(id) {
+    setMessage_type: function setMessage_type(msg_type) {
+      this.message_type = msg_type;
+    },
+    setClassId: function setClassId(id, class_unique_id, msg_type) {
       this.current_class_id = id;
+      this.current_class_unique_id = class_unique_id;
+      this.message_type = msg_type;
     },
     findDay: function findDay(day) {
       switch (day) {
@@ -75,8 +82,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     },
     checkSubject: function checkSubject(val) {
       var results = [];
-      if (this.getLoginInfo.user.role == 'student') {
-        results = this.getLoginInfo.student_info.subject.filter(function (sub) {
+      if (this.getLoginInfo.user.role == "teacher") {
+        results = this.getLoginInfo.teacher_info.subject.filter(function (sub) {
           return sub.name === val.name;
         });
       } else {
@@ -98,20 +105,27 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           while (1) switch (_context.prev = _context.next) {
             case 0:
               id = _this.$route.params.id;
-              urlText = "teacher/" + id + "/profileOverview";
-              _context.next = 4;
+              urlText = "";
+              if (_this.getLoginInfo.user.role == "teacher") {
+                urlText = "teacher/" + _this.getLoginInfo.teacher_info.id + "/student/" + id + "/detail";
+              } else if (_this.getLoginInfo.user.role == "student") {
+                urlText = "student/" + _this.getLoginInfo.student_info.id + "/teacher/" + id + "/detail";
+              } else {
+                urlText = "student/" + id + "/detailForAdmin";
+              }
+              _context.next = 5;
               return _this.get(urlText, id, false);
-            case 4:
+            case 5:
               getResponse = _context.sent;
-              _context.next = 7;
+              _context.next = 8;
               return _this.sortedClass();
-            case 7:
+            case 8:
               sortedClass = _context.sent;
               _this.profile_overview = _objectSpread(_objectSpread({}, getResponse.data.data), {}, {
                 sorted_class: _this.sorted_class
               });
               _this.subjects = _this.profile_overview.subject_info;
-            case 10:
+            case 11:
             case "end":
               return _context.stop();
           }
@@ -126,7 +140,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
               id = _this2.$route.params.id;
-              urlText = "teacher/" + id + "/sortedClass";
+              urlText = "student/" + id + "/sortedClass";
               _context2.next = 4;
               return _this2.get(urlText, id, false);
             case 4:
@@ -148,7 +162,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
             case 0:
               id = 1;
               formData = {};
-              urlText = "teacher/" + id + "/changePassword";
+              urlText = "student/" + id + "/changePassword";
               _context3.next = 5;
               return _this3.put(urlText, formData);
             case 5:
@@ -220,7 +234,12 @@ var render = function render() {
     staticClass: "modal-body"
   }, [_c("div", {
     staticClass: "card"
-  }, [_c("chat-form")], 1)]), _vm._v(" "), _c("div", {
+  }, [_c("chat-form", {
+    attrs: {
+      message_type: _vm.message_type,
+      current_class_unique_id: _vm.current_class_unique_id
+    }
+  })], 1)]), _vm._v(" "), _c("div", {
     staticClass: "modal-footer invisible"
   })])])]), _vm._v(" "), _c("div", {
     staticClass: "modal fade modal-tall",
@@ -256,7 +275,11 @@ var render = function render() {
       src: __webpack_require__(/*! ../../../../public/dashboard_css/assets/img/profile-img.jpg */ "./public/dashboard_css/assets/img/profile-img.jpg"),
       alt: "Profile"
     }
-  }), _vm._v(" "), _c("h2", [_vm._v("\n                            " + _vm._s(_vm.profile_overview.teacher_info.full_name) + "\n                        ")])])])]), _vm._v(" "), _c("div", {
+  }), _vm._v(" "), _c("h2", [_vm._v("\n                            " + _vm._s(_vm.profile_overview.teacher_info.full_name) + "\n                        ")]), _vm._v(" "), _c("h1", {
+    staticStyle: {
+      "font-size": "14px"
+    }
+  }, [_vm._v(_vm._s("Teacher"))])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-xl-8"
   }, [_c("b-overlay", {
     staticClass: "col-lg-12",
@@ -286,7 +309,7 @@ var render = function render() {
     staticClass: "nav-link",
     attrs: {
       "data-bs-toggle": "tab",
-      "data-bs-target": "#profile-student"
+      "data-bs-target": "#profile-teacher"
     },
     on: {
       click: function click($event) {
@@ -294,7 +317,7 @@ var render = function render() {
         return _vm.makeTrue.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                                        Students\n                                    ")])]), _vm._v(" "), _c("li", {
+  }, [_vm._v("\n                                        Classes\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("button", {
     staticClass: "nav-link",
@@ -304,7 +327,7 @@ var render = function render() {
     }
   }, [_vm._v("\n                                        Discussion\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
-  }, [_c("button", {
+  }, [_vm.getLoginInfo.user.role == "admin" ? _c("button", {
     staticClass: "nav-link",
     attrs: {
       "data-bs-toggle": "tab",
@@ -316,7 +339,7 @@ var render = function render() {
         return _vm.makeFalse.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                                        Classes\n                                    ")])]), _vm._v(" "), _c("li", {
+  }, [_vm._v("\n                                        Classes\n                                    ")]) : _vm._e()]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_c("button", {
     staticClass: "nav-link",
@@ -333,13 +356,11 @@ var render = function render() {
   }, [_vm._v("\n                                        Change Password\n                                    ")])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-content pt-2"
   }, [_c("div", {
-    staticClass: "tab-pane fade show active profile-overview",
+    staticClass: "tab-pane fade show active profile-overview mt-5",
     attrs: {
       id: "profile-overview"
     }
-  }, [_c("h5", {
-    staticClass: "card-title"
-  }, [_vm._v("\n                                      Teacher Profile Details\n                                    ")]), _vm._v(" "), _c("div", {
+  }, [_c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
@@ -349,10 +370,34 @@ var render = function render() {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
+  }, [_vm._v("\n                                            Message\n                                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-9 col-md-8"
+  }, [_c("button", {
+    staticClass: "btn btn-outline-secondary",
+    attrs: {
+      type: "button",
+      "data-bs-toggle": "modal",
+      "data-bs-target": "#sendMessageToTeacher"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.setMessage_type("one-to-one");
+      }
+    }
+  }, [_vm._v("\n                                                    SEND MESSAGE TO\n                                                    "), _c("span", {
+    staticClass: "text-uppercase badge badge-info",
+    staticStyle: {
+      "background-color": "black"
+    }
+  }, [_vm._v(_vm._s(_vm.profile_overview.teacher_info.full_name))])])])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-3 col-md-4 label"
   }, [_vm._v("\n                                            Classes\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
   }, _vm._l(_vm.profile_overview.sorted_class, function (class_info, index) {
-    return _c("div", {
+    return _vm.getLoginInfo.user.name == class_info.teacher.full_name ? _c("div", {
       key: index,
       staticClass: "accordion accordion-flush",
       attrs: {
@@ -402,19 +447,20 @@ var render = function render() {
       staticClass: "list-group-item"
     }, [_c("b", [_vm._v("DESCRIPTION\n                                                                        : ")]), _vm._v(_vm._s(class_info.description) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("STUDENT\n                                                                        : ")]), _vm._l(class_info.student, function (cls_stu, index) {
-      return _c("span", {
-        key: index,
-        staticClass: "badge rounded-pill text-bg-warning mr-2"
-      }, [_vm._v("\n                                                                        " + _vm._s(cls_stu.full_name) + "\n                                                                    ")]);
-    })], 2)])])])])]);
-  }), 0)]), _vm._v(" "), _c("div", {
+    }, [_c("b", [_vm._v("SUBJECT\n                                                                        : ")]), _c("span", {
+      staticClass: "badge rounded-pill text-bg-success mr-2"
+    }, [_vm._v("\n                                                                        " + _vm._s(class_info.subject.name) + "\n                                                                    ")])]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("TEACHER\n                                                                        : ")]), _c("span", {
+      staticClass: "badge rounded-pill text-bg-warning mr-2"
+    }, [_vm._v("\n                                                                        " + _vm._s(class_info.teacher.full_name) + "\n                                                                    ")])])])])])])]) : _vm._e();
+  }), 0)]), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                            Students\n                                        ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            Teachers\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, _vm._l(_vm.profile_overview.student_info, function (stu_info, index) {
+  }, _vm._l(_vm.profile_overview.teacher_info, function (thr_info, index) {
     return _c("div", {
       key: index,
       staticClass: "accordion accordion-flush",
@@ -437,7 +483,7 @@ var render = function render() {
         "aria-expanded": "false",
         "aria-controls": "flush-overview_teacher_accordion" + index
       }
-    }, [_vm._v("\n                                                            " + _vm._s(stu_info.full_name) + "\n                                                        ")])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                            " + _vm._s(thr_info.full_name) + "\n                                                        ")])]), _vm._v(" "), _c("div", {
       staticClass: "accordion-collapse collapse",
       attrs: {
         id: "flush-overview_teacher_accordion" + index,
@@ -450,27 +496,61 @@ var render = function render() {
       staticClass: "list-group"
     }, [_c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("EMAIL\n                                                                        : ")]), _vm._v(_vm._s(stu_info.email) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+    }, [_c("b", [_vm._v("EMAIL\n                                                                        : ")]), _vm._v(_vm._s(thr_info.email) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("PHONE\n                                                                        : ")]), _vm._v(_vm._s(stu_info.phone) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+    }, [_c("b", [_vm._v("PHONE\n                                                                        : ")]), _vm._v(_vm._s(thr_info.phone) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
-    }, [_c("b", [_vm._v("SUBJECT\n                                                                        :\n                                                                    ")]), _vm._v(" "), _vm._l(stu_info.subject, function (tch_sub_info, index) {
+    }, [_c("b", [_vm._v("SUBJECT\n                                                                        :\n                                                                    ")]), _vm._v(" "), _vm._l(thr_info.subject, function (tch_sub_info, index) {
       return _vm.checkSubject(tch_sub_info) ? _c("span", {
         key: index,
         staticClass: "badge rounded-pill text-bg-warning mr-2"
       }, [_vm._v(_vm._s(tch_sub_info.name))]) : _vm._e();
     })], 2)])])])])]);
-  }), 0)]), _vm._v(" "), _c("div", {
+  }), 0)]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
-  }, [_vm._v("\n                                            Subject\n                                        ")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            Parents\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, _vm._l(_vm.profile_overview.subject_info, function (sub_info, index) {
-    return _c("span", {
+  }, _vm._l(_vm.profile_overview.parent_info, function (prnt_info, index) {
+    return _c("div", {
       key: index,
-      staticClass: "badge rounded-pill text-bg-warning mr-2"
-    }, [_vm._v(_vm._s(sub_info.name))]);
+      staticClass: "accordion accordion-flush",
+      attrs: {
+        id: "overview_parent_accordion" + index
+      }
+    }, [_c("div", {
+      staticClass: "accordion-item"
+    }, [_c("h2", {
+      staticClass: "accordion-header",
+      attrs: {
+        id: "overview_parent_heading" + index
+      }
+    }, [_c("button", {
+      staticClass: "accordion-button collapsed",
+      attrs: {
+        type: "button",
+        "data-bs-toggle": "collapse",
+        "data-bs-target": "#" + "flush-overview_parent_accordion" + index,
+        "aria-expanded": "false",
+        "aria-controls": "flush-overview_parent_accordion" + index
+      }
+    }, [_vm._v("\n                                                            " + _vm._s(prnt_info.full_name) + "\n                                                        ")])]), _vm._v(" "), _c("div", {
+      staticClass: "accordion-collapse collapse",
+      attrs: {
+        id: "flush-overview_parent_accordion" + index,
+        "aria-labelledby": "flush-overview_parent_heading" + index,
+        "data-bs-parent": "#" + "overview_parent_accordion" + index
+      }
+    }, [_c("div", {
+      staticClass: "accordion-body"
+    }, [_c("ul", {
+      staticClass: "list-group"
+    }, [_c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("EMAIL\n                                                                        : ")]), _vm._v(_vm._s(prnt_info.email) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("PHONE\n                                                                        : ")]), _vm._v(_vm._s(prnt_info.phone) + "\n                                                                ")])])])])])]);
   }), 0)]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
@@ -483,44 +563,44 @@ var render = function render() {
     staticClass: "col-lg-3 col-md-4 label"
   }, [_vm._v("\n                                            Phone\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.teacher_info.phone) + "\n                                        ")])])]), _vm._v(" "), _c("div", {
-    staticClass: "tab-pane fade profile-student pt-3",
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.teacher_info.phone) + "\n                                        ")])])]), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("div", {
+    staticClass: "tab-pane fade profile-teacher pt-3",
     attrs: {
-      id: "profile-student"
+      id: "profile-teacher"
     }
   }, [_c("form", [_c("div", {
     staticClass: "row mb-3"
-  }, _vm._l(_vm.profile_overview.student_info, function (student_info, student_info_index) {
+  }, _vm._l(_vm.profile_overview.teacher_info, function (thr_info, tchr_info_index) {
     return _c("div", {
-      key: student_info_index,
+      key: tchr_info_index,
       staticClass: "accordion accordion-flush",
       attrs: {
-        id: "profile-student-accordion" + student_info_index
+        id: "profile-teacher-accordion" + thr_info.id
       }
     }, [_c("div", {
       staticClass: "accordion-item"
     }, [_c("h2", {
       staticClass: "accordion-header",
       attrs: {
-        id: "profile-student-flush" + student_info_index
+        id: "profile-teacher-flush" + thr_info.id
       }
     }, [_c("button", {
       staticClass: "accordion-button collapsed",
       attrs: {
         type: "button",
         "data-bs-toggle": "collapse",
-        "data-bs-target": "#" + "profile-student-flush-collapseOne" + student_info_index,
+        "data-bs-target": "#" + "profile-teacher-flush-collapseOne" + thr_info.id,
         "aria-expanded": "false",
-        "aria-controls": "profile-student-flush-collapseOne" + student_info_index
+        "aria-controls": "profile-teacher-flush-collapseOne" + thr_info.id
       }
     }, [_c("h1", {
       staticClass: "fs-5"
-    }, [_vm._v("\n                                                                " + _vm._s(student_info.full_name) + "\n                                                            ")])])]), _vm._v(" "), _c("div", {
-      "class": ["accordion-collapse collapse", student_info_index == 0 ? "show" : ""],
+    }, [_vm._v("\n                                                                " + _vm._s(thr_info.full_name) + "\n                                                            ")])])]), _vm._v(" "), _c("div", {
+      "class": ["accordion-collapse collapse", tchr_info_index == 0 ? "show" : ""],
       attrs: {
-        id: "profile-student-flush-collapseOne" + student_info_index,
-        "aria-labelledby": "profile-student-flush",
-        "data-bs-parent": "#" + "profile-student-accordion" + student_info_index
+        id: "profile-teacher-flush-collapseOne" + thr_info.id,
+        "aria-labelledby": "profile-teacher-flush",
+        "data-bs-parent": "#" + "profile-teacher-accordion" + thr_info.id
       }
     }, [_c("div", {
       staticClass: "accordion-body"
@@ -528,13 +608,13 @@ var render = function render() {
       staticClass: "row"
     }, [_c("div", {
       staticClass: "col-lg-3 col-md-4 label"
-    }, [_vm._v("\n                                                                    Subjects \n                                                                ")]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                    Subjects\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
-    }, _vm._l(student_info.subject, function (sub_info, index) {
-      return _vm.checkSubject(sub_info) ? _c("span", {
-        key: index,
+    }, _vm._l(thr_info.subject, function (sub_info, sub_info_index) {
+      return _c("span", {
+        key: sub_info_index,
         staticClass: "badge rounded-pill bg-warning text-dark"
-      }) : _vm._e();
+      }, [_vm._v(_vm._s(sub_info.name))]);
     }), 0)]), _vm._v(" "), _c("div", {
       staticClass: "row"
     }, [_c("div", {
@@ -554,13 +634,13 @@ var render = function render() {
       staticClass: "col-lg-3 col-md-4 label"
     }, [_vm._v("\n                                                                    Email\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
-    }, [_vm._v("\n                                                                    " + _vm._s(student_info.email) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                    " + _vm._s(thr_info.email) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
       staticClass: "row"
     }, [_c("div", {
       staticClass: "col-lg-3 col-md-4 label"
     }, [_vm._v("\n                                                                    Phone\n                                                                ")]), _vm._v(" "), _c("div", {
       staticClass: "col-lg-9 col-md-8"
-    }, [_vm._v("\n                                                                    " + _vm._s(student_info.phone) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                                                    " + _vm._s(thr_info.phone) + "\n                                                                ")])]), _vm._v(" "), _c("div", {
       staticClass: "row"
     }, [_c("div", {
       staticClass: "col-lg-3 col-md-4 label cstm-font"
@@ -568,20 +648,57 @@ var render = function render() {
       staticClass: "row"
     }, [_c("div", [_c("slot-calendar", {
       attrs: {
-        current_student_id: student_info.id,
-        current_teacher_id: _vm.$route.params.id,
-        calType: _vm.teacher_student_all
+        current_teacher_id: thr_info.id,
+        current_student_id: _vm.$route.params.id,
+        calType: _vm.student_teacher_all
       }
     })], 1)]) : _vm._e()])])])]);
-  }), 0)])]), _vm._v(" "), _c("div", {
+  }), 0)])]) : _c("div", {
+    staticClass: "tab-pane fade profile-teacher pt-3",
+    attrs: {
+      id: "profile-teacher"
+    }
+  }, [_c("form", [_c("div", {
+    staticClass: "row mb-3"
+  }, [_c("div", {
+    staticClass: "accordion accordion-flush",
+    attrs: {
+      id: "\n                                                profile-teacher-accordion\n                                                    \n                                                "
+    }
+  }, [_c("div", {
+    staticClass: "accordion-item"
+  }, [_c("div", {
+    staticClass: "accordion-collapse collapse show",
+    attrs: {
+      id: "\n                                                        profile-teacher-flush-collapseOne\n                                                        ",
+      "aria-labelledby": "profile-teacher-flush",
+      "data-bs-parent": "#profile-teacher-accordion\n                                                        "
+    }
+  }, [_c("div", {
+    staticClass: "accordion-body"
+  }, [_vm.showCalendar ? _c("div", {
+    staticClass: "row"
+  }, [_c("div", [_c("slot-calendar", {
+    attrs: {
+      current_teacher_id: _vm.getLoginInfo.teacher_info.id,
+      current_student_id: _vm.$route.params.id,
+      calType: _vm.student_teacher_all
+    }
+  })], 1)]) : _vm._e()])])])])])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {
       id: "profile-classes"
     }
-  }, [_c("slot-calendar", {
+  }, [_vm.getLoginInfo.user.role == "admin" ? _c("slot-calendar", {
     attrs: {
-      current_teacher_id: _vm.$route.params.id,
-      calType: _vm.teacher_all
+      current_student_id: _vm.$route.params.id,
+      calType: _vm.student_all
+    }
+  }) : _c("slot-calendar", {
+    attrs: {
+      current_student_id: _vm.$route.params.id,
+      current_teacher_id: _vm.getLoginInfo.teacher_info.id,
+      calType: _vm.student_teacher_all
     }
   })], 1), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
@@ -649,7 +766,7 @@ var render = function render() {
       id: "profile-discussion"
     }
   }, _vm._l(_vm.profile_overview.sorted_class, function (class_info, index) {
-    return _c("div", {
+    return _vm.getLoginInfo.user.name == class_info.teacher.full_name ? _c("div", {
       key: index,
       staticClass: "card",
       staticStyle: {
@@ -659,7 +776,7 @@ var render = function render() {
       staticClass: "card-body"
     }, [_c("h5", {
       staticClass: "card-title"
-    }, [_vm._v("\n                                               " + _vm._s(class_info.topic) + "\n                                            ")]), _vm._v(" "), _c("a", {
+    }, [_vm._v("\n                                                " + _vm._s(class_info.topic) + "\n                                            ")]), _vm._v(" "), _c("a", {
       staticClass: "btn btn-success",
       attrs: {
         href: "#",
@@ -669,10 +786,10 @@ var render = function render() {
       on: {
         click: function click($event) {
           $event.stopPropagation();
-          return _vm.setClassId(class_info.id);
+          return _vm.setClassId(class_info.id, class_info.class_unique_id, "group-chat");
         }
       }
-    }, [_vm._v("Open Discussion")])])]);
+    }, [_vm._v("Open Discussion")])])]) : _vm._e();
   }), 0)])])])])], 1)])])]);
 };
 var staticRenderFns = [function () {
