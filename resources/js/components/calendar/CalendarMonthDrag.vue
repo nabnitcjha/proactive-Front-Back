@@ -171,15 +171,30 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Name</th>
-                                        <th scope="col">File</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>ABC</td>
+                                    <tr
+                                        v-for="(rsf, index) in resource_file"
+                                        :key="index"
+                                    >
+                                        <td>
+                                            {{
+                                                rsf.resourceFile
+                                                    .original_filename
+                                            }}
+                                        </td>
+                                        <td>
+                                            <i
+                                                class="bi bi-upload"
+                                                @click.stop="
+                                                    downloadFile(
+                                                        rsf.resourceFile.id
+                                                    )
+                                                "
+                                            ></i>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
