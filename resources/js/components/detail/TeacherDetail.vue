@@ -188,8 +188,7 @@
                                                         SEND MESSAGE TO
                                                         <span
                                                             class="text-uppercase badge badge-info"
-                                                            style="
-                                                                background-color: black;
+                                                            style="background-color: black;
                                                             "
                                                             >{{
                                                                 profile_overview
