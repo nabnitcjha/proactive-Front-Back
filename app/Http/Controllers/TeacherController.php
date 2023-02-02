@@ -66,12 +66,12 @@ class TeacherController extends BaseController
             ->distinct()
             ->pluck('subject_id');
 
-        $student = Student::with(['subject' => function ($query) use ($subjectIds) {
+        $teacher = Teacher::with(['subject' => function ($query) use ($subjectIds) {
             $query->whereIn('id', $subjectIds);
         }])
-            ->where('id', $student_id)->first();
+            ->where('id', $teacher_id)->first();
 
-        return  $this->profileOverviewResource->make($student);
+        return  $this->profileOverviewResource->make($teacher);
     }
 
     public function profileOverview($id)

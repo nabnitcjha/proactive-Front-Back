@@ -23,7 +23,7 @@ class profileOverview extends JsonResource
                 'phone'=>$this->phone,
             ],
             "subject_info" => SubjectResource::collection($this->subject),
-            "student_info" => StudentWithoutClassResource::collection($this->student)
+            // "student_info" => StudentWithoutClassResource::collection($this->student)
         ];
     }
 }
