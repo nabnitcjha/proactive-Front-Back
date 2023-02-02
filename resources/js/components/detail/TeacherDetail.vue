@@ -1,6 +1,5 @@
 <template>
     <div class="row">
-        <!--Message modal start -->
         <div
             class="modal fade modal-tall"
             id="sendMessageToTeacher"
@@ -25,19 +24,15 @@
                         ></button>
                     </div>
                     <div class="modal-body">
-                        <!-- start body -->
                         <div class="card">
                             <chat-form :message_type="message_type" :current_class_unique_id="current_class_unique_id"></chat-form>
                         </div>
-                        <!-- end body -->
                     </div>
                     <div class="modal-footer invisible"></div>
                 </div>
             </div>
         </div>
-        <!--Message modal end -->
 
-        <!--Group discussion Message modal start -->
         <div
             class="modal fade modal-tall"
             id="groupDiscussionMessage"
@@ -62,17 +57,14 @@
                         ></button>
                     </div>
                     <div class="modal-body">
-                        <!-- start body -->
                         <div class="card">
                             <chat-form></chat-form>
                         </div>
-                        <!-- end body -->
                     </div>
                     <div class="modal-footer invisible"></div>
                 </div>
             </div>
         </div>
-        <!--Group discussion Message modal end -->
 
         <div class="col-lg-12">
             <div class="row">
@@ -104,7 +96,6 @@
                     >
                         <div class="card">
                             <div class="card-body pt-3">
-                                <!-- Bordered Tabs -->
                                 <ul class="nav nav-tabs nav-tabs-bordered">
                                     <li class="nav-item">
                                         <button
@@ -650,10 +641,8 @@
                                         id="profile-teacher"
                                         v-if="getLoginInfo.user.role == 'admin'"
                                     >
-                                        <!-- Profile Edit Form -->
                                         <form>
                                             <div class="row mb-3">
-                                                <!-- Accordion without outline borders -->
                                                 <div
                                                     class="accordion accordion-flush"
                                                     v-bind:id="
@@ -841,20 +830,16 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- End Accordion without outline borders -->
                                             </div>
                                         </form>
-                                        <!-- End Profile Edit Form -->
                                     </div>
                                     <div
                                         class="tab-pane fade profile-teacher pt-3"
                                         id="profile-teacher"
                                         v-else
                                     >
-                                        <!-- Profile Edit Form -->
                                         <form>
                                             <div class="row mb-3">
-                                                <!-- Accordion without outline borders -->
                                                 <div
                                                     class="accordion accordion-flush"
                                                     id="
@@ -903,10 +888,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <!-- End Accordion without outline borders -->
                                             </div>
                                         </form>
-                                        <!-- End Profile Edit Form -->
                                     </div>
                                     <div
                                         class="tab-pane fade pt-3"
@@ -938,7 +921,6 @@
                                         class="tab-pane fade pt-3"
                                         id="profile-change-password"
                                     >
-                                        <!-- Change Password Form -->
                                         <form>
                                             <div class="row mb-3">
                                                 <label
@@ -998,7 +980,6 @@
                                                 </button>
                                             </div>
                                         </form>
-                                        <!-- End Change Password Form -->
                                     </div>
                                     <div
                                         class="tab-pane fade pt-3 profile-discussion-card"
@@ -1036,12 +1017,9 @@
                                                 >
                                             </div>
                                         </div>
-                                        <!-- Settings Form -->
 
-                                        <!-- End settings Form -->
                                     </div>
                                 </div>
-                                <!-- End Bordered Tabs -->
                             </div>
                         </div>
                     </b-overlay>
