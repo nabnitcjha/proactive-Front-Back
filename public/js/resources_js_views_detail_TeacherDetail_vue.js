@@ -80,6 +80,20 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     makeFalse: function makeFalse() {
       this.showCalendar = false;
     },
+    checkStudent: function checkStudent(class_info) {
+      var _this = this;
+      var results = [];
+      if (this.getLoginInfo.user.role == "student") {
+        results = class_info.student.filter(function (sub) {
+          return sub.name === _this.getLoginInfo.student_info.full_name;
+        });
+      }
+      if (results.length > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     checkSubject: function checkSubject(val) {
       var results = [];
       if (this.getLoginInfo.user.role == "teacher") {
@@ -98,36 +112,34 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }
     },
     profileOverview: function profileOverview() {
-      var _this = this;
+      var _this2 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var id, urlText, getResponse, sortedClass;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              id = _this.$route.params.id;
+              id = _this2.$route.params.id;
               urlText = "";
-              if (_this.getLoginInfo.user.role == "teacher") {
-                urlText = "teacher/" + _this.getLoginInfo.teacher_info.id + "/student/" + id + "/detail";
-              } else if (_this.getLoginInfo.user.role == "student") {
-                urlText = "student/" + _this.getLoginInfo.student_info.id + "/teacher/" + id + "/detail";
+              if (_this2.getLoginInfo.user.role == "teacher") {
+                urlText = "teacher/" + _this2.getLoginInfo.teacher_info.id + "/student/" + id + "/detail";
+              } else if (_this2.getLoginInfo.user.role == "student") {
+                urlText = "student/" + _this2.getLoginInfo.student_info.id + "/teacher/" + id + "/detail";
               } else {
                 urlText = "student/" + id + "/detailForAdmin";
               }
               _context.next = 5;
-              return _this.get(urlText, id, false);
+              return _this2.get(urlText, id, false);
             case 5:
               getResponse = _context.sent;
               _context.next = 8;
-              return _this.sortedClass();
+              return _this2.sortedClass();
             case 8:
               sortedClass = _context.sent;
-              _this.profile_overview = _objectSpread(_objectSpread({}, getResponse.data.data), {}, {
-                sorted_class: _this.sorted_class
+              _this2.profile_overview = _objectSpread(_objectSpread({}, getResponse.data.data), {}, {
+                sorted_class: _this2.sorted_class
               });
-              debugger;
-              _this.subjects = _this.profile_overview.subject_info;
-              debugger;
-            case 13:
+              _this2.subjects = _this2.profile_overview.subject_info;
+            case 11:
             case "end":
               return _context.stop();
           }
@@ -135,19 +147,19 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }))();
     },
     sortedClass: function sortedClass() {
-      var _this2 = this;
+      var _this3 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
         var id, urlText, getResponse;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              id = _this2.$route.params.id;
-              urlText = "student/" + id + "/sortedClass";
+              id = _this3.$route.params.id;
+              urlText = "teacher/" + id + "/sortedClass";
               _context2.next = 4;
-              return _this2.get(urlText, id, false);
+              return _this3.get(urlText, id, false);
             case 4:
               getResponse = _context2.sent;
-              _this2.sorted_class = getResponse.data.data;
+              _this3.sorted_class = getResponse.data.data;
             case 6:
             case "end":
               return _context2.stop();
@@ -156,7 +168,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }))();
     },
     changePassword: function changePassword() {
-      var _this3 = this;
+      var _this4 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
         var id, formData, urlText, putResponse;
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
@@ -164,9 +176,9 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
             case 0:
               id = 1;
               formData = {};
-              urlText = "student/" + id + "/changePassword";
+              urlText = "teacher/" + id + "/changePassword";
               _context3.next = 5;
-              return _this3.put(urlText, formData);
+              return _this4.put(urlText, formData);
             case 5:
               putResponse = _context3.sent;
             case 6:
@@ -368,7 +380,95 @@ var render = function render() {
     staticClass: "col-lg-3 col-md-4 label"
   }, [_vm._v("\n                                            Full Name\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.teacher_info.full_name) + "\n                                        ")])])])])])])])], 1)])])]);
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.teacher_info.full_name) + "\n                                        ")])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-3 col-md-4 label"
+  }, [_vm._v("\n                                            Message\n                                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-9 col-md-8"
+  }, [_c("button", {
+    staticClass: "btn btn-outline-secondary",
+    attrs: {
+      type: "button",
+      "data-bs-toggle": "modal",
+      "data-bs-target": "#sendMessageToTeacher"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.setMessage_type("one-to-one");
+      }
+    }
+  }, [_vm._v("\n                                                    SEND MESSAGE TO\n                                                    "), _c("span", {
+    staticClass: "text-uppercase badge badge-info",
+    staticStyle: {
+      "background-color": "black"
+    }
+  }, [_vm._v(_vm._s(_vm.profile_overview.teacher_info.full_name))])])])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-3 col-md-4 label"
+  }, [_vm._v("\n                                            Classes\n                                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-9 col-md-8"
+  }, _vm._l(_vm.profile_overview.sorted_class, function (class_info, index) {
+    return _vm.checkStudent(class_info) ? _c("div", {
+      key: index,
+      staticClass: "accordion accordion-flush",
+      attrs: {
+        id: "overview_class_accordion" + index
+      }
+    }, [_c("div", {
+      staticClass: "accordion-item"
+    }, [_c("h2", {
+      staticClass: "accordion-header",
+      attrs: {
+        id: "overview_class_heading" + index
+      }
+    }, [_c("button", {
+      staticClass: "accordion-button collapsed",
+      attrs: {
+        type: "button",
+        "data-bs-toggle": "collapse",
+        "data-bs-target": "#" + "flush-overview_class_accordion" + index,
+        "aria-expanded": "false",
+        "aria-controls": "flush-overview_class_accordion" + index
+      }
+    }, [_vm._v("\n                                                            " + _vm._s(class_info.topic) + "\n                                                        ")])]), _vm._v(" "), _c("div", {
+      staticClass: "accordion-collapse collapse",
+      attrs: {
+        id: "flush-overview_class_accordion" + index,
+        "aria-labelledby": "flush-overview_class_heading" + index,
+        "data-bs-parent": "#" + "overview_class_accordion" + index
+      }
+    }, [_c("div", {
+      staticClass: "accordion-body"
+    }, [_c("ul", {
+      staticClass: "list-group"
+    }, [_c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("START\n                                                                        TIME\n                                                                        : ")]), _vm._v(_vm._s(_vm.timeFormater(class_info.start_date)) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("END\n                                                                        TIME\n                                                                        : ")]), _vm._v(_vm._s(_vm.timeFormater(class_info.end_date)) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("CLASS\n                                                                        DAY\n                                                                        : ")]), _vm._l(class_info.selected_day, function (cls_selected_day, index) {
+      return _c("span", {
+        key: index,
+        staticClass: "badge rounded-pill text-bg-warning mr-2"
+      }, [_vm._v(_vm._s(_vm.findDay(cls_selected_day)))]);
+    })], 2), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("DURATION\n                                                                        : ")]), _vm._v(_vm._s(class_info.duration) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("DESCRIPTION\n                                                                        : ")]), _vm._v(_vm._s(class_info.description) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("SUBJECT\n                                                                        : ")]), _c("span", {
+      staticClass: "badge rounded-pill text-bg-success mr-2"
+    }, [_vm._v("\n                                                                        " + _vm._s(class_info.subject.name) + "\n                                                                    ")])]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("TEACHER\n                                                                        : ")]), _c("span", {
+      staticClass: "badge rounded-pill text-bg-warning mr-2"
+    }, [_vm._v("\n                                                                        " + _vm._s(class_info.teacher.full_name) + "\n                                                                    ")])])])])])])]) : _vm._e();
+  }), 0)])])])])])])], 1)])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

@@ -173,7 +173,7 @@
                                                 }}
                                             </div>
                                         </div>
-                                        <!-- <div class="row">
+                                        <div class="row">
                                             <div class="col-lg-3 col-md-4 label">
                                                 Message
                                             </div>
@@ -199,9 +199,9 @@
                                                         >
                                                     </button>
                                             </div>
-                                        </div> -->
+                                        </div>
 
-                                        <!-- <div class="row">
+                                        <div class="row">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
@@ -218,12 +218,7 @@
                                                         class_info, index
                                                     ) in profile_overview.sorted_class"
                                                     :key="index"
-                                                    v-if="
-                                                        getLoginInfo.user
-                                                            .name ==
-                                                        class_info.teacher
-                                                            .full_name
-                                                    "
+                                                    v-if="checkStudent(class_info)"
                                                 >
                                                     <div class="accordion-item">
                                                         <h2
@@ -382,7 +377,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> -->
+                                        </div>
 
                                         <!-- <div
                                             class="row"
@@ -1090,6 +1085,20 @@ export default {
         makeFalse() {
             this.showCalendar = false;
         },
+        checkStudent(class_info) {
+            let results = [];
+            if (this.getLoginInfo.user.role == "student") {
+                results = class_info.student.filter(
+                    (sub) => sub.name === this.getLoginInfo.student_info.full_name
+                );
+            }
+
+            if (results.length > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        },
         checkSubject(val) {
             let results = [];
             if (this.getLoginInfo.user.role == "teacher") {
@@ -1135,13 +1144,11 @@ export default {
                 ...getResponse.data.data,
                 sorted_class: this.sorted_class,
             };
-            debugger;
             this.subjects = this.profile_overview.subject_info;
-            debugger;
         },
         async sortedClass() {
             let id = this.$route.params.id;
-            let urlText = "student/" + id + "/sortedClass";
+            let urlText = "teacher/" + id + "/sortedClass";
 
             let getResponse = await this.get(urlText, id, false);
 
@@ -1151,7 +1158,7 @@ export default {
         async changePassword() {
             let id = 1;
             let formData = {};
-            let urlText = "student/" + id + "/changePassword";
+            let urlText = "teacher/" + id + "/changePassword";
 
             let putResponse = await this.put(urlText, formData);
         },
