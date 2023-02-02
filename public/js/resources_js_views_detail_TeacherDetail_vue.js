@@ -84,8 +84,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       var _this = this;
       var results = [];
       if (this.getLoginInfo.user.role == "student") {
-        results = class_info.student.filter(function (sub) {
-          return sub.name === _this.getLoginInfo.student_info.full_name;
+        results = class_info.student.filter(function (stu) {
+          return stu.full_name === _this.getLoginInfo.student_info.full_name;
         });
       }
       if (results.length > 0) {

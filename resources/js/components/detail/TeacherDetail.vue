@@ -1089,7 +1089,7 @@ export default {
             let results = [];
             if (this.getLoginInfo.user.role == "student") {
                 results = class_info.student.filter(
-                    (sub) => sub.name === this.getLoginInfo.student_info.full_name
+                    (stu) => stu.full_name === this.getLoginInfo.student_info.full_name
                 );
             }
 
