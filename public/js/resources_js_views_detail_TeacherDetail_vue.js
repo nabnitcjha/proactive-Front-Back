@@ -215,8 +215,199 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* binding */ render),
 /* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
 /* harmony export */ });
-var render = function render() {};
-var staticRenderFns = [];
+var render = function render() {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "modal fade modal-tall",
+    attrs: {
+      id: "sendMessageToTeacher",
+      tabindex: "-1",
+      "aria-labelledby": "sendMessageToTeacherLabel",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog modal-dialog-scrollable"
+  }, [_c("div", {
+    staticClass: "modal-content"
+  }, [_vm._m(0), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("chat-form", {
+    attrs: {
+      message_type: _vm.message_type,
+      current_class_unique_id: _vm.current_class_unique_id
+    }
+  })], 1)]), _vm._v(" "), _c("div", {
+    staticClass: "modal-footer invisible"
+  })])])]), _vm._v(" "), _c("div", {
+    staticClass: "modal fade modal-tall",
+    attrs: {
+      id: "groupDiscussionMessage",
+      tabindex: "-1",
+      "aria-labelledby": "groupDiscussionMessageLabel",
+      "aria-hidden": "true"
+    }
+  }, [_c("div", {
+    staticClass: "modal-dialog modal-dialog-scrollable"
+  }, [_c("div", {
+    staticClass: "modal-content"
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
+    staticClass: "modal-body"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("chat-form")], 1)]), _vm._v(" "), _c("div", {
+    staticClass: "modal-footer invisible"
+  })])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-12"
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-xl-4"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("div", {
+    staticClass: "card-body profile-card pt-4 d-flex flex-column align-items-center"
+  }, [_c("img", {
+    staticClass: "rounded-circle",
+    attrs: {
+      src: __webpack_require__(/*! ../../../../public/dashboard_css/assets/img/profile-img.jpg */ "./public/dashboard_css/assets/img/profile-img.jpg"),
+      alt: "Profile"
+    }
+  }), _vm._v(" "), _c("h2", [_vm._v("\n                            " + _vm._s(_vm.profile_overview.teacher_info.full_name) + "\n                        ")]), _vm._v(" "), _c("h1", {
+    staticStyle: {
+      "font-size": "14px"
+    }
+  }, [_vm._v(_vm._s("Teacher"))])])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-xl-8"
+  }, [_c("b-overlay", {
+    staticClass: "col-lg-12",
+    attrs: {
+      id: "overlay-background",
+      show: _vm.show,
+      rounded: "sm",
+      "spinner-type": "grow"
+    }
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_c("div", {
+    staticClass: "card-body pt-3"
+  }, [_c("ul", {
+    staticClass: "nav nav-tabs nav-tabs-bordered"
+  }, [_c("li", {
+    staticClass: "nav-item"
+  }, [_c("button", {
+    staticClass: "nav-link active",
+    attrs: {
+      "data-bs-toggle": "tab",
+      "data-bs-target": "#profile-overview"
+    }
+  }, [_vm._v("\n                                        Overview\n                                    ")])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("button", {
+    staticClass: "nav-link",
+    attrs: {
+      "data-bs-toggle": "tab",
+      "data-bs-target": "#profile-teacher"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.makeTrue.apply(null, arguments);
+      }
+    }
+  }, [_vm._v("\n                                        Classes\n                                    ")])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("button", {
+    staticClass: "nav-link",
+    attrs: {
+      "data-bs-toggle": "tab",
+      "data-bs-target": "#profile-discussion"
+    }
+  }, [_vm._v("\n                                        Discussion\n                                    ")])]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_vm.getLoginInfo.user.role == "admin" ? _c("button", {
+    staticClass: "nav-link",
+    attrs: {
+      "data-bs-toggle": "tab",
+      "data-bs-target": "#profile-classes"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.makeFalse.apply(null, arguments);
+      }
+    }
+  }, [_vm._v("\n                                        Classes\n                                    ")]) : _vm._e()]), _vm._v(" "), _c("li", {
+    staticClass: "nav-item"
+  }, [_c("button", {
+    staticClass: "nav-link",
+    attrs: {
+      "data-bs-toggle": "tab",
+      "data-bs-target": "#profile-change-password"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.changePassword.apply(null, arguments);
+      }
+    }
+  }, [_vm._v("\n                                        Change Password\n                                    ")])])]), _vm._v(" "), _c("div", {
+    staticClass: "tab-content pt-2"
+  }, [_c("div", {
+    staticClass: "tab-pane fade show active profile-overview mt-5",
+    attrs: {
+      id: "profile-overview"
+    }
+  }, [_c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-3 col-md-4 label"
+  }, [_vm._v("\n                                            Full Name\n                                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-9 col-md-8"
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.teacher_info.full_name) + "\n                                        ")])])])])])])])], 1)])])]);
+};
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "modal-header"
+  }, [_c("h1", {
+    staticClass: "modal-title fs-5",
+    attrs: {
+      id: "sendMessageToTeacherLabel"
+    }
+  }, [_vm._v("\n                        SEND MESSAGE\n                    ")]), _vm._v(" "), _c("button", {
+    staticClass: "btn-close",
+    attrs: {
+      type: "button",
+      "data-bs-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("div", {
+    staticClass: "modal-header"
+  }, [_c("h1", {
+    staticClass: "modal-title fs-5",
+    attrs: {
+      id: "groupDiscussionMessageLabel"
+    }
+  }, [_vm._v("\n                        SEND MESSAGE\n                    ")]), _vm._v(" "), _c("button", {
+    staticClass: "btn-close",
+    attrs: {
+      type: "button",
+      "data-bs-dismiss": "modal",
+      "aria-label": "Close"
+    }
+  })]);
+}];
+render._withStripped = true;
 
 
 /***/ }),

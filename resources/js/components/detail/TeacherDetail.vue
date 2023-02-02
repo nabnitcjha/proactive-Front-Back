@@ -173,7 +173,7 @@
                                                 }}
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-lg-3 col-md-4 label">
                                                 Message
                                             </div>
@@ -199,9 +199,9 @@
                                                         >
                                                     </button>
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
@@ -382,9 +382,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div
+                                        <!-- <div
                                             class="row"
                                             v-if="
                                                 getLoginInfo.user.role ==
@@ -510,9 +510,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
@@ -606,9 +606,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
@@ -620,9 +620,9 @@
                                                         .teacher_info.email
                                                 }}
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
@@ -634,9 +634,9 @@
                                                         .teacher_info.phone
                                                 }}
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
-                                    <div
+                                    <!-- <div
                                         class="tab-pane fade profile-teacher pt-3"
                                         id="profile-teacher"
                                         v-if="getLoginInfo.user.role == 'admin'"
@@ -1018,7 +1018,7 @@
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -1135,7 +1135,9 @@ export default {
                 ...getResponse.data.data,
                 sorted_class: this.sorted_class,
             };
+            debugger;
             this.subjects = this.profile_overview.subject_info;
+            debugger;
         },
         async sortedClass() {
             let id = this.$route.params.id;
