@@ -49,7 +49,14 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
   },
   methods: {
     checkStudent: function checkStudent(class_info) {
-      if (class_info.student.full_name == this.getLoginInfo.user.name) {
+      var _this = this;
+      var results = [];
+      if (this.getLoginInfo.user.role == "student") {
+        results = class_info.student.filter(function (stu) {
+          return stu.full_name === _this.getLoginInfo.user.name;
+        });
+      }
+      if (results.length > 0) {
         return true;
       } else {
         return false;
@@ -105,33 +112,33 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }
     },
     profileOverview: function profileOverview() {
-      var _this = this;
+      var _this2 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var id, urlText, getResponse, sortedClass;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              id = _this.$route.params.id;
+              id = _this2.$route.params.id;
               urlText = "";
-              if (_this.getLoginInfo.user.role == "teacher") {
-                urlText = "teacher/" + _this.getLoginInfo.teacher_info.id + "/student/" + id + "/detail";
-              } else if (_this.getLoginInfo.user.role == "student") {
-                urlText = "student/" + _this.getLoginInfo.student_info.id + "/teacher/" + id + "/detail";
+              if (_this2.getLoginInfo.user.role == "teacher") {
+                urlText = "teacher/" + _this2.getLoginInfo.teacher_info.id + "/student/" + id + "/detail";
+              } else if (_this2.getLoginInfo.user.role == "student") {
+                urlText = "student/" + _this2.getLoginInfo.student_info.id + "/teacher/" + id + "/detail";
               } else {
                 urlText = "student/" + id + "/detailForAdmin";
               }
               _context.next = 5;
-              return _this.get(urlText, id, false);
+              return _this2.get(urlText, id, false);
             case 5:
               getResponse = _context.sent;
               _context.next = 8;
-              return _this.sortedClass();
+              return _this2.sortedClass();
             case 8:
               sortedClass = _context.sent;
-              _this.profile_overview = _objectSpread(_objectSpread({}, getResponse.data.data), {}, {
-                sorted_class: _this.sorted_class
+              _this2.profile_overview = _objectSpread(_objectSpread({}, getResponse.data.data), {}, {
+                sorted_class: _this2.sorted_class
               });
-              _this.subjects = _this.profile_overview.subject_info;
+              _this2.subjects = _this2.profile_overview.subject_info;
             case 11:
             case "end":
               return _context.stop();
@@ -140,19 +147,19 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }))();
     },
     sortedClass: function sortedClass() {
-      var _this2 = this;
+      var _this3 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
         var id, urlText, getResponse;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              id = _this2.$route.params.id;
+              id = _this3.$route.params.id;
               urlText = "teacher/" + id + "/sortedClass";
               _context2.next = 4;
-              return _this2.get(urlText, id, false);
+              return _this3.get(urlText, id, false);
             case 4:
               getResponse = _context2.sent;
-              _this2.sorted_class = getResponse.data.data;
+              _this3.sorted_class = getResponse.data.data;
             case 6:
             case "end":
               return _context2.stop();
@@ -161,7 +168,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }))();
     },
     changePassword: function changePassword() {
-      var _this3 = this;
+      var _this4 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
         var id, formData, urlText, putResponse;
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
@@ -171,7 +178,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
               formData = {};
               urlText = "teacher/" + id + "/changePassword";
               _context3.next = 5;
-              return _this3.put(urlText, formData);
+              return _this4.put(urlText, formData);
             case 5:
               putResponse = _context3.sent;
             case 6:

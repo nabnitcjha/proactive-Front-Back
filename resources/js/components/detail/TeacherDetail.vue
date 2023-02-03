@@ -1036,7 +1036,15 @@ export default {
     },
     methods: {
         checkStudent(class_info){
-            if (class_info.student.full_name==this.getLoginInfo.user.name) {
+            
+            let results = [];
+            if (this.getLoginInfo.user.role == "student") {
+                results = class_info.student.filter(
+                    (stu) => stu.full_name === this.getLoginInfo.user.name
+                );
+            } 
+
+            if (results.length > 0) {
                 return true;
             } else {
                 return false;
