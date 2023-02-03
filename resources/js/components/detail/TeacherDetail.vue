@@ -519,7 +519,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div
+                                    <div
                                         class="tab-pane fade profile-teacher pt-3"
                                         id="profile-teacher"
                                         v-if="getLoginInfo.user.role == 'admin'"
@@ -751,16 +751,10 @@
                                                                 >
                                                                     <div>
                                                                         <slot-calendar
-                                                                            :current_teacher_id="
-                                                                                getLoginInfo
-                                                                                    .teacher_info
-                                                                                    .id
-                                                                            "
-                                                                            :current_student_id="
-                                                                                $route
-                                                                                    .params
-                                                                                    .id
-                                                                            "
+                                                                            :current_teacher_id="$route.params.id"
+                                                                              
+                                                                            :current_student_id="getLoginInfo.student_info.id"
+                                                                              
                                                                             :calType="
                                                                                 student_teacher_all
                                                                             "
@@ -774,7 +768,7 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <div
+                                    <!-- <div
                                         class="tab-pane fade pt-3"
                                         id="profile-classes"
                                     >
@@ -798,9 +792,9 @@
                                             :calType="student_teacher_all"
                                             v-else
                                         ></slot-calendar>
-                                    </div>
+                                    </div> -->
 
-                                    <div
+                                    <!-- <div
                                         class="tab-pane fade pt-3"
                                         id="profile-change-password"
                                     >
@@ -863,8 +857,8 @@
                                                 </button>
                                             </div>
                                         </form>
-                                    </div>
-                                    <div
+                                    </div> -->
+                                    <!-- <div
                                         class="tab-pane fade pt-3 profile-discussion-card"
                                         id="profile-discussion"
                                     >
