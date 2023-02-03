@@ -188,8 +188,7 @@
                                                         SEND MESSAGE TO
                                                         <span
                                                             class="text-uppercase badge badge-info"
-                                                            style="background-color: black;
-                                                            "
+                                                            style="background-color: black;"
                                                             >{{
                                                                 profile_overview
                                                                     .teacher_info
@@ -351,22 +350,6 @@
                                                                                 class_info
                                                                                     .subject
                                                                                     .name
-                                                                            }}
-                                                                        </span>
-                                                                    </li>
-                                                                    <li
-                                                                        class="list-group-item"
-                                                                    >
-                                                                        <b
-                                                                            >TEACHER
-                                                                            : </b
-                                                                        ><span
-                                                                            class="badge rounded-pill text-bg-warning mr-2"
-                                                                        >
-                                                                            {{
-                                                                                class_info
-                                                                                    .teacher
-                                                                                    .full_name
                                                                             }}
                                                                         </span>
                                                                     </li>
@@ -1052,6 +1035,13 @@ export default {
         this.profileOverview();
     },
     methods: {
+        checkStudent(class_info){
+            if (class_info.student.full_name==this.getLoginInfo.user.name) {
+                return true;
+            } else {
+                return false;
+            }
+        },
         setMessage_type(msg_type) {
             this.message_type = msg_type;
         },
@@ -1083,20 +1073,6 @@ export default {
         },
         makeFalse() {
             this.showCalendar = false;
-        },
-        checkStudent(class_info) {
-            let results = [];
-            if (this.getLoginInfo.user.role == "student") {
-                results = class_info.student.filter(
-                    (stu) => stu.full_name === this.getLoginInfo.student_info.full_name
-                );
-            }
-
-            if (results.length > 0) {
-                return true;
-            } else {
-                return false;
-            }
         },
         checkSubject(val) {
             let results = [];
