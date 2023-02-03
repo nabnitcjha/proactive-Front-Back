@@ -660,6 +660,66 @@ var render = function render() {
       calType: _vm.student_all
     }
   }) : _vm._e()], 1), _vm._v(" "), _c("div", {
+    staticClass: "tab-pane fade pt-3",
+    attrs: {
+      id: "profile-change-password"
+    }
+  }, [_c("form", [_c("div", {
+    staticClass: "row mb-3"
+  }, [_c("label", {
+    staticClass: "col-md-4 col-lg-3 col-form-label",
+    attrs: {
+      "for": "currentPassword"
+    }
+  }, [_vm._v("Current Password")]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-8 col-lg-9"
+  }, [_c("input", {
+    staticClass: "form-control",
+    attrs: {
+      name: "password",
+      type: "password",
+      id: "currentPassword"
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "row mb-3"
+  }, [_c("label", {
+    staticClass: "col-md-4 col-lg-3 col-form-label",
+    attrs: {
+      "for": "newPassword"
+    }
+  }, [_vm._v("New Password")]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-8 col-lg-9"
+  }, [_c("input", {
+    staticClass: "form-control",
+    attrs: {
+      name: "newpassword",
+      type: "password",
+      id: "newPassword"
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "row mb-3"
+  }, [_c("label", {
+    staticClass: "col-md-4 col-lg-3 col-form-label",
+    attrs: {
+      "for": "renewPassword"
+    }
+  }, [_vm._v("Re-enter New\n                                                Password")]), _vm._v(" "), _c("div", {
+    staticClass: "col-md-8 col-lg-9"
+  }, [_c("input", {
+    staticClass: "form-control",
+    attrs: {
+      name: "renewpassword",
+      type: "password",
+      id: "renewPassword"
+    }
+  })])]), _vm._v(" "), _c("div", {
+    staticClass: "text-center"
+  }, [_c("button", {
+    staticClass: "btn btn-primary",
+    attrs: {
+      type: "submit"
+    }
+  }, [_vm._v("\n                                                Change Password\n                                            ")])])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3 profile-discussion-card",
     attrs: {
       id: "profile-discussion"

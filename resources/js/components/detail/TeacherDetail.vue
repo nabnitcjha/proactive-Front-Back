@@ -784,7 +784,7 @@
                                         ></slot-calendar>
                                     </div>
 
-                                    <!-- <div
+                                    <div
                                         class="tab-pane fade pt-3"
                                         id="profile-change-password"
                                     >
@@ -847,7 +847,7 @@
                                                 </button>
                                             </div>
                                         </form>
-                                    </div> -->
+                                    </div>
                                     <div
                                         class="tab-pane fade pt-3 profile-discussion-card"
                                         id="profile-discussion"
