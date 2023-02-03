@@ -768,7 +768,7 @@
                                             </div>
                                         </form>
                                     </div>
-                                    <!-- <div
+                                    <div
                                         class="tab-pane fade pt-3"
                                         id="profile-classes"
                                     >
@@ -782,17 +782,7 @@
                                                 'admin'
                                             "
                                         ></slot-calendar>
-                                        <slot-calendar
-                                            :current_student_id="
-                                                $route.params.id
-                                            "
-                                            :current_teacher_id="
-                                                getLoginInfo.teacher_info.id
-                                            "
-                                            :calType="student_teacher_all"
-                                            v-else
-                                        ></slot-calendar>
-                                    </div> -->
+                                    </div>
 
                                     <!-- <div
                                         class="tab-pane fade pt-3"
@@ -858,7 +848,7 @@
                                             </div>
                                         </form>
                                     </div> -->
-                                    <!-- <div
+                                    <div
                                         class="tab-pane fade pt-3 profile-discussion-card"
                                         id="profile-discussion"
                                     >
@@ -869,10 +859,7 @@
                                                 class_info, index
                                             ) in profile_overview.sorted_class"
                                             :key="index"
-                                            v-if="
-                                                getLoginInfo.user.name ==
-                                                class_info.teacher.full_name
-                                            "
+                                            v-if="checkStudent(class_info)"
                                         >
                                             <div class="card-body">
                                                 <h5 class="card-title">
@@ -895,7 +882,7 @@
                                             </div>
                                         </div>
 
-                                    </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>

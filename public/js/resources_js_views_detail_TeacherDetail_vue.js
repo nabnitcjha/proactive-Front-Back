@@ -649,7 +649,47 @@ var render = function render() {
       current_student_id: _vm.getLoginInfo.student_info.id,
       calType: _vm.student_teacher_all
     }
-  })], 1)]) : _vm._e()])])])])])])])])])])])], 1)])])]);
+  })], 1)]) : _vm._e()])])])])])])]), _vm._v(" "), _c("div", {
+    staticClass: "tab-pane fade pt-3",
+    attrs: {
+      id: "profile-classes"
+    }
+  }, [_vm.getLoginInfo.user.role == "admin" ? _c("slot-calendar", {
+    attrs: {
+      current_student_id: _vm.$route.params.id,
+      calType: _vm.student_all
+    }
+  }) : _vm._e()], 1), _vm._v(" "), _c("div", {
+    staticClass: "tab-pane fade pt-3 profile-discussion-card",
+    attrs: {
+      id: "profile-discussion"
+    }
+  }, _vm._l(_vm.profile_overview.sorted_class, function (class_info, index) {
+    return _vm.checkStudent(class_info) ? _c("div", {
+      key: index,
+      staticClass: "card",
+      staticStyle: {
+        width: "18rem"
+      }
+    }, [_c("div", {
+      staticClass: "card-body"
+    }, [_c("h5", {
+      staticClass: "card-title"
+    }, [_vm._v("\n                                                " + _vm._s(class_info.topic) + "\n                                            ")]), _vm._v(" "), _c("a", {
+      staticClass: "btn btn-success",
+      attrs: {
+        href: "#",
+        "data-bs-toggle": "modal",
+        "data-bs-target": "#groupDiscussionMessage"
+      },
+      on: {
+        click: function click($event) {
+          $event.stopPropagation();
+          return _vm.setClassId(class_info.id, class_info.class_unique_id, "group-chat");
+        }
+      }
+    }, [_vm._v("Open Discussion")])])]) : _vm._e();
+  }), 0)])])])])], 1)])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
