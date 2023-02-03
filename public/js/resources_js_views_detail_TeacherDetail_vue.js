@@ -464,7 +464,71 @@ var render = function render() {
     }, [_c("b", [_vm._v("SUBJECT\n                                                                        : ")]), _c("span", {
       staticClass: "badge rounded-pill text-bg-success mr-2"
     }, [_vm._v("\n                                                                        " + _vm._s(class_info.subject.name) + "\n                                                                    ")])])])])])])]) : _vm._e();
-  }), 0)])])])])])])], 1)])])]);
+  }), 0)]), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-3 col-md-4 label"
+  }, [_vm._v("\n                                            Teachers\n                                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-9 col-md-8"
+  }, _vm._l(_vm.profile_overview.teacher_info, function (thr_info, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "accordion accordion-flush",
+      attrs: {
+        id: "overview_teacher_accordion" + index
+      }
+    }, [_c("div", {
+      staticClass: "accordion-item"
+    }, [_c("h2", {
+      staticClass: "accordion-header",
+      attrs: {
+        id: "overview_teacher_heading" + index
+      }
+    }, [_c("button", {
+      staticClass: "accordion-button collapsed",
+      attrs: {
+        type: "button",
+        "data-bs-toggle": "collapse",
+        "data-bs-target": "#" + "flush-overview_teacher_accordion" + index,
+        "aria-expanded": "false",
+        "aria-controls": "flush-overview_teacher_accordion" + index
+      }
+    }, [_vm._v("\n                                                            " + _vm._s(thr_info.full_name) + "\n                                                        ")])]), _vm._v(" "), _c("div", {
+      staticClass: "accordion-collapse collapse",
+      attrs: {
+        id: "flush-overview_teacher_accordion" + index,
+        "aria-labelledby": "flush-overview_teacher_heading" + index,
+        "data-bs-parent": "#" + "overview_teacher_accordion" + index
+      }
+    }, [_c("div", {
+      staticClass: "accordion-body"
+    }, [_c("ul", {
+      staticClass: "list-group"
+    }, [_c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("EMAIL\n                                                                        : ")]), _vm._v(_vm._s(thr_info.email) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("PHONE\n                                                                        : ")]), _vm._v(_vm._s(thr_info.phone) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("SUBJECT\n                                                                        :\n                                                                    ")]), _vm._v(" "), _vm._l(thr_info.subject, function (tch_sub_info, index) {
+      return _vm.checkSubject(tch_sub_info) ? _c("span", {
+        key: index,
+        staticClass: "badge rounded-pill text-bg-warning mr-2"
+      }, [_vm._v(_vm._s(tch_sub_info.name))]) : _vm._e();
+    })], 2)])])])])]);
+  }), 0)]) : _vm._e(), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-3 col-md-4 label"
+  }, [_vm._v("\n                                            Email\n                                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-9 col-md-8"
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.teacher_info.email) + "\n                                        ")])]), _vm._v(" "), _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-3 col-md-4 label"
+  }, [_vm._v("\n                                            Phone\n                                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-9 col-md-8"
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.teacher_info.phone) + "\n                                        ")])])])])])])])], 1)])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

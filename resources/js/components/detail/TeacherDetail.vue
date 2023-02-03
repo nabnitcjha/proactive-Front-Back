@@ -361,7 +361,7 @@
                                             </div>
                                         </div>
 
-                                        <!-- <div
+                                        <div
                                             class="row"
                                             v-if="
                                                 getLoginInfo.user.role ==
@@ -487,105 +487,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div> -->
+                                        </div>
 
-                                        <!-- <div class="row">
-                                            <div
-                                                class="col-lg-3 col-md-4 label"
-                                            >
-                                                Parents
-                                            </div>
-                                            <div class="col-lg-9 col-md-8">
-                                                <div
-                                                    class="accordion accordion-flush"
-                                                    v-bind:id="
-                                                        'overview_parent_accordion' +
-                                                        index
-                                                    "
-                                                    v-for="(
-                                                        prnt_info, index
-                                                    ) in profile_overview.parent_info"
-                                                    :key="index"
-                                                >
-                                                    <div class="accordion-item">
-                                                        <h2
-                                                            class="accordion-header"
-                                                            v-bind:id="
-                                                                'overview_parent_heading' +
-                                                                index
-                                                            "
-                                                        >
-                                                            <button
-                                                                class="accordion-button collapsed"
-                                                                type="button"
-                                                                data-bs-toggle="collapse"
-                                                                v-bind:data-bs-target="
-                                                                    '#' +
-                                                                    'flush-overview_parent_accordion' +
-                                                                    index
-                                                                "
-                                                                aria-expanded="false"
-                                                                v-bind:aria-controls="
-                                                                    'flush-overview_parent_accordion' +
-                                                                    index
-                                                                "
-                                                            >
-                                                                {{
-                                                                    prnt_info.full_name
-                                                                }}
-                                                            </button>
-                                                        </h2>
-                                                        <div
-                                                            v-bind:id="
-                                                                'flush-overview_parent_accordion' +
-                                                                index
-                                                            "
-                                                            class="accordion-collapse collapse"
-                                                            v-bind:aria-labelledby="
-                                                                'flush-overview_parent_heading' +
-                                                                index
-                                                            "
-                                                            v-bind:data-bs-parent="
-                                                                '#' +
-                                                                'overview_parent_accordion' +
-                                                                index
-                                                            "
-                                                        >
-                                                            <div
-                                                                class="accordion-body"
-                                                            >
-                                                                <ul
-                                                                    class="list-group"
-                                                                >
-                                                                    <li
-                                                                        class="list-group-item"
-                                                                    >
-                                                                        <b
-                                                                            >EMAIL
-                                                                            : </b
-                                                                        >{{
-                                                                            prnt_info.email
-                                                                        }}
-                                                                    </li>
-                                                                    <li
-                                                                        class="list-group-item"
-                                                                    >
-                                                                        <b
-                                                                            >PHONE
-                                                                            : </b
-                                                                        >{{
-                                                                            prnt_info.phone
-                                                                        }}
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
+                                      
 
-                                        <!-- <div class="row">
+                                        <div class="row">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
@@ -597,9 +503,9 @@
                                                         .teacher_info.email
                                                 }}
                                             </div>
-                                        </div> -->
+                                        </div>
 
-                                        <!-- <div class="row">
+                                        <div class="row">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
@@ -611,7 +517,7 @@
                                                         .teacher_info.phone
                                                 }}
                                             </div>
-                                        </div> -->
+                                        </div>
                                     </div>
                                     <!-- <div
                                         class="tab-pane fade profile-teacher pt-3"
