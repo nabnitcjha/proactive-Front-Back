@@ -74,7 +74,7 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item study-resource">
-                                    <div class="col-12 d-flex">
+                                    <div class="col-12 d-flex" v-if="checkPermission">
                                         <label
                                             for="file"
                                             class="input input-file"
@@ -132,7 +132,7 @@
                             </div>
                             <div>
                                 <li class="list-group-item assignment">
-                                    <div class="col-12 d-flex">
+                                    <div class="col-12 d-flex"  v-if="checkPermission">
                                         <label
                                             for="assignment_file"
                                             class="input input-file"
@@ -245,7 +245,7 @@
                             >
                                 <span>Zoom Link</span>
                             </div>
-                            <ul class="list-group list-group-flush">
+                            <ul class="list-group list-group-flush"  v-if="checkPermission">
                                 <div
                                     class="form-group col-sm-12 col-lg-12 d-flex"
                                 >
@@ -257,6 +257,31 @@
                                             id="zoom_link"
                                             placeholder="add link"
                                             @input="savezoom_link"
+                                        />
+                                        <i
+                                            class="bi bi-clipboard"
+                                            @click.stop="copyzoom_link"
+                                        ></i>
+                                    </div>
+                                    <button
+                                        class="btn btn-warning btn-session pointer-hand col-3 mt-2 mx-auto go-to-link cstm-btn"
+                                        @click.stop="openLink"
+                                    >
+                                        Go
+                                    </button>
+                                </div>
+                            </ul>
+                            <ul class="list-group list-group-flush"  v-else>
+                                <div
+                                    class="form-group col-sm-12 col-lg-12 d-flex"
+                                >
+                                    <div class="zoom-link">
+                                        <input
+                                            v-model="zoom_link"
+                                            type="text"
+                                            class="form-control remove-border"
+                                            id="zoom_link"
+                                            placeholder="add link"
                                         />
                                         <i
                                             class="bi bi-clipboard"
@@ -307,6 +332,7 @@
 import moment from "moment";
 export default {
     data: () => ({
+        checkPermission:true,
         rightSidebar: false,
         userType: "",
         isStudent: false,
@@ -352,6 +378,13 @@ export default {
     },
 
     methods: {
+        checkRole(){
+            if (this.getLoginInfo.user.role=='teacher'||this.getLoginInfo.user.role=='admin') {
+                this.checkPermission = true;
+            }else{
+                this.checkPermission = false;
+            }
+        },
         async getResourceFile() {
             let urlText =
                 "timetable/" + this.current_timetable_id + "/resourceFile";
@@ -693,6 +726,7 @@ export default {
         },
     },
     mounted() {
+        this.checkRole();
         this.currentMonthName = this.$refs.monthCalendar.title;
         this.calendarTitle();
     },
