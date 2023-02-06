@@ -166,7 +166,7 @@ span.custom-checkbox {
 
 .bi-trash,.bi-download{
   color: darkred!important;
-  margin-left: 8px!important;
+  /* margin-left: 8px!important; */
 }
 .bi-download{
   color: #0aca15!important;
@@ -177,5 +177,5 @@ span.custom-checkbox {
 }
 
 .slot-modal{
-  --bs-modal-width: 886px!important;
+  /* --bs-modal-width: 886px!important; */
 }
