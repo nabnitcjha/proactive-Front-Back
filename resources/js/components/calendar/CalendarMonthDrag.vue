@@ -383,10 +383,11 @@ export default {
     },
 
     methods: {
-        deleteStudyResource(id) {
+        async deleteStudyResource(id) {
             var result = confirm("Want to delete study resource?");
             if (result) {
-                this.$root.deleteFile(id);
+                let urlText = "assignment/" + id + "/delete";
+                let deleteResponse = await this.delete(urlText);
             }
         },
         checkRole() {
