@@ -74,7 +74,10 @@
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item study-resource">
-                                    <div class="col-12 d-flex" v-if="checkPermission">
+                                    <div
+                                        class="col-12 d-flex"
+                                        v-if="checkPermission"
+                                    >
                                         <label
                                             for="file"
                                             class="input input-file"
@@ -116,21 +119,24 @@
                                         rsf.resourceFile.original_filename
                                     }}</span>
                                     <div class="d-flex action">
-                                    <i
-                                        class="bi bi-download hand"
-                                        @click.stop="
-                                            downloadFile(rsf.resourceFile.id)
-                                        "
-                                    ></i>
-                                    <i
-                                        class="bi bi-trash hand"
-                                        v-if="checkPermission"
-                                        @click.stop="
-                                            downloadFile(rsf.resourceFile.id)
-                                        "
-                                    ></i>
+                                        <i
+                                            class="bi bi-download hand"
+                                            @click.stop="
+                                                downloadFile(
+                                                    rsf.resourceFile.id
+                                                )
+                                            "
+                                        ></i>
+                                        <i
+                                            class="bi bi-trash hand"
+                                            v-if="checkPermission"
+                                            @click.stop="
+                                                deleteStudyResource(
+                                                    rsf.resourceFile.id
+                                                )
+                                            "
+                                        ></i>
                                     </div>
-                                    
                                 </li>
                             </ul>
                         </div>
@@ -142,7 +148,10 @@
                             </div>
                             <div>
                                 <li class="list-group-item assignment">
-                                    <div class="col-12 d-flex"  v-if="checkPermission">
+                                    <div
+                                        class="col-12 d-flex"
+                                        v-if="checkPermission"
+                                    >
                                         <label
                                             for="assignment_file"
                                             class="input input-file"
@@ -197,8 +206,8 @@
                                             }}
                                         </td>
                                         <td>
-                                           <span>{{' '}}</span>
-                                           <i
+                                            <span>{{ " " }}</span>
+                                            <i
                                                 class="bi bi-upload hand"
                                                 @click.stop="
                                                     downloadFile(
@@ -229,14 +238,17 @@
                                 </tbody>
                             </table>
                         </div>
-                      
+
                         <div class="card">
                             <div
                                 class="card-header d-flex justify-content-between"
                             >
                                 <span>Zoom Link</span>
                             </div>
-                            <ul class="list-group list-group-flush"  v-if="checkPermission">
+                            <ul
+                                class="list-group list-group-flush"
+                                v-if="checkPermission"
+                            >
                                 <div
                                     class="form-group col-sm-12 col-lg-12 d-flex"
                                 >
@@ -262,7 +274,7 @@
                                     </button>
                                 </div>
                             </ul>
-                            <ul class="list-group list-group-flush"  v-else>
+                            <ul class="list-group list-group-flush" v-else>
                                 <div
                                     class="form-group col-sm-12 col-lg-12 d-flex"
                                 >
@@ -323,7 +335,7 @@
 import moment from "moment";
 export default {
     data: () => ({
-        checkPermission:true,
+        checkPermission: true,
         rightSidebar: false,
         userType: "",
         isStudent: false,
@@ -369,10 +381,19 @@ export default {
     },
 
     methods: {
-        checkRole(){
-            if (this.getLoginInfo.user.role=='teacher'||this.getLoginInfo.user.role=='admin') {
+        deleteStudyResource(id) {
+            var result = confirm("Want to delete study resource?");
+            if (result) {
+                this.$root.deleteFile(id);
+            }
+        },
+        checkRole() {
+            if (
+                this.getLoginInfo.user.role == "teacher" ||
+                this.getLoginInfo.user.role == "admin"
+            ) {
                 this.checkPermission = true;
-            }else{
+            } else {
                 this.checkPermission = false;
             }
         },

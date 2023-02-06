@@ -87,7 +87,7 @@ new Vue({
             return window.location.origin + "/api/displayFile/" + id;
         },
         deleteFile: function(id) {
-            axios.get("/deleteFile/" + id).then(response => {
+            axios.get(window.location.origin + "/api/deleteFile/" + id).then(response => {
                 location.reload();
             });
         },
