@@ -207,7 +207,17 @@
                                                     .original_filename
                                             }}
                                         </td>
-                                        <td>
+                                        <td v-if="getLoginInfo.user.role=='teacher'">
+                                            <i
+                                                class="bi bi-download hand"
+                                                @click.stop="
+                                                    downloadFile(
+                                                        rsf.resourceFile.id
+                                                    )
+                                                "
+                                            ></i>
+                                        </td>
+                                        <td v-else>
                                             <i
                                                 class="bi bi-upload hand"
                                                 @click.stop="
