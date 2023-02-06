@@ -93,6 +93,7 @@ Route::group([
     Route::get('timetable/{id}/resourceFile', 'ClassScheduleController@getResourceFile');
     Route::get('downloadFile/{id}', 'uploadImageOrFileController@downloadFile');
     Route::get('displayFile/{id}', 'uploadImageOrFileController@displayFile');
+    Route::get('deleteFile/{id}', 'uploadImageOrFileController@deleteFile');
 });
 
 // chat routes

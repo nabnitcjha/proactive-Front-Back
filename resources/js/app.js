@@ -86,6 +86,11 @@ new Vue({
         getMedia: function(id) {
             return window.location.origin + "/api/displayFile/" + id;
         },
+        deleteFile: function(id) {
+            axios.get("/deleteFile/" + id).then(response => {
+                location.reload();
+            });
+        },
     },
     render: (h) => h(App),
 }).$mount(".page-wrapper");

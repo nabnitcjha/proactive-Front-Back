@@ -1,29 +1,58 @@
 <template>
-    <div class="deletemodal__page">
-        <vs-modal v-model="showDeleteModel" class="modal-ac">
-            <div slot="modal-header" class="modal-header">
-                <span class="hp-3-title">Delete 
-                    <!-- &nbsp;<span class="delete__modal--user-name">{{userType}}</span> -->
-                </span>
-                <v-icon @click.stop="modalClose"> mdi-close-circle</v-icon>
+       <div
+            class="modal fade modal-tall slot-modal"
+            id="deleteModal"
+            tabindex="-1"
+            aria-labelledby="deleteModalLabel"
+            aria-hidden="true"
+            v-if="showDeleteModel"
+        >
+            <div class="modal-dialog modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="deleteModalLabel">
+                            Slot Detail
+                        </h1>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- start body -->
+                        <div class="card">
+                            <div
+                                class="card-header d-flex justify-content-between"
+                            >
+                                <span>Assignment</span>
+                            </div>
+                           
+                           
+                        </div>
+
+                        <!-- end body -->
+                    </div>
+
+                    <div class="modal-footer">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal"
+                            @click.stop="modalClose"
+                        >
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary"
+                        @click.stop="deleteData"
+                        >
+                            Delete
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div slot="modal-body" class="modal-body">
-                Are you sure You want to delete &nbsp;<span class="delete__modal--user-name">{{userType}}</span> ?
-            </div>
-            <div slot="modal-footer" class="modal-footer">
-                <v-btn class="cancel_btn" @click="modalClose">
-                    Cancel
-                </v-btn>
-                <v-btn
-                    color="red"
-                    class="btn btn-danger delete_btn"
-                    @click="deleteData"
-                >
-                    Delete
-                </v-btn>
-            </div>
-        </vs-modal>
-    </div>
+        </div>
 </template>
 <script>
 import "./DeleteModal.css";
