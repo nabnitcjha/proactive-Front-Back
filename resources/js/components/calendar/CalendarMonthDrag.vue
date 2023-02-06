@@ -392,7 +392,14 @@ export default {
     },
 
     methods: {
-       async savezoom_link(e) {
+        openLink() {
+            if (this.zoom_link != null) {
+                window.open(this.zoom_link);
+            } else {
+                alert('link is empty');
+            }
+        },
+        async savezoom_link(e) {
             let formData = {};
             formData["zoomLink"] = e.target.value;
             formData["timetable_id"] = this.current_timetable_id;
@@ -546,6 +553,7 @@ export default {
             this.current_slot_unique_id = event.class_unique_id;
             this.current_timetable_id = event.id;
             this.currentTeacherId = event.teacher_id;
+            this.zoom_link = event.zoom_link;
             this.getResourceFile();
             this.$emit("current-zoom-link", event);
             const open = () => {
