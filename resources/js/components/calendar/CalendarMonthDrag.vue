@@ -115,12 +115,22 @@
                                     <span>{{
                                         rsf.resourceFile.original_filename
                                     }}</span>
+                                    <div class="d-flex action">
                                     <i
-                                        class="bi bi-upload"
+                                        class="bi bi-download hand"
                                         @click.stop="
                                             downloadFile(rsf.resourceFile.id)
                                         "
                                     ></i>
+                                    <i
+                                        class="bi bi-trash hand"
+                                        v-if="checkPermission"
+                                        @click.stop="
+                                            downloadFile(rsf.resourceFile.id)
+                                        "
+                                    ></i>
+                                    </div>
+                                    
                                 </li>
                             </ul>
                         </div>

@@ -163,3 +163,15 @@ span.custom-checkbox {
   display: flex!important;
   flex-direction: column-reverse!important;
 }
+
+.bi-trash,.bi-download{
+  color: darkred!important;
+  margin-left: 8px!important;
+}
+.bi-download{
+  color: #0aca15!important;
+}
+.action{
+  width: 32px!important;
+  justify-content: space-around!important;
+}
