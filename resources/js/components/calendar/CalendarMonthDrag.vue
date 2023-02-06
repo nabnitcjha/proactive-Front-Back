@@ -250,9 +250,9 @@
                                 v-if="checkPermission"
                             >
                                 <div
-                                    class="form-group col-sm-12 col-lg-12 d-flex"
+                                    class="form-group col-sm-12 col-lg-12 d-flex justify-content-between"
                                 >
-                                    <div class="zoom-link">
+                                    <div class="zoom-link col-6">
                                         <input
                                             v-model="zoom_link"
                                             type="text"
@@ -266,12 +266,14 @@
                                             @click.stop="copyzoom_link"
                                         ></i>
                                     </div>
-                                    <button
-                                        class="btn btn-warning btn-session pointer-hand col-3 mt-2 mx-auto go-to-link cstm-btn"
-                                        @click.stop="openLink"
-                                    >
-                                        Go
-                                    </button>
+                                    <div class="col-4">
+                                        <button
+                                            class="btn btn-warning btn-session pointer-hand col-12 mt-2 mx-auto go-to-link cstm-btn"
+                                            @click.stop="openLink"
+                                        >
+                                            Go
+                                        </button>
+                                    </div>
                                 </div>
                             </ul>
                             <ul class="list-group list-group-flush" v-else>
