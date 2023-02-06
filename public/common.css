@@ -175,3 +175,7 @@ span.custom-checkbox {
   width: 32px!important;
   justify-content: space-around!important;
 }
+
+.slot-modal{
+  --bs-modal-width: 886px!important;
+}

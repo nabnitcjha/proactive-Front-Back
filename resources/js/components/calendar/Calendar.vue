@@ -142,7 +142,7 @@
                         </v-calendar>
                         <!-- modal start -->
                         <div
-                            class="modal fade modal-tall"
+                            class="modal fade modal-tall slot-modal"
                             id="dayDragModal"
                             tabindex="-1"
                             aria-labelledby="dayDragModalLabel"

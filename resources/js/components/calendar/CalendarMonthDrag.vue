@@ -45,7 +45,7 @@
         </v-calendar>
         <!-- modal start -->
         <div
-            class="modal fade modal-tall"
+            class="modal fade modal-tall slot-modal"
             v-bind:id="'monthDragModal' + current_teacher_id"
             tabindex="-1"
             aria-labelledby="monthDragModalLabel"
@@ -181,6 +181,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Name</th>
+                                        <th scope="col">Answer</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -196,8 +197,27 @@
                                             }}
                                         </td>
                                         <td>
+                                           <span>{{' '}}</span>
+                                           <i
+                                                class="bi bi-upload hand"
+                                                @click.stop="
+                                                    downloadFile(
+                                                        rsf.resourceFile.id
+                                                    )
+                                                "
+                                            ></i>
+                                        </td>
+                                        <td>
                                             <i
-                                                class="bi bi-upload"
+                                                class="bi bi-download"
+                                                @click.stop="
+                                                    downloadFile(
+                                                        rsf.resourceFile.id
+                                                    )
+                                                "
+                                            ></i>
+                                            <i
+                                                class="bi bi-trash"
                                                 @click.stop="
                                                     downloadFile(
                                                         rsf.resourceFile.id
