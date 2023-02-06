@@ -229,46 +229,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="card">
-                            <div
-                                class="card-header d-flex justify-content-between"
-                            >
-                                <span>Assignment Answer</span>
-                            </div>
-                            <table class="card-table table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Submited By</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>
-                                            <label
-                                                for="assignment_answer_file"
-                                                class="hand"
-                                            >
-                                                <i class="bi bi-upload"></i>
-                                                <input
-                                                    type="file"
-                                                    id="assignment_answer_file"
-                                                    style="display: none"
-                                                    name="image"
-                                                    data-original-title="upload photos"
-                                                    @change="
-                                                        handleAssignmentAnswerFile
-                                                    "
-                                                />
-                                            </label>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                      
                         <div class="card">
                             <div
                                 class="card-header d-flex justify-content-between"
