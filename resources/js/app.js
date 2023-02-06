@@ -5,6 +5,7 @@ import router from "./router";
 import axios from "axios";
 import connectAPI from "./connectAPI";
 import momentMethod from "./momentMethod";
+import classScheduleCommonMethod from "./classScheduleCommonMethod";
 import moment from "moment";
 import Multiselect from "vue-multiselect";
 import "vue-multiselect/dist/vue-multiselect.min.css";
@@ -59,6 +60,7 @@ Vue.use(Plugin);
 Vue.use(axios);
 Vue.mixin(connectAPI);
 Vue.mixin(momentMethod);
+Vue.mixin(classScheduleCommonMethod);
 Vue.use(VueChatScroll)
 // Vue.use(Vuetify)
 
