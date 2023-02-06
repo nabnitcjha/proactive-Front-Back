@@ -219,7 +219,7 @@
                                         </td>
                                         <td>
                                             <i
-                                                class="bi bi-download"
+                                                class="bi bi-download hand"
                                                 @click.stop="
                                                     downloadFile(
                                                         rsf.resourceFile.id
@@ -227,9 +227,9 @@
                                                 "
                                             ></i>
                                             <i
-                                                class="bi bi-trash"
+                                                class="bi bi-trash hand"
                                                 @click.stop="
-                                                    downloadFile(
+                                                    deleteStudyResource(
                                                         rsf.resourceFile.id
                                                     )
                                                 "
