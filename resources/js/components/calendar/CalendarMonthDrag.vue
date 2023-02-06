@@ -388,8 +388,9 @@ export default {
         async deleteStudyResource(id) {
             var result = confirm("Want to delete study resource?");
             if (result) {
-                let urlText = "assignment/" + id + "/delete";
-                let deleteResponse = await this.delete(urlText);
+                // let urlText = "assignment/" + id + "/delete";
+                // let deleteResponse = await this.delete(urlText);
+                this.$root.deleteFile(id);
             }
         },
         checkRole() {
