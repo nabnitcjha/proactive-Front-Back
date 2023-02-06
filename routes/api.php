@@ -94,6 +94,7 @@ Route::group([
     Route::get('downloadFile/{id}', 'uploadImageOrFileController@downloadFile');
     Route::get('displayFile/{id}', 'uploadImageOrFileController@displayFile');
     Route::get('deleteFile/{id}', 'uploadImageOrFileController@deleteFile');
+    Route::post('saveZoomLink', 'ClassScheduleController@saveZoomLink');
 });
 
 // chat routes

@@ -79,6 +79,17 @@ class ClassScheduleController extends BaseController
             }
         }
     }
+    public function saveZoomLink(Request $request){   
+        $timetable = ClassSchedule::find($request->timetable_id);
+        $timetable->zoom_link = $request->zoomLink;
+        $timetable->save();
+        return array(
+            "status"  => "ok",
+            "message" => "success",
+            "result"  => $timetable
+        );
+        // return parent::index($request);
+    }
 
     public function saveData(Request $request)
     {

@@ -114,7 +114,7 @@
                                     class="list-group-item d-flex justify-content-between"
                                     v-for="(rsf, index) in resource_file"
                                     :key="index"
-                                    v-if="rsf && rsf.resourceFile!=null"
+                                    v-if="rsf && rsf.resourceFile != null"
                                 >
                                     <span>{{
                                         rsf.resourceFile.original_filename
@@ -187,7 +187,7 @@
                                     <span>{{ assignmentFileName }}</span>
                                 </li>
                             </div>
-                            <table class="card-table table" >
+                            <table class="card-table table">
                                 <thead>
                                     <tr>
                                         <th scope="col">Name</th>
@@ -199,7 +199,7 @@
                                     <tr
                                         v-for="(rsf, index) in resource_file"
                                         :key="index"
-                                        v-if="rsf.resourceFile!=null"
+                                        v-if="rsf.resourceFile != null"
                                     >
                                         <td>
                                             {{
@@ -236,7 +236,14 @@
                                             ></i>
                                         </td>
                                     </tr>
-                                    <tr v-if="resource_file && resource_file.length<1"><span>no record found</span></tr>
+                                    <tr
+                                        v-if="
+                                            resource_file &&
+                                            resource_file.length < 1
+                                        "
+                                    >
+                                        <span>no record found</span>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -385,6 +392,13 @@ export default {
     },
 
     methods: {
+       async savezoom_link(e) {
+            let formData = {};
+            formData["zoomLink"] = e.target.value;
+            formData["timetable_id"] = this.current_timetable_id;
+            let urlText = "saveZoomLink";
+            let postResponse = await this.post(urlText, formData);
+        },
         async deleteStudyResource(id) {
             var result = confirm("Want to delete study resource?");
             if (result) {
@@ -404,11 +418,10 @@ export default {
             }
         },
         async getResourceFile() {
-            
             let urlText =
                 "timetable/" + this.current_timetable_id + "/resourceFile";
             let getResponse = await this.get(urlText, 1, false);
-            
+
             this.resource_file = getResponse.data.data;
         },
         downloadFile(id) {
@@ -419,14 +432,11 @@ export default {
                 this.resource_id;
         },
         async saveFile(formData) {
-            
             let urlText =
                 "timetable/" + this.current_timetable_id + "/resourceFile";
             let postResponse = await this.post(urlText, formData);
-            
         },
         async saveResourceFile() {
-            
             // let x = this.current_timetable_id;
             let formData = new FormData();
             formData.append("teacher_id", this.currentTeacherId);
@@ -436,19 +446,18 @@ export default {
             formData.append("type", "study_resource");
 
             let svf = await this.saveFile(formData);
-            
+
             this.assessment_file = "";
             this.resourceFileName = "";
             document.getElementById("study_resource").value = null;
             this.getResourceFile();
         },
         handleResourceFile(e) {
-            
             e.preventDefault();
             this.assessment_file = document.querySelector(
                 "input[id=study_resource]"
             ).files[0];
-            
+
             this.resourceFileName = this.assessment_file.name;
             document.getElementById("study_resource").value = null;
         },
