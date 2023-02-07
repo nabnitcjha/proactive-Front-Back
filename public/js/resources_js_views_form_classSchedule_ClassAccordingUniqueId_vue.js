@@ -15,12 +15,14 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       class_according_unique_id: "class_according_unique_id",
-      unique_id: ""
+      unique_id: "",
+      isDisplay: false
     };
   },
   methods: {
     getUniqueId: function getUniqueId() {
-      this.unique_id = this.route.params.class_unique_id;
+      this.unique_id = this.$route.params.class_unique_id;
+      this.isDisplay = true;
     }
   },
   mounted: function mounted() {
@@ -69,13 +71,13 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("slot-calendar", {
+  return _vm.isDisplay ? _c("fragment", [_c("slot-calendar", {
     attrs: {
       current_student_id: _vm.$route.params.id,
       calType: _vm.class_according_unique_id,
       unique_id: _vm.unique_id
     }
-  });
+  })], 1) : _vm._e();
 };
 var staticRenderFns = [];
 render._withStripped = true;

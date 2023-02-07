@@ -935,9 +935,7 @@ export default {
                     this.current_teacher_id +
                     "/class";
             }
-
             getResponse = await this.get(urlText, 1, false);
-
             this.slots = getResponse.data.data;
 
             // this.slots =await this.slot_info;
