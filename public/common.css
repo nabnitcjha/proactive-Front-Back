@@ -179,3 +179,11 @@ span.custom-checkbox {
 .slot-modal{
   /* --bs-modal-width: 886px!important; */
 }
+
+.rs-file{
+  width: 20%!important; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+.td-rs-file{
+  max-width: 17rem!important;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}

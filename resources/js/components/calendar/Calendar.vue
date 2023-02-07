@@ -175,36 +175,91 @@
                                             <ul
                                                 class="list-group list-group-flush"
                                             >
-                                                <li class="list-group-item">
-                                                    <label
-                                                        for="file"
-                                                        class="input input-file"
+                                                <li
+                                                    class="list-group-item study-resource"
+                                                >
+                                                    <div
+                                                        class="col-12 d-flex"
+                                                        v-if="checkPermission"
                                                     >
-                                                        <div class="button">
+                                                        <label
+                                                            for="file"
+                                                            class="input input-file"
+                                                        >
+                                                            <div class="button">
+                                                                <input
+                                                                    id="study_resource"
+                                                                    type="file"
+                                                                    class="form-control form-control-sm"
+                                                                    name="file"
+                                                                    @change="
+                                                                        handleResourceFile
+                                                                    "
+                                                                />
+                                                                Browse File
+                                                            </div>
                                                             <input
-                                                                type="file"
+                                                                type="text"
                                                                 class="form-control form-control-sm"
-                                                                name="file"
-                                                                onchange="this.parentNode.nextSibling.value = this.value"
+                                                                placeholder="upload study resources"
+                                                                readonly=""
                                                             />
-                                                            Browse File
-                                                        </div>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control form-control-sm"
-                                                            placeholder="upload study resources"
-                                                            readonly=""
-                                                        />
-                                                    </label>
+                                                        </label>
+                                                        <button
+                                                            type="button"
+                                                            class="btn btn-success cstm-btn"
+                                                            @click.stop="
+                                                                saveResourceFile
+                                                            "
+                                                        >
+                                                            save
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="rs-file">
+                                                        {{ resourceFileName }}
+                                                    </div>
                                                 </li>
-                                                <li class="list-group-item">
-                                                    Cras justo odio
-                                                </li>
-                                                <li class="list-group-item">
-                                                    Dapibus ac facilisis in
-                                                </li>
-                                                <li class="list-group-item">
-                                                    Vestibulum at eros
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between"
+                                                    v-for="(
+                                                        rsf, index
+                                                    ) in resource_file"
+                                                    :key="index"
+                                                    v-if="
+                                                        rsf &&
+                                                        rsf.resourceFile != null
+                                                    "
+                                                >
+                                                    <span>{{
+                                                        rsf.resourceFile
+                                                            .original_filename
+                                                    }}</span>
+                                                    <div class="d-flex action">
+                                                        <i
+                                                            class="bi bi-download hand"
+                                                            @click.stop="
+                                                                downloadFile(
+                                                                    rsf
+                                                                        .resourceFile
+                                                                        .id
+                                                                )
+                                                            "
+                                                        ></i>
+                                                        <i
+                                                            class="bi bi-trash hand"
+                                                            v-if="
+                                                                checkPermission
+                                                            "
+                                                            @click.stop="
+                                                                deleteStudyResource(
+                                                                    rsf
+                                                                        .resourceFile
+                                                                        .id
+                                                                )
+                                                            "
+                                                        ></i>
+                                                    </div>
                                                 </li>
                                             </ul>
                                         </div>
@@ -248,7 +303,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                       
+
                                         <div class="card">
                                             <div
                                                 class="card-header d-flex justify-content-between"
@@ -337,6 +392,7 @@ import { loginInfoStore } from "../../stores/loginInfo";
 import { mapState } from "pinia";
 export default {
     data: () => ({
+        checkPermission: true,
         userType: "",
         showDeleteModel: false,
         currentEvent: {},
@@ -384,7 +440,7 @@ export default {
         createEvent: null,
         createStart: null,
         extendOriginal: null,
-        current_slot_unique_id:""
+        current_slot_unique_id: "",
     }),
     props: {
         current_teacher_id: String,
@@ -398,6 +454,7 @@ export default {
         ...mapState(loginInfoStore, ["getLoginInfo"]),
     },
     mounted() {
+        this.checkRole();
         this.$refs.calendar.checkChange();
     },
     methods: {
