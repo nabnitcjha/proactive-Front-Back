@@ -17,12 +17,7 @@ export default {
         let postResponse = await this.post(urlText, formData);
     },
     async deleteStudyResource(id) {
-        var result = confirm("Want to delete study resource?");
-        if (result) {
-            // let urlText = "assignment/" + id + "/delete";
-            // let deleteResponse = await this.delete(urlText);
-            this.$root.deleteFile(id);
-        }
+       this.deleteAlert(id);
     },
     checkRole() {
         if (
