@@ -119,7 +119,7 @@
                                     <span  class="rs-file">{{
                                         rsf.resourceFile.original_filename
                                     }}</span>
-                                    <div class="d-flex action">
+                                    <div class="d-flex action mr-4">
                                         <i
                                             class="bi bi-download hand"
                                             @click.stop="
@@ -129,7 +129,7 @@
                                             "
                                         ></i>
                                         <i
-                                            class="bi bi-trash hand"
+                                            class="bi bi-trash hand ml-2"
                                             v-if="checkPermission"
                                             @click.stop="
                                                 deleteStudyResource(
