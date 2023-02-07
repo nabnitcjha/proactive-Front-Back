@@ -271,6 +271,52 @@
                                             >
                                                 <span>Assignment</span>
                                             </div>
+                                            <div>
+                                                <li
+                                                    class="list-group-item assignment"
+                                                >
+                                                    <div
+                                                        class="col-12 d-flex"
+                                                        v-if="checkPermission"
+                                                    >
+                                                        <label
+                                                            for="assignment_file"
+                                                            class="input input-file"
+                                                        >
+                                                            <div class="button">
+                                                                <input
+                                                                    id="assignment_file"
+                                                                    type="file"
+                                                                    class="form-control form-control-sm"
+                                                                    name="assignment_file"
+                                                                    @change="
+                                                                        handleAssignmentFile
+                                                                    "
+                                                                />
+                                                                Browse File
+                                                            </div>
+                                                            <input
+                                                                type="text"
+                                                                class="form-control form-control-sm"
+                                                                placeholder="upload assignment"
+                                                                readonly=""
+                                                            />
+                                                        </label>
+                                                        <button
+                                                            type="button"
+                                                            class="btn btn-success cstm-btn"
+                                                            @click.stop="
+                                                                saveAssignmentFile
+                                                            "
+                                                        >
+                                                            Save
+                                                        </button>
+                                                    </div>
+                                                    <span class="rs-file">{{
+                                                        assignmentFileName
+                                                    }}</span>
+                                                </li>
+                                            </div>
                                             <table class="card-table table">
                                                 <thead>
                                                     <tr>
@@ -278,7 +324,7 @@
                                                             Name
                                                         </th>
                                                         <th scope="col">
-                                                            File
+                                                            Answer
                                                         </th>
                                                         <th scope="col">
                                                             Action
@@ -286,21 +332,87 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="2">
-                                                            Larry the Bird
+                                                    <tr
+                                                        v-for="(
+                                                            rsf, index
+                                                        ) in resource_file"
+                                                        :key="index"
+                                                        v-if="
+                                                            rsf.resourceFile !=
+                                                            null
+                                                        "
+                                                    >
+                                                        <td class="td-rs-file">
+                                                            {{
+                                                                rsf.resourceFile
+                                                                    .original_filename
+                                                            }}
                                                         </td>
-                                                        <td>@twitter</td>
+                                                        <td
+                                                            v-if="
+                                                                getLoginInfo
+                                                                    .user
+                                                                    .role ==
+                                                                'teacher'
+                                                            "
+                                                        >
+                                                            <i
+                                                                class="bi bi-download hand"
+                                                                @click.stop="
+                                                                    downloadFile(
+                                                                        rsf
+                                                                            .resourceFile
+                                                                            .id
+                                                                    )
+                                                                "
+                                                            ></i>
+                                                        </td>
+                                                        <td v-else>
+                                                            <i
+                                                                class="bi bi-upload hand"
+                                                                @click.stop="
+                                                                    downloadFile(
+                                                                        rsf
+                                                                            .resourceFile
+                                                                            .id
+                                                                    )
+                                                                "
+                                                            ></i>
+                                                        </td>
+                                                        <td>
+                                                            <i
+                                                                class="bi bi-download hand"
+                                                                @click.stop="
+                                                                    downloadFile(
+                                                                        rsf
+                                                                            .resourceFile
+                                                                            .id
+                                                                    )
+                                                                "
+                                                            ></i>
+                                                            <i
+                                                                class="bi bi-trash hand"
+                                                                @click.stop="
+                                                                    deleteStudyResource(
+                                                                        rsf
+                                                                            .resourceFile
+                                                                            .id
+                                                                    )
+                                                                "
+                                                            ></i>
+                                                        </td>
+                                                    </tr>
+                                                    <tr
+                                                        v-if="
+                                                            resource_file &&
+                                                            resource_file.length <
+                                                                1
+                                                        "
+                                                    >
+                                                        <span
+                                                            >no record
+                                                            found</span
+                                                        >
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -394,6 +506,7 @@ import { loginInfoStore } from "../../stores/loginInfo";
 import { mapState } from "pinia";
 export default {
     data: () => ({
+        assignmentFileName: "",
         resource_file: [],
         resourceFileName: "",
         checkPermission: true,
@@ -773,7 +886,6 @@ export default {
             }
         },
         showEvent({ nativeEvent, event }) {
-            
             this.currentEvent = event;
             this.zoom_link = event.zoom_link;
             this.current_slot_unique_id = event.class_unique_id;
