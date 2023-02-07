@@ -10,11 +10,15 @@ export default {
         }
     },
     async savezoom_link(e) {
+        debugger;
         let formData = {};
-        formData["zoomLink"] = e.target.value;
+        let urlText ="saveZoomLink";
+        formData["zoom_link"] = e.target.value;
         formData["timetable_id"] = this.current_timetable_id;
-        let urlText = "saveZoomLink";
+        // this.saveAlert('zoom link save successfully');
+
         let postResponse = await this.post(urlText, formData);
+        debugger;
     },
     async deleteStudyResource(id) {
        this.deleteAlert(id);
@@ -118,6 +122,14 @@ export default {
   
         this.assessment_file = "";
         document.getElementById("assignment_answer_file").value = null;
+    },
+   
+    openLink() {
+        if (this.zoom_link != null) {
+            window.open(this.zoom_link);
+        } else {
+            this.errorAlert('no zoom link found');
+        }
     },
     copyzoom_link() {
         /* Get the text field */

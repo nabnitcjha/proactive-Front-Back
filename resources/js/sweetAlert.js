@@ -29,5 +29,28 @@ export default {
                     }
                 });
         },
+        saveAlert(msg) {
+            // Use sweetalert2
+            this.$swal
+            fire({
+                position: 'top-end',
+                icon: 'success',
+                title: msg,
+                showConfirmButton: false,
+                timer: 1500
+              })
+        },
+
+        errorAlert(msg) {
+            // Use sweetalert2
+            this.$swal
+            fire({
+                position: 'top-end',
+                icon: 'warning',
+                title: msg,
+                showConfirmButton: false,
+                timer: 1500
+              })
+        },
     },
 };

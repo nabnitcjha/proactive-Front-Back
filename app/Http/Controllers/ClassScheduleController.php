@@ -82,7 +82,7 @@ class ClassScheduleController extends BaseController
     }
     public function saveZoomLink(Request $request){   
         $timetable = ClassSchedule::find($request->timetable_id);
-        $timetable->zoom_link = $request->zoomLink;
+        $timetable->zoom_link = $request->zoom_link;
         $timetable->save();
         return array(
             "status"  => "ok",

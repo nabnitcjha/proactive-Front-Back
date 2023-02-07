@@ -426,6 +426,66 @@
                                             </div>
                                             <ul
                                                 class="list-group list-group-flush"
+                                                v-if="checkPermission"
+                                            >
+                                                <div
+                                                    class="form-group col-sm-12 col-lg-12 d-flex justify-content-between"
+                                                >
+                                                    <label
+                                                        for="file"
+                                                        class="input input-file zoom-link d-flex"
+                                                        style="width: inherit"
+                                                    >
+                                                        <input
+                                                            v-model="zoom_link"
+                                                            type="text"
+                                                            class="form-control form-control-sm remove-border"
+                                                            placeholder="add zoom link"
+                                                            @input="
+                                                                savezoom_link
+                                                            "
+                                                        />
+                                                        <i
+                                                            class="bi bi-clipboard"
+                                                            @click.stop="
+                                                                copyzoom_link
+                                                            "
+                                                        ></i>
+                                                    </label>
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-success cstm-btn"
+                                                        @click.stop="openLink"
+                                                    >
+                                                        Go
+                                                    </button>
+                                                    <!-- <div class="zoom-link col-6">
+                                        <input
+                                            v-model="zoom_link"
+                                            type="text"
+                                            class="form-control remove-border"
+                                            id="zoom_link"
+                                            placeholder="add link"
+                                            @input="savezoom_link"
+                                        />
+                                        <i
+                                            class="bi bi-clipboard"
+                                            @click.stop="copyzoom_link"
+                                        ></i>
+                                    </div>
+                                    <div class="col-4">
+                                        <button
+                                            class="btn btn-warning btn-session pointer-hand col-12 mt-2 mx-auto go-to-link cstm-btn"
+                                            @click.stop="openLink"
+                                        >
+                                            Go
+                                        </button>
+                                    </div> -->
+                                                </div>
+                                            </ul>
+                                            <ul
+                                                class="list-group list-group-flush"
+                                                v-else
                                             >
                                                 <div
                                                     class="form-group col-sm-12 col-lg-12 d-flex"
@@ -437,9 +497,6 @@
                                                             class="form-control remove-border"
                                                             id="zoom_link"
                                                             placeholder="add link"
-                                                            @input="
-                                                                savezoom_link
-                                                            "
                                                         />
                                                         <i
                                                             class="bi bi-clipboard"
@@ -576,20 +633,6 @@ export default {
         this.$refs.calendar.checkChange();
     },
     methods: {
-        copyzoom_link() {
-            /* Get the text field */
-            var copyText = document.getElementById("zoom_link");
-
-            /* Select the text field */
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-            /* Copy the text inside the text field */
-            navigator.clipboard.writeText(copyText.value);
-
-            /* Alert the copied text */
-            // alert( copyText.value);
-        },
         async confirmDelete() {
             let isDelete = "";
             isDelete = await this.deleteRecord(
@@ -613,52 +656,7 @@ export default {
         startClass() {
             this.showStartModel = true;
         },
-        emptyLink() {
-            this.$toast.open({
-                message: "Link is not added",
-                type: "warning",
-                duration: 5000,
-                dismissible: true,
-            });
-        },
-        openLink() {
-            if (this.zoom_link != null) {
-                window.open(this.zoom_link);
-            } else {
-                this.emptyLink();
-            }
-        },
-        zoomSaveSuccessfully() {
-            this.$toast.open({
-                message: "link save successfully",
-                type: "success",
-                duration: 5000,
-                dismissible: true,
-            });
-        },
-        savezoom_link(e) {
-            let formData = {};
-            formData["zoom_link"] = e.target.value;
-            formData["timetable_id"] = this.current_timetable_id;
 
-            axios.post("/api/savezoom_link", formData).then((response) => {
-                this.zoomSaveSuccessfully();
-            });
-        },
-        copyzoom_link() {
-            /* Get the text field */
-            var copyText = document.getElementById("zoom_link");
-
-            /* Select the text field */
-            copyText.select();
-            copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-            /* Copy the text inside the text field */
-            navigator.clipboard.writeText(copyText.value);
-
-            /* Alert the copied text */
-            // alert( copyText.value);
-        },
         calendarTodayTitle(val) {
             this.calendarTitle = val;
         },
