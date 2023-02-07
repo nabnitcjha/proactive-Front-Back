@@ -276,7 +276,31 @@
                                 <div
                                     class="form-group col-sm-12 col-lg-12 d-flex justify-content-between"
                                 >
-                                    <div class="zoom-link col-6">
+                                <label
+                                            for="file"
+                                            class="input input-file zoom-link d-flex"
+                                            style="width:inherit"
+                                        >
+                                            <input
+                                                v-model="zoom_link"
+                                                type="text"
+                                                class="form-control form-control-sm remove-border"
+                                                placeholder="add zoom link"
+                                                @input="savezoom_link"
+                                            />
+                                            <i
+                                            class="bi bi-clipboard"
+                                            @click.stop="copyzoom_link"
+                                        ></i>
+                                        </label>
+                                        <button
+                                            type="button"
+                                            class="btn btn-success cstm-btn"
+                                            @click.stop="openLink"
+                                        >
+                                            Go
+                                        </button>
+                                    <!-- <div class="zoom-link col-6">
                                         <input
                                             v-model="zoom_link"
                                             type="text"
@@ -297,7 +321,7 @@
                                         >
                                             Go
                                         </button>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </ul>
                             <ul class="list-group list-group-flush" v-else>
