@@ -44,7 +44,6 @@ class ClassScheduleController extends BaseController
             # code...
             $value->resourceFile = $this->imageOrFile->getFile($value->assignment);
         }
-        return $assignments;
         return UploadImageOrFileResource::collection($assignments);
     }
 
