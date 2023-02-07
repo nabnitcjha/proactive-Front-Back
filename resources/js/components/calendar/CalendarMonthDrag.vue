@@ -284,6 +284,7 @@
                                             <input
                                                 v-model="zoom_link"
                                                 type="text"
+                                                id="zoom_link"
                                                 class="form-control form-control-sm remove-border"
                                                 placeholder="add zoom link"
                                                 @input="savezoom_link"
@@ -457,6 +458,7 @@ export default {
         openEdit() {
             this.$emit("open-edit");
         },
+        
         showEvent({ nativeEvent, event }) {
             this.current_slot_unique_id = event.class_unique_id;
             this.current_timetable_id = event.id;

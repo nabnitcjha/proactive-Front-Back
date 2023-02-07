@@ -31,7 +31,7 @@ export default {
         },
         saveAlert(msg) {
             // Use sweetalert2
-            this.$swal
+            this.$swal.
             fire({
                 position: 'top-end',
                 icon: 'success',
@@ -43,7 +43,7 @@ export default {
 
         errorAlert(msg) {
             // Use sweetalert2
-            this.$swal
+            this.$swal.
             fire({
                 position: 'top-end',
                 icon: 'warning',

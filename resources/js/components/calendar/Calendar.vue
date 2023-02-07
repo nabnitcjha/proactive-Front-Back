@@ -439,6 +439,7 @@
                                                         <input
                                                             v-model="zoom_link"
                                                             type="text"
+                                                            id="zoom_link"
                                                             class="form-control form-control-sm remove-border"
                                                             placeholder="add zoom link"
                                                             @input="
