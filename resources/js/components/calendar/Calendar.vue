@@ -231,7 +231,7 @@
                                                         rsf.resourceFile != null
                                                     "
                                                 >
-                                                    <span>{{
+                                                    <span  class="rs-file">{{
                                                         rsf.resourceFile
                                                             .original_filename
                                                     }}</span>
@@ -392,6 +392,7 @@ import { loginInfoStore } from "../../stores/loginInfo";
 import { mapState } from "pinia";
 export default {
     data: () => ({
+        resourceFileName: "",
         checkPermission: true,
         userType: "",
         showDeleteModel: false,

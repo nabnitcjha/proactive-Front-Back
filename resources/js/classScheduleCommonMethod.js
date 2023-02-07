@@ -70,11 +70,12 @@ export default {
         this.getResourceFile();
     },
     handleResourceFile(e) {
+        debugger;
         e.preventDefault();
         this.assessment_file = document.querySelector(
             "input[id=study_resource]"
         ).files[0];
-  
+        debugger;
         this.resourceFileName = this.assessment_file.name;
         document.getElementById("study_resource").value = null;
     },
