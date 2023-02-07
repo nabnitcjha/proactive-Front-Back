@@ -3,7 +3,7 @@ export default {
         return {};
     },
     methods: {
-        deleteAlert(id) {
+        deleteAlert(id,type) {
             // Use sweetalert2
             this.$swal
                 .fire({
@@ -20,7 +20,10 @@ export default {
                 })
                 .then((result) => {
                     if (result.isConfirmed) {
-                        this.$root.deleteFile(id);
+                        if (type=='calendar') {
+                            this.$root.deleteFile(id);
+                            this.getResourceFile();
+                        }
                         this.$swal.fire(
                             "Deleted!",
                             "Your file has been deleted.",
