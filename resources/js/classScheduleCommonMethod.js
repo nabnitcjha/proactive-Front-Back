@@ -17,7 +17,8 @@ export default {
             let postResponse = await this.post(urlText, formData);
         },
         async deleteStudyResource(id) {
-            this.deleteAlert(id);
+           let d = await this.deleteAlert(id);
+           this.getResourceFile();
         },
         checkRole() {
             if (

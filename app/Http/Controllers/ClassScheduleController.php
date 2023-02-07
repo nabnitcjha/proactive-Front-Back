@@ -170,19 +170,10 @@ class ClassScheduleController extends BaseController
 
     public function deleteAssignment($id)
     {
-        $assessment = Assignment::where('assignment',$id)->get();
-        if(count($assessment)>0){
-            $assessment->delete();
-        }
-        $teacher_assessment = TeacherAssignment::where('assignment_id',$id)->get();
-        if(count($teacher_assessment)>0){
-            $teacher_assessment->delete();
-        }
-        $assessment_answer = Assignment_Answer::where('assignment_id',$id)->get();
-        if(count($assessment_answer)>0){
-            $assessment_answer->delete();
-        }
-
+        Assignment::where('assignment',$id)->delete();
+        TeacherAssignment::where('assignment_id',$id)->delete();
+        Assignment_Answer::where('assignment_id',$id)->delete();
+    
         $this->successMessage('delete successfully');
     }
 
