@@ -18,7 +18,7 @@ export default {
                 .then((result) => {
                     if (result.isConfirmed) {
                         this.$root.deleteFile(id);
-                        Swal.fire(
+                        this.$swal.fire(
                             "Deleted!",
                             "Your file has been deleted.",
                             "success"
