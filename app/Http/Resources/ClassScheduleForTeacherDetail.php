@@ -20,6 +20,7 @@ class ClassScheduleForTeacherDetail extends JsonResource
             "duration" => $this->duration,
             "description" => $this->description,
             "zoom_link" => $this->zoom_link,
+            "class_unique_id" => $this->class_unique_id,
             "selected_day" => $this->selected_day,
             'subject' => SubjectResource::make($this->subject),
             'student' => StudentResource::collection($this->student),

@@ -110,7 +110,11 @@ const routes = [
     name: 'classSchedule',
     component: () => import('../views/form/classSchedule/ClassSchedule.vue')
   },
-  // class schedule
+  {
+    path: '/class-schedule/:class_unique_id',
+    name: 'class_according_uniqueId',
+    component: () => import('../views/form/classSchedule/ClassAccordingUniqueId.vue')
+  },
   {
     path: '/add/class-schedule',
     name: 'addClassSchedule',

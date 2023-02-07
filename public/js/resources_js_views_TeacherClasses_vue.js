@@ -150,7 +150,7 @@ var render = function render() {
       on: {
         click: function click($event) {
           $event.stopPropagation();
-          return _vm.setClassId(class_info.id);
+          return _vm.$root.changeRoute("/class-schedule/" + class_info.class_unique_id);
         }
       }
     }, [_vm._v("Go TO Class")])])]);

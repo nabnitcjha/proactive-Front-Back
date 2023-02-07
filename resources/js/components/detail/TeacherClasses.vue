@@ -33,7 +33,7 @@
                     </ul>
                     <a
                         class="btn btn-success d-flex justify-content-center mt-5"
-                        @click.stop="setClassId(class_info.id)"
+                        @click.stop= "$root.changeRoute('/class-schedule/'+class_info.class_unique_id)"
                         >Go TO Class</a
                     >
                 </div>
