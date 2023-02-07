@@ -27,7 +27,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      message_type: '',
+      showDiscussion: true,
+      message_type: "",
       student_all: "student_all",
       student_teacher_all: "student_teacher_all",
       show: false,
@@ -151,25 +152,51 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         }, _callee2);
       }))();
     },
-    changePassword: function changePassword() {
+    setShowDiscussion: function setShowDiscussion() {
+      this.showDiscussion = true;
+    },
+    setHideDiscussion: function setHideDiscussion() {
       var _this3 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-        var id, formData, urlText, putResponse;
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
-              id = 1;
-              formData = {};
-              urlText = "student/" + id + "/changePassword";
-              _context3.next = 5;
-              return _this3.put(urlText, formData);
-            case 5:
-              putResponse = _context3.sent;
-            case 6:
+              _this3.showDiscussion = false;
+              _context3.next = 3;
+              return new Promise(function (resolve) {
+                return setTimeout(resolve, 100);
+              });
+            case 3:
+              // 3 sec
+              _this3.showDiscussion = true;
+            case 4:
             case "end":
               return _context3.stop();
           }
         }, _callee3);
+      }))();
+    },
+    changePassword: function changePassword() {
+      var _this4 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        var id, formData, urlText, putResponse;
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
+            case 0:
+              _this4.showDiscussion = false;
+              id = 1;
+              formData = {};
+              urlText = "student/" + id + "/changePassword";
+              _context4.next = 6;
+              return _this4.put(urlText, formData);
+            case 6:
+              putResponse = _context4.sent;
+              _this4.showDiscussion = true;
+            case 8:
+            case "end":
+              return _context4.stop();
+          }
+        }, _callee4);
       }))();
     }
   }
@@ -322,6 +349,12 @@ var render = function render() {
     attrs: {
       "data-bs-toggle": "tab",
       "data-bs-target": "#profile-discussion"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.setShowDiscussion.apply(null, arguments);
+      }
     }
   }, [_vm._v("\n                                        Discussion\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
@@ -348,7 +381,7 @@ var render = function render() {
     on: {
       click: function click($event) {
         $event.stopPropagation();
-        return _vm.changePassword.apply(null, arguments);
+        return _vm.setHideDiscussion.apply(null, arguments);
       }
     }
   }, [_vm._v("\n                                        Change Password\n                                    ")])])]), _vm._v(" "), _c("div", {
@@ -383,7 +416,7 @@ var render = function render() {
         return _vm.setMessage_type("one-to-one");
       }
     }
-  }, [_vm._v("\n                                                    SEND MESSAGE TO\n                                                    "), _c("span", {
+  }, [_vm._v("\n                                                SEND MESSAGE TO\n                                                "), _c("span", {
     staticClass: "text-uppercase badge badge-info",
     staticStyle: {
       "background-color": "black"
@@ -757,8 +790,14 @@ var render = function render() {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.changePassword.apply(null, arguments);
+      }
     }
-  }, [_vm._v("\n                                                Change Password\n                                            ")])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                                Change Password\n                                            ")])])])]), _vm._v(" "), _vm.showDiscussion ? _c("div", {
     staticClass: "tab-pane fade pt-3 profile-discussion-card",
     attrs: {
       id: "profile-discussion"
@@ -788,7 +827,7 @@ var render = function render() {
         }
       }
     }, [_vm._v("Open Discussion")])])]) : _vm._e();
-  }), 0)])])])])], 1)])])]);
+  }), 0) : _vm._e()])])])])], 1)])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,

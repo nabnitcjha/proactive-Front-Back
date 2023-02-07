@@ -25,7 +25,12 @@
                     </div>
                     <div class="modal-body">
                         <div class="card">
-                            <chat-form :message_type="message_type" :current_class_unique_id="current_class_unique_id"></chat-form>
+                            <chat-form
+                                :message_type="message_type"
+                                :current_class_unique_id="
+                                    current_class_unique_id
+                                "
+                            ></chat-form>
                         </div>
                     </div>
                     <div class="modal-footer invisible"></div>
@@ -123,6 +128,7 @@
                                             class="nav-link"
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-discussion"
+                                            @click.stop="setShowDiscussion"
                                         >
                                             Discussion
                                         </button>
@@ -148,7 +154,7 @@
                                             class="nav-link"
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-change-password"
-                                            @click.stop="changePassword"
+                                            @click.stop="setHideDiscussion"
                                         >
                                             Change Password
                                         </button>
@@ -159,7 +165,6 @@
                                         class="tab-pane fade show active profile-overview mt-5"
                                         id="profile-overview"
                                     >
-                                    
                                         <div class="row">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
@@ -174,28 +179,36 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-4 label">
+                                            <div
+                                                class="col-lg-3 col-md-4 label"
+                                            >
                                                 Message
                                             </div>
                                             <div class="col-lg-9 col-md-8">
                                                 <button
-                                                        type="button"
-                                                        class="btn btn-outline-secondary"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#sendMessageToTeacher"
-                                                        @click.stop="setMessage_type('one-to-one')"
+                                                    type="button"
+                                                    class="btn btn-outline-secondary"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#sendMessageToTeacher"
+                                                    @click.stop="
+                                                        setMessage_type(
+                                                            'one-to-one'
+                                                        )
+                                                    "
+                                                >
+                                                    SEND MESSAGE TO
+                                                    <span
+                                                        class="text-uppercase badge badge-info"
+                                                        style="
+                                                            background-color: black;
+                                                        "
+                                                        >{{
+                                                            profile_overview
+                                                                .teacher_info
+                                                                .full_name
+                                                        }}</span
                                                     >
-                                                        SEND MESSAGE TO
-                                                        <span
-                                                            class="text-uppercase badge badge-info"
-                                                            style="background-color: black;"
-                                                            >{{
-                                                                profile_overview
-                                                                    .teacher_info
-                                                                    .full_name
-                                                            }}</span
-                                                        >
-                                                    </button>
+                                                </button>
                                             </div>
                                         </div>
 
@@ -216,7 +229,9 @@
                                                         class_info, index
                                                     ) in profile_overview.sorted_class"
                                                     :key="index"
-                                                    v-if="checkStudent(class_info)"
+                                                    v-if="
+                                                        checkStudent(class_info)
+                                                    "
                                                 >
                                                     <div class="accordion-item">
                                                         <h2
@@ -489,8 +504,6 @@
                                             </div>
                                         </div>
 
-                                      
-
                                         <div class="row">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
@@ -751,10 +764,16 @@
                                                                 >
                                                                     <div>
                                                                         <slot-calendar
-                                                                            :current_teacher_id="$route.params.id"
-                                                                              
-                                                                            :current_student_id="getLoginInfo.student_info.id"
-                                                                              
+                                                                            :current_teacher_id="
+                                                                                $route
+                                                                                    .params
+                                                                                    .id
+                                                                            "
+                                                                            :current_student_id="
+                                                                                getLoginInfo
+                                                                                    .student_info
+                                                                                    .id
+                                                                            "
                                                                             :calType="
                                                                                 student_teacher_all
                                                                             "
@@ -842,6 +861,7 @@
                                                 <button
                                                     type="submit"
                                                     class="btn btn-primary"
+                                                    @click.stop="changePassword"
                                                 >
                                                     Change Password
                                                 </button>
@@ -881,7 +901,6 @@
                                                 >
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -899,7 +918,8 @@ import { mapState } from "pinia";
 export default {
     data() {
         return {
-            message_type:'',
+            showDiscussion: true,
+            message_type: "",
             student_all: "student_all",
             student_teacher_all: "student_teacher_all",
             show: false,
@@ -922,14 +942,13 @@ export default {
         this.profileOverview();
     },
     methods: {
-        checkStudent(class_info){
-            
+        checkStudent(class_info) {
             let results = [];
             if (this.getLoginInfo.user.role == "student") {
                 results = class_info.student.filter(
                     (stu) => stu.full_name === this.getLoginInfo.user.name
                 );
-            } 
+            }
 
             if (results.length > 0) {
                 return true;
@@ -940,7 +959,7 @@ export default {
         setMessage_type(msg_type) {
             this.message_type = msg_type;
         },
-        setClassId(id,class_unique_id,msg_type) {
+        setClassId(id, class_unique_id, msg_type) {
             this.current_class_id = id;
             this.current_class_unique_id = class_unique_id;
             this.message_type = msg_type;
@@ -969,6 +988,14 @@ export default {
         makeFalse() {
             this.showCalendar = false;
         },
+        setShowDiscussion() {
+            this.showDiscussion = true;
+        },
+        async setHideDiscussion() {
+            this.showDiscussion = false;
+            await new Promise((resolve) => setTimeout(resolve, 100)); // 3 sec
+            this.showDiscussion = true;
+        },
         checkSubject(val) {
             let results = [];
             if (this.getLoginInfo.user.role == "teacher") {
@@ -995,15 +1022,14 @@ export default {
                     "/student/" +
                     id +
                     "/detail";
-            }else if (this.getLoginInfo.user.role == "student") {
+            } else if (this.getLoginInfo.user.role == "student") {
                 urlText =
                     "student/" +
                     this.getLoginInfo.student_info.id +
                     "/teacher/" +
                     id +
                     "/detail";
-            } 
-            else {
+            } else {
                 urlText = "student/" + id + "/detailForAdmin";
             }
 

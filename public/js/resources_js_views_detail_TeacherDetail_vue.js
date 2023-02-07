@@ -27,7 +27,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      message_type: '',
+      showDiscussion: true,
+      message_type: "",
       student_all: "student_all",
       student_teacher_all: "student_teacher_all",
       show: false,
@@ -94,6 +95,30 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     makeFalse: function makeFalse() {
       this.showCalendar = false;
     },
+    setShowDiscussion: function setShowDiscussion() {
+      this.showDiscussion = true;
+    },
+    setHideDiscussion: function setHideDiscussion() {
+      var _this2 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _this2.showDiscussion = false;
+              _context.next = 3;
+              return new Promise(function (resolve) {
+                return setTimeout(resolve, 100);
+              });
+            case 3:
+              // 3 sec
+              _this2.showDiscussion = true;
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee);
+      }))();
+    },
     checkSubject: function checkSubject(val) {
       var results = [];
       if (this.getLoginInfo.user.role == "teacher") {
@@ -112,80 +137,80 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       }
     },
     profileOverview: function profileOverview() {
-      var _this2 = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var id, urlText, getResponse, sortedClass;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
-            case 0:
-              id = _this2.$route.params.id;
-              urlText = "";
-              if (_this2.getLoginInfo.user.role == "teacher") {
-                urlText = "teacher/" + _this2.getLoginInfo.teacher_info.id + "/student/" + id + "/detail";
-              } else if (_this2.getLoginInfo.user.role == "student") {
-                urlText = "student/" + _this2.getLoginInfo.student_info.id + "/teacher/" + id + "/detail";
-              } else {
-                urlText = "student/" + id + "/detailForAdmin";
-              }
-              _context.next = 5;
-              return _this2.get(urlText, id, false);
-            case 5:
-              getResponse = _context.sent;
-              _context.next = 8;
-              return _this2.sortedClass();
-            case 8:
-              sortedClass = _context.sent;
-              _this2.profile_overview = _objectSpread(_objectSpread({}, getResponse.data.data), {}, {
-                sorted_class: _this2.sorted_class
-              });
-              _this2.subjects = _this2.profile_overview.subject_info;
-            case 11:
-            case "end":
-              return _context.stop();
-          }
-        }, _callee);
-      }))();
-    },
-    sortedClass: function sortedClass() {
       var _this3 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        var id, urlText, getResponse;
+        var id, urlText, getResponse, sortedClass;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
               id = _this3.$route.params.id;
-              urlText = "teacher/" + id + "/sortedClass";
-              _context2.next = 4;
+              urlText = "";
+              if (_this3.getLoginInfo.user.role == "teacher") {
+                urlText = "teacher/" + _this3.getLoginInfo.teacher_info.id + "/student/" + id + "/detail";
+              } else if (_this3.getLoginInfo.user.role == "student") {
+                urlText = "student/" + _this3.getLoginInfo.student_info.id + "/teacher/" + id + "/detail";
+              } else {
+                urlText = "student/" + id + "/detailForAdmin";
+              }
+              _context2.next = 5;
               return _this3.get(urlText, id, false);
-            case 4:
+            case 5:
               getResponse = _context2.sent;
-              _this3.sorted_class = getResponse.data.data;
-            case 6:
+              _context2.next = 8;
+              return _this3.sortedClass();
+            case 8:
+              sortedClass = _context2.sent;
+              _this3.profile_overview = _objectSpread(_objectSpread({}, getResponse.data.data), {}, {
+                sorted_class: _this3.sorted_class
+              });
+              _this3.subjects = _this3.profile_overview.subject_info;
+            case 11:
             case "end":
               return _context2.stop();
           }
         }, _callee2);
       }))();
     },
-    changePassword: function changePassword() {
+    sortedClass: function sortedClass() {
       var _this4 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-        var id, formData, urlText, putResponse;
+        var id, urlText, getResponse;
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
-              id = 1;
-              formData = {};
-              urlText = "teacher/" + id + "/changePassword";
-              _context3.next = 5;
-              return _this4.put(urlText, formData);
-            case 5:
-              putResponse = _context3.sent;
+              id = _this4.$route.params.id;
+              urlText = "teacher/" + id + "/sortedClass";
+              _context3.next = 4;
+              return _this4.get(urlText, id, false);
+            case 4:
+              getResponse = _context3.sent;
+              _this4.sorted_class = getResponse.data.data;
             case 6:
             case "end":
               return _context3.stop();
           }
         }, _callee3);
+      }))();
+    },
+    changePassword: function changePassword() {
+      var _this5 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        var id, formData, urlText, putResponse;
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
+            case 0:
+              id = 1;
+              formData = {};
+              urlText = "teacher/" + id + "/changePassword";
+              _context4.next = 5;
+              return _this5.put(urlText, formData);
+            case 5:
+              putResponse = _context4.sent;
+            case 6:
+            case "end":
+              return _context4.stop();
+          }
+        }, _callee4);
       }))();
     }
   }
@@ -338,6 +363,12 @@ var render = function render() {
     attrs: {
       "data-bs-toggle": "tab",
       "data-bs-target": "#profile-discussion"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.setShowDiscussion.apply(null, arguments);
+      }
     }
   }, [_vm._v("\n                                        Discussion\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
@@ -364,7 +395,7 @@ var render = function render() {
     on: {
       click: function click($event) {
         $event.stopPropagation();
-        return _vm.changePassword.apply(null, arguments);
+        return _vm.setHideDiscussion.apply(null, arguments);
       }
     }
   }, [_vm._v("\n                                        Change Password\n                                    ")])])]), _vm._v(" "), _c("div", {
@@ -399,7 +430,7 @@ var render = function render() {
         return _vm.setMessage_type("one-to-one");
       }
     }
-  }, [_vm._v("\n                                                    SEND MESSAGE TO\n                                                    "), _c("span", {
+  }, [_vm._v("\n                                                SEND MESSAGE TO\n                                                "), _c("span", {
     staticClass: "text-uppercase badge badge-info",
     staticStyle: {
       "background-color": "black"
@@ -718,6 +749,12 @@ var render = function render() {
     staticClass: "btn btn-primary",
     attrs: {
       type: "submit"
+    },
+    on: {
+      click: function click($event) {
+        $event.stopPropagation();
+        return _vm.changePassword.apply(null, arguments);
+      }
     }
   }, [_vm._v("\n                                                Change Password\n                                            ")])])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3 profile-discussion-card",

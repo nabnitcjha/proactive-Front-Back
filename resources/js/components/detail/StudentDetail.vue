@@ -27,7 +27,12 @@
                     <div class="modal-body">
                         <!-- start body -->
                         <div class="card">
-                            <chat-form :message_type="message_type" :current_class_unique_id="current_class_unique_id"></chat-form>
+                            <chat-form
+                                :message_type="message_type"
+                                :current_class_unique_id="
+                                    current_class_unique_id
+                                "
+                            ></chat-form>
                         </div>
                         <!-- end body -->
                     </div>
@@ -132,6 +137,7 @@
                                             class="nav-link"
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-discussion"
+                                            @click.stop="setShowDiscussion"
                                         >
                                             Discussion
                                         </button>
@@ -157,7 +163,7 @@
                                             class="nav-link"
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-change-password"
-                                            @click.stop="changePassword"
+                                            @click.stop="setHideDiscussion"
                                         >
                                             Change Password
                                         </button>
@@ -168,7 +174,6 @@
                                         class="tab-pane fade show active profile-overview mt-5"
                                         id="profile-overview"
                                     >
-                                    
                                         <div class="row">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
@@ -183,30 +188,36 @@
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-3 col-md-4 label">
+                                            <div
+                                                class="col-lg-3 col-md-4 label"
+                                            >
                                                 Message
                                             </div>
                                             <div class="col-lg-9 col-md-8">
                                                 <button
-                                                        type="button"
-                                                        class="btn btn-outline-secondary"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#sendMessageToTeacher"
-                                                        @click.stop="setMessage_type('one-to-one')"
+                                                    type="button"
+                                                    class="btn btn-outline-secondary"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#sendMessageToTeacher"
+                                                    @click.stop="
+                                                        setMessage_type(
+                                                            'one-to-one'
+                                                        )
+                                                    "
+                                                >
+                                                    SEND MESSAGE TO
+                                                    <span
+                                                        class="text-uppercase badge badge-info"
+                                                        style="
+                                                            background-color: black;
+                                                        "
+                                                        >{{
+                                                            profile_overview
+                                                                .student_info
+                                                                .full_name
+                                                        }}</span
                                                     >
-                                                        SEND MESSAGE TO
-                                                        <span
-                                                            class="text-uppercase badge badge-info"
-                                                            style="
-                                                                background-color: black;
-                                                            "
-                                                            >{{
-                                                                profile_overview
-                                                                    .student_info
-                                                                    .full_name
-                                                            }}</span
-                                                        >
-                                                    </button>
+                                                </button>
                                             </div>
                                         </div>
 
@@ -993,6 +1004,7 @@
                                                 <button
                                                     type="submit"
                                                     class="btn btn-primary"
+                                                    @click.stop="changePassword"
                                                 >
                                                     Change Password
                                                 </button>
@@ -1003,6 +1015,7 @@
                                     <div
                                         class="tab-pane fade pt-3 profile-discussion-card"
                                         id="profile-discussion"
+                                        v-if="showDiscussion"
                                     >
                                         <div
                                             class="card"
@@ -1057,7 +1070,8 @@ import { mapState } from "pinia";
 export default {
     data() {
         return {
-            message_type:'',
+            showDiscussion: true,
+            message_type: "",
             student_all: "student_all",
             student_teacher_all: "student_teacher_all",
             show: false,
@@ -1083,7 +1097,7 @@ export default {
         setMessage_type(msg_type) {
             this.message_type = msg_type;
         },
-        setClassId(id,class_unique_id,msg_type) {
+        setClassId(id, class_unique_id, msg_type) {
             this.current_class_id = id;
             this.current_class_unique_id = class_unique_id;
             this.message_type = msg_type;
@@ -1159,13 +1173,22 @@ export default {
 
             this.sorted_class = getResponse.data.data;
         },
-
+        setShowDiscussion() {
+            this.showDiscussion = true;
+        },
+       async setHideDiscussion() {
+            this.showDiscussion = false;
+            await new Promise(resolve => setTimeout(resolve, 100)); // 3 sec
+            this.showDiscussion = true;
+        },
         async changePassword() {
+            this.showDiscussion = false;
             let id = 1;
             let formData = {};
             let urlText = "student/" + id + "/changePassword";
 
             let putResponse = await this.put(urlText, formData);
+            this.showDiscussion = true;
         },
     },
 };
