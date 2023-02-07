@@ -95,6 +95,7 @@ Route::group([
     Route::get('displayFile/{id}', 'uploadImageOrFileController@displayFile');
     Route::get('assignment/{id}/delete', 'ClassScheduleController@deleteAssignment');
     Route::post('saveZoomLink', 'ClassScheduleController@saveZoomLink');
+    Route::get('timetable/{class_unique_id}', 'ClassScheduleController@getClassAccordingUniqueId');
 });
 
 // chat routes

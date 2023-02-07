@@ -82,6 +82,7 @@
                         :current_teacher_id="current_teacher_id"
                         :current_student_id="current_student_id"
                         :calType="calType"
+                        :unique_id="unique_id"
                         @change-type="currentType"
                         @open-edit="openEdit"
                         @send-email="sendEmail"
@@ -622,6 +623,7 @@ export default {
         current_teacher_id: String,
         current_student_id: String,
         calType: String,
+        unique_id:String
     },
     components: {
         "calendar-month-drag-component": CalendarMonthDragComponent,
@@ -921,7 +923,10 @@ export default {
             } else if (this.calType == "teacher_all") {
                 //teacher-detail class tab
                 urlText = "teacher/" + this.current_teacher_id + "/class";
-            } else {
+            } else if (this.calType=="class_according_unique_id") {
+                urlText = "timetable/" + this.unique_id;
+            }
+            else {
                 //student-detail teacher tab
                 urlText =
                     "student/" +

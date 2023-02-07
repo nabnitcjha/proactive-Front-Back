@@ -13,9 +13,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
-    return {};
+    return {
+      class_according_unique_id: "class_according_unique_id",
+      unique_id: ""
+    };
   },
-  methods: {}
+  methods: {
+    getUniqueId: function getUniqueId() {
+      this.unique_id = this.route.params.class_unique_id;
+    }
+  },
+  mounted: function mounted() {
+    this.getUniqueId();
+  }
 });
 
 /***/ }),
@@ -59,7 +69,13 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_vm._v("hello class unique id")]);
+  return _c("slot-calendar", {
+    attrs: {
+      current_student_id: _vm.$route.params.id,
+      calType: _vm.class_according_unique_id,
+      unique_id: _vm.unique_id
+    }
+  });
 };
 var staticRenderFns = [];
 render._withStripped = true;

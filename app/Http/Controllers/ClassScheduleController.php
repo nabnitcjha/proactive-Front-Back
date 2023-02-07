@@ -32,9 +32,9 @@ class ClassScheduleController extends BaseController
 
     public function getData($allowPagination)
     {
-        $subjects = parent::index($allowPagination);
+        $class_schedule = parent::index($allowPagination);
 
-        return $this->classScheduleResource->collection($subjects);
+        return $this->classScheduleResource->collection($class_schedule);
     }
 
     public function getResourceFile($class_schedule_id)
@@ -175,6 +175,13 @@ class ClassScheduleController extends BaseController
         Assignment_Answer::where('assignment_id',$id)->delete();
     
         $this->successMessage('delete successfully');
+    }
+
+    public function getClassAccordingUniqueId($class_unique_id)
+    {
+        $class_schedule = ClassSchedule::where('class_unique_id',$class_unique_id)->get();
+
+        return $this->classScheduleResource->collection($class_schedule);
     }
 
     public function dragUpdate(Request $request, $id)
