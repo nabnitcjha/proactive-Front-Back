@@ -6,6 +6,7 @@ import axios from "axios";
 import connectAPI from "./connectAPI";
 import momentMethod from "./momentMethod";
 import classScheduleCommonMethod from "./classScheduleCommonMethod";
+import sweetAlert from "./sweetAlert";
 import moment from "moment";
 import Multiselect from "vue-multiselect";
 import "vue-multiselect/dist/vue-multiselect.min.css";
@@ -21,6 +22,12 @@ import "vue2-datepicker/index.css";
 
 import vuetify from "./plugins/vuetify";
 import "vuetify/dist/vuetify.min.css";
+
+// main.js
+import VueSweetalert2 from 'vue-sweetalert2';
+
+// If you don't need the styles, do not connect
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 // common component
 import DeleteModal from "./components/common/DeleteModal.vue";
@@ -61,7 +68,9 @@ Vue.use(axios);
 Vue.mixin(connectAPI);
 Vue.mixin(momentMethod);
 Vue.mixin(classScheduleCommonMethod);
+Vue.mixin(sweetAlert);
 Vue.use(VueChatScroll)
+Vue.use(VueSweetalert2);
 // Vue.use(Vuetify)
 
 import { chatInfoStore } from "./stores/chatInfo";

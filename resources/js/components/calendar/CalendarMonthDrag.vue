@@ -207,7 +207,12 @@
                                                     .original_filename
                                             }}
                                         </td>
-                                        <td v-if="getLoginInfo.user.role=='teacher'">
+                                        <td
+                                            v-if="
+                                                getLoginInfo.user.role ==
+                                                'teacher'
+                                            "
+                                        >
                                             <i
                                                 class="bi bi-download hand"
                                                 @click.stop="
@@ -406,7 +411,7 @@ export default {
             if (this.zoom_link != null) {
                 window.open(this.zoom_link);
             } else {
-                alert('link is empty');
+                alert("link is empty");
             }
         },
         async savezoom_link(e) {
@@ -417,12 +422,7 @@ export default {
             let postResponse = await this.post(urlText, formData);
         },
         async deleteStudyResource(id) {
-            var result = confirm("Want to delete study resource?");
-            if (result) {
-                // let urlText = "assignment/" + id + "/delete";
-                // let deleteResponse = await this.delete(urlText);
-                this.$root.deleteFile(id);
-            }
+            this.deleteAlert(id);
         },
         checkRole() {
             if (
