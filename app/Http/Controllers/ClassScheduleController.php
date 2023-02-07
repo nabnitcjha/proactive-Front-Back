@@ -14,6 +14,7 @@ use App\Models\TeacherAssignment;
 use App\Http\Controllers\BaseController;
 use App\Http\Resources\ClassScheduleResource;
 use App\Http\Resources\UploadImageOrFileResource;
+use App\Models\Assignment_Answer;
 use App\Models\StudentSubject as ModelsStudentSubject;
 
 class ClassScheduleController extends BaseController
@@ -165,6 +166,24 @@ class ClassScheduleController extends BaseController
     public function show($id)
     {
         return parent::show($id);
+    }
+
+    public function deleteAssignment($id)
+    {
+        $assessment = Assignment::where('assignment',$id)->get();
+        if(count($assessment)>0){
+            $assessment->delete();
+        }
+        $teacher_assessment = TeacherAssignment::where('assignment_id',$id)->get();
+        if(count($teacher_assessment)>0){
+            $teacher_assessment->delete();
+        }
+        $assessment_answer = Assignment_Answer::where('assignment_id',$id)->get();
+        if(count($assessment_answer)>0){
+            $assessment_answer->delete();
+        }
+
+        $this->successMessage('delete successfully');
     }
 
     public function dragUpdate(Request $request, $id)
