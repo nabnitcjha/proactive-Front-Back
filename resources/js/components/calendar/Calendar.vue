@@ -442,6 +442,7 @@ export default {
         createStart: null,
         extendOriginal: null,
         current_slot_unique_id: "",
+        currentTeacherId: "",
     }),
     props: {
         current_teacher_id: String,
@@ -769,10 +770,14 @@ export default {
             }
         },
         showEvent({ nativeEvent, event }) {
+            debugger;
             this.currentEvent = event;
             this.zoom_link = event.zoom_link;
-            this.current_timetable_id = event.id;
             this.current_slot_unique_id = event.class_unique_id;
+            this.current_timetable_id = event.id;
+            this.currentTeacherId = event.teacher_id;
+            this.getResourceFile();
+
             const open = () => {
                 this.selectedEvent = event;
                 this.selectedElement = nativeEvent.target;
@@ -828,7 +833,7 @@ export default {
                     timed: data.start_date,
                     description: data.description,
                     zoom_link: data.zoom_link,
-                    // teacher_id: this.current_teacher_id,
+                    teacher_id: this.current_teacher_id,
                     student_id: this.current_student_id,
                     class_unique_id: data.class_unique_id,
                 });

@@ -54,6 +54,7 @@ export default {
         let postResponse = await this.post(urlText, formData);
     },
     async saveResourceFile() {
+        debugger;
         // let x = this.current_timetable_id;
         let formData = new FormData();
         formData.append("teacher_id", this.currentTeacherId);
@@ -63,7 +64,7 @@ export default {
         formData.append("type", "study_resource");
   
         let svf = await this.saveFile(formData);
-  
+        debugger;
         this.assessment_file = "";
         this.resourceFileName = "";
         document.getElementById("study_resource").value = null;
