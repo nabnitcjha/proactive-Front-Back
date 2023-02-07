@@ -181,7 +181,7 @@ span.custom-checkbox {
 }
 
 .rs-file{
-  width: 20%!important; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  width: 66%!important; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 
 .td-rs-file{
