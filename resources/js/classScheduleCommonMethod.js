@@ -105,6 +105,7 @@ export default {
         this.assessment_file = "";
         this.assignmentFileName = "";
         document.getElementById("assignment_file").value = null;
+        this.getResourceFile();
     },
     async saveAssignmentAnswerFile() {
         let formData = new FormData();
