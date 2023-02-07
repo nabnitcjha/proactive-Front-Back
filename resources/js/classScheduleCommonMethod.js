@@ -35,10 +35,11 @@ export default {
         }
     },
     async getResourceFile() {
+        
         let urlText =
             "timetable/" + this.current_timetable_id + "/resourceFile";
         let getResponse = await this.get(urlText, 1, false);
-  
+        
         this.resource_file = getResponse.data.data;
     },
     downloadFile(id) {
@@ -54,7 +55,7 @@ export default {
         let postResponse = await this.post(urlText, formData);
     },
     async saveResourceFile() {
-        debugger;
+        
         // let x = this.current_timetable_id;
         let formData = new FormData();
         formData.append("teacher_id", this.currentTeacherId);
@@ -64,19 +65,19 @@ export default {
         formData.append("type", "study_resource");
   
         let svf = await this.saveFile(formData);
-        debugger;
+        
         this.assessment_file = "";
         this.resourceFileName = "";
         document.getElementById("study_resource").value = null;
         this.getResourceFile();
     },
     handleResourceFile(e) {
-        debugger;
+        
         e.preventDefault();
         this.assessment_file = document.querySelector(
             "input[id=study_resource]"
         ).files[0];
-        debugger;
+        
         this.resourceFileName = this.assessment_file.name;
         document.getElementById("study_resource").value = null;
     },

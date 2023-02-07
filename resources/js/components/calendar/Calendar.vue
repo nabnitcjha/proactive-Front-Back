@@ -231,11 +231,13 @@
                                                         rsf.resourceFile != null
                                                     "
                                                 >
-                                                    <span  class="rs-file">{{
+                                                    <span class="rs-file">{{
                                                         rsf.resourceFile
                                                             .original_filename
                                                     }}</span>
-                                                    <div class="d-flex action">
+                                                    <div
+                                                        class="d-flex action mr-4"
+                                                    >
                                                         <i
                                                             class="bi bi-download hand"
                                                             @click.stop="
@@ -247,7 +249,7 @@
                                                             "
                                                         ></i>
                                                         <i
-                                                            class="bi bi-trash hand"
+                                                            class="bi bi-trash hand ml-2"
                                                             v-if="
                                                                 checkPermission
                                                             "
@@ -392,6 +394,7 @@ import { loginInfoStore } from "../../stores/loginInfo";
 import { mapState } from "pinia";
 export default {
     data: () => ({
+        resource_file: [],
         resourceFileName: "",
         checkPermission: true,
         userType: "",
@@ -770,7 +773,7 @@ export default {
             }
         },
         showEvent({ nativeEvent, event }) {
-            debugger;
+            
             this.currentEvent = event;
             this.zoom_link = event.zoom_link;
             this.current_slot_unique_id = event.class_unique_id;
