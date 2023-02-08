@@ -27,6 +27,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      current_friend_id: "",
       confirm_password: "",
       new_password: "",
       showDiscussion: true,
@@ -125,7 +126,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
                 sorted_class: _this.sorted_class
               });
               _this.subjects = _this.profile_overview.subject_info;
-            case 11:
+              _this.current_friend_id = _this.profile_overview.student_info.user_id;
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -268,6 +270,7 @@ var render = function render() {
     staticClass: "card"
   }, [_c("chat-form", {
     attrs: {
+      current_friend_id: _vm.current_friend_id,
       message_type: _vm.message_type,
       current_class_unique_id: _vm.current_class_unique_id
     }
@@ -291,6 +294,7 @@ var render = function render() {
     staticClass: "card"
   }, [_c("chat-form", {
     attrs: {
+      current_friend_id: _vm.current_friend_id,
       message_type: _vm.message_type,
       current_class_unique_id: _vm.current_class_unique_id
     }

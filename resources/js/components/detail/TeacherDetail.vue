@@ -26,6 +26,7 @@
                     <div class="modal-body">
                         <div class="card">
                             <chat-form
+                            :current_friend_id="current_friend_id"
                                 :message_type="message_type"
                                 :current_class_unique_id="
                                     current_class_unique_id
@@ -63,7 +64,13 @@
                     </div>
                     <div class="modal-body">
                         <div class="card">
-                            <chat-form></chat-form>
+                            <chat-form
+                            :current_friend_id="current_friend_id"
+                                :message_type="message_type"
+                                :current_class_unique_id="
+                                    current_class_unique_id
+                                "
+                            ></chat-form>
                         </div>
                     </div>
                     <div class="modal-footer invisible"></div>
@@ -921,6 +928,7 @@ import { mapState } from "pinia";
 export default {
     data() {
         return {
+            current_friend_id:"",
             showDiscussion: true,
             message_type: "",
             student_all: "student_all",
@@ -1017,14 +1025,7 @@ export default {
         async profileOverview() {
             let id = this.$route.params.id;
             let urlText = "";
-            if (this.getLoginInfo.user.role == "teacher") {
-                urlText =
-                    "teacher/" +
-                    this.getLoginInfo.teacher_info.id +
-                    "/student/" +
-                    id +
-                    "/detail";
-            } else if (this.getLoginInfo.user.role == "student") {
+            if (this.getLoginInfo.user.role == "student") {
                 urlText =
                     "student/" +
                     this.getLoginInfo.student_info.id +
@@ -1043,6 +1044,7 @@ export default {
                 sorted_class: this.sorted_class,
             };
             this.subjects = this.profile_overview.subject_info;
+            this.current_friend_id = this.profile_overview.teacher_info.user_id;
         },
         async sortedClass() {
             let id = this.$route.params.id;

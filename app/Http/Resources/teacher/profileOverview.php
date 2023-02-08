@@ -19,6 +19,7 @@ class profileOverview extends JsonResource
         return [
             "teacher_info" => [
                 'full_name'=>$this->full_name,
+                'user_id'=>$this->user_id,
                 'email'=>$this->user->email,
                 'phone'=>$this->phone,
             ],

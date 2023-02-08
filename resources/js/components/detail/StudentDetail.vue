@@ -28,6 +28,7 @@
                         <!-- start body -->
                         <div class="card">
                             <chat-form
+                            :current_friend_id="current_friend_id"
                                 :message_type="message_type"
                                 :current_class_unique_id="
                                     current_class_unique_id
@@ -70,6 +71,7 @@
                         <!-- start body -->
                         <div class="card">
                             <chat-form
+                            :current_friend_id="current_friend_id"
                                 :message_type="message_type"
                                 :current_class_unique_id="
                                     current_class_unique_id
@@ -1077,6 +1079,7 @@ import { mapState } from "pinia";
 export default {
     data() {
         return {
+            current_friend_id:"",
             confirm_password: "",
             new_password: "",
             showDiscussion: true,
@@ -1172,6 +1175,7 @@ export default {
                 sorted_class: this.sorted_class,
             };
             this.subjects = this.profile_overview.subject_info;
+            this.current_friend_id = this.profile_overview.student_info.user_id;
         },
         async sortedClass() {
             let id = this.$route.params.id;

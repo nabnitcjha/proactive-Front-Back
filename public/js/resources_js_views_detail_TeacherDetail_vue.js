@@ -27,6 +27,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      current_friend_id: "",
       showDiscussion: true,
       message_type: "",
       student_all: "student_all",
@@ -144,9 +145,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
             case 0:
               id = _this3.$route.params.id;
               urlText = "";
-              if (_this3.getLoginInfo.user.role == "teacher") {
-                urlText = "teacher/" + _this3.getLoginInfo.teacher_info.id + "/student/" + id + "/detail";
-              } else if (_this3.getLoginInfo.user.role == "student") {
+              if (_this3.getLoginInfo.user.role == "student") {
                 urlText = "student/" + _this3.getLoginInfo.student_info.id + "/teacher/" + id + "/detail";
               } else {
                 urlText = "student/" + id + "/detailForAdmin";
@@ -163,7 +162,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
                 sorted_class: _this3.sorted_class
               });
               _this3.subjects = _this3.profile_overview.subject_info;
-            case 11:
+              _this3.current_friend_id = _this3.profile_overview.teacher_info.user_id;
+            case 12:
             case "end":
               return _context2.stop();
           }
@@ -274,6 +274,7 @@ var render = function render() {
     staticClass: "card"
   }, [_c("chat-form", {
     attrs: {
+      current_friend_id: _vm.current_friend_id,
       message_type: _vm.message_type,
       current_class_unique_id: _vm.current_class_unique_id
     }
@@ -295,7 +296,13 @@ var render = function render() {
     staticClass: "modal-body"
   }, [_c("div", {
     staticClass: "card"
-  }, [_c("chat-form")], 1)]), _vm._v(" "), _c("div", {
+  }, [_c("chat-form", {
+    attrs: {
+      current_friend_id: _vm.current_friend_id,
+      message_type: _vm.message_type,
+      current_class_unique_id: _vm.current_class_unique_id
+    }
+  })], 1)]), _vm._v(" "), _c("div", {
     staticClass: "modal-footer invisible"
   })])])]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-12"

@@ -147,6 +147,7 @@ export default {
 
     watch: {
         message_type(newValue, oldValue) {
+            
             this.fetchMessages(this.friend_id, this.my_id);
         },
         messageInfo(newValue, oldValue) {
@@ -173,6 +174,7 @@ export default {
         },
     },
     props: {
+        current_friend_id:String,
         message_type: String,
         current_class_unique_id: String,
     },
@@ -183,7 +185,7 @@ export default {
     },
     mounted() {
         this.my_id = this.getLoginInfo.user.id;
-        this.friend_id = this.$route.params.id;
+        this.friend_id = this.current_friend_id;
         this.fetchMessages(this.friend_id, this.my_id);
     },
     methods: {
@@ -227,6 +229,7 @@ export default {
             let postResponse = await this.post(this.urlText, formData);
         },
         fetchMessages(friend_id, my_id) {
+            
             let urlText = "";
             if (this.message_type == "one-to-one") {
                 urlText =
@@ -243,8 +246,9 @@ export default {
                     "/" +
                     my_id;
             }
-
+            
             axios.get(urlText).then((response) => {
+                
                 this.user_message = response.data.data;
             });
         },
