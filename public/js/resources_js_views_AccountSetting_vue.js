@@ -43,22 +43,30 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
-              if (!(_this.new_password != _this.confirm_password)) {
+              if (!(_this.new_password == '' || _this.confirm_password == '')) {
                 _context.next = 4;
                 break;
               }
-              _this.errorAlert("password not match");
-              _context.next = 10;
+              _this.errorAlert("password is empty");
+              _context.next = 14;
               break;
             case 4:
+              if (!(_this.new_password != _this.confirm_password)) {
+                _context.next = 8;
+                break;
+              }
+              _this.errorAlert("password not match");
+              _context.next = 14;
+              break;
+            case 8:
               id = _this.getLoginInfo.teacher_info.id;
               formData = {};
               urlText = "teacher/" + id + "/changePassword";
-              _context.next = 9;
+              _context.next = 13;
               return _this.put(urlText, formData);
-            case 9:
+            case 13:
               putResponse = _context.sent;
-            case 10:
+            case 14:
             case "end":
               return _context.stop();
           }

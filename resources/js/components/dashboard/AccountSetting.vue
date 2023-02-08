@@ -139,7 +139,9 @@ export default {
     },
     methods: {
         async changePassword() {
-            if (this.new_password != this.confirm_password) {
+            if (this.new_password==''||this.confirm_password=='') {
+                this.errorAlert("password is empty");
+            }else if (this.new_password != this.confirm_password) {
                 this.errorAlert("password not match");
             } else {
                 let id = this.getLoginInfo.teacher_info.id;
