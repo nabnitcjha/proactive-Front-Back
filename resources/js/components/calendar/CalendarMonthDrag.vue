@@ -248,6 +248,7 @@
                                                         rsf.resourceFile.id
                                                     )
                                                 "
+                                                v-if="checkPermission"
                                             ></i>
                                         </td>
                                     </tr>
