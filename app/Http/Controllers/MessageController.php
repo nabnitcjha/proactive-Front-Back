@@ -25,18 +25,8 @@ class MessageController extends BaseController
 
     public function fetchMessages($friend_id, $my_id)
     {
-        $me = User::where('id',$my_id)->first();
- 
-        if ($me->role=='teacher') {
-            # code...
-            $user = Student::where('id',$friend_id)->first();
-        }
-        if ($me->role=='student') {
-            # code...
-            $user = Teacher::where('id',$friend_id)->first();
-        }
-        
-        $messageInfo =  $this->privateMessage($user->user_id, $my_id);
+
+        $messageInfo =  $this->privateMessage($friend_id, $my_id);
 
         return    $this->successResponse(
             $this->messageResource->collection($messageInfo),
@@ -63,16 +53,8 @@ class MessageController extends BaseController
     {
         // Insert into message table
 
-        if ($request->message_info['my_role']=='teacher') {
-            # code...
-            $user = Student::where('id',$request->message_info['friend_id'])->first();
-        }
-        if ($request->message_info['my_role']=='student') {
-            # code...
-            $user = Teacher::where('id',$request->message_info['friend_id'])->first();
-        }
         $message_info["my_id"] = $request->message_info['my_id'];
-        $message_info["friend_id"] = $user->user_id;
+        $message_info["friend_id"] = $request->message_info['friend_id'];
         $message_info["message"] = $request->message_info['message'];
         $message_info["message_type"] = $request->message_info['message_type'];
         $message_info["class_unique_id"] = $request->message_info['class_unique_id'];
