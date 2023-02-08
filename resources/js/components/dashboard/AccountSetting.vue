@@ -140,17 +140,21 @@ export default {
     methods: {
         async changePassword(e) {
             e.preventDefault();
-            
+
             if (this.new_password==''||this.confirm_password=='') {
                 this.errorAlert("password is empty");
             }else if (this.new_password != this.confirm_password) {
                 this.errorAlert("password not match");
             } else {
-                let id = this.getLoginInfo.teacher_info.id;
+                let id = this.getLoginInfo.user.id;
                 let formData = {};
-                let urlText = "teacher/" + id + "/changePassword";
+                formData['password'] = this.new_password;
+                let  urlText ="user/" + id + "/changePassword";
 
                 let putResponse = await this.put(urlText, formData);
+                this.saveAlert('password change succesfully');
+
+                // this.logOut();
             }
         },
     },

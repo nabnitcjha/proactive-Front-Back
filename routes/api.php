@@ -42,9 +42,12 @@ Route::group([
     Route::get('student/{id}/class', 'StudentController@allClasses');
     Route::put('student/{id}/changePassword', 'StudentController@changePassword');
 
+    // change password 
+    Route::put('user/{id}/changePassword', 'StudentController@changePassword');
+
     // student login route
     Route::get('student/{id}/teacher', 'StudentController@getTeacher');
-        Route::get('teacher/{teacher_id}/student/{student_id}/detail', 'StudentController@detail');
+    Route::get('teacher/{teacher_id}/student/{student_id}/detail', 'StudentController@detail');
 });
 
 // teacher routes

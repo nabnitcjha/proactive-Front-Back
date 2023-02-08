@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ClassScheduleAdvanceResource;
-use App\Http\Resources\ClassScheduleResource;
-use App\Http\Resources\student\profileOverview;
-use App\Http\Resources\StudentAdvanceResource;
-use App\Http\Resources\StudentListResource;
-use App\Http\Resources\TeacherListResource;
-use App\Models\ClassSchedule;
+use LDAP\Result;
+use App\Models\User;
 use App\Models\Student;
-use App\Models\StudentSession;
 use App\Models\Subject;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use App\Models\ClassSchedule;
+use App\Models\StudentSession;
 use Illuminate\Support\Facades\DB;
-use LDAP\Result;
+use App\Http\Resources\StudentListResource;
+use App\Http\Resources\TeacherListResource;
+use App\Http\Resources\ClassScheduleResource;
+use App\Http\Resources\StudentAdvanceResource;
+use App\Http\Resources\student\profileOverview;
+use App\Http\Resources\ClassScheduleAdvanceResource;
 
 class StudentController extends BaseController
 {
@@ -163,6 +164,10 @@ class StudentController extends BaseController
 
     public function changePassword(Request $request, $id)
     {
+        $user = User::find($id);
+        $user->password = bcrypt($request->password);
+        $user->save();
+        return $this->successMessage('password change successfully');
     }
 }
 

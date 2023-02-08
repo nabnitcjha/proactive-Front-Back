@@ -49,7 +49,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
                 break;
               }
               _this.errorAlert("password is empty");
-              _context.next = 15;
+              _context.next = 17;
               break;
             case 5:
               if (!(_this.new_password != _this.confirm_password)) {
@@ -57,17 +57,21 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
                 break;
               }
               _this.errorAlert("password not match");
-              _context.next = 15;
+              _context.next = 17;
               break;
             case 9:
-              id = _this.getLoginInfo.teacher_info.id;
+              id = _this.getLoginInfo.user.id;
               formData = {};
-              urlText = "teacher/" + id + "/changePassword";
-              _context.next = 14;
+              formData['password'] = _this.new_password;
+              urlText = "user/" + id + "/changePassword";
+              _context.next = 15;
               return _this.put(urlText, formData);
-            case 14:
-              putResponse = _context.sent;
             case 15:
+              putResponse = _context.sent;
+              _this.saveAlert('password change succesfully');
+
+              // this.logOut();
+            case 17:
             case "end":
               return _context.stop();
           }
