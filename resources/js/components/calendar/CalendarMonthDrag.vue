@@ -337,6 +337,7 @@
                                             class="form-control remove-border"
                                             id="zoom_link"
                                             placeholder="add link"
+                                            readonly
                                         />
                                         <i
                                             class="bi bi-clipboard"
