@@ -36,37 +36,38 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     this.profileOverview();
   },
   methods: {
-    changePassword: function changePassword() {
+    changePassword: function changePassword(e) {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
         var id, formData, urlText, putResponse;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
+              e.preventDefault();
               if (!(_this.new_password == '' || _this.confirm_password == '')) {
-                _context.next = 4;
+                _context.next = 5;
                 break;
               }
               _this.errorAlert("password is empty");
-              _context.next = 14;
+              _context.next = 15;
               break;
-            case 4:
+            case 5:
               if (!(_this.new_password != _this.confirm_password)) {
-                _context.next = 8;
+                _context.next = 9;
                 break;
               }
               _this.errorAlert("password not match");
-              _context.next = 14;
+              _context.next = 15;
               break;
-            case 8:
+            case 9:
               id = _this.getLoginInfo.teacher_info.id;
               formData = {};
               urlText = "teacher/" + id + "/changePassword";
-              _context.next = 13;
+              _context.next = 14;
               return _this.put(urlText, formData);
-            case 13:
-              putResponse = _context.sent;
             case 14:
+              putResponse = _context.sent;
+            case 15:
             case "end":
               return _context.stop();
           }

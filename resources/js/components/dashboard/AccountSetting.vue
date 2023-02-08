@@ -138,7 +138,9 @@ export default {
         this.profileOverview();
     },
     methods: {
-        async changePassword() {
+        async changePassword(e) {
+            e.preventDefault();
+            
             if (this.new_password==''||this.confirm_password=='') {
                 this.errorAlert("password is empty");
             }else if (this.new_password != this.confirm_password) {
