@@ -7,6 +7,7 @@
                         class="incoming_msg"
                         v-for="(msg, index) in user_message"
                         :key="index"
+                        v-if="message_type=='one-to-one'"
                     >
                         <div
                             class="incoming_msg_img"
@@ -32,6 +33,48 @@
                                     '',
                                     msg.message_reciver_info.id ==
                                     $route.params.id
+                                        ? 'received_withd_msg'
+                                        : 'sent_msg',
+                                ]"
+                            >
+                                <p>
+                                    {{ msg.message }}
+                                </p>
+                                <span class="time_date">
+                                    11:01 AM | June 9</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="incoming_msg"
+                        v-for="(msg, index) in user_message"
+                        :key="index"
+                        v-if="message_type=='group-chat'"
+                    >
+                        <div
+                            class="incoming_msg_img"
+                            v-if="
+                                msg.user_info.id == $route.params.id
+                            "
+                        >
+                            <img
+                                src="https://ptetutorials.com/images/user-profile.png"
+                                alt="sunil"
+                            />
+                        </div>
+                        <div
+                            v-bind:class="[
+                                '',
+                                msg.user_info.id == $route.params.id
+                                    ? 'received_msg'
+                                    : 'outgoing_msg',
+                            ]"
+                        >
+                            <div
+                                v-bind:class="[
+                                    '',
+                                    msg.user_info.id == $route.params.id
                                         ? 'received_withd_msg'
                                         : 'sent_msg',
                                 ]"
@@ -105,6 +148,10 @@ export default {
     },
 
     watch: {
+        message_type(newValue,oldValue){
+            
+            this.fetchMessages(this.friend_id, this.my_id);
+        },
         messageInfo(newValue, oldValue) {
             // do something
 
@@ -183,6 +230,7 @@ export default {
             let postResponse = await this.post(this.urlText, formData);
         },
         fetchMessages(friend_id, my_id) {
+            
             let urlText = "";
             if (this.message_type=='one-to-one') {
                 urlText =
@@ -193,7 +241,7 @@ export default {
                 my_id;
             }else{
                 urlText =
-                "http://127.0.0.1:8000/api/messages" +
+                "http://127.0.0.1:8000/api/groupMessages" +
                 "/" +
                 this.current_class_unique_id +
                 "/" +
@@ -201,6 +249,7 @@ export default {
             }
             
             axios.get(urlText).then((response) => {
+                
                 this.user_message = response.data.data;
             });
         },

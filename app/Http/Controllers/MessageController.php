@@ -46,7 +46,8 @@ class MessageController extends BaseController
 
     public function fetchGroupMessages($class_unique_id, $my_id)
     {
-        $me = User::where('id',$my_id)->first();
+        // $me = User::where('id',$my_id)->first();
+        // return $me;
         $message = Message::where([
             ['my_id',$my_id],
             ['class_unique_id',$class_unique_id]

@@ -53,7 +53,6 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
       this.message_type = msg_type;
     },
     setClassId: function setClassId(class_unique_id, msg_type) {
-      debugger;
       this.current_class_unique_id = class_unique_id;
       this.message_type = msg_type;
     },

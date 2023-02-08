@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Http\Resources\Admin\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class GroupMessageResource extends JsonResource
@@ -17,7 +18,8 @@ class GroupMessageResource extends JsonResource
         return [
             "id" => $this->id,
             "message" => $this->message,
-            "user_info" => $this->me
+            "message_type" => $this->message_type,
+            "user_info" => UserResource::make($this->me)
         ];
     }
 }

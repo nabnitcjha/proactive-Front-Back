@@ -106,6 +106,6 @@ Route::group([
 
 ], function ($router) {
     Route::get('messages/{friend_id}/{my_id}', [App\Http\Controllers\MessageController::class, 'fetchMessages']);
-    Route::get('messages/{class_unique_id}/{my_id}', [App\Http\Controllers\MessageController::class, 'fetchGroupMessages']);
+    Route::get('groupMessages/{class_unique_id}/{my_id}', [App\Http\Controllers\MessageController::class, 'fetchGroupMessages']);
     Route::post('messages', [App\Http\Controllers\MessageController::class, 'sendMessage']);
 });

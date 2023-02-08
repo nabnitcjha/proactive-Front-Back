@@ -1097,7 +1097,7 @@ export default {
             this.message_type = msg_type;
         },
         setClassId(class_unique_id, msg_type) {
-            debugger;
+            
             this.current_class_unique_id = class_unique_id;
             this.message_type = msg_type;
         },
