@@ -15,7 +15,9 @@
                             <h2>
                                 {{ getLoginInfo.user.name }}
                             </h2>
-                            <h1 style="font-size: 14px">{{ getLoginInfo.user.role }}</h1>
+                            <h1 style="font-size: 14px">
+                                {{ getLoginInfo.user.role }}
+                            </h1>
                         </div>
                     </div>
                 </div>
@@ -34,9 +36,9 @@
                                 <ul class="nav nav-tabs nav-tabs-bordered">
                                     <li class="nav-item">
                                         <button
-                                            class="nav-link"
+                                            class="nav-link active"
                                             data-bs-toggle="tab"
-                                            data-bs-target="#profile-change-password"
+                                            data-bs-target="#profile-overview"
                                         >
                                             Change Password
                                         </button>
@@ -44,71 +46,69 @@
                                 </ul>
                                 <div class="tab-content pt-2">
                                     <div
-                                        class="tab-pane fade pt-3"
-                                        id="profile-change-password"
+                                        class="tab-pane fade show active profile-overview mt-5"
+                                        id="profile-overview"
                                     >
-                                        <!-- Change Password Form -->
-                                        <form>
-                                            <div
-                                                class="bd-callout bd-callout-info text-uppercase d-flex justify-content-between"
-                                            >
-                                                <strong>{{
-                                                    "Change Teacher Password"
-                                                }}</strong>
-                                                <span
-                                                    class="text-capitalize"
-                                                    >{{
-                                                }}</span>
-                                            </div>
-
-                                            <div class="row mb-3">
-                                                <label
-                                                    for="newPassword"
-                                                    class="col-md-4 col-lg-3 col-form-label"
-                                                    >New Password</label
-                                                >
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input
-                                                        v-model="new_password"
-                                                        name="newpassword"
-                                                        type="password"
-                                                        class="form-control"
-                                                        id="newPassword"
-                                                    />
+                                        <div class="row">
+                                            <!-- Change Password Form -->
+                                            <form>
+                                                <div class="row mb-3">
+                                                    <label
+                                                        for="newPassword"
+                                                        class="col-md-4 col-lg-3 col-form-label"
+                                                        >New Password</label
+                                                    >
+                                                    <div
+                                                        class="col-md-8 col-lg-9"
+                                                    >
+                                                        <input
+                                                            v-model="
+                                                                new_password
+                                                            "
+                                                            name="newpassword"
+                                                            type="password"
+                                                            class="form-control"
+                                                            id="newPassword"
+                                                        />
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="row mb-3">
-                                                <label
-                                                    for="renewPassword"
-                                                    class="col-md-4 col-lg-3 col-form-label"
-                                                    >Re-enter New
-                                                    Password</label
-                                                >
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input
-                                                        v-model="
-                                                            confirm_password
+                                                <div class="row mb-3">
+                                                    <label
+                                                        for="renewPassword"
+                                                        class="col-md-4 col-lg-3 col-form-label"
+                                                        >Re-enter New
+                                                        Password</label
+                                                    >
+                                                    <div
+                                                        class="col-md-8 col-lg-9"
+                                                    >
+                                                        <input
+                                                            v-model="
+                                                                confirm_password
+                                                            "
+                                                            name="renewpassword"
+                                                            type="password"
+                                                            class="form-control"
+                                                            id="renewPassword"
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div class="text-center">
+                                                    <button
+                                                        type="submit"
+                                                        class="btn btn-primary"
+                                                        @click.stop="
+                                                            changePassword
                                                         "
-                                                        name="renewpassword"
-                                                        type="password"
-                                                        class="form-control"
-                                                        id="renewPassword"
-                                                    />
+                                                    >
+                                                        Change Password
+                                                    </button>
                                                 </div>
-                                            </div>
-
-                                            <div class="text-center">
-                                                <button
-                                                    type="submit"
-                                                    class="btn btn-primary"
-                                                    @click.stop="changePassword"
-                                                >
-                                                    Change Password
-                                                </button>
-                                            </div>
-                                        </form>
-                                        <!-- End Change Password Form -->
+                                            </form>
+                                            <!-- End Change Password Form -->
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- End Bordered Tabs -->

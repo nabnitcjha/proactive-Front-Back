@@ -131,7 +131,7 @@ var render = function render() {
     staticStyle: {
       "font-size": "14px"
     }
-  }, [_vm._v(_vm._s(_vm.getLoginInfo.user.role))])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            " + _vm._s(_vm.getLoginInfo.user.role) + "\n                        ")])])])]), _vm._v(" "), _c("div", {
     staticClass: "col-xl-8"
   }, [_c("b-overlay", {
     staticClass: "col-lg-12",
@@ -150,23 +150,21 @@ var render = function render() {
   }, [_c("li", {
     staticClass: "nav-item"
   }, [_c("button", {
-    staticClass: "nav-link",
+    staticClass: "nav-link active",
     attrs: {
       "data-bs-toggle": "tab",
-      "data-bs-target": "#profile-change-password"
+      "data-bs-target": "#profile-overview"
     }
   }, [_vm._v("\n                                        Change Password\n                                    ")])])]), _vm._v(" "), _c("div", {
     staticClass: "tab-content pt-2"
   }, [_c("div", {
-    staticClass: "tab-pane fade pt-3",
+    staticClass: "tab-pane fade show active profile-overview mt-5",
     attrs: {
-      id: "profile-change-password"
+      id: "profile-overview"
     }
+  }, [_c("div", {
+    staticClass: "row"
   }, [_c("form", [_c("div", {
-    staticClass: "bd-callout bd-callout-info text-uppercase d-flex justify-content-between"
-  }, [_c("strong", [_vm._v(_vm._s("Change Teacher Password"))]), _vm._v(" "), _c("span", {
-    staticClass: "text-capitalize"
-  }, [_vm._v(_vm._s())])]), _vm._v(" "), _c("div", {
     staticClass: "row mb-3"
   }, [_c("label", {
     staticClass: "col-md-4 col-lg-3 col-form-label",
@@ -180,7 +178,7 @@ var render = function render() {
       name: "model",
       rawName: "v-model",
       value: _vm.new_password,
-      expression: "new_password"
+      expression: "\n                                                            new_password\n                                                        "
     }],
     staticClass: "form-control",
     attrs: {
@@ -204,14 +202,14 @@ var render = function render() {
     attrs: {
       "for": "renewPassword"
     }
-  }, [_vm._v("Re-enter New\n                                                Password")]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Re-enter New\n                                                    Password")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-8 col-lg-9"
   }, [_c("input", {
     directives: [{
       name: "model",
       rawName: "v-model",
       value: _vm.confirm_password,
-      expression: "\n                                                        confirm_password\n                                                    "
+      expression: "\n                                                            confirm_password\n                                                        "
     }],
     staticClass: "form-control",
     attrs: {
@@ -241,7 +239,7 @@ var render = function render() {
         return _vm.changePassword.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                                                Change Password\n                                            ")])])])])])])])])], 1)])])]);
+  }, [_vm._v("\n                                                    Change Password\n                                                ")])])])])])])])])])], 1)])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
