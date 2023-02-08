@@ -66,8 +66,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
     setMessage_type: function setMessage_type(msg_type) {
       this.message_type = msg_type;
     },
-    setClassId: function setClassId(id, class_unique_id, msg_type) {
-      this.current_class_id = id;
+    setClassId: function setClassId(class_unique_id, msg_type) {
       this.current_class_unique_id = class_unique_id;
       this.message_type = msg_type;
     },
@@ -782,7 +781,7 @@ var render = function render() {
       on: {
         click: function click($event) {
           $event.stopPropagation();
-          return _vm.setClassId(class_info.id, class_info.class_unique_id, "group-chat");
+          return _vm.setClassId(class_info.class_unique_id, "group-chat");
         }
       }
     }, [_vm._v("Open Discussion")])])]) : _vm._e();

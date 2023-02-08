@@ -896,7 +896,6 @@
                                                     data-bs-target="#groupDiscussionMessage"
                                                     @click.stop="
                                                         setClassId(
-                                                            class_info.id,
                                                             class_info.class_unique_id,
                                                             'group-chat'
                                                         )
@@ -963,8 +962,7 @@ export default {
         setMessage_type(msg_type) {
             this.message_type = msg_type;
         },
-        setClassId(id, class_unique_id, msg_type) {
-            this.current_class_id = id;
+        setClassId(class_unique_id, msg_type) {
             this.current_class_unique_id = class_unique_id;
             this.message_type = msg_type;
         },
