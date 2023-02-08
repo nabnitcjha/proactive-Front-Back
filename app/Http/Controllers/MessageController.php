@@ -74,7 +74,11 @@ class MessageController extends BaseController
             ->where([
                 ['my_id', $my_id],
                 ['friend_id', $friend_id]
-            ])->orderBy('id', 'DESC')->get(['id', 'message', 'message_type','my_id', 'friend_id']);
+            ])->orWhere([
+                ['my_id', $friend_id],
+                ['friend_id', $my_id]
+            ])
+            ->orderBy('id', 'DESC')->get(['id', 'message', 'message_type','my_id', 'friend_id']);
 
         return $messageInfo;
     }
