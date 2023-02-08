@@ -147,7 +147,6 @@ export default {
 
     watch: {
         message_type(newValue, oldValue) {
-            debugger;
             this.fetchMessages(this.friend_id, this.my_id);
         },
         messageInfo(newValue, oldValue) {
@@ -174,7 +173,7 @@ export default {
         },
     },
     props: {
-        current_friend_id:String,
+        current_friend_id: String,
         message_type: String,
         current_class_unique_id: String,
     },
@@ -192,6 +191,7 @@ export default {
         async addMessage() {
             let new_msg_info = {
                 message: this.newMessage,
+                message_type: this.message_type,
                 message_sender_info: {
                     id: this.my_id,
                     full_name: this.getLoginInfo.user.name,
@@ -229,7 +229,6 @@ export default {
             let postResponse = await this.post(this.urlText, formData);
         },
         fetchMessages(friend_id, my_id) {
-            
             let urlText = "";
             if (this.message_type == "one-to-one") {
                 urlText =
@@ -246,9 +245,8 @@ export default {
                     "/" +
                     my_id;
             }
-            debugger;
+
             axios.get(urlText).then((response) => {
-                debugger;
                 this.user_message = response.data.data;
             });
         },
