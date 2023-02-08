@@ -27,6 +27,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      confirm_password: "",
+      new_password: "",
       showDiscussion: true,
       message_type: "",
       student_all: "student_all",
@@ -182,16 +184,22 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
           while (1) switch (_context4.prev = _context4.next) {
             case 0:
-              _this4.showDiscussion = false;
-              id = 1;
+              if (!(_this4.new_password != _this4.confirm_password)) {
+                _context4.next = 4;
+                break;
+              }
+              _this4.errorAlert("password not match");
+              _context4.next = 10;
+              break;
+            case 4:
+              id = _this4.getLoginInfo.teacher_info.id;
               formData = {};
-              urlText = "student/" + id + "/changePassword";
-              _context4.next = 6;
+              urlText = "teacher/" + id + "/changePassword";
+              _context4.next = 9;
               return _this4.put(urlText, formData);
-            case 6:
+            case 9:
               putResponse = _context4.sent;
-              _this4.showDiscussion = true;
-            case 8:
+            case 10:
             case "end":
               return _context4.stop();
           }
@@ -376,7 +384,7 @@ var render = function render() {
     }
   }, [_vm._v("\n                                        Classes\n                                    ")]) : _vm._e()]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
-  }, [_c("button", {
+  }, [_vm.getLoginInfo.user.role == "admin" ? _c("button", {
     staticClass: "nav-link",
     attrs: {
       "data-bs-toggle": "tab",
@@ -388,7 +396,7 @@ var render = function render() {
         return _vm.setHideDiscussion.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                                        Change Password\n                                    ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                        Change Password\n                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "tab-content pt-2"
   }, [_c("div", {
     staticClass: "tab-pane fade show active profile-overview mt-5",
@@ -741,22 +749,10 @@ var render = function render() {
       id: "profile-change-password"
     }
   }, [_c("form", [_c("div", {
-    staticClass: "row mb-3"
-  }, [_c("label", {
-    staticClass: "col-md-4 col-lg-3 col-form-label",
-    attrs: {
-      "for": "currentPassword"
-    }
-  }, [_vm._v("Current Password")]), _vm._v(" "), _c("div", {
-    staticClass: "col-md-8 col-lg-9"
-  }, [_c("input", {
-    staticClass: "form-control",
-    attrs: {
-      name: "password",
-      type: "password",
-      id: "currentPassword"
-    }
-  })])]), _vm._v(" "), _c("div", {
+    staticClass: "bd-callout bd-callout-info text-uppercase d-flex justify-content-between"
+  }, [_c("strong", [_vm._v(_vm._s("Change Teacher Password"))]), _vm._v(" "), _c("span", {
+    staticClass: "text-capitalize"
+  }, [_vm._v(_vm._s())])]), _vm._v(" "), _c("div", {
     staticClass: "row mb-3"
   }, [_c("label", {
     staticClass: "col-md-4 col-lg-3 col-form-label",
@@ -766,11 +762,26 @@ var render = function render() {
   }, [_vm._v("New Password")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-8 col-lg-9"
   }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.new_password,
+      expression: "new_password"
+    }],
     staticClass: "form-control",
     attrs: {
       name: "newpassword",
       type: "password",
       id: "newPassword"
+    },
+    domProps: {
+      value: _vm.new_password
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.new_password = $event.target.value;
+      }
     }
   })])]), _vm._v(" "), _c("div", {
     staticClass: "row mb-3"
@@ -782,11 +793,26 @@ var render = function render() {
   }, [_vm._v("Re-enter New\n                                                Password")]), _vm._v(" "), _c("div", {
     staticClass: "col-md-8 col-lg-9"
   }, [_c("input", {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: _vm.confirm_password,
+      expression: "\n                                                        confirm_password\n                                                    "
+    }],
     staticClass: "form-control",
     attrs: {
       name: "renewpassword",
       type: "password",
       id: "renewPassword"
+    },
+    domProps: {
+      value: _vm.confirm_password
+    },
+    on: {
+      input: function input($event) {
+        if ($event.target.composing) return;
+        _vm.confirm_password = $event.target.value;
+      }
     }
   })])]), _vm._v(" "), _c("div", {
     staticClass: "text-center"

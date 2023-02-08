@@ -70,9 +70,11 @@
                         <!-- start body -->
                         <div class="card">
                             <chat-form
-                             :message_type="message_type"
-                             :current_class_unique_id="current_class_unique_id"
-                             ></chat-form>
+                                :message_type="message_type"
+                                :current_class_unique_id="
+                                    current_class_unique_id
+                                "
+                            ></chat-form>
                         </div>
                         <!-- end body -->
                     </div>
@@ -167,6 +169,10 @@
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-change-password"
                                             @click.stop="setHideDiscussion"
+                                             v-if="
+                                                getLoginInfo.user.role ==
+                                                'admin'
+                                            "
                                         >
                                             Change Password
                                         </button>
@@ -211,7 +217,9 @@
                                                     SEND MESSAGE TO
                                                     <span
                                                         class="text-uppercase badge badge-info"
-                                                        style="background-color: black;"
+                                                        style="
+                                                            background-color: black;
+                                                        "
                                                         >{{
                                                             profile_overview
                                                                 .student_info
@@ -952,20 +960,16 @@
                                     >
                                         <!-- Change Password Form -->
                                         <form>
-                                            <div class="row mb-3">
-                                                <label
-                                                    for="currentPassword"
-                                                    class="col-md-4 col-lg-3 col-form-label"
-                                                    >Current Password</label
-                                                >
-                                                <div class="col-md-8 col-lg-9">
-                                                    <input
-                                                        name="password"
-                                                        type="password"
-                                                        class="form-control"
-                                                        id="currentPassword"
-                                                    />
-                                                </div>
+                                            <div
+                                                class="bd-callout bd-callout-info text-uppercase d-flex justify-content-between"
+                                            >
+                                                <strong>{{
+                                                    "Change Teacher Password"
+                                                }}</strong>
+                                                <span
+                                                    class="text-capitalize"
+                                                    >{{
+                                                }}</span>
                                             </div>
 
                                             <div class="row mb-3">
@@ -976,6 +980,7 @@
                                                 >
                                                 <div class="col-md-8 col-lg-9">
                                                     <input
+                                                        v-model="new_password"
                                                         name="newpassword"
                                                         type="password"
                                                         class="form-control"
@@ -993,6 +998,9 @@
                                                 >
                                                 <div class="col-md-8 col-lg-9">
                                                     <input
+                                                        v-model="
+                                                            confirm_password
+                                                        "
                                                         name="renewpassword"
                                                         type="password"
                                                         class="form-control"
@@ -1069,6 +1077,8 @@ import { mapState } from "pinia";
 export default {
     data() {
         return {
+            confirm_password: "",
+            new_password: "",
             showDiscussion: true,
             message_type: "",
             student_all: "student_all",
@@ -1097,7 +1107,6 @@ export default {
             this.message_type = msg_type;
         },
         setClassId(class_unique_id, msg_type) {
-            
             this.current_class_unique_id = class_unique_id;
             this.message_type = msg_type;
         },
@@ -1175,19 +1184,21 @@ export default {
         setShowDiscussion() {
             this.showDiscussion = true;
         },
-       async setHideDiscussion() {
+        async setHideDiscussion() {
             this.showDiscussion = false;
-            await new Promise(resolve => setTimeout(resolve, 100)); // 3 sec
+            await new Promise((resolve) => setTimeout(resolve, 100)); // 3 sec
             this.showDiscussion = true;
         },
         async changePassword() {
-            this.showDiscussion = false;
-            let id = 1;
-            let formData = {};
-            let urlText = "student/" + id + "/changePassword";
+            if (this.new_password != this.confirm_password) {
+                this.errorAlert("password not match");
+            } else {
+                let id = this.getLoginInfo.teacher_info.id;
+                let formData = {};
+                let urlText = "teacher/" + id + "/changePassword";
 
-            let putResponse = await this.put(urlText, formData);
-            this.showDiscussion = true;
+                let putResponse = await this.put(urlText, formData);
+            }
         },
     },
 };

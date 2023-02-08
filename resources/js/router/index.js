@@ -21,6 +21,11 @@ const routes = [
     component: () => import('../views/Dashboard.vue')
   },
   {
+    path: '/account-setting',
+    name: 'accountSetting',
+    component: () => import('../views/AccountSetting.vue')
+  },
+  {
     path: '/payment',
     name: 'classPayment',
     component: () => import('../views/ClassPayment.vue')
