@@ -7,7 +7,7 @@
                         class="incoming_msg"
                         v-for="(msg, index) in user_message"
                         :key="index"
-                        v-if="message_type=='one-to-one'"
+                        v-if="msg.message_type == 'one-to-one'"
                     >
                         <div
                             class="incoming_msg_img"
@@ -50,13 +50,11 @@
                         class="incoming_msg"
                         v-for="(msg, index) in user_message"
                         :key="index"
-                        v-if="message_type=='group-chat'"
+                        v-if="message_type == 'group-chat'"
                     >
                         <div
                             class="incoming_msg_img"
-                            v-if="
-                                msg.user_info.id == $route.params.id
-                            "
+                            v-if="msg.user_info.id == $route.params.id"
                         >
                             <img
                                 src="https://ptetutorials.com/images/user-profile.png"
@@ -148,8 +146,7 @@ export default {
     },
 
     watch: {
-        message_type(newValue,oldValue){
-            
+        message_type(newValue, oldValue) {
             this.fetchMessages(this.friend_id, this.my_id);
         },
         messageInfo(newValue, oldValue) {
@@ -230,26 +227,24 @@ export default {
             let postResponse = await this.post(this.urlText, formData);
         },
         fetchMessages(friend_id, my_id) {
-            
             let urlText = "";
-            if (this.message_type=='one-to-one') {
+            if (this.message_type == "one-to-one") {
                 urlText =
-                "http://127.0.0.1:8000/api/messages" +
-                "/" +
-                friend_id +
-                "/" +
-                my_id;
-            }else{
+                    "http://127.0.0.1:8000/api/messages" +
+                    "/" +
+                    friend_id +
+                    "/" +
+                    my_id;
+            } else {
                 urlText =
-                "http://127.0.0.1:8000/api/groupMessages" +
-                "/" +
-                this.current_class_unique_id +
-                "/" +
-                my_id;
+                    "http://127.0.0.1:8000/api/groupMessages" +
+                    "/" +
+                    this.current_class_unique_id +
+                    "/" +
+                    my_id;
             }
-            
+
             axios.get(urlText).then((response) => {
-                
                 this.user_message = response.data.data;
             });
         },

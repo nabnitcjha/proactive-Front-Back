@@ -70,7 +70,7 @@
                         <!-- start body -->
                         <div class="card">
                             <chat-form
-                             :message_type="message_type" 
+                             :message_type="message_type"
                              :current_class_unique_id="current_class_unique_id"
                              ></chat-form>
                         </div>
