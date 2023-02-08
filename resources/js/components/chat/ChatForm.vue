@@ -3,46 +3,48 @@
         <div class="inbox_msg">
             <div class="mesgs col-12">
                 <div class="msg_history" id="msg_history" v-chat-scroll>
-                        <div class="incoming_msg"  v-for="(msg, index) in user_message" :key="index">
-                            <div
-                                class="incoming_msg_img"
-                                v-if="
-                                    msg.message_reciver_info.id ==
-                                    $route.params.id
-                                "
-                            >
-                                <img
-                                    src="https://ptetutorials.com/images/user-profile.png"
-                                    alt="sunil"
-                                />
-                            </div>
+                    <div
+                        class="incoming_msg"
+                        v-for="(msg, index) in user_message"
+                        :key="index"
+                    >
+                        <div
+                            class="incoming_msg_img"
+                            v-if="
+                                msg.message_reciver_info.id == $route.params.id
+                            "
+                        >
+                            <img
+                                src="https://ptetutorials.com/images/user-profile.png"
+                                alt="sunil"
+                            />
+                        </div>
+                        <div
+                            v-bind:class="[
+                                '',
+                                msg.message_reciver_info.id == $route.params.id
+                                    ? 'received_msg'
+                                    : 'outgoing_msg',
+                            ]"
+                        >
                             <div
                                 v-bind:class="[
                                     '',
                                     msg.message_reciver_info.id ==
                                     $route.params.id
-                                        ? 'received_msg'
-                                        : 'outgoing_msg',
+                                        ? 'received_withd_msg'
+                                        : 'sent_msg',
                                 ]"
                             >
-                                <div
-                                    v-bind:class="[
-                                        '',
-                                        msg.message_reciver_info.id ==
-                                        $route.params.id
-                                            ? 'received_withd_msg'
-                                            : 'sent_msg',
-                                    ]"
+                                <p>
+                                    {{ msg.message }}
+                                </p>
+                                <span class="time_date">
+                                    11:01 AM | June 9</span
                                 >
-                                    <p>
-                                        {{ msg.message }}
-                                    </p>
-                                    <span class="time_date">
-                                        11:01 AM | June 9</span
-                                    >
-                                </div>
                             </div>
                         </div>
+                    </div>
                 </div>
                 <div class="type_msg">
                     <div class="input_msg_write">
@@ -105,28 +107,30 @@ export default {
     watch: {
         messageInfo(newValue, oldValue) {
             // do something
-            
-            if ((this.my_id == newValue.friend_id)&&(this.friend_id==newValue.my_id)) {
+
+            if (
+                this.my_id == newValue.friend_id &&
+                this.friend_id == newValue.my_id
+            ) {
                 let new_msg_info = {
-                message: newValue.message,
-                message_sender_info: {
-                    id: '',
-                    full_name: '',
-                },
-                message_reciver_info: {
-                    id: newValue.my_id,
-                    full_name: '',
-                },
-            };
-            
-            this.user_message.push(new_msg_info);
+                    message: newValue.message,
+                    message_sender_info: {
+                        id: "",
+                        full_name: "",
+                    },
+                    message_reciver_info: {
+                        id: newValue.my_id,
+                        full_name: "",
+                    },
+                };
+
+                this.user_message.push(new_msg_info);
             }
         },
     },
     props: {
         message_type: String,
         current_class_unique_id: String,
-        current_my_id:String
     },
 
     computed: {
@@ -140,7 +144,6 @@ export default {
     },
     methods: {
         async addMessage() {
-            
             let new_msg_info = {
                 message: this.newMessage,
                 message_sender_info: {
@@ -148,13 +151,13 @@ export default {
                     full_name: this.getLoginInfo.user.name,
                 },
                 message_reciver_info: {
-                    id: '',
-                    full_name: '',
+                    id: "",
+                    full_name: "",
                 },
             };
-            
+
             this.user_message.unshift(new_msg_info);
-            
+
             this.urlText = "messages";
 
             let formData = new FormData();
@@ -175,10 +178,9 @@ export default {
                 "message_info[my_role]",
                 this.getLoginInfo.user.role
             );
-            
+
             this.newMessage = "";
             let postResponse = await this.post(this.urlText, formData);
-            
         },
         fetchMessages(friend_id, my_id) {
             let urlText =

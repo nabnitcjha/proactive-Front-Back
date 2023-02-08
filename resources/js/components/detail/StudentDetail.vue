@@ -71,7 +71,6 @@
                         <div class="card">
                             <chat-form
                              :message_type="message_type" 
-                             :current_my_id="current_my_id"
                              :current_class_unique_id="current_class_unique_id"
                              ></chat-form>
                         </div>
@@ -212,9 +211,7 @@
                                                     SEND MESSAGE TO
                                                     <span
                                                         class="text-uppercase badge badge-info"
-                                                        style="
-                                                            background-color: black;
-                                                        "
+                                                        style="background-color: black;"
                                                         >{{
                                                             profile_overview
                                                                 .student_info
@@ -1038,7 +1035,6 @@
                                                     {{ class_info.topic }}
                                                 </h5>
                                                 <a
-                                                    href="#"
                                                     class="btn btn-success"
                                                     data-bs-toggle="modal"
                                                     data-bs-target="#groupDiscussionMessage"
@@ -1086,7 +1082,6 @@ export default {
             current_student_id: "",
             current_class_unique_id: "",
             current_class_id: 0,
-            current_my_id:"",
             showCalendar: false,
             subjects: [],
         };
@@ -1102,7 +1097,7 @@ export default {
             this.message_type = msg_type;
         },
         setClassId(class_unique_id, msg_type) {
-            this.current_my_id = getLoginInfo.user.id;
+            debugger;
             this.current_class_unique_id = class_unique_id;
             this.message_type = msg_type;
         },
