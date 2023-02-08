@@ -386,7 +386,7 @@ var render = function render() {
     }
   }, [_vm._v("\n                                        Classes\n                                    ")]) : _vm._e()]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
-  }, [_c("button", {
+  }, [_vm.getLoginInfo.user.role == "admin" ? _c("button", {
     staticClass: "nav-link",
     attrs: {
       "data-bs-toggle": "tab",
@@ -398,7 +398,7 @@ var render = function render() {
         return _vm.setHideDiscussion.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                                        Change Password\n                                    ")])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                        Change Password\n                                    ")]) : _vm._e()])]), _vm._v(" "), _c("div", {
     staticClass: "tab-content pt-2"
   }, [_c("div", {
     staticClass: "tab-pane fade show active profile-overview mt-5",

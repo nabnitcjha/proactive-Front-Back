@@ -155,6 +155,10 @@
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-change-password"
                                             @click.stop="setHideDiscussion"
+                                            v-if="
+                                                getLoginInfo.user.role ==
+                                                'admin'
+                                            "
                                         >
                                             Change Password
                                         </button>
