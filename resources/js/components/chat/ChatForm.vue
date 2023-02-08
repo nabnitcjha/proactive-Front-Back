@@ -12,7 +12,7 @@
                         <div
                             class="incoming_msg_img"
                             v-if="
-                                msg.message_reciver_info.id == $route.params.id
+                                msg.message_reciver_info.id == current_friend_id
                             "
                         >
                             <img
@@ -23,7 +23,7 @@
                         <div
                             v-bind:class="[
                                 '',
-                                msg.message_reciver_info.id == $route.params.id
+                                msg.message_reciver_info.id == current_friend_id
                                     ? 'received_msg'
                                     : 'outgoing_msg',
                             ]"
@@ -32,7 +32,7 @@
                                 v-bind:class="[
                                     '',
                                     msg.message_reciver_info.id ==
-                                    $route.params.id
+                                    current_friend_id
                                         ? 'received_withd_msg'
                                         : 'sent_msg',
                                 ]"
@@ -54,7 +54,7 @@
                     >
                         <div
                             class="incoming_msg_img"
-                            v-if="msg.user_info.id == $route.params.id"
+                            v-if="msg.user_info.id == current_friend_id"
                         >
                             <img
                                 src="https://ptetutorials.com/images/user-profile.png"
@@ -64,7 +64,7 @@
                         <div
                             v-bind:class="[
                                 '',
-                                msg.user_info.id == $route.params.id
+                                msg.user_info.id == current_friend_id
                                     ? 'received_msg'
                                     : 'outgoing_msg',
                             ]"
@@ -72,7 +72,7 @@
                             <div
                                 v-bind:class="[
                                     '',
-                                    msg.user_info.id == $route.params.id
+                                    msg.user_info.id == current_friend_id
                                         ? 'received_withd_msg'
                                         : 'sent_msg',
                                 ]"
