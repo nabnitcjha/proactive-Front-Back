@@ -126,6 +126,7 @@ export default {
     props: {
         message_type: String,
         current_class_unique_id: String,
+        current_my_id:String
     },
 
     computed: {
