@@ -111,6 +111,8 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
               urlText = "";
               if (_this.getLoginInfo.user.role == "teacher") {
                 urlText = "teacher/" + _this.getLoginInfo.teacher_info.id + "/student/" + id + "/detail";
+              } else if (_this.getLoginInfo.user.role == "parent") {
+                urlText = "student/" + id + "/detailForParent";
               } else {
                 urlText = "student/" + id + "/detailForAdmin";
               }

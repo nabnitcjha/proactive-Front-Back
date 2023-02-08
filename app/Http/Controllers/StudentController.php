@@ -17,6 +17,7 @@ use App\Http\Resources\ClassScheduleResource;
 use App\Http\Resources\StudentAdvanceResource;
 use App\Http\Resources\student\profileOverview;
 use App\Http\Resources\ClassScheduleAdvanceResource;
+use App\Http\Resources\DetailForParentResource;
 
 class StudentController extends BaseController
 {
@@ -120,6 +121,21 @@ class StudentController extends BaseController
             ->where('id', $student_id)->first();
 
         return  $this->profileOverviewResource->make($student);
+    }
+
+    public function detailForParent($student_id)
+    {
+        $subjectIds = DB::table('student_subjects')
+            ->where('student_id', $student_id)
+            ->distinct()
+            ->pluck('subject_id');
+
+        $student = Student::with(['subject' => function ($query) use ($subjectIds) {
+            $query->whereIn('id', $subjectIds);
+        }])
+            ->where('id', $student_id)->first();
+
+        return  DetailForParentResource::make($student);
     }
 
     public function getTeacherSlot($student_id, $teacher_id)

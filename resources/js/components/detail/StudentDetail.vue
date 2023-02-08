@@ -1163,7 +1163,13 @@ export default {
                     "/student/" +
                     id +
                     "/detail";
-            } else {
+            }else if (this.getLoginInfo.user.role == "parent") {
+                urlText =
+                    "student/" +
+                    id +
+                    "/detailForParent";
+            }
+            else {
                 urlText = "student/" + id + "/detailForAdmin";
             }
 
