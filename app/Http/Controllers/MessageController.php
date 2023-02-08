@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Events\MessageSent;
+use App\Http\Resources\GroupMessageResource;
 use App\Http\Resources\MessageResource;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -39,6 +40,20 @@ class MessageController extends BaseController
 
         return    $this->successResponse(
             $this->messageResource->collection($messageInfo),
+            'fetch all record successfully'
+        );
+    }
+
+    public function fetchGroupMessages($class_unique_id, $my_id)
+    {
+        $me = User::where('id',$my_id)->first();
+        $message = Message::where([
+            ['my_id',$my_id],
+            ['class_unique_id',$class_unique_id]
+            ])->get();
+
+        return    $this->successResponse(
+           GroupMessageResource::collection($message),
             'fetch all record successfully'
         );
     }

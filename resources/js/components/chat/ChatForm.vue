@@ -183,12 +183,23 @@ export default {
             let postResponse = await this.post(this.urlText, formData);
         },
         fetchMessages(friend_id, my_id) {
-            let urlText =
+            let urlText = "";
+            if (this.message_type=='one-to-one') {
+                urlText =
                 "http://127.0.0.1:8000/api/messages" +
                 "/" +
                 friend_id +
                 "/" +
                 my_id;
+            }else{
+                urlText =
+                "http://127.0.0.1:8000/api/messages" +
+                "/" +
+                this.current_class_unique_id +
+                "/" +
+                my_id;
+            }
+            
             axios.get(urlText).then((response) => {
                 this.user_message = response.data.data;
             });
