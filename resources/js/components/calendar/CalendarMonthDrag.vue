@@ -117,6 +117,7 @@
                                     v-for="(rsf, index) in resource_file"
                                     :key="index"
                                     v-if="rsf && rsf.resourceFile != null"
+                                    style="padding-bottom: 2rem;"
                                 >
                                     <span class="rs-file">{{
                                         rsf.resourceFile.original_filename

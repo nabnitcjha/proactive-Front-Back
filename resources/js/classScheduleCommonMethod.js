@@ -84,12 +84,13 @@ export default {
 
             this.assignmentFileName = this.assessment_file.name;
         },
-        handleAssignmentAnswerFile(e) {
+        handleAssignmentFileAnswer(e) {
+            debugger;
             e.preventDefault();
             this.assessment_file_answer = document.querySelector(
                 "input[id=assignment_file_answer]"
             ).files[0];
-
+            debugger;
             this.saveAssignmentAnswerFile();
         },
         async saveAssignmentFile() {
@@ -108,13 +109,14 @@ export default {
             this.getResourceFile();
         },
         async saveAssignmentAnswerFile() {
+            debugger;
             let formData = new FormData();
             formData.append("student_id", this.current_student_id);
             formData.append("assessment_id", this.selected_assessment_id);
             formData.append("class_schedule_id", this.current_timetable_id);
-
+            debugger;
             let svf = await this.saveFile(formData);
-
+            debugger;
             document.getElementById("assignment_file_answer").value = null;
             this.getResourceFile();
         },

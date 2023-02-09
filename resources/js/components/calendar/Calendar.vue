@@ -231,6 +231,7 @@
                                                         rsf &&
                                                         rsf.resourceFile != null
                                                     "
+                                                    style="padding-bottom: 2rem;"
                                                 >
                                                     <span class="rs-file">{{
                                                         rsf.resourceFile
