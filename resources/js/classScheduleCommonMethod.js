@@ -49,6 +49,7 @@ export default {
                 "timetable/" + this.current_timetable_id + "/resourceFile";
             let postResponse = await this.post(urlText, formData);
         },
+       
         async saveResourceFile() {
             // let x = this.current_timetable_id;
             let formData = new FormData();
@@ -74,6 +75,7 @@ export default {
             this.resourceFileName = this.assessment_file.name;
             document.getElementById("study_resource").value = null;
         },
+      
         handleAssignmentFile(e) {
             e.preventDefault();
             this.assessment_file = document.querySelector(
@@ -84,8 +86,8 @@ export default {
         },
         handleAssignmentAnswerFile(e) {
             e.preventDefault();
-            this.assessment_file = document.querySelector(
-                "input[id=assignment_answer_file]"
+            this.assessment_file_answer = document.querySelector(
+                "input[id=assignment_file_answer]"
             ).files[0];
 
             this.saveAssignmentAnswerFile();
@@ -107,15 +109,14 @@ export default {
         },
         async saveAssignmentAnswerFile() {
             let formData = new FormData();
-            formData.append("teacher_id", this.currentTeacherId);
-            formData.append("assessment_file", this.assessment_file);
-            formData.append("class_unique_id", this.current_slot_unique_id);
-            formData.append("type", "assignment_answer");
+            formData.append("student_id", this.current_student_id);
+            formData.append("assessment_id", this.selected_assessment_id);
+            formData.append("class_schedule_id", this.current_timetable_id);
 
             let svf = await this.saveFile(formData);
 
-            this.assessment_file = "";
-            document.getElementById("assignment_answer_file").value = null;
+            document.getElementById("assignment_file_answer").value = null;
+            this.getResourceFile();
         },
 
         openLink() {

@@ -369,10 +369,25 @@
                                                             ></i>
                                                         </td>
                                                         <td v-else>
+                                                            <label
+                                                                for="assignment_file_answer"
+                                                                id="assignment_file_answer-label"
+                                                            >
+                                                            </label>
+                                                            <input
+                                                                id="assignment_file_answer"
+                                                                type="file"
+                                                                class="form-control form-control-sm"
+                                                                name="assignment_file_answer"
+                                                                @change="
+                                                                    handleAssignmentFileAnswer
+                                                                "
+                                                                style="visibility: hidden"
+                                                            />
                                                             <i
                                                                 class="bi bi-upload hand"
                                                                 @click.stop="
-                                                                    downloadFile(
+                                                                    uploadAssignmentAnswer(
                                                                         rsf
                                                                             .resourceFile
                                                                             .id
@@ -565,6 +580,7 @@ import { loginInfoStore } from "../../stores/loginInfo";
 import { mapState } from "pinia";
 export default {
     data: () => ({
+        assessment_file_answer: "",
         assignmentFileName: "",
         resource_file: [],
         resourceFileName: "",
@@ -618,12 +634,13 @@ export default {
         extendOriginal: null,
         current_slot_unique_id: "",
         currentTeacherId: "",
+        selected_assessment_id: "",
     }),
     props: {
         current_teacher_id: String,
         current_student_id: String,
         calType: String,
-        unique_id:String
+        unique_id: String,
     },
     components: {
         "calendar-month-drag-component": CalendarMonthDragComponent,
@@ -636,6 +653,10 @@ export default {
         this.$refs.calendar.checkChange();
     },
     methods: {
+        uploadAssignmentAnswer(id) {
+            this.selected_assessment_id = id;
+            document.getElementById("assignment_file_answer-label").click();
+        },
         async confirmDelete() {
             let isDelete = "";
             isDelete = await this.deleteRecord(
@@ -923,10 +944,9 @@ export default {
             } else if (this.calType == "teacher_all") {
                 //teacher-detail class tab
                 urlText = "teacher/" + this.current_teacher_id + "/class";
-            } else if (this.calType=="class_according_unique_id") {
+            } else if (this.calType == "class_according_unique_id") {
                 urlText = "timetable/" + this.unique_id;
-            }
-            else {
+            } else {
                 //student-detail teacher tab
                 urlText =
                     "student/" +

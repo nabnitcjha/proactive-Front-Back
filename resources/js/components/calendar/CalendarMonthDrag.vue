@@ -108,7 +108,9 @@
                                         </button>
                                     </div>
 
-                                    <div  class="rs-file">{{ resourceFileName }}</div>
+                                    <div class="rs-file">
+                                        {{ resourceFileName }}
+                                    </div>
                                 </li>
                                 <li
                                     class="list-group-item d-flex justify-content-between"
@@ -116,7 +118,7 @@
                                     :key="index"
                                     v-if="rsf && rsf.resourceFile != null"
                                 >
-                                    <span  class="rs-file">{{
+                                    <span class="rs-file">{{
                                         rsf.resourceFile.original_filename
                                     }}</span>
                                     <div class="d-flex action mr-4">
@@ -184,7 +186,9 @@
                                             Save
                                         </button>
                                     </div>
-                                    <span  class="rs-file">{{ assignmentFileName }}</span>
+                                    <span class="rs-file">{{
+                                        assignmentFileName
+                                    }}</span>
                                 </li>
                             </div>
                             <table class="card-table table">
@@ -201,7 +205,7 @@
                                         :key="index"
                                         v-if="rsf.resourceFile != null"
                                     >
-                                        <td  class="td-rs-file">
+                                        <td class="td-rs-file">
                                             {{
                                                 rsf.resourceFile
                                                     .original_filename
@@ -223,10 +227,25 @@
                                             ></i>
                                         </td>
                                         <td v-else>
+                                            <label
+                                                for="assignment_file_answer"
+                                                id="assignment_file_answer-label"
+                                            >
+                                            </label>
+                                            <input
+                                                id="assignment_file_answer"
+                                                type="file"
+                                                class="form-control form-control-sm"
+                                                name="assignment_file_answer"
+                                                @change="
+                                                    handleAssignmentFileAnswer
+                                                "
+                                                style="visibility: hidden"
+                                            />
                                             <i
                                                 class="bi bi-upload hand"
                                                 @click.stop="
-                                                    downloadFile(
+                                                    uploadAssignmentAnswer(
                                                         rsf.resourceFile.id
                                                     )
                                                 "
@@ -277,31 +296,31 @@
                                 <div
                                     class="form-group col-sm-12 col-lg-12 d-flex justify-content-between"
                                 >
-                                <label
-                                            for="file"
-                                            class="input input-file zoom-link d-flex"
-                                            style="width:inherit"
-                                        >
-                                            <input
-                                                v-model="zoom_link"
-                                                type="text"
-                                                id="zoom_link"
-                                                class="form-control form-control-sm remove-border"
-                                                placeholder="add zoom link"
-                                                @input="savezoom_link"
-                                            />
-                                            <i
+                                    <label
+                                        for="file"
+                                        class="input input-file zoom-link d-flex"
+                                        style="width: inherit"
+                                    >
+                                        <input
+                                            v-model="zoom_link"
+                                            type="text"
+                                            id="zoom_link"
+                                            class="form-control form-control-sm remove-border"
+                                            placeholder="add zoom link"
+                                            @input="savezoom_link"
+                                        />
+                                        <i
                                             class="bi bi-clipboard"
                                             @click.stop="copyzoom_link"
                                         ></i>
-                                        </label>
-                                        <button
-                                            type="button"
-                                            class="btn btn-success cstm-btn"
-                                            @click.stop="openLink"
-                                        >
-                                            Go
-                                        </button>
+                                    </label>
+                                    <button
+                                        type="button"
+                                        class="btn btn-success cstm-btn"
+                                        @click.stop="openLink"
+                                    >
+                                        Go
+                                    </button>
                                     <!-- <div class="zoom-link col-6">
                                         <input
                                             v-model="zoom_link"
@@ -388,6 +407,7 @@
 import moment from "moment";
 export default {
     data: () => ({
+        assessment_file_answer: "",
         checkPermission: true,
         rightSidebar: false,
         userType: "",
@@ -426,16 +446,20 @@ export default {
         assignmentAnswerFileName: "",
         resource_file: [],
         resource_id: "",
+        selected_assessment_id: "",
     }),
     props: {
         current_teacher_id: String,
         current_student_id: String,
         calType: String,
-        unique_id:String
+        unique_id: String,
     },
 
     methods: {
-       
+        uploadAssignmentAnswer(id) {
+            this.selected_assessment_id = id;
+            document.getElementById("assignment_file_answer-label").click();
+        },
         getSlotInfo(slot) {},
         deleteSlot() {
             this.$emit("delete-slot");
@@ -461,7 +485,7 @@ export default {
         openEdit() {
             this.$emit("open-edit");
         },
-        
+
         showEvent({ nativeEvent, event }) {
             this.current_slot_unique_id = event.class_unique_id;
             this.current_timetable_id = event.id;
@@ -618,10 +642,9 @@ export default {
             } else if (this.calType == "teacher_all") {
                 //teacher-detail class tab
                 urlText = "teacher/" + this.current_teacher_id + "/class";
-            }else if (this.calType=="class_according_unique_id") {
+            } else if (this.calType == "class_according_unique_id") {
                 urlText = "timetable/" + this.unique_id;
-            }
-            else {
+            } else {
                 //teacher-detail student tab // or //student-detail teacher tab
                 urlText =
                     "student/" +
