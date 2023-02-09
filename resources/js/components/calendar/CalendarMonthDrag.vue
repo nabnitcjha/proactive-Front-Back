@@ -664,7 +664,8 @@ export default {
                 urlText = "teacher/" + this.current_teacher_id + "/class";
             } else if (this.calType == "class_according_unique_id") {
                 urlText = "timetable/" + this.unique_id;
-            } else {
+            } 
+            else {
                 //teacher-detail student tab // or //student-detail teacher tab
                 urlText =
                     "student/" +

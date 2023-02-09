@@ -145,6 +145,7 @@
                                             data-bs-toggle="tab"
                                             data-bs-target="#profile-discussion"
                                             @click.stop="setShowDiscussion"
+                                            v-if="getLoginInfo.user.role!='parent'"
                                         >
                                             Discussion
                                         </button>
@@ -198,7 +199,7 @@
                                                 }}
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <div class="row" v-if="getLoginInfo.user.role=='teacher'">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
@@ -232,7 +233,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
+                                        <div class="row" v-if="getLoginInfo.user.role=='teacher'">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
@@ -255,6 +256,183 @@
                                                         class_info.teacher
                                                             .full_name
                                                     "
+                                                >
+                                                    <div class="accordion-item">
+                                                        <h2
+                                                            class="accordion-header"
+                                                            v-bind:id="
+                                                                'overview_class_heading' +
+                                                                index
+                                                            "
+                                                        >
+                                                            <button
+                                                                class="accordion-button collapsed"
+                                                                type="button"
+                                                                data-bs-toggle="collapse"
+                                                                v-bind:data-bs-target="
+                                                                    '#' +
+                                                                    'flush-overview_class_accordion' +
+                                                                    index
+                                                                "
+                                                                aria-expanded="false"
+                                                                v-bind:aria-controls="
+                                                                    'flush-overview_class_accordion' +
+                                                                    index
+                                                                "
+                                                            >
+                                                                {{
+                                                                    class_info.topic
+                                                                }}
+                                                            </button>
+                                                        </h2>
+                                                        <div
+                                                            v-bind:id="
+                                                                'flush-overview_class_accordion' +
+                                                                index
+                                                            "
+                                                            class="accordion-collapse collapse"
+                                                            v-bind:aria-labelledby="
+                                                                'flush-overview_class_heading' +
+                                                                index
+                                                            "
+                                                            v-bind:data-bs-parent="
+                                                                '#' +
+                                                                'overview_class_accordion' +
+                                                                index
+                                                            "
+                                                        >
+                                                            <div
+                                                                class="accordion-body"
+                                                            >
+                                                                <ul
+                                                                    class="list-group"
+                                                                >
+                                                                    <li
+                                                                        class="list-group-item"
+                                                                    >
+                                                                        <b
+                                                                            >START
+                                                                            TIME
+                                                                            : </b
+                                                                        >{{
+                                                                            timeFormater(
+                                                                                class_info.start_date
+                                                                            )
+                                                                        }}
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item"
+                                                                    >
+                                                                        <b
+                                                                            >END
+                                                                            TIME
+                                                                            : </b
+                                                                        >{{
+                                                                            timeFormater(
+                                                                                class_info.end_date
+                                                                            )
+                                                                        }}
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item"
+                                                                    >
+                                                                        <b
+                                                                            >CLASS
+                                                                            DAY
+                                                                            : </b
+                                                                        ><span
+                                                                            class="badge rounded-pill text-bg-warning mr-2"
+                                                                            v-for="(
+                                                                                cls_selected_day,
+                                                                                index
+                                                                            ) in class_info.selected_day"
+                                                                            :key="
+                                                                                index
+                                                                            "
+                                                                            >{{
+                                                                                findDay(
+                                                                                    cls_selected_day
+                                                                                )
+                                                                            }}</span
+                                                                        >
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item"
+                                                                    >
+                                                                        <b
+                                                                            >DURATION
+                                                                            : </b
+                                                                        >{{
+                                                                            class_info.duration
+                                                                        }}
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item"
+                                                                    >
+                                                                        <b
+                                                                            >DESCRIPTION
+                                                                            : </b
+                                                                        >{{
+                                                                            class_info.description
+                                                                        }}
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item"
+                                                                    >
+                                                                        <b
+                                                                            >SUBJECT
+                                                                            : </b
+                                                                        ><span
+                                                                            class="badge rounded-pill text-bg-success mr-2"
+                                                                        >
+                                                                            {{
+                                                                                class_info
+                                                                                    .subject
+                                                                                    .name
+                                                                            }}
+                                                                        </span>
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item"
+                                                                    >
+                                                                        <b
+                                                                            >TEACHER
+                                                                            : </b
+                                                                        ><span
+                                                                            class="badge rounded-pill text-bg-warning mr-2"
+                                                                        >
+                                                                            {{
+                                                                                class_info
+                                                                                    .teacher
+                                                                                    .full_name
+                                                                            }}
+                                                                        </span>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" v-if="getLoginInfo.user.role=='parent'">
+                                            <div
+                                                class="col-lg-3 col-md-4 label"
+                                            >
+                                                Classes
+                                            </div>
+                                            <div class="col-lg-9 col-md-8">
+                                                <div
+                                                    class="accordion accordion-flush"
+                                                    v-bind:id="
+                                                        'overview_class_accordion' +
+                                                        index
+                                                    "
+                                                    v-for="(
+                                                        class_info, index
+                                                    ) in profile_overview.sorted_class"
+                                                    :key="index"
+                                                   
                                                 >
                                                     <div class="accordion-item">
                                                         <h2
@@ -543,7 +721,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
+                                        <div class="row" v-if="getLoginInfo.user.role=='teacher'">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
@@ -639,7 +817,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
+                                        <div class="row"  v-if="getLoginInfo.user.role=='teacher'">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
@@ -653,7 +831,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
+                                        <div class="row"  v-if="getLoginInfo.user.role=='teacher'">
                                             <div
                                                 class="col-lg-3 col-md-4 label"
                                             >
@@ -871,7 +1049,7 @@
                                     <div
                                         class="tab-pane fade profile-teacher pt-3"
                                         id="profile-teacher"
-                                        v-else
+                                        v-if="getLoginInfo.user.role=='teacher'"
                                     >
                                         <!-- Profile Edit Form -->
                                         <form>
@@ -931,6 +1109,63 @@
                                         <!-- End Profile Edit Form -->
                                     </div>
                                     <div
+                                        class="tab-pane fade profile-teacher pt-3"
+                                        id="profile-teacher"
+                                        v-if="getLoginInfo.user.role=='parent'"
+                                    >
+                                        <!-- Profile Edit Form -->
+                                        <form>
+                                            <div class="row mb-3">
+                                                <!-- Accordion without outline borders -->
+                                                <div
+                                                    class="accordion accordion-flush"
+                                                    id="
+                                                    profile-teacher-accordion
+                                                        
+                                                    "
+                                                >
+                                                    <div class="accordion-item">
+                                                        <div
+                                                            id="
+                                                            profile-teacher-flush-collapseOne
+                                                            "
+                                                            class="accordion-collapse collapse show"
+                                                            aria-labelledby="profile-teacher-flush"
+                                                            data-bs-parent="#profile-teacher-accordion
+                                                            "
+                                                        >
+                                                            <div
+                                                                class="accordion-body"
+                                                            >
+                                                                <div
+                                                                    class="row"
+                                                                    v-if="
+                                                                        showCalendar
+                                                                    "
+                                                                >
+                                                                    <div>
+                                                                        <slot-calendar
+                                                                            :current_student_id="
+                                                                                $route
+                                                                                    .params
+                                                                                    .id
+                                                                            "
+                                                                            :calType="
+                                                                                student_all
+                                                                            "
+                                                                        ></slot-calendar>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- End Accordion without outline borders -->
+                                            </div>
+                                        </form>
+                                        <!-- End Profile Edit Form -->
+                                    </div>
+                                    <div
                                         class="tab-pane fade pt-3"
                                         id="profile-classes"
                                     >
@@ -952,13 +1187,14 @@
                                                 getLoginInfo.teacher_info.id
                                             "
                                             :calType="student_teacher_all"
-                                            v-else
+                                            v-if="getLoginInfo.user.role=='teacher'"
                                         ></slot-calendar>
                                     </div>
 
                                     <div
                                         class="tab-pane fade pt-3"
                                         id="profile-change-password"
+                                        v-if="getLoginInfo.user.role=='admin'"
                                     >
                                         <!-- Change Password Form -->
                                         <form>
@@ -1026,7 +1262,7 @@
                                     <div
                                         class="tab-pane fade pt-3 profile-discussion-card"
                                         id="profile-discussion"
-                                        v-if="showDiscussion"
+                                        v-if="showDiscussion && getLoginInfo.user.role=='teacher'"
                                     >
                                         <div
                                             class="card"
@@ -1172,16 +1408,17 @@ export default {
             else {
                 urlText = "student/" + id + "/detailForAdmin";
             }
-
+            debugger;
             let getResponse = await this.get(urlText, id, false);
             let sortedClass = await this.sortedClass();
-
+            debugger;
             this.profile_overview = {
                 ...getResponse.data.data,
                 sorted_class: this.sorted_class,
             };
             this.subjects = this.profile_overview.subject_info;
             this.current_friend_id = this.profile_overview.student_info.user_id;
+            debugger;
         },
         async sortedClass() {
             let id = this.$route.params.id;

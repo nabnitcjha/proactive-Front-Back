@@ -116,20 +116,23 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
               } else {
                 urlText = "student/" + id + "/detailForAdmin";
               }
-              _context.next = 5;
+              debugger;
+              _context.next = 6;
               return _this.get(urlText, id, false);
-            case 5:
+            case 6:
               getResponse = _context.sent;
-              _context.next = 8;
+              _context.next = 9;
               return _this.sortedClass();
-            case 8:
+            case 9:
               sortedClass = _context.sent;
+              debugger;
               _this.profile_overview = _objectSpread(_objectSpread({}, getResponse.data.data), {}, {
                 sorted_class: _this.sorted_class
               });
               _this.subjects = _this.profile_overview.subject_info;
               _this.current_friend_id = _this.profile_overview.student_info.user_id;
-            case 12:
+              debugger;
+            case 15:
             case "end":
               return _context.stop();
           }
@@ -362,7 +365,7 @@ var render = function render() {
     }
   }, [_vm._v("\n                                        Classes\n                                    ")])]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
-  }, [_c("button", {
+  }, [_vm.getLoginInfo.user.role != "parent" ? _c("button", {
     staticClass: "nav-link",
     attrs: {
       "data-bs-toggle": "tab",
@@ -374,7 +377,7 @@ var render = function render() {
         return _vm.setShowDiscussion.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                                        Discussion\n                                    ")])]), _vm._v(" "), _c("li", {
+  }, [_vm._v("\n                                        Discussion\n                                    ")]) : _vm._e()]), _vm._v(" "), _c("li", {
     staticClass: "nav-item"
   }, [_vm.getLoginInfo.user.role == "admin" ? _c("button", {
     staticClass: "nav-link",
@@ -415,7 +418,7 @@ var render = function render() {
     staticClass: "col-lg-3 col-md-4 label"
   }, [_vm._v("\n                                            Full Name\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.full_name) + "\n                                        ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.full_name) + "\n                                        ")])]), _vm._v(" "), _vm.getLoginInfo.user.role == "teacher" ? _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
@@ -439,7 +442,7 @@ var render = function render() {
     staticStyle: {
       "background-color": "black"
     }
-  }, [_vm._v(_vm._s(_vm.profile_overview.student_info.full_name))])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v(_vm._s(_vm.profile_overview.student_info.full_name))])])])]) : _vm._e(), _vm._v(" "), _vm.getLoginInfo.user.role == "teacher" ? _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
@@ -503,7 +506,71 @@ var render = function render() {
     }, [_c("b", [_vm._v("TEACHER\n                                                                        : ")]), _c("span", {
       staticClass: "badge rounded-pill text-bg-warning mr-2"
     }, [_vm._v("\n                                                                        " + _vm._s(class_info.teacher.full_name) + "\n                                                                    ")])])])])])])]) : _vm._e();
-  }), 0)]), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("div", {
+  }), 0)]) : _vm._e(), _vm._v(" "), _vm.getLoginInfo.user.role == "parent" ? _c("div", {
+    staticClass: "row"
+  }, [_c("div", {
+    staticClass: "col-lg-3 col-md-4 label"
+  }, [_vm._v("\n                                            Classes\n                                        ")]), _vm._v(" "), _c("div", {
+    staticClass: "col-lg-9 col-md-8"
+  }, _vm._l(_vm.profile_overview.sorted_class, function (class_info, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "accordion accordion-flush",
+      attrs: {
+        id: "overview_class_accordion" + index
+      }
+    }, [_c("div", {
+      staticClass: "accordion-item"
+    }, [_c("h2", {
+      staticClass: "accordion-header",
+      attrs: {
+        id: "overview_class_heading" + index
+      }
+    }, [_c("button", {
+      staticClass: "accordion-button collapsed",
+      attrs: {
+        type: "button",
+        "data-bs-toggle": "collapse",
+        "data-bs-target": "#" + "flush-overview_class_accordion" + index,
+        "aria-expanded": "false",
+        "aria-controls": "flush-overview_class_accordion" + index
+      }
+    }, [_vm._v("\n                                                            " + _vm._s(class_info.topic) + "\n                                                        ")])]), _vm._v(" "), _c("div", {
+      staticClass: "accordion-collapse collapse",
+      attrs: {
+        id: "flush-overview_class_accordion" + index,
+        "aria-labelledby": "flush-overview_class_heading" + index,
+        "data-bs-parent": "#" + "overview_class_accordion" + index
+      }
+    }, [_c("div", {
+      staticClass: "accordion-body"
+    }, [_c("ul", {
+      staticClass: "list-group"
+    }, [_c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("START\n                                                                        TIME\n                                                                        : ")]), _vm._v(_vm._s(_vm.timeFormater(class_info.start_date)) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("END\n                                                                        TIME\n                                                                        : ")]), _vm._v(_vm._s(_vm.timeFormater(class_info.end_date)) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("CLASS\n                                                                        DAY\n                                                                        : ")]), _vm._l(class_info.selected_day, function (cls_selected_day, index) {
+      return _c("span", {
+        key: index,
+        staticClass: "badge rounded-pill text-bg-warning mr-2"
+      }, [_vm._v(_vm._s(_vm.findDay(cls_selected_day)))]);
+    })], 2), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("DURATION\n                                                                        : ")]), _vm._v(_vm._s(class_info.duration) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("DESCRIPTION\n                                                                        : ")]), _vm._v(_vm._s(class_info.description) + "\n                                                                ")]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("SUBJECT\n                                                                        : ")]), _c("span", {
+      staticClass: "badge rounded-pill text-bg-success mr-2"
+    }, [_vm._v("\n                                                                        " + _vm._s(class_info.subject.name) + "\n                                                                    ")])]), _vm._v(" "), _c("li", {
+      staticClass: "list-group-item"
+    }, [_c("b", [_vm._v("TEACHER\n                                                                        : ")]), _c("span", {
+      staticClass: "badge rounded-pill text-bg-warning mr-2"
+    }, [_vm._v("\n                                                                        " + _vm._s(class_info.teacher.full_name) + "\n                                                                    ")])])])])])])]);
+  }), 0)]) : _vm._e(), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
@@ -555,7 +622,7 @@ var render = function render() {
         staticClass: "badge rounded-pill text-bg-warning mr-2"
       }, [_vm._v(_vm._s(tch_sub_info.name))]) : _vm._e();
     })], 2)])])])])]);
-  }), 0)]) : _vm._e(), _vm._v(" "), _c("div", {
+  }), 0)]) : _vm._e(), _vm._v(" "), _vm.getLoginInfo.user.role == "teacher" ? _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
@@ -600,19 +667,19 @@ var render = function render() {
     }, [_c("b", [_vm._v("EMAIL\n                                                                        : ")]), _vm._v(_vm._s(prnt_info.email) + "\n                                                                ")]), _vm._v(" "), _c("li", {
       staticClass: "list-group-item"
     }, [_c("b", [_vm._v("PHONE\n                                                                        : ")]), _vm._v(_vm._s(prnt_info.phone) + "\n                                                                ")])])])])])]);
-  }), 0)]), _vm._v(" "), _c("div", {
+  }), 0)]) : _vm._e(), _vm._v(" "), _vm.getLoginInfo.user.role == "teacher" ? _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
   }, [_vm._v("\n                                            Email\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.email) + "\n                                        ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.email) + "\n                                        ")])]) : _vm._e(), _vm._v(" "), _vm.getLoginInfo.user.role == "teacher" ? _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-lg-3 col-md-4 label"
   }, [_vm._v("\n                                            Phone\n                                        ")]), _vm._v(" "), _c("div", {
     staticClass: "col-lg-9 col-md-8"
-  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.phone) + "\n                                        ")])])]), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("div", {
+  }, [_vm._v("\n                                            " + _vm._s(_vm.profile_overview.student_info.phone) + "\n                                        ")])]) : _vm._e()]), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("div", {
     staticClass: "tab-pane fade profile-teacher pt-3",
     attrs: {
       id: "profile-teacher"
@@ -702,7 +769,7 @@ var render = function render() {
         calType: _vm.student_teacher_all
       }
     })], 1)]) : _vm._e()])])])]);
-  }), 0)])]) : _c("div", {
+  }), 0)])]) : _vm._e(), _vm._v(" "), _vm.getLoginInfo.user.role == "teacher" ? _c("div", {
     staticClass: "tab-pane fade profile-teacher pt-3",
     attrs: {
       id: "profile-teacher"
@@ -733,7 +800,37 @@ var render = function render() {
       current_student_id: _vm.$route.params.id,
       calType: _vm.student_teacher_all
     }
-  })], 1)]) : _vm._e()])])])])])])]), _vm._v(" "), _c("div", {
+  })], 1)]) : _vm._e()])])])])])])]) : _vm._e(), _vm._v(" "), _vm.getLoginInfo.user.role == "parent" ? _c("div", {
+    staticClass: "tab-pane fade profile-teacher pt-3",
+    attrs: {
+      id: "profile-teacher"
+    }
+  }, [_c("form", [_c("div", {
+    staticClass: "row mb-3"
+  }, [_c("div", {
+    staticClass: "accordion accordion-flush",
+    attrs: {
+      id: "\n                                                profile-teacher-accordion\n                                                    \n                                                "
+    }
+  }, [_c("div", {
+    staticClass: "accordion-item"
+  }, [_c("div", {
+    staticClass: "accordion-collapse collapse show",
+    attrs: {
+      id: "\n                                                        profile-teacher-flush-collapseOne\n                                                        ",
+      "aria-labelledby": "profile-teacher-flush",
+      "data-bs-parent": "#profile-teacher-accordion\n                                                        "
+    }
+  }, [_c("div", {
+    staticClass: "accordion-body"
+  }, [_vm.showCalendar ? _c("div", {
+    staticClass: "row"
+  }, [_c("div", [_c("slot-calendar", {
+    attrs: {
+      current_student_id: _vm.$route.params.id,
+      calType: _vm.student_all
+    }
+  })], 1)]) : _vm._e()])])])])])])]) : _vm._e(), _vm._v(" "), _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {
       id: "profile-classes"
@@ -743,13 +840,13 @@ var render = function render() {
       current_student_id: _vm.$route.params.id,
       calType: _vm.student_all
     }
-  }) : _c("slot-calendar", {
+  }) : _vm._e(), _vm._v(" "), _vm.getLoginInfo.user.role == "teacher" ? _c("slot-calendar", {
     attrs: {
       current_student_id: _vm.$route.params.id,
       current_teacher_id: _vm.getLoginInfo.teacher_info.id,
       calType: _vm.student_teacher_all
     }
-  })], 1), _vm._v(" "), _c("div", {
+  }) : _vm._e()], 1), _vm._v(" "), _vm.getLoginInfo.user.role == "admin" ? _c("div", {
     staticClass: "tab-pane fade pt-3",
     attrs: {
       id: "profile-change-password"
@@ -833,7 +930,7 @@ var render = function render() {
         return _vm.changePassword.apply(null, arguments);
       }
     }
-  }, [_vm._v("\n                                                Change Password\n                                            ")])])])]), _vm._v(" "), _vm.showDiscussion ? _c("div", {
+  }, [_vm._v("\n                                                Change Password\n                                            ")])])])]) : _vm._e(), _vm._v(" "), _vm.showDiscussion && _vm.getLoginInfo.user.role == "teacher" ? _c("div", {
     staticClass: "tab-pane fade pt-3 profile-discussion-card",
     attrs: {
       id: "profile-discussion"
