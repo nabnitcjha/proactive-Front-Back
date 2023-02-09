@@ -31,10 +31,10 @@ export default {
             }
         },
         async getResourceFile() {
-            let urlText =
-                "timetable/" + this.current_timetable_id + "/resourceFile";
+            
+            let urlText ="student/"+this.current_student_id+"/timetable/" + this.current_timetable_id + "/resourceFile";
             let getResponse = await this.get(urlText, 1, false);
-
+            
             this.resource_file = getResponse.data.data;
         },
         downloadFile(id) {
@@ -53,6 +53,7 @@ export default {
             let urlText =
                 "assignment/" + this.selected_assessment_id + "/answer";
             let postResponse = await this.post(urlText, formData);
+            this.getResourceFile();
         },
 
         async saveResourceFile() {

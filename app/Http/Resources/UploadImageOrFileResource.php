@@ -17,6 +17,7 @@ class UploadImageOrFileResource extends JsonResource
         return [
             "id" => $this->id,
             "resourceFile" => $this->resourceFile,
+            "assignment_answer" => $this->assignment_answer,
             "type" => $this->type,
         ];
     }

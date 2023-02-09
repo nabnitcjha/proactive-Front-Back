@@ -235,6 +235,16 @@
                                                         rsf.resourceFile.id
                                                     )
                                                 "
+                                                v-if="rsf.assignment_answer==''"
+                                            ></i>
+                                            <i
+                                                class="bi bi-download hand"
+                                                @click.stop="
+                                                    downloadFile(
+                                                        rsf.assignment_answer.id
+                                                    )
+                                                "
+                                                v-else
                                             ></i>
                                             <label
                                                 for="assignment_file_answer"

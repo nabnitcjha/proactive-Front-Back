@@ -37,12 +37,22 @@ class ClassScheduleController extends BaseController
         return $this->classScheduleResource->collection($class_schedule);
     }
 
-    public function getResourceFile($class_schedule_id)
+    public function getResourceFile($student_id,$class_schedule_id)
     {
         $assignmentIds = TeacherAssignment::where('class_schedule_id', $class_schedule_id)->pluck('assignment_id');
         $assignments = Assignment::whereIn('id', $assignmentIds)->get();
         foreach ($assignments as $key => $value) {
             # code...
+            $assignment_answer = Assignment_Answer::where([
+                ['assignment_id', $value->id],
+                ['student_id', $student_id],
+                ['class_schedule_id', $class_schedule_id]
+                ])->first();
+            if($assignment_answer){
+               $value->assignment_answer = $this->imageOrFile->getFile($assignment_answer->answer);
+            }else{
+               $value->assignment_answer = '';
+            }
             $value->resourceFile = $this->imageOrFile->getFile($value->assignment);
         }
         return UploadImageOrFileResource::collection($assignments);
