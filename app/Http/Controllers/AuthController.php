@@ -10,6 +10,7 @@ use App\Http\Resources\Admin\UserResource;
 use App\Http\Resources\GuardianResource;
 use App\Http\Resources\StudentListResource;
 use App\Http\Resources\TeacherListResource;
+use App\Http\Resources\UserAdvanceResource;
 use App\Models\Guardian;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -28,7 +29,7 @@ class AuthController extends Controller
     private $loginResource;
     public function __construct()
     {
-        $this->userResource = new UserResource(array());
+        $this->userResource = new UserAdvanceResource(array());
         $this->loginResource = new LoginResource(array());
         $this->middleware('auth:api', ['except' => ['login']]);
     }

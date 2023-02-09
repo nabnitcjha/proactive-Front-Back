@@ -189,18 +189,31 @@ export default {
     },
     methods: {
         async addMessage() {
-            let new_msg_info = {
-                message: this.newMessage,
-                message_type: this.message_type,
-                message_sender_info: {
-                    id: this.my_id,
-                    full_name: this.getLoginInfo.user.name,
-                },
-                message_reciver_info: {
-                    id: "",
-                    full_name: "",
-                },
-            };
+            let new_msg_info = {};
+
+            if (this.message_type == "group-chat") {
+                new_msg_info = {
+                    message: this.newMessage,
+                    message_type: this.message_type,
+                    user_info: {
+                        id: this.my_id,
+                        full_name: this.getLoginInfo.user.name,
+                    },
+                };
+            } else {
+                new_msg_info = {
+                    message: this.newMessage,
+                    message_type: this.message_type,
+                    message_sender_info: {
+                        id: this.my_id,
+                        full_name: this.getLoginInfo.user.name,
+                    },
+                    message_reciver_info: {
+                        id: "",
+                        full_name: "",
+                    },
+                };
+            }
 
             this.user_message.unshift(new_msg_info);
 

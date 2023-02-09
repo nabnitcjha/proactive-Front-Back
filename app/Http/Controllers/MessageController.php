@@ -41,7 +41,7 @@ class MessageController extends BaseController
         $message = Message::where([
             ['my_id',$my_id],
             ['class_unique_id',$class_unique_id]
-            ])->get();
+            ])->orderBy('id', 'DESC')->get();
 
         return    $this->successResponse(
            GroupMessageResource::collection($message),

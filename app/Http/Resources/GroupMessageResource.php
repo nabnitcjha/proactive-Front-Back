@@ -19,7 +19,7 @@ class GroupMessageResource extends JsonResource
             "id" => $this->id,
             "message" => $this->message,
             "message_type" => $this->message_type,
-            "user_info" => UserResource::make($this->me)
+            "user_info" => UserResource::make($this->me),
         ];
     }
 }
