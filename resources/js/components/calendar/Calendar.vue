@@ -231,7 +231,7 @@
                                                         rsf &&
                                                         rsf.resourceFile != null
                                                     "
-                                                    style="padding-bottom: 2rem;"
+                                                    style="padding-bottom: 2rem"
                                                 >
                                                     <span class="rs-file">{{
                                                         rsf.resourceFile
@@ -358,15 +358,25 @@
                                                                 'teacher'
                                                             "
                                                         >
+                                                            <span
+                                                                v-if="
+                                                                    rsf.assignment_answer ==
+                                                                    ''
+                                                                "
+                                                                >{{
+                                                                    "not available"
+                                                                }}</span
+                                                            >
                                                             <i
                                                                 class="bi bi-download hand"
                                                                 @click.stop="
                                                                     downloadFile(
                                                                         rsf
-                                                                            .resourceFile
+                                                                            .assignment_answer
                                                                             .id
                                                                     )
                                                                 "
+                                                                v-else
                                                             ></i>
                                                         </td>
                                                         <td v-else>
@@ -379,6 +389,21 @@
                                                                             .id
                                                                     )
                                                                 "
+                                                                v-if="
+                                                                    rsf.assignment_answer ==
+                                                                    ''
+                                                                "
+                                                            ></i>
+                                                            <i
+                                                                class="bi bi-download hand"
+                                                                @click.stop="
+                                                                    downloadFile(
+                                                                        rsf
+                                                                            .assignment_answer
+                                                                            .id
+                                                                    )
+                                                                "
+                                                                v-else
                                                             ></i>
                                                             <label
                                                                 for="assignment_file_answer"

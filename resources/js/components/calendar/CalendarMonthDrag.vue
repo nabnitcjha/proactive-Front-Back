@@ -117,7 +117,7 @@
                                     v-for="(rsf, index) in resource_file"
                                     :key="index"
                                     v-if="rsf && rsf.resourceFile != null"
-                                    style="padding-bottom: 2rem;"
+                                    style="padding-bottom: 2rem"
                                 >
                                     <span class="rs-file">{{
                                         rsf.resourceFile.original_filename
@@ -218,13 +218,20 @@
                                                 'teacher'
                                             "
                                         >
+                                            <span
+                                                v-if="
+                                                    rsf.assignment_answer == ''
+                                                "
+                                                >{{ "not available" }}</span
+                                            >
                                             <i
                                                 class="bi bi-download hand"
                                                 @click.stop="
                                                     downloadFile(
-                                                        rsf.resourceFile.id
+                                                        rsf.assignment_answer.id
                                                     )
                                                 "
+                                                v-else
                                             ></i>
                                         </td>
                                         <td v-else>
@@ -235,7 +242,9 @@
                                                         rsf.resourceFile.id
                                                     )
                                                 "
-                                                v-if="rsf.assignment_answer==''"
+                                                v-if="
+                                                    rsf.assignment_answer == ''
+                                                "
                                             ></i>
                                             <i
                                                 class="bi bi-download hand"
