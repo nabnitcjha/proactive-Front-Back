@@ -96,7 +96,7 @@ Route::group([
     Route::post('timetable/{id}/resourceFile', 'ClassScheduleController@saveResourceFile');
     Route::get('timetable/{id}/resourceFile', 'ClassScheduleController@getResourceFile');
 
-    Route::get('assignment/{id}/answer', 'ClassScheduleController@assignmentAnswer');
+    Route::post('assignment/{id}/answer', 'ClassScheduleController@assignmentAnswer');
 
     Route::get('downloadFile/{id}', 'uploadImageOrFileController@downloadFile');
     Route::get('displayFile/{id}', 'uploadImageOrFileController@displayFile');
