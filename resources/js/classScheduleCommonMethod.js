@@ -50,9 +50,11 @@ export default {
             let postResponse = await this.post(urlText, formData);
         },
         async saveAssessmentAnswer(formData) {
+            debugger;
             let urlText =
                 "assignment/" + this.selected_assessment_id + "/answer";
             let postResponse = await this.post(urlText, formData);
+            debugger;
         },
        
         async saveResourceFile() {
@@ -117,7 +119,7 @@ export default {
             debugger;
             let formData = new FormData();
             formData.append("student_id", this.current_student_id);
-            formData.append("assessment_id", this.selected_assessment_id);
+            formData.append("assignment_id", this.selected_assessment_id);
             formData.append("answer", this.assessment_file_answer);
             formData.append("class_schedule_id", this.current_timetable_id);
             debugger;
