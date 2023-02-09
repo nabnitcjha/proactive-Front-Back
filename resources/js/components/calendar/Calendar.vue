@@ -369,6 +369,16 @@
                                                             ></i>
                                                         </td>
                                                         <td v-else>
+                                                            <i
+                                                                class="bi bi-upload hand"
+                                                                @click.stop="
+                                                                    uploadAssignmentAnswer(
+                                                                        rsf
+                                                                            .resourceFile
+                                                                            .id
+                                                                    )
+                                                                "
+                                                            ></i>
                                                             <label
                                                                 for="assignment_file_answer"
                                                                 id="assignment_file_answer-label"
@@ -382,18 +392,10 @@
                                                                 @change="
                                                                     handleAssignmentFileAnswer
                                                                 "
-                                                                style="visibility: hidden"
-                                                            />
-                                                            <i
-                                                                class="bi bi-upload hand"
-                                                                @click.stop="
-                                                                    uploadAssignmentAnswer(
-                                                                        rsf
-                                                                            .resourceFile
-                                                                            .id
-                                                                    )
+                                                                style="
+                                                                    visibility: hidden;
                                                                 "
-                                                            ></i>
+                                                            />
                                                         </td>
                                                         <td>
                                                             <i

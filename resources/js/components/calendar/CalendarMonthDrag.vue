@@ -227,6 +227,14 @@
                                             ></i>
                                         </td>
                                         <td v-else>
+                                            <i
+                                                class="bi bi-upload hand"
+                                                @click.stop="
+                                                    uploadAssignmentAnswer(
+                                                        rsf.resourceFile.id
+                                                    )
+                                                "
+                                            ></i>
                                             <label
                                                 for="assignment_file_answer"
                                                 id="assignment_file_answer-label"
@@ -242,14 +250,6 @@
                                                 "
                                                 style="visibility: hidden"
                                             />
-                                            <i
-                                                class="bi bi-upload hand"
-                                                @click.stop="
-                                                    uploadAssignmentAnswer(
-                                                        rsf.resourceFile.id
-                                                    )
-                                                "
-                                            ></i>
                                         </td>
                                         <td>
                                             <i
