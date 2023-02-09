@@ -39,6 +39,7 @@ Route::group([
     Route::get('student/{student_id}/teacher/{teacher_id}/class', 'StudentController@getTeacherSlot');
     // Route::get('teacher/{teacher_id}/student/{student_id}/class', 'StudentController@getTeacherSlot');
     Route::get('student/{id}/sortedClass', 'StudentController@sortedClass');
+    Route::get('admin/sortedClass', 'StudentController@adminSortedClass');
     Route::get('student/{id}/class', 'StudentController@allClasses');
     Route::put('student/{id}/changePassword', 'StudentController@changePassword');
 

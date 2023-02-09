@@ -178,6 +178,22 @@ class StudentController extends BaseController
         return  ClassScheduleAdvanceResource::collection($sorted_class);
     }
 
+    public function adminSortedClass()
+    {
+        $sub = ClassSchedule::with('subject')->orderBy('id', 'DESC');
+        $sorted_class = DB::table(DB::raw("({$sub->toSql()}) as sub"))
+            ->groupBy('class_unique_id')
+            ->get();
+        foreach ($sorted_class as $key => $value) {
+            $teacher = Teacher::where('id', $value->teacher_id)->first();
+            $subject = Subject::where('id', $value->subject_id)->first();
+            $value->teacher = $teacher;
+            $value->subject = $subject;
+        }
+
+        return  ClassScheduleAdvanceResource::collection($sorted_class);
+    }
+
     public function changePassword(Request $request, $id)
     {
         $user = User::find($id);

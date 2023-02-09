@@ -450,6 +450,13 @@ export default {
             this.slotTimes = [];
             this.$router.push({ name: "classSchedule" });
         },
+        async sortedClass() {
+            let urlText = "admin/sortedClass";
+
+            let getResponse = await this.get(urlText, id, false);
+
+            this.sorted_class = getResponse.data.data;
+        },
         initialCall() {
             this.getStudents();
             this.getSubjects();
