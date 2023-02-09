@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('student_id')->unsigned();
             $table->integer('assignment_id')->unsigned();
+            $table->integer('assignment_answer')->default(0);
             $table->integer('class_schedule_id')->unsigned();
             $table->timestamps();
 
