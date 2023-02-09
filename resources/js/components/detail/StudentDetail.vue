@@ -1408,17 +1408,17 @@ export default {
             else {
                 urlText = "student/" + id + "/detailForAdmin";
             }
-            debugger;
+            
             let getResponse = await this.get(urlText, id, false);
             let sortedClass = await this.sortedClass();
-            debugger;
+            
             this.profile_overview = {
                 ...getResponse.data.data,
                 sorted_class: this.sorted_class,
             };
             this.subjects = this.profile_overview.subject_info;
             this.current_friend_id = this.profile_overview.student_info.user_id;
-            debugger;
+            
         },
         async sortedClass() {
             let id = this.$route.params.id;

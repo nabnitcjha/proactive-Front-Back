@@ -112,6 +112,7 @@
                                         {{ resourceFileName }}
                                     </div>
                                 </li>
+                                
                                 <li
                                     class="list-group-item d-flex justify-content-between"
                                     v-for="(rsf, index) in resource_file"
@@ -197,7 +198,7 @@
                                     <tr>
                                         <th scope="col">Name</th>
                                         <th scope="col">Answer</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Assignment Download</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -242,10 +243,15 @@
                                                         rsf.resourceFile.id
                                                     )
                                                 "
-                                                v-if="
-                                                    rsf.assignment_answer == ''
+                                                v-if="rsf.assignment_answer == '' && getLoginInfo.user.role=='student'
                                                 "
                                             ></i>
+                                            
+                                            <span
+                                               
+                                                v-else-if="rsf.assignment_answer == '' && getLoginInfo.user.role=='parent'
+                                                "
+                                            >{{ "not available" }}</span>
                                             <i
                                                 class="bi bi-download hand"
                                                 @click.stop="

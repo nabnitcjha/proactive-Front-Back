@@ -116,23 +116,20 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
               } else {
                 urlText = "student/" + id + "/detailForAdmin";
               }
-              debugger;
-              _context.next = 6;
+              _context.next = 5;
               return _this.get(urlText, id, false);
-            case 6:
+            case 5:
               getResponse = _context.sent;
-              _context.next = 9;
+              _context.next = 8;
               return _this.sortedClass();
-            case 9:
+            case 8:
               sortedClass = _context.sent;
-              debugger;
               _this.profile_overview = _objectSpread(_objectSpread({}, getResponse.data.data), {}, {
                 sorted_class: _this.sorted_class
               });
               _this.subjects = _this.profile_overview.subject_info;
               _this.current_friend_id = _this.profile_overview.student_info.user_id;
-              debugger;
-            case 15:
+            case 12:
             case "end":
               return _context.stop();
           }

@@ -185,5 +185,5 @@ span.custom-checkbox {
 }
 
 .td-rs-file{
-  max-width: 17rem!important;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  max-width: 12rem!important;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
