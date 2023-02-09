@@ -20,23 +20,19 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">Topic</th>
+                                <th scope="col">Duration</th>
+                                <th scope="col">Subject</th>
+                                <th scope="col">Teacher</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
+                            <tr  v-for="(sort_cls, index) in sorted_class" :key="index">
+                                <th scope="row">{{ index + 1 }}</th>
+                                <td>{{ sort_cls.topic }}</td>
+                                <td>{{ sort_cls.duration }}</td>
+                                <td>{{ sort_cls.subject.name }}</td>
+                                <td>{{ sort_cls.teacher.full_name }}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -244,6 +240,7 @@ import moment from "moment";
 export default {
     data() {
         return {
+            sorted_class:[],
             currentTimetableId: "",
             studentCalendarDetail: false,
             allowAddStudent: false,
@@ -453,7 +450,7 @@ export default {
         async sortedClass() {
             let urlText = "admin/sortedClass";
 
-            let getResponse = await this.get(urlText, id, false);
+            let getResponse = await this.get(urlText, 1, false);
 
             this.sorted_class = getResponse.data.data;
         },
@@ -461,6 +458,7 @@ export default {
             this.getStudents();
             this.getSubjects();
             this.getTeachers();
+            this.sortedClass();
         },
     },
     mounted() {
