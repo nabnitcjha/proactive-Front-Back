@@ -17,8 +17,8 @@ export default {
             let postResponse = await this.post(urlText, formData);
         },
         async deleteStudyResource(id) {
-           let d = await this.deleteAlert(id,'calendar');
-           this.getResourceFile();
+            let d = await this.deleteAlert(id, "calendar");
+            this.getResourceFile();
         },
         checkRole() {
             if (
@@ -50,13 +50,11 @@ export default {
             let postResponse = await this.post(urlText, formData);
         },
         async saveAssessmentAnswer(formData) {
-            debugger;
             let urlText =
                 "assignment/" + this.selected_assessment_id + "/answer";
             let postResponse = await this.post(urlText, formData);
-            debugger;
         },
-       
+
         async saveResourceFile() {
             // let x = this.current_timetable_id;
             let formData = new FormData();
@@ -82,7 +80,7 @@ export default {
             this.resourceFileName = this.assessment_file.name;
             document.getElementById("study_resource").value = null;
         },
-      
+
         handleAssignmentFile(e) {
             e.preventDefault();
             this.assessment_file = document.querySelector(
@@ -92,12 +90,11 @@ export default {
             this.assignmentFileName = this.assessment_file.name;
         },
         handleAssignmentFileAnswer(e) {
-            debugger;
             e.preventDefault();
             this.assessment_file_answer = document.querySelector(
                 "input[id=assignment_file_answer]"
             ).files[0];
-            debugger;
+
             this.saveAssignmentAnswerFile();
         },
         async saveAssignmentFile() {
@@ -116,15 +113,14 @@ export default {
             this.getResourceFile();
         },
         async saveAssignmentAnswerFile() {
-            debugger;
             let formData = new FormData();
             formData.append("student_id", this.current_student_id);
             formData.append("assignment_id", this.selected_assessment_id);
             formData.append("answer", this.assessment_file_answer);
             formData.append("class_schedule_id", this.current_timetable_id);
-            debugger;
+
             let svf = await this.saveAssessmentAnswer(formData);
-            debugger;
+
             document.getElementById("assignment_file_answer").value = null;
             this.getResourceFile();
         },
