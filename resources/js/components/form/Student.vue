@@ -583,7 +583,7 @@ export default {
                         this.getLoginInfo.teacher_info.id +
                         "/student";
                 } else {
-                    urlText = "getStudents";
+                    urlText = "getStudents/false";
                 }
                 let getResponse = await this.get(urlText, 1, false);
                 this.students = getResponse.data.data;

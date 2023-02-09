@@ -191,7 +191,7 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
               if (_this2.getLoginInfo.user.role == "teacher") {
                 urlText = "teacher/" + _this2.getLoginInfo.teacher_info.id + "/student";
               } else {
-                urlText = "getStudents";
+                urlText = "getStudents/false";
               }
               _context2.next = 8;
               return _this2.get(urlText, 1, false);
