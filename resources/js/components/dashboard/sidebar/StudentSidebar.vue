@@ -1,7 +1,7 @@
 <template>
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item"  @click.stop="$root.changeRoute('/dashboard')">
-            <a class="nav-link hand">
+            <a class="nav-link collapsed hand">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
@@ -10,7 +10,7 @@
 
         <li class="nav-item">
             <a
-                class="nav-link collapsed hand"
+                class="nav-link  hand"
                 @click.stop="$root.changeRoute('/teacher')"
             >
                 <i class="bi bi-person"></i>

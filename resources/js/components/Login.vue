@@ -59,7 +59,15 @@ export default {
             localStorage.setItem("token", postResponse.data.access_token);
             this.setLoginInfo(this.loginDetail)
             this.setAuthenticate(true)
-            this.$router.push('/dashboard')
+            if (this.getLoginInfo.user.role=='student') {
+                this.$router.push('/teacher')
+            }else if(this.getLoginInfo.user.role=='teacher') {
+                this.$router.push('/student')
+            }else if(this.getLoginInfo.user.role=='parent') {
+                this.$router.push('/student')
+            }else{
+                this.$router.push('/student')
+            }
         }
     } 
 };
