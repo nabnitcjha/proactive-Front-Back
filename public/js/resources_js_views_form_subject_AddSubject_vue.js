@@ -32,6 +32,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   props: {
     mode: String
   },
+  mounted: function mounted() {
+    this.getSubjects();
+  },
   methods: {
     callBack: function callBack() {
       this.save();
@@ -70,16 +73,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     getSubjects: function getSubjects() {
       var _this2 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        var urlText;
+        var urlText, getResponse;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              urlText = "getSubjects";
+              urlText = "getSubjects/false";
               _context2.next = 3;
-              return _this2.get(urlText, 0, true);
+              return _this2.get(urlText, 1, true);
             case 3:
-              postResponse = _context2.sent;
-            case 4:
+              getResponse = _context2.sent;
+              _this2.subjects = getResponse.data.data;
+            case 5:
             case "end":
               return _context2.stop();
           }
@@ -159,7 +163,17 @@ var render = function render() {
     staticClass: "bi bi-plus"
   }), _vm._v(" ADD SUBJECT\n                    ")])]), _vm._v(" "), _c("hr", {
     staticClass: "hr-color"
-  }), _vm._v(" "), _vm._m(0)])]) : _c("div", {
+  }), _vm._v(" "), _c("table", {
+    staticClass: "table table-hover"
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.subjects, function (sub, index) {
+    return _c("tr", {
+      key: index
+    }, [_c("th", {
+      attrs: {
+        scope: "row"
+      }
+    }, [_vm._v(_vm._s(index + 1))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(sub.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(sub.created_at))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(sub.updated_at))])]);
+  }), 0)])])]) : _c("div", {
     staticClass: "card"
   }, [_c("div", {
     staticClass: "card-body"
@@ -235,9 +249,7 @@ var render = function render() {
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("table", {
-    staticClass: "table table-hover"
-  }, [_c("thead", [_c("tr", [_c("th", {
+  return _c("thead", [_c("tr", [_c("th", {
     attrs: {
       scope: "col"
     }
@@ -245,23 +257,15 @@ var staticRenderFns = [function () {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("First")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Name")]), _vm._v(" "), _c("th", {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("Last")]), _vm._v(" "), _c("th", {
+  }, [_vm._v("Created")]), _vm._v(" "), _c("th", {
     attrs: {
       scope: "col"
     }
-  }, [_vm._v("Handle")])])]), _vm._v(" "), _c("tbody", [_c("tr", [_c("th", {
-    attrs: {
-      scope: "row"
-    }
-  }, [_vm._v("1")]), _vm._v(" "), _c("td", [_vm._v("Mark")]), _vm._v(" "), _c("td", [_vm._v("Otto")]), _vm._v(" "), _c("td", [_vm._v("@mdo")])]), _vm._v(" "), _c("tr", [_c("th", {
-    attrs: {
-      scope: "row"
-    }
-  }, [_vm._v("2")]), _vm._v(" "), _c("td", [_vm._v("Jacob")]), _vm._v(" "), _c("td", [_vm._v("Thornton")]), _vm._v(" "), _c("td", [_vm._v("@fat")])])])]);
+  }, [_vm._v("Updated")])])]);
 }];
 render._withStripped = true;
 
