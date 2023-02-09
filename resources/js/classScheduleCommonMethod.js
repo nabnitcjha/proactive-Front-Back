@@ -49,6 +49,11 @@ export default {
                 "timetable/" + this.current_timetable_id + "/resourceFile";
             let postResponse = await this.post(urlText, formData);
         },
+        async saveAssessmentAnswer(formData) {
+            let urlText =
+                "assignment/" + this.selected_assessment_id + "/answer";
+            let postResponse = await this.post(urlText, formData);
+        },
        
         async saveResourceFile() {
             // let x = this.current_timetable_id;
@@ -113,9 +118,10 @@ export default {
             let formData = new FormData();
             formData.append("student_id", this.current_student_id);
             formData.append("assessment_id", this.selected_assessment_id);
+            formData.append("answer", this.assessment_file_answer);
             formData.append("class_schedule_id", this.current_timetable_id);
             debugger;
-            let svf = await this.saveFile(formData);
+            let svf = await this.saveAssessmentAnswer(formData);
             debugger;
             document.getElementById("assignment_file_answer").value = null;
             this.getResourceFile();

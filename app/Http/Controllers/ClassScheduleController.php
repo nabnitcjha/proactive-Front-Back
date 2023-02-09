@@ -40,12 +40,30 @@ class ClassScheduleController extends BaseController
     public function getResourceFile($class_schedule_id)
     {
         $assignmentIds = TeacherAssignment::where('class_schedule_id', $class_schedule_id)->pluck('assignment_id');
-        $assignments = Assignment::whereIn('id',$assignmentIds)->get();
+        $assignments = Assignment::whereIn('id', $assignmentIds)->get();
         foreach ($assignments as $key => $value) {
             # code...
             $value->resourceFile = $this->imageOrFile->getFile($value->assignment);
         }
         return UploadImageOrFileResource::collection($assignments);
+    }
+
+    public function assignmentAnswer(Request $request, $assignment_id)
+    {
+
+        if ($assessment = $request->file('answer')) {
+            $groupId = 0;
+            $uploadGroupId = $this->imageOrFile->manageUploads($assessment, $savepath = 'classSchedule', $groupId);
+
+            parent::createModelObject("App\Models\Assignment_Answer");
+            $assignment_answer_info = [
+                'assignment_id' => $request->assignment_id,
+                'student_id' => $request->student_id,
+                "answer"=>$uploadGroupId,
+                'class_schedule_id' => $request->class_schedule_id,
+            ];
+            $assessment_answer = parent::store($assignment_answer_info);
+        }
     }
 
     public function saveResourceFile(Request $request)
@@ -80,7 +98,8 @@ class ClassScheduleController extends BaseController
             }
         }
     }
-    public function saveZoomLink(Request $request){   
+    public function saveZoomLink(Request $request)
+    {
         $timetable = ClassSchedule::find($request->timetable_id);
         $timetable->zoom_link = $request->zoom_link;
         $timetable->save();
@@ -170,16 +189,16 @@ class ClassScheduleController extends BaseController
 
     public function deleteAssignment($id)
     {
-        Assignment::where('assignment',$id)->delete();
-        TeacherAssignment::where('assignment_id',$id)->delete();
-        Assignment_Answer::where('assignment_id',$id)->delete();
-    
+        Assignment::where('assignment', $id)->delete();
+        TeacherAssignment::where('assignment_id', $id)->delete();
+        Assignment_Answer::where('assignment_id', $id)->delete();
+
         $this->successMessage('delete successfully');
     }
 
     public function getClassAccordingUniqueId($class_unique_id)
     {
-        $class_schedule = ClassSchedule::where('class_unique_id',$class_unique_id)->get();
+        $class_schedule = ClassSchedule::where('class_unique_id', $class_unique_id)->get();
 
         return $this->classScheduleResource->collection($class_schedule);
     }
