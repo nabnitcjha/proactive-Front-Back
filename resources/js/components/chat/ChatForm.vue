@@ -147,6 +147,7 @@ export default {
 
     watch: {
         message_type(newValue, oldValue) {
+            
             this.fetchMessages(this.friend_id, this.my_id);
         },
         messageInfo(newValue, oldValue) {
@@ -258,8 +259,9 @@ export default {
                     "/" +
                     my_id;
             }
-
+            
             axios.get(urlText).then((response) => {
+                
                 this.user_message = response.data.data;
             });
         },
