@@ -1540,8 +1540,43 @@ var staticRenderFns = [function () {
   return _c("div", {
     staticClass: "row"
   }, [_c("div", {
-    staticClass: "col-lg-8"
+    staticClass: "col-12"
   }, [_c("div", {
+    staticClass: "card"
+  }, [_c("div", {
+    staticClass: "filter"
+  }, [_c("a", {
+    staticClass: "icon",
+    attrs: {
+      href: "#",
+      "data-bs-toggle": "dropdown"
+    }
+  }, [_c("i", {
+    staticClass: "bi bi-three-dots"
+  })]), _vm._v(" "), _c("ul", {
+    staticClass: "dropdown-menu dropdown-menu-end dropdown-menu-arrow"
+  }, [_c("li", {
+    staticClass: "dropdown-header text-start"
+  }, [_c("h6", [_vm._v("Filter")])]), _vm._v(" "), _c("li", [_c("a", {
+    staticClass: "dropdown-item",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("Today")])]), _vm._v(" "), _c("li", [_c("a", {
+    staticClass: "dropdown-item",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("Yesterday")])]), _vm._v(" "), _c("li", [_c("a", {
+    staticClass: "dropdown-item",
+    attrs: {
+      href: "#"
+    }
+  }, [_vm._v("Tomorrow")])])])]), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_c("h5", {
+    staticClass: "card-title"
+  }, [_vm._v("Classes "), _c("span", [_vm._v("| Today")])]), _vm._v(" "), _c("div", {
     staticClass: "row"
   }, [_c("div", {
     staticClass: "col-xxl-4 col-md-6"
@@ -1551,7 +1586,7 @@ var staticRenderFns = [function () {
     staticClass: "card-body"
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("Sales "), _c("span", [_vm._v("| Today")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                    Sales "), _c("span", [_vm._v("| Today")])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex align-items-center"
   }, [_c("div", {
     staticClass: "card-icon rounded-circle d-flex align-items-center justify-content-center"
@@ -1568,39 +1603,10 @@ var staticRenderFns = [function () {
   }, [_c("div", {
     staticClass: "card info-card revenue-card"
   }, [_c("div", {
-    staticClass: "filter"
-  }, [_c("a", {
-    staticClass: "icon",
-    attrs: {
-      href: "#",
-      "data-bs-toggle": "dropdown"
-    }
-  }, [_c("i", {
-    staticClass: "bi bi-three-dots"
-  })]), _vm._v(" "), _c("ul", {
-    staticClass: "dropdown-menu dropdown-menu-end dropdown-menu-arrow"
-  }, [_c("li", {
-    staticClass: "dropdown-header text-start"
-  }, [_c("h6", [_vm._v("Filter")])]), _vm._v(" "), _c("li", [_c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Today")])]), _vm._v(" "), _c("li", [_c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("This Month")])]), _vm._v(" "), _c("li", [_c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("This Year")])])])]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("Revenue "), _c("span", [_vm._v("| This Month")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                    Revenue "), _c("span", [_vm._v("| This Month")])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex align-items-center"
   }, [_c("div", {
     staticClass: "card-icon rounded-circle d-flex align-items-center justify-content-center"
@@ -1617,39 +1623,10 @@ var staticRenderFns = [function () {
   }, [_c("div", {
     staticClass: "card info-card customers-card"
   }, [_c("div", {
-    staticClass: "filter"
-  }, [_c("a", {
-    staticClass: "icon",
-    attrs: {
-      href: "#",
-      "data-bs-toggle": "dropdown"
-    }
-  }, [_c("i", {
-    staticClass: "bi bi-three-dots"
-  })]), _vm._v(" "), _c("ul", {
-    staticClass: "dropdown-menu dropdown-menu-end dropdown-menu-arrow"
-  }, [_c("li", {
-    staticClass: "dropdown-header text-start"
-  }, [_c("h6", [_vm._v("Filter")])]), _vm._v(" "), _c("li", [_c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Today")])]), _vm._v(" "), _c("li", [_c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("This Month")])]), _vm._v(" "), _c("li", [_c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("This Year")])])])]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("Customers "), _c("span", [_vm._v("| This Year")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                                    Customers "), _c("span", [_vm._v("| This Year")])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex align-items-center"
   }, [_c("div", {
     staticClass: "card-icon rounded-circle d-flex align-items-center justify-content-center"
@@ -1661,196 +1638,7 @@ var staticRenderFns = [function () {
     staticClass: "text-danger small pt-1 fw-bold"
   }, [_vm._v("12%")]), _vm._v(" "), _c("span", {
     staticClass: "text-muted small pt-2 ps-1"
-  }, [_vm._v("decrease")])])])])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "col-lg-4"
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
-    staticClass: "filter"
-  }, [_c("a", {
-    staticClass: "icon",
-    attrs: {
-      href: "#",
-      "data-bs-toggle": "dropdown"
-    }
-  }, [_c("i", {
-    staticClass: "bi bi-three-dots"
-  })]), _vm._v(" "), _c("ul", {
-    staticClass: "dropdown-menu dropdown-menu-end dropdown-menu-arrow"
-  }, [_c("li", {
-    staticClass: "dropdown-header text-start"
-  }, [_c("h6", [_vm._v("Filter")])]), _vm._v(" "), _c("li", [_c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Today")])]), _vm._v(" "), _c("li", [_c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("This Month")])]), _vm._v(" "), _c("li", [_c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("This Year")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("h5", {
-    staticClass: "card-title"
-  }, [_vm._v("Recent Activity "), _c("span", [_vm._v("| Today")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity"
-  }, [_c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("32 min")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-success align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n        Quia quae rerum "), _c("a", {
-    staticClass: "fw-bold text-dark",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("explicabo officiis")]), _vm._v(" beatae\n      ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("56 min")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-danger align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n        Voluptatem blanditiis blanditiis eveniet\n      ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("2 hrs")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-primary align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n        Voluptates corrupti molestias voluptatem\n      ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("1 day")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-info align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n        Tempore autem saepe "), _c("a", {
-    staticClass: "fw-bold text-dark",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("occaecati voluptatem")]), _vm._v(" tempore\n      ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("2 days")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-warning align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n        Est sit eum reiciendis exercitationem\n      ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("4 weeks")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-muted align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n        Dicta dolorem harum nulla eius. Ut quidem quidem sit quas\n      ")])])])])]), _vm._v(" "), _c("div", {
-    staticClass: "card"
-  }, [_c("div", {
-    staticClass: "filter"
-  }, [_c("a", {
-    staticClass: "icon",
-    attrs: {
-      href: "#",
-      "data-bs-toggle": "dropdown"
-    }
-  }, [_c("i", {
-    staticClass: "bi bi-three-dots"
-  })]), _vm._v(" "), _c("ul", {
-    staticClass: "dropdown-menu dropdown-menu-end dropdown-menu-arrow"
-  }, [_c("li", {
-    staticClass: "dropdown-header text-start"
-  }, [_c("h6", [_vm._v("Filter")])]), _vm._v(" "), _c("li", [_c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Today")])]), _vm._v(" "), _c("li", [_c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("This Month")])]), _vm._v(" "), _c("li", [_c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("This Year")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "card-body pb-0"
-  }, [_c("h5", {
-    staticClass: "card-title"
-  }, [_vm._v("News & Updates "), _c("span", [_vm._v("| Today")])]), _vm._v(" "), _c("div", {
-    staticClass: "news"
-  }, [_c("div", {
-    staticClass: "post-item clearfix"
-  }, [_c("img", {
-    attrs: {
-      src: __webpack_require__(/*! ../../../../../public/dashboard_css/assets/img/news-1.jpg */ "./public/dashboard_css/assets/img/news-1.jpg"),
-      alt: ""
-    }
-  }), _vm._v(" "), _c("h4", [_c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Nihil blanditiis at in nihil autem")])]), _vm._v(" "), _c("p", [_vm._v("Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...")])]), _vm._v(" "), _c("div", {
-    staticClass: "post-item clearfix"
-  }, [_c("img", {
-    attrs: {
-      src: __webpack_require__(/*! ../../../../../public/dashboard_css/assets/img/news-2.jpg */ "./public/dashboard_css/assets/img/news-2.jpg"),
-      alt: ""
-    }
-  }), _vm._v(" "), _c("h4", [_c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Quidem autem et impedit")])]), _vm._v(" "), _c("p", [_vm._v("Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...")])]), _vm._v(" "), _c("div", {
-    staticClass: "post-item clearfix"
-  }, [_c("img", {
-    attrs: {
-      src: __webpack_require__(/*! ../../../../../public/dashboard_css/assets/img/news-3.jpg */ "./public/dashboard_css/assets/img/news-3.jpg"),
-      alt: ""
-    }
-  }), _vm._v(" "), _c("h4", [_c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Id quia et et ut maxime similique occaecati ut")])]), _vm._v(" "), _c("p", [_vm._v("Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...")])]), _vm._v(" "), _c("div", {
-    staticClass: "post-item clearfix"
-  }, [_c("img", {
-    attrs: {
-      src: __webpack_require__(/*! ../../../../../public/dashboard_css/assets/img/news-4.jpg */ "./public/dashboard_css/assets/img/news-4.jpg"),
-      alt: ""
-    }
-  }), _vm._v(" "), _c("h4", [_c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Laborum corporis quo dara net para")])]), _vm._v(" "), _c("p", [_vm._v("Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...")])]), _vm._v(" "), _c("div", {
-    staticClass: "post-item clearfix"
-  }, [_c("img", {
-    attrs: {
-      src: __webpack_require__(/*! ../../../../../public/dashboard_css/assets/img/news-5.jpg */ "./public/dashboard_css/assets/img/news-5.jpg"),
-      alt: ""
-    }
-  }), _vm._v(" "), _c("h4", [_c("a", {
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("Et dolores corrupti quae illo quod dolor")])]), _vm._v(" "), _c("p", [_vm._v("Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...")])])])])])])]);
+  }, [_vm._v("decrease")])])])])])])])])])])]);
 }];
 render._withStripped = true;
 
