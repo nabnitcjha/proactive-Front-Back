@@ -1241,7 +1241,7 @@ var staticRenderFns = [function () {
     staticClass: "card-body"
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("Sales "), _c("span", [_vm._v("| Today")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Sales "), _c("span", [_vm._v("| Today")])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex align-items-center"
   }, [_c("div", {
     staticClass: "card-icon rounded-circle d-flex align-items-center justify-content-center"
@@ -1290,7 +1290,7 @@ var staticRenderFns = [function () {
     staticClass: "card-body"
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("Revenue "), _c("span", [_vm._v("| This Month")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Revenue "), _c("span", [_vm._v("| This Month")])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex align-items-center"
   }, [_c("div", {
     staticClass: "card-icon rounded-circle d-flex align-items-center justify-content-center"
@@ -1339,7 +1339,7 @@ var staticRenderFns = [function () {
     staticClass: "card-body"
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("Customers "), _c("span", [_vm._v("| This Year")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Customers "), _c("span", [_vm._v("| This Year")])]), _vm._v(" "), _c("div", {
     staticClass: "d-flex align-items-center"
   }, [_c("div", {
     staticClass: "card-icon rounded-circle d-flex align-items-center justify-content-center"
@@ -1388,7 +1388,7 @@ var staticRenderFns = [function () {
     staticClass: "card-body"
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("Recent Activity "), _c("span", [_vm._v("| Today")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                    Recent Activity "), _c("span", [_vm._v("| Today")])]), _vm._v(" "), _c("div", {
     staticClass: "activity"
   }, [_c("div", {
     staticClass: "activity-item d-flex"
@@ -1398,12 +1398,12 @@ var staticRenderFns = [function () {
     staticClass: "bi bi-circle-fill activity-badge text-success align-self-start"
   }), _vm._v(" "), _c("div", {
     staticClass: "activity-content"
-  }, [_vm._v("\n        Quia quae rerum "), _c("a", {
+  }, [_vm._v("\n                            Quia quae rerum\n                            "), _c("a", {
     staticClass: "fw-bold text-dark",
     attrs: {
       href: "#"
     }
-  }, [_vm._v("explicabo officiis")]), _vm._v(" beatae\n      ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("explicabo officiis")]), _vm._v("\n                            beatae\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "activity-item d-flex"
   }, [_c("div", {
     staticClass: "activite-label"
@@ -1411,7 +1411,7 @@ var staticRenderFns = [function () {
     staticClass: "bi bi-circle-fill activity-badge text-danger align-self-start"
   }), _vm._v(" "), _c("div", {
     staticClass: "activity-content"
-  }, [_vm._v("\n        Voluptatem blanditiis blanditiis eveniet\n      ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Voluptatem blanditiis blanditiis eveniet\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "activity-item d-flex"
   }, [_c("div", {
     staticClass: "activite-label"
@@ -1419,7 +1419,7 @@ var staticRenderFns = [function () {
     staticClass: "bi bi-circle-fill activity-badge text-primary align-self-start"
   }), _vm._v(" "), _c("div", {
     staticClass: "activity-content"
-  }, [_vm._v("\n        Voluptates corrupti molestias voluptatem\n      ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Voluptates corrupti molestias voluptatem\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "activity-item d-flex"
   }, [_c("div", {
     staticClass: "activite-label"
@@ -1427,12 +1427,12 @@ var staticRenderFns = [function () {
     staticClass: "bi bi-circle-fill activity-badge text-info align-self-start"
   }), _vm._v(" "), _c("div", {
     staticClass: "activity-content"
-  }, [_vm._v("\n        Tempore autem saepe "), _c("a", {
+  }, [_vm._v("\n                            Tempore autem saepe\n                            "), _c("a", {
     staticClass: "fw-bold text-dark",
     attrs: {
       href: "#"
     }
-  }, [_vm._v("occaecati voluptatem")]), _vm._v(" tempore\n      ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("occaecati voluptatem")]), _vm._v("\n                            tempore\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "activity-item d-flex"
   }, [_c("div", {
     staticClass: "activite-label"
@@ -1440,7 +1440,7 @@ var staticRenderFns = [function () {
     staticClass: "bi bi-circle-fill activity-badge text-warning align-self-start"
   }), _vm._v(" "), _c("div", {
     staticClass: "activity-content"
-  }, [_vm._v("\n        Est sit eum reiciendis exercitationem\n      ")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Est sit eum reiciendis exercitationem\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "activity-item d-flex"
   }, [_c("div", {
     staticClass: "activite-label"
@@ -1448,7 +1448,7 @@ var staticRenderFns = [function () {
     staticClass: "bi bi-circle-fill activity-badge text-muted align-self-start"
   }), _vm._v(" "), _c("div", {
     staticClass: "activity-content"
-  }, [_vm._v("\n        Dicta dolorem harum nulla eius. Ut quidem quidem sit quas\n      ")])])])])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                            Dicta dolorem harum nulla eius. Ut quidem quidem\n                            sit quas\n                        ")])])])])]), _vm._v(" "), _c("div", {
     staticClass: "card"
   }, [_c("div", {
     staticClass: "filter"
@@ -1483,7 +1483,7 @@ var staticRenderFns = [function () {
     staticClass: "card-body pb-0"
   }, [_c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("News & Updates "), _c("span", [_vm._v("| Today")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("\n                    News & Updates "), _c("span", [_vm._v("| Today")])]), _vm._v(" "), _c("div", {
     staticClass: "news"
   }, [_c("div", {
     staticClass: "post-item clearfix"
@@ -1496,7 +1496,7 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("Nihil blanditiis at in nihil autem")])]), _vm._v(" "), _c("p", [_vm._v("Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Nihil blanditiis at in nihil autem")])]), _vm._v(" "), _c("p", [_vm._v("\n                            Sit recusandae non aspernatur laboriosam. Quia\n                            enim eligendi sed ut harum...\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "post-item clearfix"
   }, [_c("img", {
     attrs: {
@@ -1507,7 +1507,7 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("Quidem autem et impedit")])]), _vm._v(" "), _c("p", [_vm._v("Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Quidem autem et impedit")])]), _vm._v(" "), _c("p", [_vm._v("\n                            Illo nemo neque maiores vitae officiis cum eum\n                            turos elan dries werona nande...\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "post-item clearfix"
   }, [_c("img", {
     attrs: {
@@ -1518,7 +1518,7 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("Id quia et et ut maxime similique occaecati ut")])]), _vm._v(" "), _c("p", [_vm._v("Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Id quia et et ut maxime similique occaecati\n                                ut")])]), _vm._v(" "), _c("p", [_vm._v("\n                            Fugiat voluptas vero eaque accusantium eos.\n                            Consequuntur sed ipsam et totam...\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "post-item clearfix"
   }, [_c("img", {
     attrs: {
@@ -1529,7 +1529,7 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("Laborum corporis quo dara net para")])]), _vm._v(" "), _c("p", [_vm._v("Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...")])]), _vm._v(" "), _c("div", {
+  }, [_vm._v("Laborum corporis quo dara net para")])]), _vm._v(" "), _c("p", [_vm._v("\n                            Qui enim quia optio. Eligendi aut asperiores\n                            enim repellendusvel rerum cuder...\n                        ")])]), _vm._v(" "), _c("div", {
     staticClass: "post-item clearfix"
   }, [_c("img", {
     attrs: {
@@ -1540,7 +1540,7 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("Et dolores corrupti quae illo quod dolor")])]), _vm._v(" "), _c("p", [_vm._v("Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...")])])])])])])]);
+  }, [_vm._v("Et dolores corrupti quae illo quod dolor")])]), _vm._v(" "), _c("p", [_vm._v("\n                            Odit ut eveniet modi reiciendis. Atque\n                            cupiditate libero beatae dignissimos eius...\n                        ")])])])])])])]);
 }];
 render._withStripped = true;
 
