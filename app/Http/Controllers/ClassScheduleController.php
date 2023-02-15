@@ -143,7 +143,7 @@ class ClassScheduleController extends BaseController
                 ->get();
             if (count($alloted_teacher) > 0) {
                 return array(
-                    "status"  => "not save",
+                    "status"  => "teacher not save",
                     "message" => "teacher not available",
                     "dayName" => Carbon::parse($start)->dayName,
                     "startDate" => Carbon::parse($start)->format('d-m-Y')
@@ -164,7 +164,7 @@ class ClassScheduleController extends BaseController
 
                 if (count($alloted_student)>0) {
                   return array(
-                      "status"  => "not save",
+                      "status"  => "student not save",
                       "message" => "student not available",
                       "dayName" => Carbon::parse($start)->dayName,
                       "startDate" =>Carbon::parse($start)->format('d-m-Y')
