@@ -8,13 +8,14 @@ use App\Models\Assignment;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ClassSchedule;
+use App\Models\StudentSession;
 use App\Models\StudentTeacher;
 use App\Models\TeacherSubject;
+use App\Models\Assignment_Answer;
 use App\Models\TeacherAssignment;
 use App\Http\Controllers\BaseController;
 use App\Http\Resources\ClassScheduleResource;
 use App\Http\Resources\UploadImageOrFileResource;
-use App\Models\Assignment_Answer;
 use App\Models\StudentSubject as ModelsStudentSubject;
 
 class ClassScheduleController extends BaseController
@@ -134,13 +135,13 @@ class ClassScheduleController extends BaseController
             $end = $slotTime['endDate'];
 
             // check teacher available or not
-            $timetable = ClassSchedule::where('teacher_id', $request->class_slot_info['teacher_id'])
+            $alloted_teacher = ClassSchedule::where('teacher_id', $request->class_slot_info['teacher_id'])
                 ->where(function ($query) use ($start, $end) {
                     $query->whereBetween('start_date', [$start, $end])
                         ->orWhereBetween('end_date', [$start, $end]);
                 })
                 ->get();
-            if (count($timetable) > 0) {
+            if (count($alloted_teacher) > 0) {
                 return array(
                     "status"  => "not save",
                     "message" => "teacher not available",
@@ -149,6 +150,28 @@ class ClassScheduleController extends BaseController
                 );
             }
             // check teacher available or not end
+
+
+            // check student available or not 
+            foreach ($students as $key => $val) {
+                $class_unique_ids = StudentSession::where('student_id',$val['id'])->pluck('class_unique_id');
+                $alloted_student = ClassSchedule::whereIn('class_unique_id',$class_unique_ids)
+                ->where(function($query) use($start, $end){
+                    $query->whereBetween('start_date', [$start, $end])
+                    ->orWhereBetween('end_date', [$start, $end]);
+                })
+                ->get();
+
+                if (count($alloted_student)>0) {
+                  return array(
+                      "status"  => "not save",
+                      "message" => "student not available",
+                      "dayName" => Carbon::parse($start)->dayName,
+                      "startDate" =>Carbon::parse($start)->format('d-m-Y')
+                  );
+                }
+            }
+            // check student available or not end
 
             parent::createModelObject("App\Models\ClassSchedule");
             $class_schedule_info = [
