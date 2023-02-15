@@ -441,11 +441,16 @@ export default {
 
             let postResponse = {};
             let urlText = "addTimetable";
-            
             postResponse = await this.post(urlText, formData);
+            if (condition) {
+                let msg = postResponse.data.message+' '+'on'+' '+postResponse.data.not_available_time+'( '+postResponse.data.dayName+' )' + ' '+postResponse.data.not_available_time
+                this.errorAlert(msg);
+            } else {
+                this.saveAlert('class save successfully');
+                this.slotTimes = [];
+                this.$router.push({ name: "classSchedule" });
+            }
             
-            this.slotTimes = [];
-            this.$router.push({ name: "classSchedule" });
         },
         async sortedClass() {
             let urlText = "admin/sortedClass";
