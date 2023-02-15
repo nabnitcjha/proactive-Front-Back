@@ -130,6 +130,7 @@ class ClassScheduleController extends BaseController
         $students = json_decode($request->class_student_info['students'], true);
         $session_id = Str::random($length = 10);
 
+        // check student and teacher available or not
         foreach ($slotTimes as $key => $slotTime) {
             $start = $slotTime['startDate'];
             $end = $slotTime['endDate'];
@@ -143,7 +144,7 @@ class ClassScheduleController extends BaseController
                 ->get();
             if (count($alloted_teacher) > 0) {
                 return array(
-                    "status"  => "teacher not save",
+                    "status"  => "failed",
                     "message" => "teacher not available",
                     "dayName" => Carbon::parse($start)->dayName,
                     "not_available_date" => Carbon::parse($start)->format('d-m-Y'),
@@ -165,7 +166,7 @@ class ClassScheduleController extends BaseController
 
                 if (count($alloted_student)>0) {
                   return array(
-                      "status"  => "student not save",
+                      "status"  => "failed",
                       "message" => "student not available",
                       "dayName" => Carbon::parse($start)->dayName,
                       "not_available_date" =>Carbon::parse($start)->format('d-m-Y'),
@@ -174,7 +175,10 @@ class ClassScheduleController extends BaseController
                 }
             }
             // check student available or not end
+        }
+        // check student and teacher available or not end
 
+        foreach ($slotTimes as $key => $slotTime) {
             parent::createModelObject("App\Models\ClassSchedule");
             $class_schedule_info = [
                 'start_date' => $slotTime['startDate'],
@@ -235,6 +239,10 @@ class ClassScheduleController extends BaseController
                 }
             }
         }
+        return array(
+            "status"  => "success",
+            "message" => "save successfully"
+        );
     }
 
     public function show($id)

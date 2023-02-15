@@ -442,7 +442,7 @@ export default {
             let postResponse = {};
             let urlText = "addTimetable";
             postResponse = await this.post(urlText, formData);
-            if (condition) {
+            if (postResponse.data.status=='failed') {
                 let msg = postResponse.data.message+' '+'on'+' '+postResponse.data.not_available_time+'( '+postResponse.data.dayName+' )' + ' '+postResponse.data.not_available_time
                 this.errorAlert(msg);
             } else {
