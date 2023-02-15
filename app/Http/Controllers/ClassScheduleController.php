@@ -135,7 +135,7 @@ class ClassScheduleController extends BaseController
             $end = $slotTime['endDate'];
 
             // check teacher available or not
-            $alloted_teacher = ClassSchedule::where('teacher_id', $request->class_slot_info['teacher_id'])
+            $alloted_teacher = ClassSchedule::where('teacher_id', $request->class_schedule_info['teacher_id'])
                 ->where(function ($query) use ($start, $end) {
                     $query->whereBetween('start_date', [$start, $end])
                         ->orWhereBetween('end_date', [$start, $end]);
@@ -146,7 +146,8 @@ class ClassScheduleController extends BaseController
                     "status"  => "teacher not save",
                     "message" => "teacher not available",
                     "dayName" => Carbon::parse($start)->dayName,
-                    "startDate" => Carbon::parse($start)->format('d-m-Y')
+                    "not_available_date" => Carbon::parse($start)->format('d-m-Y'),
+                    "not_available_time" => Carbon::parse($start)->format('h:i:s a').'-'.Carbon::parse($end)->format('h:i:s a')
                 );
             }
             // check teacher available or not end
@@ -167,7 +168,8 @@ class ClassScheduleController extends BaseController
                       "status"  => "student not save",
                       "message" => "student not available",
                       "dayName" => Carbon::parse($start)->dayName,
-                      "startDate" =>Carbon::parse($start)->format('d-m-Y')
+                      "not_available_date" =>Carbon::parse($start)->format('d-m-Y'),
+                      "not_available_time" => Carbon::parse($start)->format('h:i:s a').'-'.Carbon::parse($end)->format('h:i:s a')
                   );
                 }
             }

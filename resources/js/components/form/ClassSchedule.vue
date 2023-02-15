@@ -441,9 +441,9 @@ export default {
 
             let postResponse = {};
             let urlText = "addTimetable";
-
+            
             postResponse = await this.post(urlText, formData);
-
+            
             this.slotTimes = [];
             this.$router.push({ name: "classSchedule" });
         },
