@@ -187,3 +187,25 @@ span.custom-checkbox {
 .td-rs-file{
   max-width: 12rem!important;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
+
+.class-error{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.class-error .html-date , .class-error .html-day , .class-error .html-time{
+  font-size: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.class-error .html-date span{
+  color: #8bc34a !important;
+}
+.class-error .html-day span{
+  color: #fe9435 !important;
+}
+.class-error .html-time span{
+  color: #8bc34a !important;
+}

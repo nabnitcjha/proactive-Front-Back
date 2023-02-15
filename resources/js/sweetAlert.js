@@ -56,5 +56,18 @@ export default {
                 timer: 1500
               })
         },
+        classErrorAlert(msg,htmlMsg) {
+            // Use sweetalert2
+            this.$swal.
+            fire({
+                position: 'top-end',
+                icon: 'warning',
+                title: msg,
+                html: "<div class='class-error mt-3'>"+htmlMsg+"</div>",
+                showConfirmButton: false,
+                timer: 7500,
+                timerProgressBar: true,
+              })
+        },
     },
 };

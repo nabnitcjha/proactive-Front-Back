@@ -443,8 +443,12 @@ export default {
             let urlText = "addTimetable";
             postResponse = await this.post(urlText, formData);
             if (postResponse.data.status=='failed') {
-                let msg = postResponse.data.message+' '+'on'+' '+postResponse.data.not_available_time+'( '+postResponse.data.dayName+' )' + ' '+postResponse.data.not_available_time
-                this.errorAlert(msg);
+                let msg = postResponse.data.message
+                let htmlDate = '<span class="html-date mb-2">'+' <b>Date  : </b>'+'<span>'+postResponse.data.not_available_time+'</span>'+'</span>';
+                let htmlDay = '<span class="html-day mb-2">'+' <b>Day : </b>'+'<span>'+postResponse.data.dayName+'</span>'+'</span>';
+                let htmlTime = '<span class="html-time">'+' <b>Time : </b>'+'<span>'+postResponse.data.not_available_time+'</span>'+'</span>';
+                let htmlMsg = htmlDate +'<br>'+ htmlDay +'<br>'+ htmlTime +'<br>'
+                this.classErrorAlert(msg,htmlMsg);
             } else {
                 this.saveAlert('class save successfully');
                 this.slotTimes = [];
