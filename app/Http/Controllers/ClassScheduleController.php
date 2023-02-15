@@ -37,7 +37,7 @@ class ClassScheduleController extends BaseController
         return $this->classScheduleResource->collection($class_schedule);
     }
 
-    public function getResourceFile($student_id,$class_schedule_id)
+    public function getResourceFile($student_id, $class_schedule_id)
     {
         $assignmentIds = TeacherAssignment::where('class_schedule_id', $class_schedule_id)->pluck('assignment_id');
         $assignments = Assignment::whereIn('id', $assignmentIds)->get();
@@ -47,11 +47,11 @@ class ClassScheduleController extends BaseController
                 ['assignment_id', $value->id],
                 ['student_id', $student_id],
                 ['class_schedule_id', $class_schedule_id]
-                ])->first();
-            if($assignment_answer){
-               $value->assignment_answer = $this->imageOrFile->getFile($assignment_answer->answer);
-            }else{
-               $value->assignment_answer = '';
+            ])->first();
+            if ($assignment_answer) {
+                $value->assignment_answer = $this->imageOrFile->getFile($assignment_answer->answer);
+            } else {
+                $value->assignment_answer = '';
             }
             $value->resourceFile = $this->imageOrFile->getFile($value->assignment);
         }
@@ -69,7 +69,7 @@ class ClassScheduleController extends BaseController
             $assignment_answer_info = [
                 'assignment_id' => $request->assignment_id,
                 'student_id' => $request->student_id,
-                "answer"=>$uploadGroupId,
+                "answer" => $uploadGroupId,
                 'class_schedule_id' => $request->class_schedule_id,
             ];
             $assessment_answer = parent::store($assignment_answer_info);
@@ -130,6 +130,26 @@ class ClassScheduleController extends BaseController
         $session_id = Str::random($length = 10);
 
         foreach ($slotTimes as $key => $slotTime) {
+            $start = $slotTime['startDate'];
+            $end = $slotTime['endDate'];
+
+            // check teacher available or not
+            $timetable = ClassSchedule::where('teacher_id', $request->class_slot_info['teacher_id'])
+                ->where(function ($query) use ($start, $end) {
+                    $query->whereBetween('start_date', [$start, $end])
+                        ->orWhereBetween('end_date', [$start, $end]);
+                })
+                ->get();
+            if (count($timetable) > 0) {
+                return array(
+                    "status"  => "not save",
+                    "message" => "teacher not available",
+                    "dayName" => Carbon::parse($start)->dayName,
+                    "startDate" => Carbon::parse($start)->format('d-m-Y')
+                );
+            }
+            // check teacher available or not end
+
             parent::createModelObject("App\Models\ClassSchedule");
             $class_schedule_info = [
                 'start_date' => $slotTime['startDate'],
