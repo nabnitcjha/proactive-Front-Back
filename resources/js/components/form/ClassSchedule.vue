@@ -444,7 +444,7 @@ export default {
             postResponse = await this.post(urlText, formData);
             if (postResponse.data.status=='failed') {
                 let msg = postResponse.data.message
-                let htmlDate = '<span class="html-date mb-2">'+' <b>Date  : </b>'+'<span>'+postResponse.data.not_available_time+'</span>'+'</span>';
+                let htmlDate = '<span class="html-date mb-2">'+' <b>Date  : </b>'+'<span>'+postResponse.data.not_available_date+'</span>'+'</span>';
                 let htmlDay = '<span class="html-day mb-2">'+' <b>Day : </b>'+'<span>'+postResponse.data.dayName+'</span>'+'</span>';
                 let htmlTime = '<span class="html-time">'+' <b>Time : </b>'+'<span>'+postResponse.data.not_available_time+'</span>'+'</span>';
                 let htmlMsg = htmlDate +'<br>'+ htmlDay +'<br>'+ htmlTime +'<br>'
