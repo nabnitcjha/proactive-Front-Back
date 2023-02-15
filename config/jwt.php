@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 /*
  * This file is part of jwt-auth.
  *
@@ -101,7 +103,7 @@ return [
     |
     */
 
-    'ttl' => env('JWT_TTL', 60),
+    'ttl' => env('JWT_TTL', Carbon::now()->addDays(180)->timestamp),
 
     /*
     |--------------------------------------------------------------------------
