@@ -584,58 +584,61 @@ export default {
         async mouseMove(tms) {
             const mouse = this.toTime(tms);
             if (this.dragEvent) {
-                const start = this.dragEvent.start;
-                const end = this.dragEvent.end;
-                const duration = end - start;
-                const newStartTime = mouse - this.dragTime;
-                const newStart = this.roundTime(newStartTime);
-                const newEnd = newStart + duration;
-                let todayDate = this.dateFormater(new Date());
-                let targetDate = this.dateFormater(new Date(newStart));
-
-                if (moment(targetDate).isBefore(todayDate)) {
-                    this.isDisable = true;
+                if (
+                    this.getLoginInfo.user.role == "student" ||
+                    this.getLoginInfo.user.role == "parent"
+                ) {
+                    this.errorAlert("Only Teacher / Admin Can Drag");
                 } else {
-                    this.isDisable = false;
-                    this.dragEvent.start = new Date(newStart);
-                    this.dragEvent.end = new Date(newEnd);
+                    const start = this.dragEvent.start;
+                    const end = this.dragEvent.end;
+                    const duration = end - start;
+                    const newStartTime = mouse - this.dragTime;
+                    const newStart = this.roundTime(newStartTime);
+                    const newEnd = newStart + duration;
+                    let todayDate = this.dateFormater(new Date());
+                    let targetDate = this.dateFormater(new Date(newStart));
+
+                    if (moment(targetDate).isBefore(todayDate)) {
+                        this.isDisable = true;
+                    } else {
+                        this.isDisable = false;
+                        this.dragEvent.start = new Date(newStart);
+                        this.dragEvent.end = new Date(newEnd);
+                    }
                 }
             }
         },
 
         async endDrag() {
-            if (
-                this.getLoginInfo.user.role == "student" ||
-                this.getLoginInfo.user.role == "parent"
-            ) {
-                this.errorAlert("Only Teacher / Admin Can Drag");
-            } else {
-                if (!this.isDisable) {
-                    let formData = {};
-                    let urlText = "timetable/" + this.dragEvent.id + "/drag";
+            if (!this.isDisable) {
+                let formData = {};
+                let urlText = "timetable/" + this.dragEvent.id + "/drag";
 
-                    formData["id"] = this.dragEvent.id;
-                    formData["student_id"] = this.current_student_id;
-                    formData["teacher_id"] = this.current_teacher_id;
-                    formData["start_date"] = this.dateAndTimeFormater(
-                        this.dragEvent.start
-                    );
-                    formData["end_date"] = this.dateAndTimeFormater(
-                        this.dragEvent.end
-                    );
+                formData["id"] = this.dragEvent.id;
+                formData["student_id"] = this.current_student_id;
+                formData["teacher_id"] = this.current_teacher_id;
+                formData["start_date"] = this.dateAndTimeFormater(
+                    this.dragEvent.start
+                );
+                formData["end_date"] = this.dateAndTimeFormater(
+                    this.dragEvent.end
+                );
+                
+                if (
+                    this.getLoginInfo.user.role == "teacher"
+                ) {
                     let postResponse = await this.post(urlText, formData);
-                    let res =  this.slotAvailableOrNot(postResponse);
-                    if (res=='failed') {
-                        
-                    }
+                    let res = this.slotAvailableOrNot(postResponse);
                 }
 
-                this.dragTime = null;
-                this.dragEvent = null;
-                this.createEvent = null;
-                this.createStart = null;
-                this.extendOriginal = null;
             }
+
+            this.dragTime = null;
+            this.dragEvent = null;
+            this.createEvent = null;
+            this.createStart = null;
+            this.extendOriginal = null;
         },
         cancelDrag() {
             if (this.createEvent) {
