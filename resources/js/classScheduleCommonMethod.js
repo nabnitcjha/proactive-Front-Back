@@ -1,5 +1,43 @@
 export default {
     methods: {
+        slotAvailableOrNot(postResponse){
+            if (postResponse.data.status == "failed") {
+                let msg = postResponse.data.message;
+                let htmlDate =
+                    '<span class="html-date mb-2">' +
+                    " <b>Date  : </b>" +
+                    "<span>" +
+                    postResponse.data.not_available_date +
+                    "</span>" +
+                    "</span>";
+                let htmlDay =
+                    '<span class="html-day mb-2">' +
+                    " <b>Day : </b>" +
+                    "<span>" +
+                    postResponse.data.dayName +
+                    "</span>" +
+                    "</span>";
+                let htmlTime =
+                    '<span class="html-time">' +
+                    " <b>Time : </b>" +
+                    "<span>" +
+                    postResponse.data.not_available_time +
+                    "</span>" +
+                    "</span>";
+                let htmlMsg =
+                    htmlDate +
+                    "<br>" +
+                    htmlDay +
+                    "<br>" +
+                    htmlTime +
+                    "<br>";
+                this.classErrorAlert(msg, htmlMsg);
+                return 'failed';
+            } else {
+                this.saveAlert("drag successfully");
+                return 'success';
+            }
+        },
         openLink() {
             if (this.zoom_link != null) {
                 window.open(this.zoom_link);

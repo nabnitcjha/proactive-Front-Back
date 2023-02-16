@@ -268,10 +268,56 @@ class ClassScheduleController extends BaseController
 
     public function dragUpdate(Request $request, $id)
     {
+        $start = $request['start_date'];
+        $end = $request['end_date'];
+
+         // check teacher available or not
+         $alloted_teacher = ClassSchedule::where('teacher_id', $request['teacher_id'])
+         ->where(function ($query) use ($start, $end) {
+             $query->whereBetween('start_date', [$start, $end])
+                 ->orWhereBetween('end_date', [$start, $end]);
+         })
+         ->get();
+     if (count($alloted_teacher) > 0) {
+         return array(
+             "status"  => "failed",
+             "message" => "teacher not available",
+             "dayName" => Carbon::parse($start)->dayName,
+             "not_available_date" => Carbon::parse($start)->format('d-m-Y'),
+             "not_available_time" => Carbon::parse($start)->format('h:i:s a').'-'.Carbon::parse($end)->format('h:i:s a')
+         );
+     }
+     // check teacher available or not end
+
+      // check student available or not 
+      $class_unique_ids = StudentSession::where('student_id',$request['student_id'])->pluck('class_unique_id');
+      $alloted_student = ClassSchedule::whereIn('class_unique_id',$class_unique_ids)
+      ->where(function($query) use($start, $end){
+          $query->whereBetween('start_date', [$start, $end])
+          ->orWhereBetween('end_date', [$start, $end]);
+      })
+      ->get();
+
+      if (count($alloted_student)>0) {
+        return array(
+            "status"  => "failed",
+            "message" => "student not available",
+            "dayName" => Carbon::parse($start)->dayName,
+            "not_available_date" =>Carbon::parse($start)->format('d-m-Y'),
+            "not_available_time" => Carbon::parse($start)->format('h:i:s a').'-'.Carbon::parse($end)->format('h:i:s a')
+        );
+      }
+    // check student available or not end
+
         $drag_info = array();
         $drag_info['start_date'] = $request['start_date'];
         $drag_info['end_date'] = $request['end_date'];
-        return parent::update($drag_info, $id);
+        parent::update($drag_info, $id);
+
+        return array(
+            "status"  => "success",
+            "message" => "save successfully"
+        );
     }
 
     public function destroy($id)

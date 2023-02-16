@@ -615,13 +615,19 @@ export default {
                     let urlText = "timetable/" + this.dragEvent.id + "/drag";
 
                     formData["id"] = this.dragEvent.id;
+                    formData["student_id"] = this.current_student_id;
+                    formData["teacher_id"] = this.current_teacher_id;
                     formData["start_date"] = this.dateAndTimeFormater(
                         this.dragEvent.start
                     );
                     formData["end_date"] = this.dateAndTimeFormater(
                         this.dragEvent.end
                     );
-                    let patchResponse = await this.post(urlText, formData);
+                    let postResponse = await this.post(urlText, formData);
+                    let res =  this.slotAvailableOrNot(postResponse);
+                    if (res=='failed') {
+                        
+                    }
                 }
 
                 this.dragTime = null;
