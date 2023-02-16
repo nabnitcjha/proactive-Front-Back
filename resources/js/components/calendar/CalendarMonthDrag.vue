@@ -112,7 +112,7 @@
                                         {{ resourceFileName }}
                                     </div>
                                 </li>
-                                
+
                                 <li
                                     class="list-group-item d-flex justify-content-between"
                                     v-for="(rsf, index) in resource_file"
@@ -243,15 +243,23 @@
                                                         rsf.resourceFile.id
                                                     )
                                                 "
-                                                v-if="rsf.assignment_answer == '' && getLoginInfo.user.role=='student'
+                                                v-if="
+                                                    rsf.assignment_answer ==
+                                                        '' &&
+                                                    getLoginInfo.user.role ==
+                                                        'student'
                                                 "
                                             ></i>
-                                            
+
                                             <span
-                                               
-                                                v-else-if="rsf.assignment_answer == '' && getLoginInfo.user.role=='parent'
+                                                v-else-if="
+                                                    rsf.assignment_answer ==
+                                                        '' &&
+                                                    getLoginInfo.user.role ==
+                                                        'parent'
                                                 "
-                                            >{{ "not available" }}</span>
+                                                >{{ "not available" }}</span
+                                            >
                                             <i
                                                 class="bi bi-download hand"
                                                 @click.stop="
@@ -430,6 +438,8 @@
     </v-sheet>
 </template>
 <script>
+import { loginInfoStore } from "../../stores/loginInfo";
+import { mapState } from "pinia";
 import moment from "moment";
 export default {
     data: () => ({
@@ -479,6 +489,10 @@ export default {
         current_student_id: String,
         calType: String,
         unique_id: String,
+    },
+
+    computed: {
+        ...mapState(loginInfoStore, ["getLoginInfo"]),
     },
 
     methods: {
@@ -590,26 +604,32 @@ export default {
         },
 
         async endDrag() {
-            if (!this.isDisable) {
-                let formData = {};
-                let urlText = "timetable/" + this.dragEvent.id + "/drag";
+            if (
+                this.getLoginInfo.user.role == "student" ||
+                this.getLoginInfo.user.role == "parent"
+            ) {
+                this.errorAlert("Only Teacher / Admin Can Drag");
+            } else {
+                if (!this.isDisable) {
+                    let formData = {};
+                    let urlText = "timetable/" + this.dragEvent.id + "/drag";
 
-                formData["id"] = this.dragEvent.id;
-                formData["start_date"] = this.dateAndTimeFormater(
-                    this.dragEvent.start
-                );
-                formData["end_date"] = this.dateAndTimeFormater(
-                    this.dragEvent.end
-                );
+                    formData["id"] = this.dragEvent.id;
+                    formData["start_date"] = this.dateAndTimeFormater(
+                        this.dragEvent.start
+                    );
+                    formData["end_date"] = this.dateAndTimeFormater(
+                        this.dragEvent.end
+                    );
+                    let patchResponse = await this.post(urlText, formData);
+                }
 
-                let patchResponse = await this.post(urlText, formData);
+                this.dragTime = null;
+                this.dragEvent = null;
+                this.createEvent = null;
+                this.createStart = null;
+                this.extendOriginal = null;
             }
-
-            this.dragTime = null;
-            this.dragEvent = null;
-            this.createEvent = null;
-            this.createStart = null;
-            this.extendOriginal = null;
         },
         cancelDrag() {
             if (this.createEvent) {
@@ -670,8 +690,7 @@ export default {
                 urlText = "teacher/" + this.current_teacher_id + "/class";
             } else if (this.calType == "class_according_unique_id") {
                 urlText = "timetable/" + this.unique_id;
-            } 
-            else {
+            } else {
                 //teacher-detail student tab // or //student-detail teacher tab
                 urlText =
                     "student/" +

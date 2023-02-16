@@ -41,7 +41,8 @@ export default {
                 icon: 'success',
                 title: msg,
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2500,
+                timerProgressBar: true,
               })
         },
 
@@ -53,7 +54,8 @@ export default {
                 icon: 'warning',
                 title: msg,
                 showConfirmButton: false,
-                timer: 1500
+                timer: 2500,
+                timerProgressBar: true,
               })
         },
         classErrorAlert(msg,htmlMsg) {
