@@ -635,6 +635,9 @@ export default {
                     let postResponse = await this.post(urlText, formData);
                     if (!this.click_on_slot) {
                         let res = this.slotAvailableOrNot(postResponse);
+                        if (res=='failed') {
+                            this.getSlots();
+                        }
                     }
                     
                 }
@@ -764,6 +767,70 @@ export default {
         rndElement(arr) {
             return arr[this.rnd(0, arr.length - 1)];
         },
+        async getSlots(){
+            const events = [];
+            let getResponse = {};
+            let urlText = "";
+            if (this.calType == "student_all") {
+                //student-detail class tab
+                urlText = "student/" + this.current_student_id + "/class";
+            } else if (this.calType == "teacher_all") {
+                //teacher-detail class tab
+                urlText = "teacher/" + this.current_teacher_id + "/class";
+            } else if (this.calType == "class_according_unique_id") {
+                urlText = "timetable/" + this.unique_id;
+            } else {
+                //teacher-detail student tab // or //student-detail teacher tab
+                urlText =
+                    "student/" +
+                    this.current_student_id +
+                    "/teacher/" +
+                    this.current_teacher_id +
+                    "/class";
+            }
+            getResponse = await this.get(urlText, 1, false);
+            this.slots = getResponse.data.data;
+
+            // this.slots =await this.slot_info;
+            if (
+                this.calType == "student_all" ||
+                this.calType == "teacher_all"
+            ) {
+                this.slots.map((data) => {
+                    events.push({
+                        id: data.id,
+                        name: data.topic,
+                        color: this.colors[this.rnd(0, this.colors.length - 1)],
+                        start: new Date(data.start_date),
+                        end: new Date(data.end_date),
+                        time: data.duration,
+                        description: data.description,
+                        zoom_link: data.zoom_link,
+                        teacher_id: data.teacher.id,
+                        student_id: this.current_student_id,
+                        class_unique_id: data.class_unique_id,
+                    });
+                });
+            } else {
+                this.slots.map((data) => {
+                    events.push({
+                        id: data.id,
+                        name: data.topic,
+                        color: this.colors[this.rnd(0, this.colors.length - 1)],
+                        start: new Date(data.start_date),
+                        end: new Date(data.end_date),
+                        time: data.duration,
+                        description: data.description,
+                        zoom_link: data.zoom_link,
+                        teacher_id: this.current_teacher_id,
+                        student_id: this.current_student_id,
+                        class_unique_id: data.class_unique_id,
+                    });
+                });
+            }
+
+            this.events = events;
+        }
     },
     mounted() {
         this.checkRole();
