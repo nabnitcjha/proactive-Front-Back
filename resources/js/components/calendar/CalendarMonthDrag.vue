@@ -483,6 +483,7 @@ export default {
         resource_file: [],
         resource_id: "",
         selected_assessment_id: "",
+        click_on_slot:false
     }),
     props: {
         current_teacher_id: String,
@@ -500,7 +501,9 @@ export default {
             this.selected_assessment_id = id;
             document.getElementById("assignment_file_answer-label").click();
         },
-        getSlotInfo(slot) {},
+        getSlotInfo(slot) {
+            this.click_on_slot=true;
+        },
         deleteSlot() {
             this.$emit("delete-slot");
         },
@@ -612,6 +615,7 @@ export default {
 
         async endDrag() {
             if (!this.isDisable) {
+                this.click_on_slot=false;
                 let formData = {};
                 let urlText = "timetable/" + this.dragEvent.id + "/drag";
 
@@ -629,7 +633,10 @@ export default {
                     this.getLoginInfo.user.role == "teacher"
                 ) {
                     let postResponse = await this.post(urlText, formData);
-                    let res = this.slotAvailableOrNot(postResponse);
+                    if (!this.click_on_slot) {
+                        let res = this.slotAvailableOrNot(postResponse);
+                    }
+                    
                 }
 
             }
