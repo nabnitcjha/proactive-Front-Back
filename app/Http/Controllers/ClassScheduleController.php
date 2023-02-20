@@ -26,6 +26,7 @@ class ClassScheduleController extends BaseController
 
     public function __construct()
     {
+        $this->middleware('auth:api');
         $this->classScheduleResource = new ClassScheduleResource(array());
         $this->Model = new ClassSchedule();
         $this->imageOrFile = new uploadImageOrFileController();

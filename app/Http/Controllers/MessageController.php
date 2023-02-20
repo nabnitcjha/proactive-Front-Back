@@ -19,6 +19,7 @@ class MessageController extends BaseController
 
     public function __construct()
     {
+        $this->middleware('auth:api');
         $this->messageResource = new MessageResource(array());
         $this->Model = new Message();
     }

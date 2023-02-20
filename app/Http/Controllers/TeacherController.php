@@ -26,6 +26,7 @@ class TeacherController extends BaseController
     
     public function __construct()
     {
+        $this->middleware('auth:api');
         $this->teacherAdvanceResource = new TeacherAdvanceResource(array());
         $this->profileOverviewResource = new profileOverview(array());
         $this->Model = new Teacher();

@@ -8,7 +8,10 @@ class ParentController extends Controller
 {
     public $model_name = "App\Models\Parent";
 
-
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     public function index($request)
     {
         return parent::index($request);

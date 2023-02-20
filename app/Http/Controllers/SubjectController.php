@@ -14,6 +14,7 @@ class SubjectController extends BaseController
 
     public function __construct()
     {
+        $this->middleware('auth:api');
         $this->subjectResource = new SubjectResource(array());
         $this->Model = new Subject();
     }
