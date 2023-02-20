@@ -35,7 +35,7 @@
                             <div class="card info-card sales-card">
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        {{ tcls.topic }}
+                                        {{ 'Start Time' }}
                                         <span
                                             >|
                                             {{
@@ -51,7 +51,7 @@
                                             <i class="bi bi-book"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>{{ tcls.description }}</h6>
+                                            <h6>{{ tcls.topic }}</h6>
                                             <span
                                                 class="text-success small pt-1 fw-bold"
                                                 >{{ tcls.subject.name }}</span

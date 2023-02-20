@@ -1009,11 +1009,11 @@ var render = function render() {
       staticClass: "card-body"
     }, [_c("h5", {
       staticClass: "card-title"
-    }, [_vm._v("\n                                    " + _vm._s(tcls.topic) + "\n                                    "), _c("span", [_vm._v("|\n                                        " + _vm._s(_vm.timeFormater(tcls.start_date)))])]), _vm._v(" "), _c("div", {
+    }, [_vm._v("\n                                    " + _vm._s("Start Time") + "\n                                    "), _c("span", [_vm._v("|\n                                        " + _vm._s(_vm.timeFormater(tcls.start_date)))])]), _vm._v(" "), _c("div", {
       staticClass: "d-flex align-items-center"
     }, [_vm._m(2, true), _vm._v(" "), _c("div", {
       staticClass: "ps-3"
-    }, [_c("h6", [_vm._v(_vm._s(tcls.description))]), _vm._v(" "), _c("span", {
+    }, [_c("h6", [_vm._v(_vm._s(tcls.topic))]), _vm._v(" "), _c("span", {
       staticClass: "text-success small pt-1 fw-bold"
     }, [_vm._v(_vm._s(tcls.subject.name))])])])])])]);
   }), 0)])])])]);
