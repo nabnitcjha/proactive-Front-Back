@@ -128,4 +128,26 @@
         <!-- End Right side columns -->
     </div>
 </template>
-<script setup></script>
+<script>
+import { loginInfoStore } from "../../../stores/loginInfo";
+import { mapState } from "pinia";
+
+export default {
+    data: function () {
+        return {
+            totalClass: [],
+        };
+    },
+    computed: {
+        ...mapState(loginInfoStore, ["getLoginInfo"]),
+    },
+    methods: {
+        async totalClasses() {
+            let urlText = 'teacher/'+this.getLoginInfo.teacher_info.id+'/total-class'
+            let formData = {};
+            getResponse = await this.get(urlText);
+            this.totalClass = getResponse.data.data;
+        },
+    },
+};
+</script>

@@ -27,6 +27,7 @@ class StudentController extends BaseController
 
     public function __construct()
     {
+        $this->middleware('auth:api');
         $this->studentAdvanceResource = new StudentAdvanceResource(array());
         $this->profileOverviewResource = new profileOverview(array());
         $this->Model = new Student();
