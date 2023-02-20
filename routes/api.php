@@ -24,7 +24,12 @@ Route::group([
 });
 
 // student routes
-Route::group(['middleware' => ['role:admin|teacher|student|parent']], function ($router) {
+Route::group([
+
+    'middleware' => 'api',
+    'namespace' => 'App\Http\Controllers'
+
+], function ($router) {
 
     Route::post('addStudent', 'StudentController@saveData');
     Route::get('getStudents/{allowPagination}', 'StudentController@getData');
@@ -33,7 +38,7 @@ Route::group(['middleware' => ['role:admin|teacher|student|parent']], function (
     Route::get('student/{id}/detailForAdmin', 'StudentController@detailForAdmin');
     Route::get('student/{student_id}/teacher/{teacher_id}/class', 'StudentController@getTeacherSlot');
     // Route::get('teacher/{teacher_id}/student/{student_id}/class', 'StudentController@getTeacherSlot');
-    Route::get('student/{id}/sortedClass',[App\Http\Controllers\StudentController::class, 'sortedClass']);
+    Route::get('student/{id}/sortedClass', 'StudentController@sortedClass');
     Route::get('admin/sortedClass', 'StudentController@adminSortedClass');
     Route::get('student/{id}/class', 'StudentController@allClasses');
     Route::put('student/{id}/changePassword', 'StudentController@changePassword');
