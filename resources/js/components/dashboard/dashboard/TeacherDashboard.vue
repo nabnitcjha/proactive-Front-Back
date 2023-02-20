@@ -27,28 +27,34 @@
                     <h5 class="card-title">Classes <span>| Today</span></h5>
                     <div class="row">
                         <!-- Sales Card -->
-                        <div class="col-xxl-4 col-md-6">
+                        <div
+                            class="col-xxl-4 col-md-6"
+                            v-for="(tcls, index) in totalClass"
+                            :key="index"
+                        >
                             <div class="card info-card sales-card">
                                 <div class="card-body">
                                     <h5 class="card-title">
-                                        Sales <span>| Today</span>
+                                        {{ tcls.topic }}
+                                        <span
+                                            >|
+                                            {{
+                                                timeFormater(tcls.start_date)
+                                            }}</span
+                                        >
                                     </h5>
 
                                     <div class="d-flex align-items-center">
                                         <div
                                             class="card-icon rounded-circle d-flex align-items-center justify-content-center"
                                         >
-                                            <i class="bi bi-cart"></i>
+                                            <i class="bi bi-book"></i>
                                         </div>
                                         <div class="ps-3">
-                                            <h6>145</h6>
+                                            <h6>{{ tcls.description }}</h6>
                                             <span
                                                 class="text-success small pt-1 fw-bold"
-                                                >12%</span
-                                            >
-                                            <span
-                                                class="text-muted small pt-2 ps-1"
-                                                >increase</span
+                                                >{{ tcls.subject.name }}</span
                                             >
                                         </div>
                                     </div>
@@ -56,70 +62,6 @@
                             </div>
                         </div>
                         <!-- End Sales Card -->
-
-                        <!-- Revenue Card -->
-                        <div class="col-xxl-4 col-md-6">
-                            <div class="card info-card revenue-card">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        Revenue <span>| This Month</span>
-                                    </h5>
-
-                                    <div class="d-flex align-items-center">
-                                        <div
-                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center"
-                                        >
-                                            <i
-                                                class="bi bi-currency-dollar"
-                                            ></i>
-                                        </div>
-                                        <div class="ps-3">
-                                            <h6>$3,264</h6>
-                                            <span
-                                                class="text-success small pt-1 fw-bold"
-                                                >8%</span
-                                            >
-                                            <span
-                                                class="text-muted small pt-2 ps-1"
-                                                >increase</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Revenue Card -->
-
-                        <!-- Customers Card -->
-                        <div class="col-xxl-4 col-xl-12">
-                            <div class="card info-card customers-card">
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        Customers <span>| This Year</span>
-                                    </h5>
-
-                                    <div class="d-flex align-items-center">
-                                        <div
-                                            class="card-icon rounded-circle d-flex align-items-center justify-content-center"
-                                        >
-                                            <i class="bi bi-people"></i>
-                                        </div>
-                                        <div class="ps-3">
-                                            <h6>1244</h6>
-                                            <span
-                                                class="text-danger small pt-1 fw-bold"
-                                                >12%</span
-                                            >
-                                            <span
-                                                class="text-muted small pt-2 ps-1"
-                                                >decrease</span
-                                            >
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- End Customers Card -->
                     </div>
                 </div>
             </div>
@@ -141,11 +83,14 @@ export default {
     computed: {
         ...mapState(loginInfoStore, ["getLoginInfo"]),
     },
+    mounted() {
+        this.totalClasses();
+    },
     methods: {
         async totalClasses() {
-            let urlText = 'teacher/'+this.getLoginInfo.teacher_info.id+'/total-class'
-            let formData = {};
-            getResponse = await this.get(urlText);
+            let urlText =
+                "teacher/" + this.getLoginInfo.teacher_info.id + "/sortedClass";
+            let getResponse = await this.get(urlText, 1, false);
             this.totalClass = getResponse.data.data;
         },
     },
