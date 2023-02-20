@@ -112,95 +112,37 @@
                             </h5>
 
                             <div class="activity">
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">32 min</div>
+                                <div class="activity-item d-flex" v-for="(tcls, index) in totalClass"
+                            :key="index">
+                                    <div class="activite-label">{{ timeFormater(tcls.start_date) }}</div>
                                     <i
                                         class="bi bi-circle-fill activity-badge text-success align-self-start"
+                                        v-if="index==0"
                                     ></i>
                                     <i
                                         class="bi bi-circle-fill activity-badge text-danger align-self-start"
+                                        v-if="index==1"
                                     ></i>
                                     <i
                                         class="bi bi-circle-fill activity-badge text-primary align-self-start"
+                                        v-if="index==2"
                                     ></i>
                                     <i
                                         class="bi bi-circle-fill activity-badge text-info align-self-start"
+                                        v-if="index==3"
                                     ></i>
                                     <i
                                         class="bi bi-circle-fill activity-badge text-warning align-self-start"
+                                        v-if="index==4"
                                     ></i>
                                     <i
                                         class="bi bi-circle-fill activity-badge text-muted align-self-start"
+                                        v-if="index==5"
                                     ></i>
                                     <div class="activity-content">
-                                        Quia quae rerum
-                                        <a href="#" class="fw-bold text-dark"
-                                            >explicabo officiis</a
-                                        >
-                                        beatae
+                                        {{ tcls.topic }}
                                     </div>
                                 </div>
-                                <!-- End activity item-->
-
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">56 min</div>
-                                    <i
-                                        class="bi bi-circle-fill activity-badge text-danger align-self-start"
-                                    ></i>
-                                    <div class="activity-content">
-                                        Voluptatem blanditiis blanditiis eveniet
-                                    </div>
-                                </div>
-                                <!-- End activity item-->
-
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">2 hrs</div>
-                                    <i
-                                        class="bi bi-circle-fill activity-badge text-primary align-self-start"
-                                    ></i>
-                                    <div class="activity-content">
-                                        Voluptates corrupti molestias voluptatem
-                                    </div>
-                                </div>
-                                <!-- End activity item-->
-
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">1 day</div>
-                                    <i
-                                        class="bi bi-circle-fill activity-badge text-info align-self-start"
-                                    ></i>
-                                    <div class="activity-content">
-                                        Tempore autem saepe
-                                        <a href="#" class="fw-bold text-dark"
-                                            >occaecati voluptatem</a
-                                        >
-                                        tempore
-                                    </div>
-                                </div>
-                                <!-- End activity item-->
-
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">2 days</div>
-                                    <i
-                                        class="bi bi-circle-fill activity-badge text-warning align-self-start"
-                                    ></i>
-                                    <div class="activity-content">
-                                        Est sit eum reiciendis exercitationem
-                                    </div>
-                                </div>
-                                <!-- End activity item-->
-
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">4 weeks</div>
-                                    <i
-                                        class="bi bi-circle-fill activity-badge text-muted align-self-start"
-                                    ></i>
-                                    <div class="activity-content">
-                                        Dicta dolorem harum nulla eius. Ut
-                                        quidem quidem sit quas
-                                    </div>
-                                </div>
-                                <!-- End activity item-->
                             </div>
                         </div>
                     </div>
@@ -243,80 +185,37 @@
                             </h5>
 
                             <div class="activity">
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">32 min</div>
+                                <div class="activity-item d-flex" v-for="(tcls, index) in totalClass"
+                            :key="index">
+                                    <div class="activite-label">{{ timeFormater(tcls.start_date) }}</div>
                                     <i
                                         class="bi bi-circle-fill activity-badge text-success align-self-start"
+                                        v-if="index==0"
                                     ></i>
-                                    <div class="activity-content">
-                                        Quia quae rerum
-                                        <a href="#" class="fw-bold text-dark"
-                                            >explicabo officiis</a
-                                        >
-                                        beatae
-                                    </div>
-                                </div>
-                                <!-- End activity item-->
-
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">56 min</div>
                                     <i
                                         class="bi bi-circle-fill activity-badge text-danger align-self-start"
+                                        v-if="index==1"
                                     ></i>
-                                    <div class="activity-content">
-                                        Voluptatem blanditiis blanditiis eveniet
-                                    </div>
-                                </div>
-                                <!-- End activity item-->
-
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">2 hrs</div>
                                     <i
                                         class="bi bi-circle-fill activity-badge text-primary align-self-start"
+                                        v-if="index==2"
                                     ></i>
-                                    <div class="activity-content">
-                                        Voluptates corrupti molestias voluptatem
-                                    </div>
-                                </div>
-                                <!-- End activity item-->
-
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">1 day</div>
                                     <i
                                         class="bi bi-circle-fill activity-badge text-info align-self-start"
+                                        v-if="index==3"
                                     ></i>
-                                    <div class="activity-content">
-                                        Tempore autem saepe
-                                        <a href="#" class="fw-bold text-dark"
-                                            >occaecati voluptatem</a
-                                        >
-                                        tempore
-                                    </div>
-                                </div>
-                                <!-- End activity item-->
-
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">2 days</div>
                                     <i
                                         class="bi bi-circle-fill activity-badge text-warning align-self-start"
+                                        v-if="index==4"
                                     ></i>
-                                    <div class="activity-content">
-                                        Est sit eum reiciendis exercitationem
-                                    </div>
-                                </div>
-                                <!-- End activity item-->
-
-                                <div class="activity-item d-flex">
-                                    <div class="activite-label">4 weeks</div>
                                     <i
                                         class="bi bi-circle-fill activity-badge text-muted align-self-start"
+                                        v-if="index==5"
                                     ></i>
                                     <div class="activity-content">
-                                        Dicta dolorem harum nulla eius. Ut
-                                        quidem quidem sit quas
+                                        {{ tcls.topic }}
                                     </div>
                                 </div>
-                                <!-- End activity item-->
                             </div>
                         </div>
                     </div>

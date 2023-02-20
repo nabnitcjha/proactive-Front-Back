@@ -736,7 +736,65 @@ var render = function render() {
     }) : _vm._e(), _vm._v(" "), _c("div", {
       staticClass: "activity-content"
     }, [_vm._v("\n                                    " + _vm._s(tcls.topic) + "\n                                ")])]);
-  }), 0)])])]), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)])])]);
+  }), 0)])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-4"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_vm._m(2), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_vm._m(3), _vm._v(" "), _c("div", {
+    staticClass: "activity"
+  }, _vm._l(_vm.totalClass, function (tcls, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "activity-item d-flex"
+    }, [_c("div", {
+      staticClass: "activite-label"
+    }, [_vm._v(_vm._s(_vm.timeFormater(tcls.start_date)))]), _vm._v(" "), index == 0 ? _c("i", {
+      staticClass: "bi bi-circle-fill activity-badge text-success align-self-start"
+    }) : _vm._e(), _vm._v(" "), index == 1 ? _c("i", {
+      staticClass: "bi bi-circle-fill activity-badge text-danger align-self-start"
+    }) : _vm._e(), _vm._v(" "), index == 2 ? _c("i", {
+      staticClass: "bi bi-circle-fill activity-badge text-primary align-self-start"
+    }) : _vm._e(), _vm._v(" "), index == 3 ? _c("i", {
+      staticClass: "bi bi-circle-fill activity-badge text-info align-self-start"
+    }) : _vm._e(), _vm._v(" "), index == 4 ? _c("i", {
+      staticClass: "bi bi-circle-fill activity-badge text-warning align-self-start"
+    }) : _vm._e(), _vm._v(" "), index == 5 ? _c("i", {
+      staticClass: "bi bi-circle-fill activity-badge text-muted align-self-start"
+    }) : _vm._e(), _vm._v(" "), _c("div", {
+      staticClass: "activity-content"
+    }, [_vm._v("\n                                    " + _vm._s(tcls.topic) + "\n                                ")])]);
+  }), 0)])])]), _vm._v(" "), _c("div", {
+    staticClass: "col-4"
+  }, [_c("div", {
+    staticClass: "card"
+  }, [_vm._m(4), _vm._v(" "), _c("div", {
+    staticClass: "card-body"
+  }, [_vm._m(5), _vm._v(" "), _c("div", {
+    staticClass: "activity"
+  }, _vm._l(_vm.totalClass, function (tcls, index) {
+    return _c("div", {
+      key: index,
+      staticClass: "activity-item d-flex"
+    }, [_c("div", {
+      staticClass: "activite-label"
+    }, [_vm._v(_vm._s(_vm.timeFormater(tcls.start_date)))]), _vm._v(" "), index == 0 ? _c("i", {
+      staticClass: "bi bi-circle-fill activity-badge text-success align-self-start"
+    }) : _vm._e(), _vm._v(" "), index == 1 ? _c("i", {
+      staticClass: "bi bi-circle-fill activity-badge text-danger align-self-start"
+    }) : _vm._e(), _vm._v(" "), index == 2 ? _c("i", {
+      staticClass: "bi bi-circle-fill activity-badge text-primary align-self-start"
+    }) : _vm._e(), _vm._v(" "), index == 3 ? _c("i", {
+      staticClass: "bi bi-circle-fill activity-badge text-info align-self-start"
+    }) : _vm._e(), _vm._v(" "), index == 4 ? _c("i", {
+      staticClass: "bi bi-circle-fill activity-badge text-warning align-self-start"
+    }) : _vm._e(), _vm._v(" "), index == 5 ? _c("i", {
+      staticClass: "bi bi-circle-fill activity-badge text-muted align-self-start"
+    }) : _vm._e(), _vm._v(" "), _c("div", {
+      staticClass: "activity-content"
+    }, [_vm._v("\n                                    " + _vm._s(tcls.topic) + "\n                                ")])]);
+  }), 0)])])])])])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -781,10 +839,6 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "col-4"
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
     staticClass: "filter"
   }, [_c("a", {
     staticClass: "icon",
@@ -813,89 +867,17 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("Tomorrow")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("h5", {
+  }, [_vm._v("Tomorrow")])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("\n                            Assignment "), _c("span", [_vm._v("| Today")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity"
-  }, [_c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("32 min")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-success align-self-start"
-  }), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-danger align-self-start"
-  }), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-primary align-self-start"
-  }), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-info align-self-start"
-  }), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-warning align-self-start"
-  }), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-muted align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n                                    Quia quae rerum\n                                    "), _c("a", {
-    staticClass: "fw-bold text-dark",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("explicabo officiis")]), _vm._v("\n                                    beatae\n                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("56 min")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-danger align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n                                    Voluptatem blanditiis blanditiis eveniet\n                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("2 hrs")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-primary align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n                                    Voluptates corrupti molestias voluptatem\n                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("1 day")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-info align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n                                    Tempore autem saepe\n                                    "), _c("a", {
-    staticClass: "fw-bold text-dark",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("occaecati voluptatem")]), _vm._v("\n                                    tempore\n                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("2 days")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-warning align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n                                    Est sit eum reiciendis exercitationem\n                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("4 weeks")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-muted align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n                                    Dicta dolorem harum nulla eius. Ut\n                                    quidem quidem sit quas\n                                ")])])])])])]);
+  }, [_vm._v("\n                            Assignment "), _c("span", [_vm._v("| Today")])]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("div", {
-    staticClass: "col-4"
-  }, [_c("div", {
-    staticClass: "card"
-  }, [_c("div", {
     staticClass: "filter"
   }, [_c("a", {
     staticClass: "icon",
@@ -924,71 +906,13 @@ var staticRenderFns = [function () {
     attrs: {
       href: "#"
     }
-  }, [_vm._v("Tomorrow")])])])]), _vm._v(" "), _c("div", {
-    staticClass: "card-body"
-  }, [_c("h5", {
+  }, [_vm._v("Tomorrow")])])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("h5", {
     staticClass: "card-title"
-  }, [_vm._v("\n                            Study Resources "), _c("span", [_vm._v("| Today")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity"
-  }, [_c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("32 min")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-success align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n                                    Quia quae rerum\n                                    "), _c("a", {
-    staticClass: "fw-bold text-dark",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("explicabo officiis")]), _vm._v("\n                                    beatae\n                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("56 min")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-danger align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n                                    Voluptatem blanditiis blanditiis eveniet\n                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("2 hrs")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-primary align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n                                    Voluptates corrupti molestias voluptatem\n                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("1 day")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-info align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n                                    Tempore autem saepe\n                                    "), _c("a", {
-    staticClass: "fw-bold text-dark",
-    attrs: {
-      href: "#"
-    }
-  }, [_vm._v("occaecati voluptatem")]), _vm._v("\n                                    tempore\n                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("2 days")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-warning align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n                                    Est sit eum reiciendis exercitationem\n                                ")])]), _vm._v(" "), _c("div", {
-    staticClass: "activity-item d-flex"
-  }, [_c("div", {
-    staticClass: "activite-label"
-  }, [_vm._v("4 weeks")]), _vm._v(" "), _c("i", {
-    staticClass: "bi bi-circle-fill activity-badge text-muted align-self-start"
-  }), _vm._v(" "), _c("div", {
-    staticClass: "activity-content"
-  }, [_vm._v("\n                                    Dicta dolorem harum nulla eius. Ut\n                                    quidem quidem sit quas\n                                ")])])])])])]);
+  }, [_vm._v("\n                            Study Resources "), _c("span", [_vm._v("| Today")])]);
 }];
 render._withStripped = true;
 
