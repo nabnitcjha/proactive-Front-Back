@@ -149,7 +149,7 @@ class ClassScheduleController extends BaseController
                     "message" => "Teacher not available",
                     "dayName" => Carbon::parse($alloted_teacher->start_date)->dayName,
                     "not_available_date" => Carbon::parse($alloted_teacher->start_date)->format('d-m-Y'),
-                    "not_available_time" => Carbon::parse($alloted_teacher->start_date)->format('h:i:s a').'-'.Carbon::parse($alloted_teacher->end_date)->format('h:i:s a')
+                    "not_available_time" => Carbon::parse($alloted_teacher->start_date)->format('h:i a').' - '.Carbon::parse($alloted_teacher->end_date)->format('h:i:s a')
                 );
             }
             // check teacher available or not end
@@ -171,7 +171,7 @@ class ClassScheduleController extends BaseController
                       "message" => "Student not available",
                       "dayName" => Carbon::parse($alloted_student->start_date)->dayName,
                       "not_available_date" =>Carbon::parse($alloted_student->start_date)->format('d-m-Y'),
-                      "not_available_time" => Carbon::parse($alloted_student->start_date)->format('h:i:s a').'-'.Carbon::parse($alloted_student->end_date)->format('h:i:s a')
+                      "not_available_time" => Carbon::parse($alloted_student->start_date)->format('h:i a').' - '.Carbon::parse($alloted_student->end_date)->format('h:i:s a')
                   );
                 }
             }
