@@ -146,7 +146,7 @@ class ClassScheduleController extends BaseController
             if ($alloted_teacher != null) {
                 return array(
                     "status"  => "failed",
-                    "message" => "teacher not available",
+                    "message" => "Teacher not available",
                     "dayName" => Carbon::parse($alloted_teacher->start_date)->dayName,
                     "not_available_date" => Carbon::parse($alloted_teacher->start_date)->format('d-m-Y'),
                     "not_available_time" => Carbon::parse($alloted_teacher->start_date)->format('h:i:s a').'-'.Carbon::parse($alloted_teacher->end_date)->format('h:i:s a')
@@ -168,7 +168,7 @@ class ClassScheduleController extends BaseController
                 if ($alloted_student!=null) {
                   return array(
                       "status"  => "failed",
-                      "message" => "student not available",
+                      "message" => "Student not available",
                       "dayName" => Carbon::parse($alloted_student->start_date)->dayName,
                       "not_available_date" =>Carbon::parse($alloted_student->start_date)->format('d-m-Y'),
                       "not_available_time" => Carbon::parse($alloted_student->start_date)->format('h:i:s a').'-'.Carbon::parse($alloted_student->end_date)->format('h:i:s a')
