@@ -142,14 +142,14 @@ class ClassScheduleController extends BaseController
                     $query->whereBetween('start_date', [$start, $end])
                         ->orWhereBetween('end_date', [$start, $end]);
                 })
-                ->get();
-            if (count($alloted_teacher) > 0) {
+                ->first();
+            if ($alloted_teacher != null) {
                 return array(
                     "status"  => "failed",
                     "message" => "teacher not available",
-                    "dayName" => Carbon::parse($start)->dayName,
-                    "not_available_date" => Carbon::parse($start)->format('d-m-Y'),
-                    "not_available_time" => Carbon::parse($start)->format('h:i:s a').'-'.Carbon::parse($end)->format('h:i:s a')
+                    "dayName" => Carbon::parse($alloted_teacher->start_date)->dayName,
+                    "not_available_date" => Carbon::parse($alloted_teacher->start_date)->format('d-m-Y'),
+                    "not_available_time" => Carbon::parse($alloted_teacher->start_date)->format('h:i:s a').'-'.Carbon::parse($alloted_teacher->end_date)->format('h:i:s a')
                 );
             }
             // check teacher available or not end
@@ -163,15 +163,15 @@ class ClassScheduleController extends BaseController
                     $query->whereBetween('start_date', [$start, $end])
                     ->orWhereBetween('end_date', [$start, $end]);
                 })
-                ->get();
+                ->first();
 
-                if (count($alloted_student)>0) {
+                if ($alloted_student!=null) {
                   return array(
                       "status"  => "failed",
                       "message" => "student not available",
-                      "dayName" => Carbon::parse($start)->dayName,
-                      "not_available_date" =>Carbon::parse($start)->format('d-m-Y'),
-                      "not_available_time" => Carbon::parse($start)->format('h:i:s a').'-'.Carbon::parse($end)->format('h:i:s a')
+                      "dayName" => Carbon::parse($alloted_student->start_date)->dayName,
+                      "not_available_date" =>Carbon::parse($alloted_student->start_date)->format('d-m-Y'),
+                      "not_available_time" => Carbon::parse($alloted_student->start_date)->format('h:i:s a').'-'.Carbon::parse($alloted_student->end_date)->format('h:i:s a')
                   );
                 }
             }
